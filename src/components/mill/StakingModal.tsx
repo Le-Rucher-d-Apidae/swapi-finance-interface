@@ -23,6 +23,7 @@ import { UNDEFINED, ZERO_ADDRESS /* , NO_EIP712_SUPPORT */ } from '../../constan
 import { BigNumber } from '@ethersproject/bignumber'
 import Toggle from '../Toggle'
 import QuestionHelper from '../QuestionHelper'
+import { APD } from '../../constants'
 
 const HypotheticalRewardRate = styled.div<{ dim: boolean }>`
   display: flex;
@@ -187,7 +188,8 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
       ]
 
       const domain = {
-        name: dummyPair ? 'Baguette Liquidity' : stakingToken.name,
+        // name: dummyPair ? 'Baguette Liquidity' : stakingToken.name,
+        name: dummyPair ? `${APD[ChainId.POLYGON].name} Liquidity` : stakingToken.name,
         version: '1',
         chainId: chainId,
         verifyingContract: tokenContract.address

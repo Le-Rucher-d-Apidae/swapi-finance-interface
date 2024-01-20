@@ -4,7 +4,7 @@ An open source interface for Swapi -- a community-backed decentralized exchange 
 
 ## Project Introduction
 
-Swapi is a Uniswap based AMM running on Polygon with APD rewards for a few selected LPs and single-token staking
+Swapi is a Uniswap based AMM forked from [baguette-exchange](https://github.com/baguette-exchange?tab=repositories) running on Polygon with APD rewards for a few selected LPs and single-token staking
 pools for those who want to avoid being exposed to impermanent loss. No one can deny most DEX/AMM projects are subject
 to high inflation. The goal of Swapi with $APD is to reward users while keeping inflation under control and avoid
 sharp depreciation of the token price.

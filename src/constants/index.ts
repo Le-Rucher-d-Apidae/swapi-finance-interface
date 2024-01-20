@@ -5,7 +5,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { injected } from '../connectors'
 
-export const GAS_PRICE = 225
+// export const GAS_PRICE = 225
 
 export const LANDING_PAGE = 'https://app.swapi.finance//' // TODO: change to landing page
 // export const ANALYTICS_PAGE = 'https://info.baguette.exchange/' // TODO: change to analytics page
@@ -34,7 +34,7 @@ type ChainTokenList = {
 // }
 export const APD: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x8d3209bE3b9077e36D7d9F504F2eB5B02077c1ff', 18, 'APD', 'Apidae'), // TODO: change to mumbai APD
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x5d47bAbA0d66083C52009271faF3F50DCc01023C', 18, 'APD', 'Apidae') // TODO: change to polygon APD
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x5d47bAbA0d66083C52009271faF3F50DCc01023C', 18, 'APD', 'Apidae') // TODO: change to polygon APD // currently: ApeSwapFinance Banana (BANANA)
 }
 
 // export const PNG: { [chainId in ChainId]: Token } = {
