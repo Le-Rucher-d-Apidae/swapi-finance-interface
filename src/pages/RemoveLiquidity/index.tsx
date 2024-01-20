@@ -44,6 +44,7 @@ import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
 import { ChainId } from '@swapi-finance/sdk-local'
+import { MAIN_TOKEN } from '../../constants'
 
 export default function RemoveLiquidity({
   history,
@@ -388,7 +389,8 @@ export default function RemoveLiquidity({
       <>
         <RowBetween>
           <Text color={theme.text2} fontWeight={500} fontSize={16}>
-            {'BAG ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned
+            {/* {'BAG ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned */}
+            {MAIN_TOKEN + ' ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned
           </Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin={true} />

@@ -11,11 +11,13 @@ import { SubmittedView, LoadingView } from '../ModalViews'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useActiveWeb3React } from '../../hooks'
+import { ChainId } from '@swapi-finance/sdk-local'
+import { MAIN_TOKEN } from '../../constants'
 
 const ContentWrapper = styled(AutoColumn)`
-   width: 100%;
-   padding: 1rem;
- `
+  width: 100%;
+  padding: 1rem;
+`
 
 interface StakingModalProps {
   isOpen: boolean
@@ -46,7 +48,8 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         .getReward({ gasLimit: 350000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Claim accumulated BAG rewards`
+            // summary: `Claim accumulated BAG rewards`
+            summary: `Claim accumulated ${MAIN_TOKEN[ChainId.POLYGON].name} rewards`
           })
           setHash(response.hash)
         })
@@ -78,12 +81,13 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
               <TYPE.body fontWeight={600} fontSize={36}>
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              <TYPE.body>Unclaimed BAG</TYPE.body>
+              {/* <TYPE.body>Unclaimed BAG</TYPE.body> */}
+              <TYPE.body>Unclaimed {MAIN_TOKEN[ChainId.POLYGON].name}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
             When you claim without withdrawing your tokens remain in the mining pool.
-           </TYPE.subHeader>
+          </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onClaimReward}>
             {error ?? 'Claim'}
           </ButtonError>
@@ -92,7 +96,10 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} BAG</TYPE.body>
+            {/* <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)}BAG</TYPE.body> */}
+            <TYPE.body fontSize={20}>
+              Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} {MAIN_TOKEN[ChainId.POLYGON].name}
+            </TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -100,11 +107,11 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Claimed BAG!</TYPE.body>
+            {/* <TYPE.body fontSize={20}>Claimed BAG!</TYPE.body> */}
+            <TYPE.body fontSize={20}>Claimed {MAIN_TOKEN[ChainId.POLYGON].name}!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
     </Modal>
   )
 }
-

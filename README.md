@@ -1,4 +1,4 @@
-# Baguette Interface
+# Sapi finance Interface
 
 An open source interface for Swapi -- a community-backed decentralized exchange for Polygon assets, tasting like honey.
 

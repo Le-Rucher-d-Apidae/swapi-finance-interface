@@ -6,8 +6,6 @@
 
 export const DEFAULT_TOKEN_LIST_URL =
   process.env.REACT_APP_DEFAULT_TOKEN_LIST_URL ||
-  'xhttps://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/apidae.tokenlist.json'
-
-console.log('process.env.REACT_APP_DEFAULT_TOKEN_LIST_URL', process.env.REACT_APP_DEFAULT_TOKEN_LIST_URL)
+  'https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/apidae.tokenlist.json'
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [DEFAULT_TOKEN_LIST_URL]

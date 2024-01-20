@@ -3,13 +3,13 @@ import { shade } from 'polished'
 import Vibrant from 'node-vibrant'
 import { hex } from 'wcag-contrast'
 import { Token } from '@swapi-finance/sdk-local'
-import { /* BAG */ APD } from '../constants'
+import { /* BAG */ MAIN_TOKEN } from '../constants'
 
 async function getColorFromToken(token: Token): Promise<string | null> {
   // const path = token.equals(BAG[token.chainId]) ?
   //   `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png` :
   //   `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${token.address}/logo.png`
-  const path = token.equals(APD[token.chainId])
+  const path = token.equals(MAIN_TOKEN[token.chainId])
     ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png`
     : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${token.address}/logo.png`
 

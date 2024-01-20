@@ -12,10 +12,13 @@ import { useActiveWeb3React } from '../../hooks'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 
+import { ChainId } from '@swapi-finance/sdk-local'
+import { MAIN_TOKEN } from '../../constants'
+
 const ContentWrapper = styled(AutoColumn)`
-   width: 100%;
-   padding: 1rem;
- `
+  width: 100%;
+  padding: 1rem;
+`
 
 interface StakingModalProps {
   isOpen: boolean
@@ -79,17 +82,14 @@ export default function CompoundRewardModal({ isOpen, onDismiss, stakingInfo }: 
               <TYPE.body fontWeight={600} fontSize={36}>
                 {earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              <TYPE.body>Available BAG</TYPE.body>
+              {/* <TYPE.body>Available BAG</TYPE.body> */}
+              <TYPE.body>Available {MAIN_TOKEN[ChainId.POLYGON].name}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
             When you compound earned rewards, the initial staked tokens remain in the mining pool.
-           </TYPE.subHeader>
-          <ButtonError
-            disabled={!!error}
-            error={!!error && !!stakingInfo?.stakedAmount}
-            onClick={onCompoundReward}
-          >
+          </TYPE.subHeader>
+          <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onCompoundReward}>
             {error ?? 'Compound'}
           </ButtonError>
         </ContentWrapper>
@@ -105,11 +105,11 @@ export default function CompoundRewardModal({ isOpen, onDismiss, stakingInfo }: 
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>BAG compounded</TYPE.body>
+            {/* <TYPE.body fontSize={20}>BAG compounded</TYPE.body> */}
+            <TYPE.body fontSize={20}>{MAIN_TOKEN[ChainId.POLYGON].name} compounded</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
     </Modal>
   )
 }
-

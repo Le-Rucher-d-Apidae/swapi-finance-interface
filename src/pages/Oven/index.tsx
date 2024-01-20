@@ -12,6 +12,9 @@ import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk-local'
 
+import { ChainId } from '@swapi-finance/sdk-local'
+import { MAIN_TOKEN } from '../../constants'
+
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
@@ -93,7 +96,10 @@ export default function Oven() {
                 </TYPE.white>
               </RowBetween>
               <RowBetween>
-                <TYPE.white fontSize={14}>Deposit your tokens to receive BAG.</TYPE.white>
+                {/* <TYPE.white fontSize={14}>Deposit your tokens to receive BAG.</TYPE.white> */}
+                <TYPE.white fontSize={14}>
+                  Deposit your tokens to receive {MAIN_TOKEN[ChainId.POLYGON].symbol}.
+                </TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>

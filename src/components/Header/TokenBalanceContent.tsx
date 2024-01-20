@@ -1,11 +1,10 @@
 // import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk-local'
-// import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk-local'
 import { ChainId, TokenAmount, CMATIC, WMATIC, JSBI } from '@swapi-finance/sdk-local'
 import React, { useState, useEffect } from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-import { /* BAG */ APD } from '../../constants'
+import { /* BAG */ MAIN_TOKEN } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { useAggregateBagBalance, useTokenBalance } from '../../state/wallet/hooks'
@@ -43,7 +42,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   const { account, chainId } = useActiveWeb3React()
   const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   // const bag = chainId ? BAG[chainId] : undefined
-  const apt = chainId ? APD[chainId] : undefined
+  const apt = chainId ? MAIN_TOKEN[chainId] : undefined
 
   const total = useAggregateBagBalance()
   const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ apt)
@@ -65,11 +64,11 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
       : setCirculatingSupply(totalSupply)
   }, [/* bag */ apt, chainId, totalSupply])
 
-  // TODO: Determine APD price in MATIC
-  // TODO: Determine APD price in MATIC
-  // TODO: Determine APD price in MATIC
-  // TODO: Determine APD price in MATIC
-  // TODO: Determine APD price in MATIC
+  // TODO: Determine MAIN_TOKEN price in MATIC
+  // TODO: Determine MAIN_TOKEN price in MATIC
+  // TODO: Determine MAIN_TOKEN price in MATIC
+  // TODO: Determine MAIN_TOKEN price in MATIC
+  // TODO: Determine MAIN_TOKEN price in MATIC
   // Determine BAG price in AVAX
   // const wavax = WAVAX[chainId ? chainId : 43114]
   const wmatic = WMATIC[chainId ? chainId : ChainId.POLYGON]
@@ -100,7 +99,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
           <RowBetween>
             <TYPE.white color="white">
               {/* Your BAG Breakdown */}
-              Your {APD[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
+              Your {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
             </TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
@@ -130,7 +129,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <RowBetween>
               <TYPE.white color="white">
                 {/* BAG price: */}
-                {APD[chainId ? chainId : ChainId.POLYGON].symbol} price:
+                {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:
               </TYPE.white>
               {/* <TYPE.white color="white">{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
               <TYPE.white color="white">
@@ -141,7 +140,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <RowBetween>
               <TYPE.white color="white">
                 {/* BAG in circulation: */}
-                {APD[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
+                {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
               </TYPE.white>
               <TYPE.white color="white">{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>

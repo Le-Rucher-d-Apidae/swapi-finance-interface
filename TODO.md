@@ -6,8 +6,7 @@ src/constants/lists.ts
 - pages addresses, router, factory, default pairs
 src/constants/index.ts
 
-- FACTORY_ADDRESS, INIT_CODE_HASH
-sdk/src/constants.ts
+- [FACTORY_ADDRESS, INIT_CODE_HASH](./sdk/src/constants.ts)
 https://www.google.com/search?q=swap+factory+INIT_CODE_HASH
 
 (social) links

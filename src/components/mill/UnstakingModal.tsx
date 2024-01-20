@@ -14,10 +14,13 @@ import FormattedCurrencyAmount from '../FormattedCurrencyAmount'
 import { useActiveWeb3React } from '../../hooks'
 import { UNDEFINED } from '../../constants'
 
+// import { ChainId } from '@swapi-finance/sdk-local'
+// import { MAIN_TOKEN } from '../../constants'
+
 const ContentWrapper = styled(AutoColumn)`
-   width: 100%;
-   padding: 1rem;
- `
+  width: 100%;
+  padding: 1rem;
+`
 
 interface StakingModalProps {
   isOpen: boolean
@@ -46,8 +49,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
     if (stakingContract && stakingInfo?.stakedAmount) {
       setAttempting(true)
       if (autocompoundContract && stakingInfo.useAutocompounding) {
-        await autocompoundContract.withdraw(
-              `0x${stakingInfo.sharesAmount.toString(16)}`, { gasLimit: 300000 })
+        await autocompoundContract
+          .withdraw(`0x${stakingInfo.sharesAmount.toString(16)}`, { gasLimit: 300000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
               summary: `Withdraw deposited tokens`
@@ -59,7 +62,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
             console.log(error)
           })
       } else {
-        await stakingContract.exit({ gasLimit: 300000 })
+        await stakingContract
+          .exit({ gasLimit: 300000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
               summary: `Withdraw deposited tokens`
@@ -112,12 +116,15 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
           )}
           {isPair && (
             <TYPE.subHeader style={{ textAlign: 'center' }}>
-              When you withdraw, your BAG is claimed and your Baguette Liquidity tokens, BGL, are returned to you. You will no longer earn BAG rewards on this liquidity. Your original token liquidity will remain in its liquidity pool.
+              When you withdraw, your BAG is claimed and your Baguette Liquidity tokens, BGL, are returned to you. You
+              will no longer earn BAG rewards on this liquidity. Your original token liquidity will remain in its
+              liquidity pool.
             </TYPE.subHeader>
           )}
           {!isPair && !stakingInfo.useAutocompounding && (
             <TYPE.subHeader style={{ textAlign: 'center' }}>
-              When you withdraw, your {rewardToken.symbol} is claimed and your {tokenSymbol} tokens are returned to you. You will no longer earn {rewardToken.symbol} rewards on this staking pool.
+              When you withdraw, your {rewardToken.symbol} is claimed and your {tokenSymbol} tokens are returned to you.
+              You will no longer earn {rewardToken.symbol} rewards on this staking pool.
             </TYPE.subHeader>
           )}
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onWithdraw}>
@@ -128,9 +135,13 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOndismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Withdrawing {stakingInfo?.stakedAmount?.toSignificant(6)} {tokenSymbol}</TYPE.body>
+            <TYPE.body fontSize={20}>
+              Withdrawing {stakingInfo?.stakedAmount?.toSignificant(6)} {tokenSymbol}
+            </TYPE.body>
             {!stakingInfo?.useAutocompounding && (
-              <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} {rewardToken.symbol}</TYPE.body>
+              <TYPE.body fontSize={20}>
+                Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} {rewardToken.symbol}
+              </TYPE.body>
             )}
           </AutoColumn>
         </LoadingView>
@@ -140,9 +151,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             <TYPE.body fontSize={20}>Withdrew {tokenSymbol}!</TYPE.body>
-            {!stakingInfo?.useAutocompounding && (
-              <TYPE.body fontSize={20}>Claimed {rewardToken.symbol}!</TYPE.body>
-            )}
+            {!stakingInfo?.useAutocompounding && <TYPE.body fontSize={20}>Claimed {rewardToken.symbol}!</TYPE.body>}
           </AutoColumn>
         </SubmittedView>
       )}

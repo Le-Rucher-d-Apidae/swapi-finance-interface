@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 // import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
@@ -65,6 +65,10 @@ const Marginer = styled.div`
 `
 
 export default function App() {
+  useEffect(() => {
+    document.title = process.env.REACT_APP_TITLE || 'Swapi Finance'
+  }, [])
+
   return (
     <Suspense fallback={null}>
       {/* <Route component={GoogleAnalyticsReporter} /> */}

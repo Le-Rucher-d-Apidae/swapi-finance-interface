@@ -29,7 +29,7 @@ import Modal from '../Modal'
 import TokenBalanceContent from './TokenBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 // import { ANALYTICS_PAGE , BRIDGE_PAGE } from '../../constants'
-import { /* BAG */ APD } from '../../constants'
+import { /* BAG */ MAIN_TOKEN } from '../../constants'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -347,7 +347,7 @@ export default function Header() {
                   </HideSmall>
                 )}
                 {/* BAG */}
-                {APD[chainId ? chainId : ChainId.POLYGON].symbol}
+                {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol}
               </TokenAmountStyle>
               <CardNoise />
             </TokenWrapper>

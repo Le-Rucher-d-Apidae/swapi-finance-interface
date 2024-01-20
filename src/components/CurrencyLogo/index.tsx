@@ -8,7 +8,7 @@ import PolygonLogo from '../../assets/images/polygon_token_round.png'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
-import { /* BAG */ APD } from '../../constants'
+import { /* BAG */ MAIN_TOKEN } from '../../constants'
 
 // const getTokenLogoURL = (address: string) =>
 //   address === BAG[ChainId.AVALANCHE].address
@@ -17,7 +17,7 @@ import { /* BAG */ APD } from '../../constants'
 
 const getTokenLogoURL = (address: string) =>
   // address === BAG[ChainId.POLYGON].address
-  address === APD[ChainId.POLYGON].address
+  address === MAIN_TOKEN[ChainId.POLYGON].address
     ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png` // `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png` // TODO: update this : change to APIDAE logo */
     : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
 // alternatives: https://github.com/dappradar/tokens/tree/main/polygon

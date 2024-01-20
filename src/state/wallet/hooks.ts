@@ -1,5 +1,5 @@
 // import { BAG } from './../../constants/index'
-import { APD } from './../../constants/index'
+import { MAIN_TOKEN } from './../../constants/index'
 import { Currency, CurrencyAmount, /* CAVAX */ CMATIC, JSBI, Token, TokenAmount } from '@swapi-finance/sdk-local'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
@@ -135,12 +135,12 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
   return balances ?? {}
 }
 
-// get the total owned and unharvested BAG for account
+// get the total owned and unharvested MAIN_TOKEN for account
 export function useAggregateBagBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 
   // const bag = chainId ? BAG[chainId] : undefined
-  const apt = chainId ? APD[chainId] : undefined
+  const apt = chainId ? MAIN_TOKEN[chainId] : undefined
   // const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, bag)
   const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, apt)
 

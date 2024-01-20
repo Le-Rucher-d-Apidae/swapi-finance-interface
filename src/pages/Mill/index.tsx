@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { useMemo, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
@@ -11,25 +12,27 @@ import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk-local'
 
+import { ChainId } from '@swapi-finance/sdk-local'
+import { MAIN_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
-   max-width: 640px;
-   width: 100%;
- `
+  max-width: 640px;
+  width: 100%;
+`
 
 const TopSection = styled(AutoColumn)`
-   max-width: 720px;
-   width: 100%;
- `
+  max-width: 720px;
+  width: 100%;
+`
 
 const PoolSection = styled.div`
-   display: grid;
-   grid-template-columns: 1fr;
-   column-gap: 10px;
-   row-gap: 15px;
-   width: 100%;
-   justify-self: center;
- `
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 10px;
+  row-gap: 15px;
+  width: 100%;
+  justify-self: center;
+`
 
 export default function Mill() {
   const { chainId } = useActiveWeb3React()
@@ -72,10 +75,10 @@ export default function Mill() {
   }, [stakingInfos?.length])
 
   const DataRow = styled(RowBetween)`
-     ${({ theme }) => theme.mediaWidth.upToSmall`
+    ${({ theme }) => theme.mediaWidth.upToSmall`
      flex-direction: column;
    `};
-   `
+  `
 
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
 
@@ -88,12 +91,14 @@ export default function Mill() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Welcome to the flour mill. Lock LP tokens to bake new fresh Baguettes</TYPE.white>
+                <TYPE.white fontWeight={600}>
+                  Welcome to the flour mill. Lock LP tokens to bake new fresh Baguettes
+                </TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit your BGL tokens to receive BAG.
-                 </TYPE.white>
+                  Deposit your LP tokens to receive {MAIN_TOKEN[ChainId.POLYGON].name}.
+                </TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>
@@ -105,16 +110,18 @@ export default function Mill() {
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
-          <TYPE.black fontWeight={400}>
-            Baguette batch #27 ends on December 31st
-          </TYPE.black>
+          <TYPE.black fontWeight={400}>Baguette batch #27 ends on December 31st</TYPE.black>
         </DataRow>
         <AutoRow justify="flex-end">
-          <TYPE.black fontWeight={400} padding="12px">Show inactive pools</TYPE.black>
+          <TYPE.black fontWeight={400} padding="12px">
+            Show inactive pools
+          </TYPE.black>
           <Toggle
             id="toggle-show-inactive"
             isActive={showInactive}
-            toggle={() => { setShowInactive(!showInactive) }}
+            toggle={() => {
+              setShowInactive(!showInactive)
+            }}
           />
         </AutoRow>
 
@@ -124,15 +131,12 @@ export default function Mill() {
           ) : !stakingRewardsExist ? (
             'No active rewards'
           ) : (
-            stakingInfoResults?.map(stakingInfo => (
-              (showInactive || stakingInfo.totalRewardRate.greaterThan(0)) && (
-                <PoolCard
-                  apr={'0'}
-                  key={stakingInfo.stakingRewardAddress}
-                  stakingInfo={stakingInfo}
-                />
-              )
-            ))
+            stakingInfoResults?.map(
+              stakingInfo =>
+                (showInactive || stakingInfo.totalRewardRate.greaterThan(0)) && (
+                  <PoolCard apr={'0'} key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />
+                )
+            )
           )}
         </PoolSection>
       </AutoColumn>

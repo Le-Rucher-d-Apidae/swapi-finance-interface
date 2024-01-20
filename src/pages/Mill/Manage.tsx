@@ -31,61 +31,64 @@ import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 import { BIG_INT_ZERO } from '../../constants'
 
-const PageWrapper = styled(AutoColumn)`
-   max-width: 640px;
-   width: 100%;
- `
+import { ChainId } from '@swapi-finance/sdk-local'
+import { MAIN_TOKEN } from '../../constants'
 
-const PositionInfo = styled(AutoColumn) <{ dim: any }>`
-   position: relative;
-   max-width: 640px;
-   width: 100%;
-   opacity: ${({ dim }) => (dim ? 0.6 : 1)};
- `
+const PageWrapper = styled(AutoColumn)`
+  max-width: 640px;
+  width: 100%;
+`
+
+const PositionInfo = styled(AutoColumn)<{ dim: any }>`
+  position: relative;
+  max-width: 640px;
+  width: 100%;
+  opacity: ${({ dim }) => (dim ? 0.6 : 1)};
+`
 
 const BottomSection = styled(AutoColumn)`
-   border-radius: 12px;
-   width: 100%;
-   position: relative;
- `
+  border-radius: 12px;
+  width: 100%;
+  position: relative;
+`
 
-const StyledDataCard = styled(DataCard) <{ bgColor?: any; showBackground?: any }>`
-   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #1e1a31 0%, #3d51a5 100%);
-   z-index: 2;
-   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-   background: ${({ theme, bgColor, showBackground }) =>
+const StyledDataCard = styled(DataCard)<{ bgColor?: any; showBackground?: any }>`
+  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #1e1a31 0%, #3d51a5 100%);
+  z-index: 2;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: ${({ theme, bgColor, showBackground }) =>
     `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%,  ${showBackground ? theme.black : theme.bg5} 100%) `};
- `
+`
 
-const StyledBottomCard = styled(DataCard) <{ dim: any }>`
-   background: ${({ theme }) => theme.bg3};
-   opacity: ${({ dim }) => (dim ? 0.4 : 1)};
-   margin-top: -40px;
-   padding: 0 1.25rem 1rem 1.25rem;
-   padding-top: 32px;
-   z-index: 1;
- `
+const StyledBottomCard = styled(DataCard)<{ dim: any }>`
+  background: ${({ theme }) => theme.bg3};
+  opacity: ${({ dim }) => (dim ? 0.4 : 1)};
+  margin-top: -40px;
+  padding: 0 1.25rem 1rem 1.25rem;
+  padding-top: 32px;
+  z-index: 1;
+`
 
 const PoolData = styled(DataCard)`
-   background: none;
-   border: 1px solid ${({ theme }) => theme.bg4};
-   padding: 1rem;
-   z-index: 1;
- `
+  background: none;
+  border: 1px solid ${({ theme }) => theme.bg4};
+  padding: 1rem;
+  z-index: 1;
+`
 
 const VoteCard = styled(DataCard)`
-   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
-   overflow: hidden;
- `
+  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+  overflow: hidden;
+`
 
 const DataRow = styled(RowBetween)`
-   justify-content: center;
-   gap: 12px;
-   ${({ theme }) => theme.mediaWidth.upToSmall`
+  justify-content: center;
+  gap: 12px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
      flex-direction: column;
      gap: 12px;
    `};
- `
+`
 
 const StyledLogo = styled.img`
   display: flex;
@@ -137,7 +140,7 @@ export function ManagePair({
       <RowBetween style={{ gap: '24px' }}>
         <TYPE.mediumHeader style={{ margin: 0 }}>
           {currencyA?.symbol}-{currencyB?.symbol} Liquidity Mining
-         </TYPE.mediumHeader>
+        </TYPE.mediumHeader>
         <DoubleCurrencyLogo currency0={currencyA ?? undefined} currency1={currencyB ?? undefined} size={24} />
       </RowBetween>
 
@@ -157,7 +160,8 @@ export function ManagePair({
               {stakingInfo?.totalRewardRate
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
-              {' BAG / week'}
+              {/* {' BAG / week'} */}
+              {` ${MAIN_TOKEN[ChainId.POLYGON].symbol} / week`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -242,7 +246,8 @@ export function ManagePair({
               {!stakingInfo?.useAutocompounding && (
                 <RowBetween>
                   <div>
-                    <TYPE.black>Your unclaimed BAG</TYPE.black>
+                    {/* <TYPE.black>Your unclaimed BAG</TYPE.black> */}
+                    <TYPE.black>Your unclaimed {MAIN_TOKEN[ChainId.POLYGON].name}</TYPE.black>
                   </div>
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
@@ -281,11 +286,12 @@ export function ManagePair({
                 <TYPE.black fontSize={16} fontWeight={500}>
                   <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px ' }}>
                     ⚡
-                   </span>
+                  </span>
                   {stakingInfo?.rewardRate
                     ?.multiply((60 * 60 * 24 * 7).toString())
                     ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
-                  {' BAG / week'}
+                  {/* {' BAG / week'} */}
+                  {` ${MAIN_TOKEN[ChainId.POLYGON].symbol} / week`}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>
@@ -296,7 +302,9 @@ export function ManagePair({
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
             </span>
-            When you withdraw, the contract will automagically claim BAG on your behalf!
+            {/* When you withdraw, the contract will automagically claim BAG on your behalf! */}
+            When you withdraw, the contract will automagically claim {MAIN_TOKEN[ChainId.POLYGON].symbol} on your
+            behalf!
           </TYPE.main>
         )}
         {stakingInfo?.useAutocompounding && (
@@ -304,9 +312,8 @@ export function ManagePair({
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
             </span>
-            Autocompounding automagically converts BAG rewards in BGL tokens. Wait and see your
-            deposited BGL amount increase over time! When you withdraw, you receive the last updated
-            amount of BGL tokens.
+            Autocompounding automagically converts BAG rewards in BGL tokens. Wait and see your deposited BGL amount
+            increase over time! When you withdraw, you receive the last updated amount of BGL tokens.
           </TYPE.main>
         )}
         {!showAddLiquidityButton && (
@@ -324,7 +331,7 @@ export function ManagePair({
                   onClick={() => setShowUnstakingModal(true)}
                 >
                   Withdraw
-                 </ButtonPrimary>
+                </ButtonPrimary>
               </>
             )}
           </DataRow>
