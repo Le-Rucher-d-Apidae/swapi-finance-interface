@@ -12,14 +12,14 @@ import { /* BAG */ APD } from '../../constants'
 
 // const getTokenLogoURL = (address: string) =>
 //   address === BAG[ChainId.AVALANCHE].address
-//   ? `https://raw.githubusercontent.com/baguette-exchange/contracts/master/tokenlist/logos/baguette.png`
+//   ? `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png`
 //   : `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png`
 
 const getTokenLogoURL = (address: string) =>
   // address === BAG[ChainId.POLYGON].address
   address === APD[ChainId.POLYGON].address
-    ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/master/tokenlist/logos/apidae.png` // `https://raw.githubusercontent.com/baguette-exchange/contracts/master/tokenlist/logos/baguette.png` // TODO: update this : change to APIDAE logo */
-    : `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
+    ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png` // `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png` // TODO: update this : change to APIDAE logo */
+    : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
 // alternatives: https://github.com/dappradar/tokens/tree/main/polygon
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
