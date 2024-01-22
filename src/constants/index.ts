@@ -1,5 +1,5 @@
 // import { ChainId, JSBI, Percent, Token, WAVAX } from '@swapi-finance/sdk-local'
-import { ChainId, JSBI, Percent, Token, WMATIC } from '@swapi-finance/sdk-local'
+import { ChainId, JSBI, Percent, Token, WMATIC, FACTORY_ADDRESS as SDK_FACTORY_ADDRESS } from '@swapi-finance/sdk-local'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
@@ -19,8 +19,11 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
 }
 
 export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: '0xBB6e8C136ca537874a6808dBFC5DaebEd9a57554', // TODO: change to mumbai factory
-  [ChainId.POLYGON]: '0x3587B8c0136c2C3605a9E5B03ab54Da3e4044b50' // TODO: change to polygon factory
+  // [ChainId.MUMBAI]: '0x15a34fd98dbf1c0116bdf740d501f735fca2891b', // TODO: change to mumbai factory
+  // [ChainId.POLYGON]: '0x3587B8c0136c2C3605a9E5B03ab54Da3e4044b50' // TODO: change to polygon factory
+  [ChainId.MUMBAI]: SDK_FACTORY_ADDRESS[ChainId.MUMBAI], // TODO: change to mumbai factory
+  [ChainId.POLYGON]: SDK_FACTORY_ADDRESS[ChainId.POLYGON] // TODO: change to polygon factory
+
 }
 
 // a list of tokens by chain
@@ -33,7 +36,7 @@ type ChainTokenList = {
 //   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xa1144a6A1304bd9cbb16c800F7a867508726566E', 18, 'BAG', 'Baguette')
 // }
 /* export */ const APD: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x8d3209bE3b9077e36D7d9F504F2eB5B02077c1ff', 18, 'APD', 'Apidae'), // TODO: change to mumbai APD
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xCB120D92f6F5eb076579598487976b6BBC1963f7', 18, 'APD', 'Apidae'), // TODO: change to mumbai APD
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x5d47bAbA0d66083C52009271faF3F50DCc01023C', 18, 'APD', 'Apidae') // TODO: change to polygon APD // currently: ApeSwapFinance Banana (BANANA)
 }
 export const MAIN_TOKEN = APD
