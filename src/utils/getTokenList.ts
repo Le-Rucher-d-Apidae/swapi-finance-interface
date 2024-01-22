@@ -54,7 +54,14 @@ export default async function getTokenList(
       continue
     }
 
-    const json = await response.json()
+    let json = await response.json()
+    if (!tokenListValidator(json)) {
+      // Wrap the json in a token list object
+      const wrappedTokenlist = `{ "name": "Unknown", "logoURI": "https://www.coingecko.com/assets/", "keywords": [], "tags": {}, "timestamp": "2020-12-11T17:08:18.941Z", "version": { "major": 0, "minor": 0, "patch": 0}, "tokens": ${JSON.stringify(
+        json
+      )} }`
+      json = JSON.parse(wrappedTokenlist)
+    }
     if (!tokenListValidator(json)) {
       const validationErrors: string =
         tokenListValidator.errors?.reduce<string>((memo, error) => {
