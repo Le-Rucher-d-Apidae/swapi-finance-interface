@@ -20,12 +20,18 @@ src/utils/computeBagCirculation.ts
 
 src/pages/Mill/index.tsx
 
+API
+https://api.baguette.exchange/bag/circulating-supply
+src/utils/computeBagCirculation.ts
+process.env.REACT_APP_API_BASE_URL
+REACT_APP_API_CIRCULATING_SUPPLY
+
+
 Links, Token, ...
 - README.md
 
 WALLET_TUTORIAL link
 src/components/WalletModal/index.tsx
-
 
 - Tests
 sdk/test/*
