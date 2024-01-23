@@ -14,17 +14,17 @@ export const LANDING_PAGE = 'https://app.swapi.finance//' // TODO: change to lan
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: '0xC386631E7D35c7231bE146b14cf4430b4A524F8A', // TODO: change to mumbai router
+  [ChainId.MUMBAI]: '0xFb89BAD7ee7Db9B8F8d3546D3cB361F3C2f6C3Ef', // mumbai router
   [ChainId.POLYGON]: '0xF7b1e993d1b4F7348D64Aa55A294E4B74512F7f2' // TODO: change to polygon router
 }
 
-export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
-  // [ChainId.MUMBAI]: '0x15a34fd98dbf1c0116bdf740d501f735fca2891b', // TODO: change to mumbai factory
-  // [ChainId.POLYGON]: '0x3587B8c0136c2C3605a9E5B03ab54Da3e4044b50' // TODO: change to polygon factory
-  [ChainId.MUMBAI]: SDK_FACTORY_ADDRESS[ChainId.MUMBAI], // TODO: change to mumbai factory
-  [ChainId.POLYGON]: SDK_FACTORY_ADDRESS[ChainId.POLYGON] // TODO: change to polygon factory
-
-}
+// export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
+//   // [ChainId.MUMBAI]: '0x15a34fd98dbf1c0116bdf740d501f735fca2891b', // TODO: change to mumbai factory
+//   // [ChainId.POLYGON]: '0x3587B8c0136c2C3605a9E5B03ab54Da3e4044b50' // TODO: change to polygon factory
+//   [ChainId.MUMBAI]: SDK_FACTORY_ADDRESS[ChainId.MUMBAI], // TODO: change to mumbai factory
+//   [ChainId.POLYGON]: SDK_FACTORY_ADDRESS[ChainId.POLYGON] // TODO: change to polygon factory
+// }
+export const FACTORY_ADDRESS = SDK_FACTORY_ADDRESS
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -50,6 +50,17 @@ export const MAIN_TOKEN = APD
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x89B2eC9b2fB0CDdd09954dbEE07DB48F8cc934e3', 18, 'ETH', 'Ether'),
 //   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xf20d962a6c8f70c731bd838a3a388D7d48fA6e15', 18, 'ETH', 'Ether')
 // }
+
+export const BAGTEST: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0x6dc9e2C3Fb8330075B36AE6100ebAA2d5bB1B482',
+    18,
+    'BAGTST',
+    'BaguetteTest'
+  ), // TODO: change to mumbai BAGTST
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, ZERO_ADDRESS, 18, 'BAGTST', 'BaguetteTest') // TODO: change to polygon BAGTST
+}
 
 export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDT', 'Tether USD'),
@@ -288,13 +299,19 @@ export const SUGGESTED_BASES: ChainTokenList = {
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   // ...WAVAX_ONLY,
-  ...WMATIC_ONLY,
+  // ...WMATIC_ONLY,
   // [ChainId.POLYGON]: [...WAVAX_ONLY[ChainId.POLYGON]]
-  [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]]
+  [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]],
+  [ChainId.MUMBAI]: [BAGTEST[ChainId.MUMBAI]]
 }
 
+// export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
+//   [ChainId.POLYGON]: []
+// }
+
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.POLYGON]: []
+  [ChainId.POLYGON]: [],
+  [ChainId.MUMBAI]: [[BAGTEST[ChainId.MUMBAI], APD[ChainId.MUMBAI]]]
 }
 
 // token contracts that should not be used with EIP712
