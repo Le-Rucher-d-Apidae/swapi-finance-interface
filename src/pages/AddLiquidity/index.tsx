@@ -136,6 +136,7 @@ export default function AddLiquidity({
 
   async function onAdd() {
     if (!chainId || !library || !account) return
+    debugger
     const router = getRouterContract(chainId, library, account)
 
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
@@ -167,6 +168,7 @@ export default function AddLiquidity({
         deadline.toHexString()
       ]
       value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString())
+      console.log(`method="router.addLiquidityAVAX" args=${args}`)
     } else {
       estimate = router.estimateGas.addLiquidity
       method = router.addLiquidity
@@ -180,6 +182,7 @@ export default function AddLiquidity({
         account,
         deadline.toHexString()
       ]
+      console.log(`method="router.addLiquidity" args=${args}`)
       value = null
     }
 
