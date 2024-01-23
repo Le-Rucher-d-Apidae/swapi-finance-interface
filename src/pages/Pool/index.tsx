@@ -82,6 +82,7 @@ export default function Pool() {
   //   () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens, chainId ? chainId : ChainId.AVALANCHE), tokens })),
   //   [trackedTokenPairs, chainId]
   // )
+  // debugger
   const tokenPairsWithLiquidityTokens = useMemo(
     () =>
       trackedTokenPairs.map(tokens => ({
