@@ -27,6 +27,11 @@ process.env.REACT_APP_API_BASE_URL
 REACT_APP_API_CIRCULATING_SUPPLY
 
 
+toV2LiquidityToken
+Pair.getAddress(tokenA, tokenB, chainId), 18, 'BGL', 'Baguette Liquidity'
+src/state/user/hooks.tsx
+
+
 Links, Token, ...
 - README.md
 
