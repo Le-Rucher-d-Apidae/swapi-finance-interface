@@ -90,6 +90,7 @@ export default function AddLiquidity({
 
   // txn values
   const deadline = useTransactionDeadline() // custom from users settings
+  console.debug(`deadline=${deadline}`)
   const [allowedSlippage] = useUserSlippageTolerance() // custom from users
   const [txHash, setTxHash] = useState<string>('')
 
@@ -168,7 +169,7 @@ export default function AddLiquidity({
         deadline.toHexString()
       ]
       value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString())
-      console.log(`method="router.addLiquidityAVAX" args=${args}`)
+      console.debug(`method="router.addLiquidityAVAX" args=${args}`)
     } else {
       estimate = router.estimateGas.addLiquidity
       method = router.addLiquidity
@@ -182,7 +183,7 @@ export default function AddLiquidity({
         account,
         deadline.toHexString()
       ]
-      console.log(`method="router.addLiquidity" args=${args}`)
+      console.debug(`method="router.addLiquidity" args=${args}`)
       value = null
     }
 
