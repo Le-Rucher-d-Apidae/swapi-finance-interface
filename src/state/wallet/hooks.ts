@@ -140,13 +140,13 @@ export function useAggregateBagBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 
   // const bag = chainId ? BAG[chainId] : undefined
-  const apt = chainId ? MAIN_TOKEN[chainId] : undefined
+  const apd = chainId ? MAIN_TOKEN[chainId] : undefined
   // const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, bag)
-  const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, apt)
-
+  const apdBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, apd)
+console.debug('useAggregateBagBalance apdBalance=', apdBalance)
   // if (!bag) return undefined
-  if (!apt) return undefined
+  if (!apd) return undefined
 
   // return new TokenAmount(bag, bagBalance?.raw ?? JSBI.BigInt(0))
-  return new TokenAmount(apt, bagBalance?.raw ?? JSBI.BigInt(0))
+  return new TokenAmount(apd, apdBalance?.raw ?? JSBI.BigInt(0))
 }
