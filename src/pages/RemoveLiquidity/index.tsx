@@ -43,7 +43,7 @@ import { Field } from '../../state/burn/actions'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
+import { ChainId, LIQUIDITY_TOKEN_SYMBOL, LIQUIDITY_TOKEN_NAME } from '@swapi-finance/sdk-local'
 
 export default function RemoveLiquidity({
   history,
@@ -128,7 +128,9 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' }
     ]
     const domain = {
-      name: 'Baguette',
+      // name: 'Baguette',
+      // name: 'Baguette Liquidity',
+      name: LIQUIDITY_TOKEN_NAME,
       version: '1',
       chainId: chainId,
       verifyingContract: pair.liquidityToken.address
