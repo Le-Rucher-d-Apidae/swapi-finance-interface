@@ -127,7 +127,17 @@ export function useDerivedMintInfo(
       wrappedCurrencyAmount(currencyBAmount, chainId)
     ]
     if (pair && totalSupply && tokenAmountA && tokenAmountB) {
-      return pair.getLiquidityMinted(totalSupply, tokenAmountA, tokenAmountB)
+      try {
+        return pair.getLiquidityMinted(totalSupply, tokenAmountA, tokenAmountB)
+      } catch (error) {
+        // Avoid throwing on errors (blows user interface)
+        if (error instanceof Error && error.name === 'InsufficientInputAmountError') {
+          console.error('pair.getLiquidityMinted error', error.message)
+          return undefined
+        } else {
+          throw error
+        }
+      }
     } else {
       return undefined
     }
