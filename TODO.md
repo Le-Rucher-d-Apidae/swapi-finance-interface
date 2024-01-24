@@ -38,5 +38,13 @@ Links, Token, ...
 WALLET_TUTORIAL link
 src/components/WalletModal/index.tsx
 
+fix TokenBalanceContent (ok?), APD price
+[TokenBalanceContent](src/components/Header/TokenBalanceContent.tsx)
+
+remove debug, console.log, console.debug
+[useTransactionDeadline](src/hooks/useTransactionDeadline.ts)
+
+- remove //debugger console.log console.debug
+
 - Tests
 sdk/test/*
