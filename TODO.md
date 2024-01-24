@@ -27,9 +27,15 @@ process.env.REACT_APP_API_BASE_URL
 REACT_APP_API_CIRCULATING_SUPPLY
 
 
+    string public constant name = 'Baguette Liquidity';
+    string public constant symbol = 'BGL';
+[BaguetteERC20](contracts/swapi-core/BaguetteERC20.sol)
+
+
 toV2LiquidityToken
 Pair.getAddress(tokenA, tokenB, chainId), 18, 'BGL', 'Baguette Liquidity'
 src/state/user/hooks.tsx
+[hooks](../src/state/user/hooks.tsx)
 
 
 Links, Token, ...
@@ -44,7 +50,15 @@ fix TokenBalanceContent (ok?), APD price
 remove debug, console.log, console.debug
 [useTransactionDeadline](src/hooks/useTransactionDeadline.ts)
 
+constructor
+      18,
+      'AXP',
+      'avaXwap'
+[class Pair](sdk/src/entities/pair.ts)
+
 - remove //debugger console.log console.debug
+
+
 
 - Tests
 sdk/test/*
