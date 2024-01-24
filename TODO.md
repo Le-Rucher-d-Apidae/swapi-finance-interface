@@ -32,12 +32,6 @@ REACT_APP_API_CIRCULATING_SUPPLY
 [BaguetteERC20](contracts/swapi-core/BaguetteERC20.sol)
 
 
-toV2LiquidityToken
-Pair.getAddress(tokenA, tokenB, chainId), 18, 'BGL', 'Baguette Liquidity'
-src/state/user/hooks.tsx
-[hooks](../src/state/user/hooks.tsx)
-
-
 Links, Token, ...
 - README.md
 
