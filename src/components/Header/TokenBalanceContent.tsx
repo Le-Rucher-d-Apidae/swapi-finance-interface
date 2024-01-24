@@ -112,7 +112,8 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
       // setCirculatingSupply(undefined)
       // setCirculatingSupply(new TokenAmount(MAIN_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
       // totalSupply && setCirculatingSupply(totalSupply)
-      !circulatingSupply && totalSupply && setCirculatingSupply(totalSupply) 
+      // avoid loop: set CirculatingSupply if not already set
+      !circulatingSupply && totalSupply && setCirculatingSupply(totalSupply)
       console.debug(`apd=${chainId}, chainId=${chainId}, totalSupply=${totalSupply}`)
     }
     // debugger
