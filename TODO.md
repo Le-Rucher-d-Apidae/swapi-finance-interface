@@ -58,7 +58,14 @@ constructor
 
 - remove //debugger console.log console.debug
 
-
+domain =       name: 'Baguette',
+removeLiquidityAVAX
+removeLiquidityAVAXSupportingFeeOnTransferTokens
+removeLiquidity
+removeLiquidityAVAXWithPermit
+removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens
+removeLiquidityWithPermit
+[RemoveLiquidity](src/pages/RemoveLiquidity/index.tsx)
 
 - Tests
 sdk/test/*
