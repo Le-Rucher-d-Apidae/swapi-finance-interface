@@ -1,4 +1,11 @@
-import { ChainId, Pair, Token } from '@swapi-finance/sdk-local'
+import {
+  ChainId,
+  Pair,
+  Token,
+  LIQUIDITY_TOKEN_PRECISION,
+  LIQUIDITY_TOKEN_SYMBOL,
+  LIQUIDITY_TOKEN_NAME
+} from '@swapi-finance/sdk-local'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -176,7 +183,14 @@ export function useURLWarningToggle(): () => void {
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token], chainId: ChainId): Token {
-  return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB, chainId), 18, 'BGL', 'Baguette Liquidity')
+  // return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB, chainId), 18, 'BGL', 'Baguette Liquidity')
+  return new Token(
+    tokenA.chainId,
+    Pair.getAddress(tokenA, tokenB, chainId),
+    LIQUIDITY_TOKEN_PRECISION,
+    LIQUIDITY_TOKEN_SYMBOL,
+    LIQUIDITY_TOKEN_NAME
+  )
 }
 
 /**

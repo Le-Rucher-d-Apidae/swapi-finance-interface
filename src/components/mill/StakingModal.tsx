@@ -9,7 +9,7 @@ import { TYPE, CloseIcon } from '../../theme'
 import { ButtonConfirmed, ButtonError } from '../Button'
 import ProgressCircles from '../ProgressSteps'
 import CurrencyInputPanel from '../CurrencyInputPanel'
-import { /* JSBI, */ TokenAmount, Pair, ChainId } from '@swapi-finance/sdk-local'
+import { /* JSBI, */ TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 import { useActiveWeb3React } from '../../hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { usePairContract, useStakingContract, useTokenContract, useAutocompoundContract } from '../../hooks/useContract'
@@ -352,7 +352,8 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{dummyPair ? 'Depositing Liquidity' : 'Staking Tokens'}</TYPE.largeHeader>
             <TYPE.body fontSize={20}>
-              {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol}
+              {/* {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol} */}
+              {parsedAmount?.toSignificant(4)} {dummyPair ? LIQUIDITY_TOKEN_SYMBOL : stakingToken.symbol}
             </TYPE.body>
           </AutoColumn>
         </LoadingView>
@@ -362,7 +363,8 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             <TYPE.body fontSize={20}>
-              Deposited {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol}
+              {/* Deposited {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol} */}
+              Deposited {parsedAmount?.toSignificant(4)} {dummyPair ? LIQUIDITY_TOKEN_SYMBOL : stakingToken.symbol}
             </TYPE.body>
           </AutoColumn>
         </SubmittedView>

@@ -16,6 +16,7 @@ import { UNDEFINED } from '../../constants'
 
 // import { ChainId } from '@swapi-finance/sdk-local'
 // import { MAIN_TOKEN } from '../../constants'
+import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -87,7 +88,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
   }
 
   const isPair = stakingInfo?.tokens[1] !== UNDEFINED[stakingInfo?.tokens[1].chainId]
-  const tokenSymbol = isPair ? 'BGL' : stakingInfo?.tokens[0].symbol
+  // const tokenSymbol = isPair ? 'BGL' : stakingInfo?.tokens[0].symbol
+  const tokenSymbol = isPair ? LIQUIDITY_TOKEN_SYMBOL : stakingInfo?.tokens[0].symbol
   const rewardToken = stakingInfo?.rewardToken
 
   return (

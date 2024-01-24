@@ -43,8 +43,7 @@ import { Field } from '../../state/burn/actions'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId } from '@swapi-finance/sdk-local'
-import { MAIN_TOKEN } from '../../constants'
+import { ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 
 export default function RemoveLiquidity({
   history,
@@ -105,7 +104,7 @@ export default function RemoveLiquidity({
   // const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE])
   const [approval, approveCallback] = useApproveCallback(
     parsedAmounts[Field.LIQUIDITY],
-    chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.MUMBAI]
+    chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.POLYGON]
   )
 
   const isArgentWallet = false
@@ -143,7 +142,8 @@ export default function RemoveLiquidity({
     ]
     const message = {
       owner: account,
-      spender: ROUTER_ADDRESS,
+      // spender: ROUTER_ADDRESS,
+      spender: chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.POLYGON],
       value: liquidityAmount.raw.toString(),
       nonce: nonce.toHexString(),
       deadline: deadline.toNumber()
@@ -225,8 +225,10 @@ export default function RemoveLiquidity({
     let methodNames: string[], args: Array<string | string[] | number | boolean>
     // we have approval, use normal remove liquidity
     if (approval === ApprovalState.APPROVED) {
+      console.debug('Removing liquidity with approved tokens')
       // removeLiquidityAVAX
       if (oneCurrencyIsETH) {
+        console.debug('removeLiquidityAVAX, removeLiquidityAVAXSupportingFeeOnTransferTokens')
         methodNames = ['removeLiquidityAVAX', 'removeLiquidityAVAXSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
@@ -239,6 +241,7 @@ export default function RemoveLiquidity({
       }
       // removeLiquidity
       else {
+        console.debug('removeLiquidity')
         methodNames = ['removeLiquidity']
         args = [
           tokenA.address,
@@ -251,10 +254,11 @@ export default function RemoveLiquidity({
         ]
       }
     }
-    // we have a signataure, use permit versions of remove liquidity
+    // we have a signature, use permit versions of remove liquidity
     else if (signatureData !== null) {
       // removeLiquidityAVAXWithPermit
       if (oneCurrencyIsETH) {
+        console.debug('removeLiquidityAVAXWithPermit, removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens')
         methodNames = ['removeLiquidityAVAXWithPermit', 'removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
@@ -271,6 +275,7 @@ export default function RemoveLiquidity({
       }
       // removeLiquidityAVAXWithPermit
       else {
+        console.debug('removeLiquidityWithPermit')
         methodNames = ['removeLiquidityWithPermit']
         args = [
           tokenA.address,
@@ -390,7 +395,7 @@ export default function RemoveLiquidity({
         <RowBetween>
           <Text color={theme.text2} fontWeight={500} fontSize={16}>
             {/* {'BAG ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned */}
-            {MAIN_TOKEN + ' ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned
+            {LIQUIDITY_TOKEN_SYMBOL + ' ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned
           </Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin={true} />
