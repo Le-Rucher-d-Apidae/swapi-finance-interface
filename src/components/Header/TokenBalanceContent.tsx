@@ -1,5 +1,5 @@
 // import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk-local'
-import { ChainId, TokenAmount, CMATIC, WMATIC, JSBI } from '@swapi-finance/sdk-local'
+import { ChainId, TokenAmount, CURRENCY, WMATIC, JSBI } from '@swapi-finance/sdk-local'
 // import React, { useState, useEffect } from 'react'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
@@ -189,8 +189,8 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
               </TYPE.white>
               {/* <TYPE.white color="white">{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
               <TYPE.white color="white">
-                {/* {bagPrice?.toFixed(5) ?? '-'} {CMATIC.symbol} */}
-                {tokenPrice?.toFixed(5) ?? '-'} {CMATIC.symbol}
+                {/* {bagPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol} */}
+                {tokenPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol}
               </TYPE.white>
             </RowBetween>
             <RowBetween>

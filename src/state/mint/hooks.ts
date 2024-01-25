@@ -1,7 +1,7 @@
 import {
   Currency,
   CurrencyAmount,
-  /* CAVAX */ CMATIC,
+  /* CAVAX */ CURRENCY,
   JSBI,
   Pair,
   Percent,
@@ -92,7 +92,7 @@ export function useDerivedMintInfo(
           dependentField === Field.CURRENCY_B
             ? pair.priceOf(tokenA).quote(wrappedIndependentAmount)
             : pair.priceOf(tokenB).quote(wrappedIndependentAmount)
-        return dependentCurrency === /* CAVAX */ CMATIC
+        return dependentCurrency === /* CAVAX */ CURRENCY
           ? CurrencyAmount.ether(dependentTokenAmount.raw)
           : dependentTokenAmount
       }

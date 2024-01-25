@@ -302,7 +302,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   // ...WAVAX_ONLY,
   // [ChainId.POLYGON]: [...WAVAX_ONLY[ChainId.POLYGON]]
-  ...WMATIC_ONLY,
+  [ChainId.MUMBAI]: [...WMATIC_ONLY[ChainId.MUMBAI]],
   [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]]
 }
 
@@ -320,7 +320,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 // }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.POLYGON]: [],
+  [ChainId.POLYGON]: [[WMATIC[ChainId.POLYGON], APD[ChainId.POLYGON]]],
   [ChainId.MUMBAI]: [[BAGTEST[ChainId.MUMBAI], APD[ChainId.MUMBAI]]]
 }
 

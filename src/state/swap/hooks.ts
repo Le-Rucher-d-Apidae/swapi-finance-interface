@@ -3,7 +3,7 @@ import { parseUnits } from '@ethersproject/units'
 import {
   Currency,
   CurrencyAmount,
-  /* CAVAX */ CMATIC,
+  /* CAVAX */ CURRENCY,
   JSBI,
   Token,
   TokenAmount,
@@ -46,8 +46,8 @@ export function useSwapActionHandlers(): {
           currencyId:
             currency instanceof Token
               ? currency.address
-              : currency === /* CAVAX */ CMATIC
-              ? /* 'AVAX' */ CMATIC.name || '?'
+              : currency === /* CAVAX */ CURRENCY
+              ? /* 'AVAX' */ CURRENCY.name || '?'
               : ''
         })
       )
@@ -246,8 +246,8 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === (CMATIC.name || 'MATIC')) return CMATIC.name || 'MATIC'
-    if (valid === false) return CMATIC.name || 'MATIC'
+    if (urlParam.toUpperCase() === (CURRENCY.name || 'MATIC')) return CURRENCY.name || 'MATIC'
+    if (valid === false) return CURRENCY.name || 'MATIC'
   }
   return 'MATIC' ?? ''
 }

@@ -1,5 +1,5 @@
 // import { Currency, CAVAX, Token, ChainId } from '@swapi-finance/sdk-local'
-import { Currency, CMATIC, Token, ChainId } from '@swapi-finance/sdk-local'
+import { Currency, CURRENCY, Token, ChainId } from '@swapi-finance/sdk-local'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -67,7 +67,7 @@ export default function CurrencyLogo({
 
   const srcs: string[] = useMemo(() => {
     // if (currency === CAVAX) return []
-    if (currency === CMATIC) return []
+    if (currency === CURRENCY) return []
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
@@ -80,7 +80,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   // if (currency === CAVAX) {
-  if (currency === CMATIC) {
+  if (currency === CURRENCY) {
     // return <StyledEthereumLogo src={AvaxLogo} size={size} style={style} />
     return <StyledEthereumLogo src={PolygonLogo} size={size} style={style} />
   }

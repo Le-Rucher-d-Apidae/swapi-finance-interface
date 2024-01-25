@@ -18,7 +18,7 @@ import AccountDetails from '../AccountDetails'
 import {
   ChainLabel,
   ChainId,
-  CMATIC,
+  CURRENCY,
   POLYGON_MAINNET_HEX_CHAIN_ID,
   ChainExplorer,
   RPC_URL
@@ -297,7 +297,7 @@ export default function WalletModal({
         // name: 'Polygon',
         name: ChainLabel[ChainId.POLYGON],
         // symbol: 'AVAX',
-        symbol: CMATIC.symbol,
+        symbol: CURRENCY.symbol,
         decimals: 18
       },
       // rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],

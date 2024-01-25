@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, /* CAVAX */ CMATIC, Token } from '@swapi-finance/sdk-local'
+import { Currency, CurrencyAmount, currencyEquals, /* CAVAX */ CURRENCY, Token } from '@swapi-finance/sdk-local'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
@@ -20,8 +20,8 @@ import { isTokenOnList } from '../../utils'
 function currencyKey(currency: Currency): string {
   return currency instanceof Token
     ? currency.address
-    : currency === /* CAVAX */ CMATIC
-    ? /* 'AVAX' */ CMATIC.name || '?'
+    : currency === /* CAVAX */ CURRENCY
+    ? /* 'AVAX' */ CURRENCY.name || '?'
     : ''
 }
 

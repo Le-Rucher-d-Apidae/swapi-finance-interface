@@ -1,6 +1,6 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, /* CAVAX */ CMATIC, ChainId } from '@swapi-finance/sdk-local'
+import { Trade, TokenAmount, CurrencyAmount, /* CAVAX */ CURRENCY, ChainId } from '@swapi-finance/sdk-local'
 import { useCallback, useMemo } from 'react'
 import { ROUTER_ADDRESS } from '../constants'
 import { useTokenAllowance } from '../data/Allowances'
@@ -31,7 +31,7 @@ export function useApproveCallback(
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     if (!amountToApprove || !spender) return ApprovalState.UNKNOWN
-    if (amountToApprove.currency === /* CAVAX */ CMATIC) return ApprovalState.APPROVED
+    if (amountToApprove.currency === /* CAVAX */ CURRENCY) return ApprovalState.APPROVED
     // we might not have enough data to know whether or not we need to approve
     if (!currentAllowance) return ApprovalState.UNKNOWN
 

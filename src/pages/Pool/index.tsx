@@ -78,6 +78,7 @@ export default function Pool() {
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
+  console.debug('trackedTokenPairs', trackedTokenPairs)
   // const tokenPairsWithLiquidityTokens = useMemo(
   //   () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens, chainId ? chainId : ChainId.AVALANCHE), tokens })),
   //   [trackedTokenPairs, chainId]

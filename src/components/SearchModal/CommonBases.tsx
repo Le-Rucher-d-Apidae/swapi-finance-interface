@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from 'rebass'
 // import { ChainId, Currency, currencyEquals, CAVAX, Token } from '@swapi-finance/sdk-local'
-import { ChainId, Currency, currencyEquals, CMATIC, Token } from '@swapi-finance/sdk-local'
+import { ChainId, Currency, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk-local'
 import styled from 'styled-components'
 
 import { SUGGESTED_BASES } from '../../constants'
@@ -46,15 +46,15 @@ export default function CommonBases({
       <AutoRow gap="4px">
         <BaseWrapper
           onClick={() => {
-            if (!selectedCurrency || !currencyEquals(selectedCurrency, /* CAVAX */ CMATIC)) {
-              onSelect(/* CAVAX */ CMATIC)
+            if (!selectedCurrency || !currencyEquals(selectedCurrency, /* CAVAX */ CURRENCY)) {
+              onSelect(/* CAVAX */ CURRENCY)
             }
           }}
-          disable={selectedCurrency === /* CAVAX */ CMATIC}
+          disable={selectedCurrency === /* CAVAX */ CURRENCY}
         >
-          <CurrencyLogo currency={/* CAVAX */ CMATIC} style={{ marginRight: 8 }} />
+          <CurrencyLogo currency={/* CAVAX */ CURRENCY} style={{ marginRight: 8 }} />
           <Text fontWeight={500} fontSize={16}>
-            AVAX
+            {CURRENCY.symbol}
           </Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {

@@ -1,6 +1,6 @@
 // import { BAG } from './../../constants/index'
 import { SELF_TOKEN } from './../../constants/index'
-import { Currency, CurrencyAmount, /* CAVAX */ CMATIC, JSBI, Token, TokenAmount } from '@swapi-finance/sdk-local'
+import { Currency, CurrencyAmount, /* CAVAX */ CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk-local'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useAllTokens } from '../../hooks/Tokens'
@@ -105,7 +105,7 @@ export function useCurrencyBalances(
   ])
 
   const tokenBalances = useTokenBalances(account, tokens)
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === /* CAVAX */ CMATIC) ?? false, [
+  const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === /* CAVAX */ CURRENCY) ?? false, [
     currencies
   ])
   const ethBalance = useETHBalances(containsETH ? [account] : [])
@@ -115,7 +115,7 @@ export function useCurrencyBalances(
       currencies?.map(currency => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === /* CAVAX */ CMATIC) return ethBalance[account]
+        if (currency === /* CAVAX */ CURRENCY) return ethBalance[account]
         return undefined
       }) ?? [],
     [account, currencies, ethBalance, tokenBalances]

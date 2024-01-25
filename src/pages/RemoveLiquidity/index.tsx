@@ -2,7 +2,7 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 // import { Currency, currencyEquals, CAVAX, Percent, WAVAX } from '@swapi-finance/sdk-local'
-import { Currency, currencyEquals, CMATIC, Percent, WMATIC } from '@swapi-finance/sdk-local'
+import { Currency, currencyEquals, CURRENCY, Percent, WMATIC } from '@swapi-finance/sdk-local'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { ArrowDown, Plus } from 'react-feather'
 // import ReactGA from 'react-ga'
@@ -219,8 +219,8 @@ export default function RemoveLiquidity({
 
     // const currencyBIsETH = currencyB === CAVAX
     // const oneCurrencyIsETH = currencyA === CAVAX || currencyBIsETH
-    const currencyBIsETH = currencyB === CMATIC
-    const oneCurrencyIsETH = currencyA === CMATIC || currencyBIsETH
+    const currencyBIsETH = currencyB === CURRENCY
+    const oneCurrencyIsETH = currencyA === CURRENCY || currencyBIsETH
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
 
@@ -450,7 +450,7 @@ export default function RemoveLiquidity({
   //     ((currencyA && currencyEquals(WAVAX[chainId], currencyA)) ||
   //       (currencyB && currencyEquals(WAVAX[chainId], currencyB)))
   // )
-  const oneCurrencyIsMATIC = currencyA === CMATIC || currencyB === CMATIC
+  const oneCurrencyIsMATIC = currencyA === CURRENCY || currencyB === CURRENCY
   const oneCurrencyIsWMATIC = Boolean(
     chainId &&
       ((currencyA && currencyEquals(WMATIC[chainId], currencyA)) ||
@@ -592,8 +592,8 @@ export default function RemoveLiquidity({
                           // >
                           //   Receive WAVAX
                           <StyledInternalLink
-                            to={`/remove/${currencyA === CMATIC ? WMATIC[chainId].address : currencyIdA}/${
-                              currencyB === CMATIC ? WMATIC[chainId].address : currencyIdB
+                            to={`/remove/${currencyA === CURRENCY ? WMATIC[chainId].address : currencyIdA}/${
+                              currencyB === CURRENCY ? WMATIC[chainId].address : currencyIdB
                             }`}
                           >
                             `Receive ${WMATIC[chainId]}`
@@ -608,10 +608,10 @@ export default function RemoveLiquidity({
 
                           <StyledInternalLink
                             to={`/remove/${
-                              currencyA && currencyEquals(currencyA, WMATIC[chainId]) ? CMATIC.name : currencyIdA
-                            }/${currencyB && currencyEquals(currencyB, WMATIC[chainId]) ? CMATIC.name : currencyIdB}`}
+                              currencyA && currencyEquals(currencyA, WMATIC[chainId]) ? CURRENCY.name : currencyIdA
+                            }/${currencyB && currencyEquals(currencyB, WMATIC[chainId]) ? CURRENCY.name : currencyIdB}`}
                           >
-                            `Receive ${CMATIC.name}`
+                            `Receive ${CURRENCY.name}`
                           </StyledInternalLink>
                         ) : null}
                       </RowBetween>

@@ -12,7 +12,7 @@ import {
   Token,
   CurrencyAmount,
   Currency,
-  /* CAVAX */ CMATIC,
+  /* CAVAX */ CURRENCY,
   ChainExplorer
 } from '@swapi-finance/sdk-local'
 import { TokenAddressMap } from '../state/lists/hooks'
@@ -127,6 +127,6 @@ export function escapeRegExp(string: string): string {
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === /* CAVAX */ CMATIC) return true
+  if (currency === /* CAVAX */ CURRENCY) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }

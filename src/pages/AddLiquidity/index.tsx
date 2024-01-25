@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 // import { Currency, currencyEquals, CAVAX, TokenAmount, WAVAX } from '@swapi-finance/sdk-local'
-import { Currency, currencyEquals, CMATIC, TokenAmount, WMATIC } from '@swapi-finance/sdk-local'
+import { Currency, currencyEquals, CURRENCY, TokenAmount, WMATIC } from '@swapi-finance/sdk-local'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 // import ReactGA from 'react-ga'
@@ -155,9 +155,9 @@ export default function AddLiquidity({
       args: Array<string | string[] | number>,
       value: BigNumber | null
     // if (currencyA === CAVAX || currencyB === CAVAX) {
-    if (currencyA === CMATIC || currencyB === CMATIC) {
+    if (currencyA === CURRENCY || currencyB === CURRENCY) {
       // const tokenBIsETH = currencyB === CAVAX
-      const tokenBIsETH = currencyB === CMATIC
+      const tokenBIsETH = currencyB === CURRENCY
       estimate = router.estimateGas.addLiquidityAVAX
       method = router.addLiquidityAVAX
       args = [
