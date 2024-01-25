@@ -143,7 +143,7 @@ export function useAggregateBagBalance(): TokenAmount | undefined {
   const apd = chainId ? MAIN_TOKEN[chainId] : undefined
   // const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, bag)
   const apdBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, apd)
-console.debug('useAggregateBagBalance apdBalance=', apdBalance)
+  console.debug('useAggregateBagBalance apdBalance=', apdBalance)
   // if (!bag) return undefined
   if (!apd) return undefined
 
