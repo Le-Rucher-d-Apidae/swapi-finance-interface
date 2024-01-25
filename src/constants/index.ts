@@ -26,6 +26,12 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
 // }
 export const FACTORY_ADDRESS = SDK_FACTORY_ADDRESS
 
+export const TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL =
+  'https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png'
+export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE =
+  'https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/'
+export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO = '/logo.png'
+
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]

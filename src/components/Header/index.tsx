@@ -29,7 +29,8 @@ import Modal from '../Modal'
 import TokenBalanceContent from './TokenBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 // import { ANALYTICS_PAGE , BRIDGE_PAGE } from '../../constants'
-import { /* BAG */ MAIN_TOKEN } from '../../constants'
+// import { BAG } from '../../constants'
+import { MAIN_TOKEN } from '../../constants'
 
 const HeaderFrame = styled.div`
   display: grid;

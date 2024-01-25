@@ -8,19 +8,33 @@ import PolygonLogo from '../../assets/images/polygon_token_round.png'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
-import { /* BAG */ MAIN_TOKEN } from '../../constants'
+// import { BAG } from '../../constants'
+import { MAIN_TOKEN } from '../../constants'
+import {
+  TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL,
+  TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE,
+  TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO
+} from '../../constants/index'
 
 // const getTokenLogoURL = (address: string) =>
 //   address === BAG[ChainId.AVALANCHE].address
 //   ? `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png`
 //   : `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png`
 
+// const getTokenLogoURL = (address: string) =>
+//   // address === BAG[ChainId.POLYGON].address
+//   address === MAIN_TOKEN[ChainId.POLYGON].address
+//     ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png` // `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png` // TODO: update this : change to APIDAE logo */
+//     : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
+// // alternatives: https://github.com/dappradar/tokens/tree/main/polygon
+
 const getTokenLogoURL = (address: string) =>
   // address === BAG[ChainId.POLYGON].address
   address === MAIN_TOKEN[ChainId.POLYGON].address
-    ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png` // `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png` // TODO: update this : change to APIDAE logo */
-    : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
-// alternatives: https://github.com/dappradar/tokens/tree/main/polygon
+    ? process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_LOGO_URL ||
+      TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL
+    : `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}` ||
+      `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE}${address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};
