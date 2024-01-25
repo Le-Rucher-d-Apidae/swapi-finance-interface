@@ -13,7 +13,7 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 
 import { ChainId } from '@swapi-finance/sdk-local'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -83,7 +83,7 @@ export default function CompoundRewardModal({ isOpen, onDismiss, stakingInfo }: 
                 {earnedAmount?.toSignificant(6)}
               </TYPE.body>
               {/* <TYPE.body>Available BAG</TYPE.body> */}
-              <TYPE.body>Available {MAIN_TOKEN[ChainId.POLYGON].name}</TYPE.body>
+              <TYPE.body>Available {SELF_TOKEN[ChainId.POLYGON].name}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
@@ -106,7 +106,7 @@ export default function CompoundRewardModal({ isOpen, onDismiss, stakingInfo }: 
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             {/* <TYPE.body fontSize={20}>BAG compounded</TYPE.body> */}
-            <TYPE.body fontSize={20}>{MAIN_TOKEN[ChainId.POLYGON].name} compounded</TYPE.body>
+            <TYPE.body fontSize={20}>{SELF_TOKEN[ChainId.POLYGON].name} compounded</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

@@ -9,7 +9,7 @@ import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
 // import { BAG } from '../../constants'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 import {
   TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL,
   TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_DEFAULT_LOGO_URL,
@@ -24,17 +24,17 @@ import {
 
 // const getTokenLogoURL = (address: string) =>
 //   // address === BAG[ChainId.POLYGON].address
-//   address === MAIN_TOKEN[ChainId.POLYGON].address
+//   address === SELF_TOKEN[ChainId.POLYGON].address
 //     ? `https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png` // `https://raw.githubusercontent.com/baguette-exchange/contracts/main/tokenlist/logos/baguette.png` // TODO: update this : change to APIDAE logo */
 //     : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
 // // alternatives: https://github.com/dappradar/tokens/tree/main/polygon
 
 const getTokenLogoURL = (address: string) =>
   // address === BAG[ChainId.POLYGON].address
-  address === MAIN_TOKEN[ChainId.POLYGON].address
+  address === SELF_TOKEN[ChainId.POLYGON].address
     ? process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_LOGO_URL ||
       TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL
-    : address === MAIN_TOKEN[ChainId.MUMBAI].address
+    : address === SELF_TOKEN[ChainId.MUMBAI].address
     ? process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_LOGO_URL ||
       TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_DEFAULT_LOGO_URL
     : `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}` ||

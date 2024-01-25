@@ -13,7 +13,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk-local'
 
 import { ChainId } from '@swapi-finance/sdk-local'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -98,7 +98,7 @@ export default function Oven() {
               <RowBetween>
                 {/* <TYPE.white fontSize={14}>Deposit your tokens to receive BAG.</TYPE.white> */}
                 <TYPE.white fontSize={14}>
-                  Deposit your tokens to receive {MAIN_TOKEN[ChainId.POLYGON].symbol}.
+                  Deposit your tokens to receive {SELF_TOKEN[ChainId.POLYGON].symbol}.
                 </TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>

@@ -25,7 +25,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 // import Toggle from '../Toggle'
 // import QuestionHelper from '../QuestionHelper'
 
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 
 const HypotheticalRewardRate = styled.div<{ dim: boolean }>`
   display: flex;
@@ -192,7 +192,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
 
       const domain = {
         // name: dummyPair ? 'Baguette Liquidity' : stakingToken.name,
-        name: dummyPair ? `${MAIN_TOKEN[ChainId.POLYGON].name} Liquidity` : stakingToken.name,
+        name: dummyPair ? `${SELF_TOKEN[ChainId.POLYGON].name} Liquidity` : stakingToken.name,
         version: '1',
         chainId: chainId,
         verifyingContract: tokenContract.address
@@ -276,7 +276,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
             <TYPE.black>
               {hypotheticalRewardRate.multiply((60 * 60 * 24 * 7).toString()).toSignificant(4, { groupSeparator: ',' })}{' '}
               {/* BAG / week */}
-              {MAIN_TOKEN[ChainId.POLYGON].name} / week
+              {SELF_TOKEN[ChainId.POLYGON].name} / week
             </TYPE.black>
           </HypotheticalRewardRate>
           {/* 

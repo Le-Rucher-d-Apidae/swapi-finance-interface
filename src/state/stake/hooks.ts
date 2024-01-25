@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import {
   // BAG,
   // APD,
-  MAIN_TOKEN,
+  SELF_TOKEN,
   // LINK,
   // DAI,
   // ETH,
@@ -240,20 +240,20 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MUMBAI]: [
     {
-      tokens: [MAIN_TOKEN[ChainId.MUMBAI], WMATIC[ChainId.MUMBAI]],
-      rewardToken: MAIN_TOKEN[ChainId.MUMBAI],
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], WMATIC[ChainId.MUMBAI]],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0xb7aB7Cd938D9409c2312c43c807B1C6FA7393777', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
-      tokens: [MAIN_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: MAIN_TOKEN[ChainId.MUMBAI],
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x2d6CA9Ec52B45a029bB97503eA1582cb91bFB55E', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
       tokens: [WMATIC[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: MAIN_TOKEN[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
     }
@@ -261,14 +261,14 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.POLYGON]: [
     // Oven
     {
-      tokens: [MAIN_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-      rewardToken: MAIN_TOKEN[ChainId.POLYGON],
+      tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
+      rewardToken: SELF_TOKEN[ChainId.POLYGON],
       stakingRewardAddress: '0x2bCE0CAB94770D0F2Eae3E8a582ADC3EaA0BD81f', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
     },
     {
       tokens: [WMATIC[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-      rewardToken: MAIN_TOKEN[ChainId.POLYGON],
+      rewardToken: SELF_TOKEN[ChainId.POLYGON],
       stakingRewardAddress: '0x706c57a2755956e3978f6b4986513E78d0A06520', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
     }
@@ -409,7 +409,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   // const bag = BAG[chainId ? chainId : ChainId.AVALANCHE]
-  const apt = MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON]
+  const apt = SELF_TOKEN[chainId ? chainId : ChainId.POLYGON]
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const autocompoundingAddresses = useMemo(() => info.map(({ autocompoundingAddress }) => autocompoundingAddress), [
     info
@@ -712,7 +712,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 export function useTotalBagEarned(): TokenAmount | undefined {
   const { chainId } = useActiveWeb3React()
   // const bag = chainId ? BAG[chainId] : undefined
-  const bag = chainId ? MAIN_TOKEN[chainId] : undefined
+  const bag = chainId ? SELF_TOKEN[chainId] : undefined
   const stakingInfos = useStakingInfo(StakingType.BOTH)
 
   return useMemo(() => {

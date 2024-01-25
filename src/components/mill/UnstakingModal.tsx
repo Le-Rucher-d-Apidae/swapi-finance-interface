@@ -15,7 +15,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { UNDEFINED } from '../../constants'
 
 // import { ChainId } from '@swapi-finance/sdk-local'
-// import { MAIN_TOKEN } from '../../constants'
+// import { SELF_TOKEN } from '../../constants'
 import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 
 const ContentWrapper = styled(AutoColumn)`

@@ -32,7 +32,7 @@ import usePrevious from '../../hooks/usePrevious'
 import { BIG_INT_ZERO } from '../../constants'
 
 import { ChainId } from '@swapi-finance/sdk-local'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -161,7 +161,7 @@ export function ManagePair({
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
               {/* {' BAG / week'} */}
-              {` ${MAIN_TOKEN[ChainId.POLYGON].symbol} / week`}
+              {` ${SELF_TOKEN[ChainId.POLYGON].symbol} / week`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -247,7 +247,7 @@ export function ManagePair({
                 <RowBetween>
                   <div>
                     {/* <TYPE.black>Your unclaimed BAG</TYPE.black> */}
-                    <TYPE.black>Your unclaimed {MAIN_TOKEN[ChainId.POLYGON].name}</TYPE.black>
+                    <TYPE.black>Your unclaimed {SELF_TOKEN[ChainId.POLYGON].name}</TYPE.black>
                   </div>
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
@@ -291,7 +291,7 @@ export function ManagePair({
                     ?.multiply((60 * 60 * 24 * 7).toString())
                     ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
                   {/* {' BAG / week'} */}
-                  {` ${MAIN_TOKEN[ChainId.POLYGON].symbol} / week`}
+                  {` ${SELF_TOKEN[ChainId.POLYGON].symbol} / week`}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>
@@ -303,7 +303,7 @@ export function ManagePair({
               ⭐️
             </span>
             {/* When you withdraw, the contract will automagically claim BAG on your behalf! */}
-            When you withdraw, the contract will automagically claim {MAIN_TOKEN[ChainId.POLYGON].symbol} on your
+            When you withdraw, the contract will automagically claim {SELF_TOKEN[ChainId.POLYGON].symbol} on your
             behalf!
           </TYPE.main>
         )}

@@ -8,7 +8,7 @@ import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
 // import { BAG } from '../../constants'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 // import { useAggregateBagBalance, useTokenBalance } from '../../state/wallet/hooks'
@@ -46,21 +46,21 @@ const StyledClose = styled(X)`
  */
 export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setShowTokenBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
-  const apd = chainId ? MAIN_TOKEN[chainId] : MAIN_TOKEN[ChainId.POLYGON]
+  const apd = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
   // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
   // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>(defaultTokenAmount)
   // const bag = chainId ? BAG[chainId] : undefined
-  // const apd = chainId ? MAIN_TOKEN[chainId] : MAIN_TOKEN[ChainId.POLYGON]
+  // const apd = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
   // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
   // console.log('TokenBalanceContent apd=', apd)
   // console.dir(apd)
   // const total = useAggregateBagBalance()
   const total = apd
     ? new TokenAmount(apd, JSBI.BigInt(0))
-    : new TokenAmount(MAIN_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)) // useAggregateBagBalance()
+    : new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)) // useAggregateBagBalance()
   // console.log('TokenBalanceContent total=', total)
   // console.dir(total)
   const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ apd)
@@ -96,7 +96,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     } else {
       console.log('TODO: ELSE setCirculatingSupply totalSupply=', totalSupply)
       // setCirculatingSupply(undefined)
-      setCirculatingSupply(new TokenAmount(MAIN_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
+      setCirculatingSupply(new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
       // totalSupply && setCirculatingSupply(totalSupply)
     }
     // debugger
@@ -111,7 +111,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     } else {
       console.log('TODO: ELSE setCirculatingSupply totalSupply=', totalSupply)
       // setCirculatingSupply(undefined)
-      // setCirculatingSupply(new TokenAmount(MAIN_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
+      // setCirculatingSupply(new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
       // totalSupply && setCirculatingSupply(totalSupply)
       // avoid loop: set CirculatingSupply if not already set
       !circulatingSupply && totalSupply && setCirculatingSupply(totalSupply)
@@ -120,11 +120,11 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     // debugger
   }, [apd, chainId, totalSupply, circulatingSupply])
 
-  // TODO: Determine MAIN_TOKEN price in MATIC
-  // TODO: Determine MAIN_TOKEN price in MATIC
-  // TODO: Determine MAIN_TOKEN price in MATIC
-  // TODO: Determine MAIN_TOKEN price in MATIC
-  // TODO: Determine MAIN_TOKEN price in MATIC
+  // TODO: Determine SELF_TOKEN price in MATIC
+  // TODO: Determine SELF_TOKEN price in MATIC
+  // TODO: Determine SELF_TOKEN price in MATIC
+  // TODO: Determine SELF_TOKEN price in MATIC
+  // TODO: Determine SELF_TOKEN price in MATIC
   // Determine BAG price in AVAX
   // const wavax = WAVAX[chainId ? chainId : 43114]
   const wmatic = WMATIC[chainId ? chainId : ChainId.POLYGON]
@@ -155,7 +155,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
           <RowBetween>
             <TYPE.white color="white">
               {/* Your BAG Breakdown */}
-              Your {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
+              Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
             </TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
@@ -185,7 +185,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <RowBetween>
               <TYPE.white color="white">
                 {/* BAG price: */}
-                {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:
+                {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:
               </TYPE.white>
               {/* <TYPE.white color="white">{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
               <TYPE.white color="white">
@@ -196,7 +196,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <RowBetween>
               <TYPE.white color="white">
                 {/* BAG in circulation: */}
-                {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
+                {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
               </TYPE.white>
               <TYPE.white color="white">{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>

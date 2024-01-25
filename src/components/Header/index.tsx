@@ -30,7 +30,7 @@ import TokenBalanceContent from './TokenBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 // import { ANALYTICS_PAGE , BRIDGE_PAGE } from '../../constants'
 // import { BAG } from '../../constants'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -348,7 +348,7 @@ export default function Header() {
                   </HideSmall>
                 )}
                 {/* BAG */}
-                {MAIN_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol}
+                {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol}
               </TokenAmountStyle>
               <CardNoise />
             </TokenWrapper>

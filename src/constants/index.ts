@@ -49,7 +49,7 @@ type ChainTokenList = {
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xCB120D92f6F5eb076579598487976b6BBC1963f7', 18, 'APD01', 'APIDAE01'), // TODO: change to mumbai APD
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x5d47bAbA0d66083C52009271faF3F50DCc01023C', 18, 'APD', 'Apidae') // TODO: change to polygon APD // currently: ApeSwapFinance Banana (BANANA)
 }
-export const MAIN_TOKEN = APD
+export const SELF_TOKEN = APD
 
 // export const PNG: { [chainId in ChainId]: Token } = {
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'PNG', 'Pangolin'),

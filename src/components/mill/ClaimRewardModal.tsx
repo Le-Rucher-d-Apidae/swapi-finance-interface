@@ -12,7 +12,7 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { ChainId } from '@swapi-finance/sdk-local'
-import { MAIN_TOKEN } from '../../constants'
+import { SELF_TOKEN } from '../../constants'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -49,7 +49,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             // summary: `Claim accumulated BAG rewards`
-            summary: `Claim accumulated ${MAIN_TOKEN[ChainId.POLYGON].name} rewards`
+            summary: `Claim accumulated ${SELF_TOKEN[ChainId.POLYGON].name} rewards`
           })
           setHash(response.hash)
         })
@@ -82,7 +82,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
               {/* <TYPE.body>Unclaimed BAG</TYPE.body> */}
-              <TYPE.body>Unclaimed {MAIN_TOKEN[ChainId.POLYGON].name}</TYPE.body>
+              <TYPE.body>Unclaimed {SELF_TOKEN[ChainId.POLYGON].name}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
@@ -98,7 +98,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
           <AutoColumn gap="12px" justify={'center'}>
             {/* <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)}BAG</TYPE.body> */}
             <TYPE.body fontSize={20}>
-              Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} {MAIN_TOKEN[ChainId.POLYGON].name}
+              Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} {SELF_TOKEN[ChainId.POLYGON].name}
             </TYPE.body>
           </AutoColumn>
         </LoadingView>
@@ -108,7 +108,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             {/* <TYPE.body fontSize={20}>Claimed BAG!</TYPE.body> */}
-            <TYPE.body fontSize={20}>Claimed {MAIN_TOKEN[ChainId.POLYGON].name}!</TYPE.body>
+            <TYPE.body fontSize={20}>Claimed {SELF_TOKEN[ChainId.POLYGON].name}!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
