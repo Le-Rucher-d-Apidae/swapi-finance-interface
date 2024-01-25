@@ -46,7 +46,7 @@ const StyledClose = styled(X)`
  */
 export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setShowTokenBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
-  const apd = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
+  const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
   // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
   // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
@@ -58,14 +58,14 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   // console.log('TokenBalanceContent apd=', apd)
   // console.dir(apd)
   // const total = useAggregateBagBalance()
-  const total = apd
-    ? new TokenAmount(apd, JSBI.BigInt(0))
+  const total = selfToken
+    ? new TokenAmount(selfToken, JSBI.BigInt(0))
     : new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)) // useAggregateBagBalance()
   // console.log('TokenBalanceContent total=', total)
   // console.dir(total)
-  const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ apd)
+  const selfTokenBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ selfToken)
 
-  const totalSupply: TokenAmount | undefined = useTotalSupply(/* bag */ apd)
+  const totalSupply: TokenAmount | undefined = useTotalSupply(/* bag */ selfToken)
   // const totalSupply_: TokenAmount | undefined = useTotalSupply(/* bag */ apd)
   // console.log('TokenBalanceContent totalSupply_=', totalSupply_)
   // const totalSupply = useMemo(() => {
@@ -103,22 +103,22 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   }, [apd, chainId, totalSupply])
 */
   useEffect(() => {
-    if (apd && chainId === ChainId.POLYGON) {
-      computeBagCirculation(apd).then(circulating => {
-        // setCirculatingSupply(circulating)
-        console.log('TODO: IF setCirculatingSupply circulating=', circulating)
+    if (selfToken && chainId === ChainId.POLYGON) {
+      computeBagCirculation(selfToken).then(circulating => {
+        setCirculatingSupply(circulating)
+        // console.log('TODO: IF setCirculatingSupply circulating=', circulating)
       })
     } else {
-      console.log('TODO: ELSE setCirculatingSupply totalSupply=', totalSupply)
+      // console.log('TODO: ELSE setCirculatingSupply totalSupply=', totalSupply)
       // setCirculatingSupply(undefined)
       // setCirculatingSupply(new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
       // totalSupply && setCirculatingSupply(totalSupply)
       // avoid loop: set CirculatingSupply if not already set
       !circulatingSupply && totalSupply && setCirculatingSupply(totalSupply)
-      console.debug(`apd=${chainId}, chainId=${chainId}, totalSupply=${totalSupply}`)
+      // console.debug(`apd=${chainId}, chainId=${chainId}, totalSupply=${totalSupply}`)
     }
     // debugger
-  }, [apd, chainId, totalSupply, circulatingSupply])
+  }, [selfToken, chainId, totalSupply, circulatingSupply])
 
   // TODO: Determine SELF_TOKEN price in MATIC
   // TODO: Determine SELF_TOKEN price in MATIC
@@ -129,18 +129,18 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   // const wavax = WAVAX[chainId ? chainId : 43114]
   const wmatic = WMATIC[chainId ? chainId : ChainId.POLYGON]
   // const [, avaxBagTokenPair] = usePair(wmatic, bag)
-  const [, maticBagTokenPair] = usePair(wmatic, /* bag */ apd)
+  const [, maticBagTokenPair] = usePair(wmatic, /* bag */ selfToken)
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 10^18
   // let bagPrice: Number | undefined
   let tokenPrice: number | undefined
   // if (avaxBagTokenPair && bag) {
-  if (maticBagTokenPair && apd) {
+  if (maticBagTokenPair && selfToken) {
     // const avaxBagRatio = JSBI.divide(
     const maticTokenRatio = JSBI.divide(
       // JSBI.multiply(oneToken, avaxBagTokenPair.reserveOf(wmatic).raw),
       JSBI.multiply(oneToken, maticBagTokenPair.reserveOf(wmatic).raw),
       // avaxBagTokenPair.reserveOf(bag).raw
-      maticBagTokenPair.reserveOf(apd).raw
+      maticBagTokenPair.reserveOf(selfToken).raw
     )
     // bagPrice = JSBI.toNumber(avaxBagRatio) / 1_000_000_000_000_000_000 // 10^18
     tokenPrice = JSBI.toNumber(maticTokenRatio) / 1_000_000_000_000_000_000 // 10^18
@@ -173,7 +173,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
               <AutoColumn gap="md">
                 <RowBetween>
                   <TYPE.white color="white">Balance:</TYPE.white>
-                  <TYPE.white color="white">{bagBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
+                  <TYPE.white color="white">{selfTokenBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
                 </RowBetween>
               </AutoColumn>
             </CardSection>
