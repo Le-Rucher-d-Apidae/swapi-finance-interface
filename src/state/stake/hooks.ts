@@ -712,18 +712,18 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 export function useTotalBagEarned(): TokenAmount | undefined {
   const { chainId } = useActiveWeb3React()
   // const bag = chainId ? BAG[chainId] : undefined
-  const bag = chainId ? SELF_TOKEN[chainId] : undefined
+  const selfToken = chainId ? SELF_TOKEN[chainId] : undefined
   const stakingInfos = useStakingInfo(StakingType.BOTH)
 
   return useMemo(() => {
-    if (!bag) return undefined
+    if (!selfToken) return undefined
     return (
       stakingInfos?.reduce(
         (accumulator, stakingInfo) => accumulator.add(stakingInfo.earnedAmount),
-        new TokenAmount(bag, '0')
-      ) ?? new TokenAmount(bag, '0')
+        new TokenAmount(selfToken, '0')
+      ) ?? new TokenAmount(selfToken, '0')
     )
-  }, [stakingInfos, bag])
+  }, [stakingInfos, selfToken])
 }
 
 // based on typed value
