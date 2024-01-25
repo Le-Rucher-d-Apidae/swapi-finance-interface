@@ -24,7 +24,7 @@ async function getColorFromToken(token: Token): Promise<string | null> {
       TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL
     : `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${token.address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}` ||
       `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE}${token.address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
-  console.debug('swapi-finance-interface/src/hooks/useColor.ts path=', path)
+  // console.debug('swapi-finance-interface/src/hooks/useColor.ts path=', path)
   return Vibrant.from(path)
     .getPalette()
     .then(palette => {
@@ -54,7 +54,7 @@ export function useColor(token?: Token) {
 
     if (token) {
       getColorFromToken(token).then(tokenColor => {
-        console.debug('swapi-finance-interface/src/hooks/useColor.ts tokenColor=', tokenColor)
+        // console.debug('swapi-finance-interface/src/hooks/useColor.ts tokenColor=', tokenColor)
         if (!stale && tokenColor !== null) {
           setColor(tokenColor)
         }
@@ -65,7 +65,7 @@ export function useColor(token?: Token) {
       stale = true
       setColor(defaultColor)
     }
-  }, [token])
+  }, [token, defaultColor])
 
   return color
 }
