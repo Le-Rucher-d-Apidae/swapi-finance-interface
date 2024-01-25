@@ -90,7 +90,7 @@ export default function AddLiquidity({
 
   // txn values
   const deadline = useTransactionDeadline() // custom from users settings
-  console.debug(`deadline=${deadline}`)
+  // console.debug(`deadline=${deadline}`)
   const [allowedSlippage] = useUserSlippageTolerance() // custom from users
   const [txHash, setTxHash] = useState<string>('')
 
