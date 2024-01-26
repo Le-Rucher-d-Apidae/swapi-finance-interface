@@ -30,7 +30,7 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
             <DoubleCurrencyLogo currency0={token} margin={true} size={20} />
             <Text fontWeight={500} fontSize={20} style={{ marginLeft: '' }}>
               {/* {`${chainId && token.equals(WAVAX[chainId]) ? 'WAVAX' : token.symbol}/AVAX`} */}
-              {`${chainId && token.equals(WMATIC[chainId]) ? WMATIC[chainId].name : token.symbol}/${CURRENCY.name}`}
+              {`${chainId && token.equals(WMATIC[chainId]) ? WMATIC[chainId].name : token.symbol}/${CURRENCY.symbol}`}
             </Text>
             <Text
               fontSize={12}

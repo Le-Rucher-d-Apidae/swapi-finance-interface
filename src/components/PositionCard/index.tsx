@@ -24,6 +24,7 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
+import { CURRENCY, WMATIC /* Currency, currencyEquals */ } from '@swapi-finance/sdk-local'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -35,7 +36,7 @@ export const HoverCard = styled(Card)`
     border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
   }
 `
-const StyledPositionCard = styled(LightCard) <{ bgColor: any }>`
+const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   border: none;
   background: ${({ theme, bgColor }) =>
     `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `};
@@ -67,14 +68,14 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
 
   const [token0Deposited, token1Deposited] =
     !!pair &&
-      !!totalPoolTokens &&
-      !!userPoolBalance &&
-      // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-      JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
+    !!totalPoolTokens &&
+    !!userPoolBalance &&
+    // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
+    JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
-        pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-        pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
-      ]
+          pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
+          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+        ]
       : [undefined, undefined]
 
   return (
@@ -122,8 +123,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                     </Text>
                   </RowFixed>
                 ) : (
-                    '-'
-                  )}
+                  '-'
+                )}
               </FixedHeightRow>
               <FixedHeightRow>
                 <Text fontSize={16} fontWeight={500}>
@@ -136,29 +137,30 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                     </Text>
                   </RowFixed>
                 ) : (
-                    '-'
-                  )}
+                  '-'
+                )}
               </FixedHeightRow>
             </AutoColumn>
           </AutoColumn>
         </GreyCard>
       ) : (
-          <LightCard>
-            <TYPE.subHeader style={{ textAlign: 'center' }}>
-              <span role="img" aria-label="wizard-icon">
-                ⭐️
+        <LightCard>
+          <TYPE.subHeader style={{ textAlign: 'center' }}>
+            <span role="img" aria-label="wizard-icon">
+              ⭐️
             </span>{' '}
             By adding liquidity you&apos;ll earn 0.3% of all trades on this pair proportional to your share of the pool.
             Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.
           </TYPE.subHeader>
-          </LightCard>
-        )}
+        </LightCard>
+      )}
     </>
   )
 }
 
 export default function FullPositionCard({ pair, border }: PositionCardProps) {
-  const { account } = useActiveWeb3React()
+  // const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
@@ -175,17 +177,21 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
 
   const [token0Deposited, token1Deposited] =
     !!pair &&
-      !!totalPoolTokens &&
-      !!userPoolBalance &&
-      // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-      JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
+    !!totalPoolTokens &&
+    !!userPoolBalance &&
+    // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
+    JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
-        pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-        pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
-      ]
+          pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
+          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+        ]
       : [undefined, undefined]
 
   const backgroundColor = useColor(pair?.token0)
+
+  if (currency0 === CURRENCY) {
+    console.log('src/components/PositionCard/index.tsx currency0 === CURRENCY')
+  }
 
   return (
     <StyledPositionCard border={border} bgColor={backgroundColor}>
@@ -213,11 +219,11 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                   <ChevronUp size="20" style={{ marginLeft: '10px' }} />
                 </>
               ) : (
-                  <>
-                    Manage
+                <>
+                  Manage
                   <ChevronDown size="20" style={{ marginLeft: '10px' }} />
-                  </>
-                )}
+                </>
+              )}
             </ButtonEmpty>
           </RowFixed>
         </FixedHeightRow>
@@ -246,8 +252,8 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                   <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency0} />
                 </RowFixed>
               ) : (
-                  '-'
-                )}
+                '-'
+              )}
             </FixedHeightRow>
 
             <FixedHeightRow>
@@ -264,8 +270,8 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                   <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency1} />
                 </RowFixed>
               ) : (
-                  '-'
-                )}
+                '-'
+              )}
             </FixedHeightRow>
 
             <FixedHeightRow>
@@ -292,7 +298,10 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 borderRadius="8px"
                 as={Link}
                 width="48%"
-                to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+                // to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+                to={`/remove/${chainId && currency0 === CURRENCY ? WMATIC[chainId].address : currencyId(currency0)}/${
+                  chainId && currency1 === CURRENCY ? WMATIC[chainId].address : currencyId(currency1)
+                }`}
               >
                 Remove
               </ButtonPrimary>

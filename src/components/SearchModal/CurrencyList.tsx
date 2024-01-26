@@ -21,7 +21,7 @@ function currencyKey(currency: Currency): string {
   return currency instanceof Token
     ? currency.address
     : currency === /* CAVAX */ CURRENCY
-    ? /* 'AVAX' */ CURRENCY.name || '?'
+    ? /* 'AVAX' */ CURRENCY.symbol || '?'
     : ''
 }
 
@@ -118,7 +118,7 @@ function CurrencyRow({
     >
       <CurrencyLogo currency={currency} size={'24px'} />
       <Column>
-        <Text title={currency.name} fontWeight={500}>
+        <Text title={CURRENCY.symbol} fontWeight={500}>
           {currency.symbol}
         </Text>
         <FadedSpan>

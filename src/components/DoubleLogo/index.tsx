@@ -1,4 +1,4 @@
-import { Currency } from '@swapi-finance/sdk-local'
+import { Currency /* , ChainId */ } from '@swapi-finance/sdk-local'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'
@@ -15,6 +15,7 @@ interface DoubleCurrencyLogoProps {
   size?: number
   currency0?: Currency
   currency1?: Currency
+  // chainId?: ChainId
 }
 
 const HigherLogo = styled(CurrencyLogo)`
@@ -29,7 +30,7 @@ export default function DoubleCurrencyLogo({
   currency0,
   currency1,
   size = 16,
-  margin = false
+  margin = false // , chainId
 }: DoubleCurrencyLogoProps) {
   return (
     <Wrapper sizeraw={size} margin={margin}>

@@ -47,7 +47,7 @@ export function useSwapActionHandlers(): {
             currency instanceof Token
               ? currency.address
               : currency === /* CAVAX */ CURRENCY
-              ? /* 'AVAX' */ CURRENCY.name || '?'
+              ? /* 'AVAX' */ CURRENCY.symbol || '?'
               : ''
         })
       )
@@ -246,8 +246,8 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === (CURRENCY.name || 'MATIC')) return CURRENCY.name || 'MATIC'
-    if (valid === false) return CURRENCY.name || 'MATIC'
+    if (urlParam.toUpperCase() === (CURRENCY.symbol || 'MATIC')) return CURRENCY.symbol || 'MATIC'
+    if (valid === false) return CURRENCY.symbol || 'MATIC'
   }
   return 'MATIC' ?? ''
 }

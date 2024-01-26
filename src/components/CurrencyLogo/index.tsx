@@ -17,6 +17,7 @@ import {
   TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO,
   TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE
 } from '../../constants/index'
+import { useActiveWeb3React } from '../../hooks'
 
 // const getTokenLogoURL = (address: string) =>
 //   address === BAG[ChainId.AVALANCHE].address
@@ -88,15 +89,16 @@ const StyledLogo = styled(Logo)<{ size: string }>`
 export default function CurrencyLogo({
   currency,
   size = '24px',
-  style,
-  chainId
+  style // ,chainId
 }: {
   currency?: Currency
   size?: string
   style?: React.CSSProperties
-  chainId?: ChainId
+  // chainId?: ChainId
 }) {
+  const { chainId } = useActiveWeb3React()
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
+  // console.debug(`src/components/CurrencyLogo/index.tsx chainId=${chainId}`)
 
   const srcs: string[] = useMemo(() => {
     // if (currency === CAVAX) return []
@@ -104,20 +106,19 @@ export default function CurrencyLogo({
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        console.debug(
-          `src/components/CurrencyLogo/index.tsx currency instanceof WrappedTokenInfo currency.address=${
-            currency.address
-          } getTokenLogoURL=${getTokenLogoURL(currency.address, chainId)}`
-        )
+        // console.debug(
+        //   `src/components/CurrencyLogo/index.tsx currency instanceof WrappedTokenInfo currency.address=${
+        //     currency.address
+        //   } getTokenLogoURL=${getTokenLogoURL(currency.address, chainId)}`
+        // )
         return [...uriLocations, getTokenLogoURL(currency.address, chainId)]
       }
-
-      console.debug(
-        `src/components/CurrencyLogo/index.tsx currency.address=${currency.address} getTokenLogoURL=${getTokenLogoURL(
-          currency.address,
-          chainId
-        )}`
-      )
+      // console.debug(
+      //   `src/components/CurrencyLogo/index.tsx currency.address=${currency.address} getTokenLogoURL=${getTokenLogoURL(
+      //     currency.address,
+      //     chainId
+      //   )}`
+      // )
       return [...uriLocations, getTokenLogoURL(currency.address, chainId)]
     }
     return []

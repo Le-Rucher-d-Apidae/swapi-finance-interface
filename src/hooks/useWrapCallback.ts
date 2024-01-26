@@ -48,7 +48,7 @@ export default function useWrapCallback(
                   const txReceipt = await wethContract.deposit({ value: `0x${inputAmount.raw.toString(16)}` })
                   // addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} AVAX to WAVAX` })
                   addTransaction(txReceipt, {
-                    summary: `Wrap ${inputAmount.toSignificant(6)} ${CURRENCY.name} to ${WMATIC[ChainId.POLYGON]}`
+                    summary: `Wrap ${inputAmount.toSignificant(6)} ${CURRENCY.symbol} to ${WMATIC[ChainId.POLYGON]}`
                   })
                 } catch (error) {
                   console.error('Could not deposit', error)
@@ -56,7 +56,7 @@ export default function useWrapCallback(
               }
             : undefined,
         // inputError: sufficientBalance ? undefined : 'Insufficient AVAX balance'
-        inputError: sufficientBalance ? undefined : `Insufficient ${CURRENCY.name} balance`
+        inputError: sufficientBalance ? undefined : `Insufficient ${CURRENCY.symbol} balance`
       }
       // } else if (currencyEquals(WAVAX[chainId], inputCurrency) && outputCurrency === CAVAX) {
     } else if (currencyEquals(WMATIC[chainId], inputCurrency) && outputCurrency === CURRENCY) {
@@ -69,7 +69,7 @@ export default function useWrapCallback(
                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.raw.toString(16)}`)
                   // addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WAVAX to AVAX` })
                   addTransaction(txReceipt, {
-                    summary: `Unwrap ${inputAmount.toSignificant(6)} ${WMATIC[ChainId.POLYGON]} to ${CURRENCY.name}`
+                    summary: `Unwrap ${inputAmount.toSignificant(6)} ${WMATIC[ChainId.POLYGON]} to ${CURRENCY.symbol}`
                   })
                 } catch (error) {
                   console.error('Could not withdraw', error)
