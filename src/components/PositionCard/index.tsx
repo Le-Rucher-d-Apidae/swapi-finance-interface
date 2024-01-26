@@ -189,9 +189,9 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
 
   const backgroundColor = useColor(pair?.token0)
 
-  if (currency0 === CURRENCY) {
-    console.log('src/components/PositionCard/index.tsx currency0 === CURRENCY')
-  }
+  // if (currency0 === CURRENCY) {
+  //   console.log('src/components/PositionCard/index.tsx currency0 === CURRENCY')
+  // }
 
   return (
     <StyledPositionCard border={border} bgColor={backgroundColor}>
