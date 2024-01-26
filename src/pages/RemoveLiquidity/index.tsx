@@ -53,11 +53,14 @@ export default function RemoveLiquidity({
 }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
   const { account, chainId, library } = useActiveWeb3React()
+
   const [tokenA, tokenB] = useMemo(() => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)], [
     currencyA,
     currencyB,
     chainId
   ])
+
+  // debugger
 
   const theme = useContext(ThemeContext)
 
@@ -451,11 +454,13 @@ export default function RemoveLiquidity({
   //       (currencyB && currencyEquals(WAVAX[chainId], currencyB)))
   // )
   const oneCurrencyIsMATIC = currencyA === CURRENCY || currencyB === CURRENCY
+  // console.debug(`RemoveLiquidity.tsx oneCurrencyIsMATIC=${oneCurrencyIsMATIC}`)
   const oneCurrencyIsWMATIC = Boolean(
     chainId &&
       ((currencyA && currencyEquals(WMATIC[chainId], currencyA)) ||
         (currencyB && currencyEquals(WMATIC[chainId], currencyB)))
   )
+  // console.debug(`RemoveLiquidity.tsx oneCurrencyIsWMATIC=${oneCurrencyIsWMATIC}`)
   const handleSelectCurrencyA = useCallback(
     (currency: Currency) => {
       if (currencyIdB && currencyId(currency) === currencyIdB) {
@@ -491,6 +496,19 @@ export default function RemoveLiquidity({
     Number.parseInt(parsedAmounts[Field.LIQUIDITY_PERCENT].toFixed(0)),
     liquidityPercentChangeCallback
   )
+
+  // console.debug(
+  //   `RemoveLiquidity.tsx chainId=${chainId} currencyIdA=${currencyIdA} currencyIdB=${currencyIdB} currencyA === CURRENCY=${currencyA ===
+  //     CURRENCY} currencyB === CURRENCY=${currencyB === CURRENCY} currencyA=${currencyA} currencyB=${currencyB}`
+  // )
+
+  // if (chainId) {
+  //   console.debug(
+  //     `/remove/${currencyA === CURRENCY ? WMATIC[chainId].address : currencyIdA}/${
+  //       currencyB === CURRENCY ? WMATIC[chainId].address : currencyIdB
+  //     }`
+  //   )
+  // }
 
   return (
     <>
@@ -596,7 +614,7 @@ export default function RemoveLiquidity({
                               currencyB === CURRENCY ? WMATIC[chainId].address : currencyIdB
                             }`}
                           >
-                            `Receive ${WMATIC[chainId]}`
+                            Receive {WMATIC[chainId]}
                           </StyledInternalLink>
                         ) : /* oneCurrencyIsWAVAX */ oneCurrencyIsWMATIC ? (
                           // <StyledInternalLink
@@ -608,10 +626,12 @@ export default function RemoveLiquidity({
 
                           <StyledInternalLink
                             to={`/remove/${
-                              currencyA && currencyEquals(currencyA, WMATIC[chainId]) ? CURRENCY.name : currencyIdA
-                            }/${currencyB && currencyEquals(currencyB, WMATIC[chainId]) ? CURRENCY.name : currencyIdB}`}
+                              currencyA && currencyEquals(currencyA, WMATIC[chainId]) ? CURRENCY.symbol : currencyIdA
+                            }/${
+                              currencyB && currencyEquals(currencyB, WMATIC[chainId]) ? CURRENCY.symbol : currencyIdB
+                            }`}
                           >
-                            `Receive ${CURRENCY.name}`
+                            Receive {CURRENCY.symbol}
                           </StyledInternalLink>
                         ) : null}
                       </RowBetween>
