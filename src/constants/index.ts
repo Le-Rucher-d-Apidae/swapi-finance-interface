@@ -33,7 +33,7 @@ export const TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_DEFAULT_LOGO_URL =
 export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE =
   'https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/'
 export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE =
-  'https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/'
+  'https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/assets/blockchains/polygonmumbai/assets/'
 export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO = '/logo.png'
 
 // a list of tokens by chain

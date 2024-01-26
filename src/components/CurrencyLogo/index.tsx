@@ -14,7 +14,8 @@ import {
   TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL,
   TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_DEFAULT_LOGO_URL,
   TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE,
-  TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO
+  TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO,
+  TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE
 } from '../../constants/index'
 
 // const getTokenLogoURL = (address: string) =>
@@ -29,8 +30,36 @@ import {
 //     : `https://raw.githubusercontent.com/trustwallet/assets/main/blockchains/polygon/assets/${address}/logo.png` // `https://raw.githubusercontent.com/pangolindex/tokens/main/assets/${address}/logo.png` // TODO: update this
 // // alternatives: https://github.com/dappradar/tokens/tree/main/polygon
 
-const getTokenLogoURL = (address: string) =>
-  // address === BAG[ChainId.POLYGON].address
+// const getTokenLogoURL = (address: string) =>
+const getTokenLogoURL = (address: string, chainId?: ChainId) => {
+  // debugger
+  if (chainId) {
+    if (address === SELF_TOKEN[chainId].address) {
+      if (chainId === ChainId.MUMBAI) {
+        return (
+          process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_LOGO_URL ||
+          TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_DEFAULT_LOGO_URL
+        )
+      }
+      return (
+        process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_LOGO_URL ||
+        TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL
+      )
+    }
+    if (chainId === ChainId.MUMBAI) {
+      // REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_LOGO_URL_BASE || TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE
+      return process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_LOGO_URL_BASE &&
+        process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO
+        ? `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}`
+        : `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE}${address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
+    }
+  }
+  return process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE &&
+    process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO
+    ? `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}`
+    : `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE}${address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
+}
+/*
   address === SELF_TOKEN[ChainId.POLYGON].address
     ? process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_LOGO_URL ||
       TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL
@@ -40,6 +69,8 @@ const getTokenLogoURL = (address: string) =>
     : `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}` ||
       `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE}${address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
 
+      // REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_LOGO_URL_BASE || TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE
+*/
 const StyledEthereumLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
@@ -57,11 +88,13 @@ const StyledLogo = styled(Logo)<{ size: string }>`
 export default function CurrencyLogo({
   currency,
   size = '24px',
-  style
+  style,
+  chainId
 }: {
   currency?: Currency
   size?: string
   style?: React.CSSProperties
+  chainId?: ChainId
 }) {
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
@@ -71,13 +104,24 @@ export default function CurrencyLogo({
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        return [...uriLocations, getTokenLogoURL(currency.address)]
+        console.debug(
+          `src/components/CurrencyLogo/index.tsx currency instanceof WrappedTokenInfo currency.address=${
+            currency.address
+          } getTokenLogoURL=${getTokenLogoURL(currency.address, chainId)}`
+        )
+        return [...uriLocations, getTokenLogoURL(currency.address, chainId)]
       }
 
-      return [...uriLocations, getTokenLogoURL(currency.address)]
+      console.debug(
+        `src/components/CurrencyLogo/index.tsx currency.address=${currency.address} getTokenLogoURL=${getTokenLogoURL(
+          currency.address,
+          chainId
+        )}`
+      )
+      return [...uriLocations, getTokenLogoURL(currency.address, chainId)]
     }
     return []
-  }, [currency, uriLocations])
+  }, [currency, uriLocations, chainId])
 
   // if (currency === CAVAX) {
   if (currency === CURRENCY) {
