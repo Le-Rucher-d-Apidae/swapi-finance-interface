@@ -172,7 +172,7 @@ export const AAVE: { [chainId in ChainId]: Token } = {
 //   )
 // }
 
-export const WETHE: { [chainId in ChainId]: Token } = {
+export const WETH: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
   [ChainId.POLYGON]: new Token(
     ChainId.POLYGON,
