@@ -2,7 +2,7 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 // import { Currency, currencyEquals, CAVAX, Percent, WAVAX } from '@swapi-finance/sdk-local'
-import { Currency, currencyEquals, CURRENCY, Percent, WMATIC } from '@swapi-finance/sdk-local'
+import { Currency, currencyEquals, CURRENCY, Percent, WCURRENCY } from '@swapi-finance/sdk-local'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { ArrowDown, Plus } from 'react-feather'
 // import ReactGA from 'react-ga'
@@ -455,12 +455,12 @@ export default function RemoveLiquidity({
   // )
   const oneCurrencyIsMATIC = currencyA === CURRENCY || currencyB === CURRENCY
   // console.debug(`RemoveLiquidity.tsx oneCurrencyIsMATIC=${oneCurrencyIsMATIC}`)
-  const oneCurrencyIsWMATIC = Boolean(
+  const oneCurrencyIsWCURRENCY = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(WMATIC[chainId], currencyA)) ||
-        (currencyB && currencyEquals(WMATIC[chainId], currencyB)))
+      ((currencyA && currencyEquals(WCURRENCY[chainId], currencyA)) ||
+        (currencyB && currencyEquals(WCURRENCY[chainId], currencyB)))
   )
-  // console.debug(`RemoveLiquidity.tsx oneCurrencyIsWMATIC=${oneCurrencyIsWMATIC}`)
+  // console.debug(`RemoveLiquidity.tsx oneCurrencyIsWCURRENCY=${oneCurrencyIsWCURRENCY}`)
   const handleSelectCurrencyA = useCallback(
     (currency: Currency) => {
       if (currencyIdB && currencyId(currency) === currencyIdB) {
@@ -600,7 +600,7 @@ export default function RemoveLiquidity({
                       </RowFixed>
                     </RowBetween>
                     {chainId &&
-                    /* oneCurrencyIsWAVAX || oneCurrencyIsAVAX */ (oneCurrencyIsWMATIC || oneCurrencyIsMATIC) ? (
+                    /* oneCurrencyIsWAVAX || oneCurrencyIsAVAX */ (oneCurrencyIsWCURRENCY || oneCurrencyIsMATIC) ? (
                       <RowBetween style={{ justifyContent: 'flex-end' }}>
                         {/* oneCurrencyIsAVAX */ oneCurrencyIsMATIC ? (
                           // <StyledInternalLink
@@ -610,13 +610,13 @@ export default function RemoveLiquidity({
                           // >
                           //   Receive WAVAX
                           <StyledInternalLink
-                            to={`/remove/${currencyA === CURRENCY ? WMATIC[chainId].address : currencyIdA}/${
-                              currencyB === CURRENCY ? WMATIC[chainId].address : currencyIdB
+                            to={`/remove/${currencyA === CURRENCY ? WCURRENCY[chainId].address : currencyIdA}/${
+                              currencyB === CURRENCY ? WCURRENCY[chainId].address : currencyIdB
                             }`}
                           >
-                            Receive {WMATIC[chainId]}
+                            Receive {WCURRENCY[chainId]}
                           </StyledInternalLink>
-                        ) : /* oneCurrencyIsWAVAX */ oneCurrencyIsWMATIC ? (
+                        ) : /* oneCurrencyIsWAVAX */ oneCurrencyIsWCURRENCY ? (
                           // <StyledInternalLink
                           //   to={`/remove/${
                           //     currencyA && currencyEquals(currencyA, WAVAX[chainId]) ? 'AVAX' : currencyIdA
@@ -626,9 +626,9 @@ export default function RemoveLiquidity({
 
                           <StyledInternalLink
                             to={`/remove/${
-                              currencyA && currencyEquals(currencyA, WMATIC[chainId]) ? CURRENCY.symbol : currencyIdA
+                              currencyA && currencyEquals(currencyA, WCURRENCY[chainId]) ? CURRENCY.symbol : currencyIdA
                             }/${
-                              currencyB && currencyEquals(currencyB, WMATIC[chainId]) ? CURRENCY.symbol : currencyIdB
+                              currencyB && currencyEquals(currencyB, WCURRENCY[chainId]) ? CURRENCY.symbol : currencyIdB
                             }`}
                           >
                             Receive {CURRENCY.symbol}
@@ -742,7 +742,7 @@ export default function RemoveLiquidity({
 
       {pair ? (
         <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
-          <MinimalPositionCard showUnwrapped={/* oneCurrencyIsWAVAX */ oneCurrencyIsWMATIC} pair={pair} />
+          <MinimalPositionCard showUnwrapped={/* oneCurrencyIsWAVAX */ oneCurrencyIsWCURRENCY} pair={pair} />
         </AutoColumn>
       ) : null}
     </>

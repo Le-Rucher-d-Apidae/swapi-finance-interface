@@ -1,5 +1,5 @@
 // import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk-local'
-import { ChainId, TokenAmount, CURRENCY, WMATIC, JSBI } from '@swapi-finance/sdk-local'
+import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk-local'
 // import React, { useState, useEffect } from 'react'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
@@ -120,30 +120,30 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     // debugger
   }, [selfToken, chainId, totalSupply, circulatingSupply])
 
-  // TODO: Determine SELF_TOKEN price in MATIC
-  // TODO: Determine SELF_TOKEN price in MATIC
-  // TODO: Determine SELF_TOKEN price in MATIC
-  // TODO: Determine SELF_TOKEN price in MATIC
-  // TODO: Determine SELF_TOKEN price in MATIC
+  // TODO: Determine SELF_TOKEN price in WCURRENCY
+  // TODO: Determine SELF_TOKEN price in WCURRENCY
+  // TODO: Determine SELF_TOKEN price in WCURRENCY
+  // TODO: Determine SELF_TOKEN price in WCURRENCY
+  // TODO: Determine SELF_TOKEN price in WCURRENCY
   // Determine BAG price in AVAX
   // const wavax = WAVAX[chainId ? chainId : 43114]
-  const wmatic = WMATIC[chainId ? chainId : ChainId.POLYGON]
+  const wcurrency = WCURRENCY[chainId ? chainId : ChainId.POLYGON]
   // const [, avaxBagTokenPair] = usePair(wmatic, bag)
-  const [, maticBagTokenPair] = usePair(wmatic, /* bag */ selfToken)
+  const [, currencySelfTokenTokenPair] = usePair(wcurrency, /* bag */ selfToken)
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 10^18
   // let bagPrice: Number | undefined
   let tokenPrice: number | undefined
   // if (avaxBagTokenPair && bag) {
-  if (maticBagTokenPair && selfToken) {
+  if (currencySelfTokenTokenPair && selfToken) {
     // const avaxBagRatio = JSBI.divide(
-    const maticTokenRatio = JSBI.divide(
+    const currencySelfTokenRatio = JSBI.divide(
       // JSBI.multiply(oneToken, avaxBagTokenPair.reserveOf(wmatic).raw),
-      JSBI.multiply(oneToken, maticBagTokenPair.reserveOf(wmatic).raw),
+      JSBI.multiply(oneToken, currencySelfTokenTokenPair.reserveOf(wcurrency).raw),
       // avaxBagTokenPair.reserveOf(bag).raw
-      maticBagTokenPair.reserveOf(selfToken).raw
+      currencySelfTokenTokenPair.reserveOf(selfToken).raw
     )
     // bagPrice = JSBI.toNumber(avaxBagRatio) / 1_000_000_000_000_000_000 // 10^18
-    tokenPrice = JSBI.toNumber(maticTokenRatio) / 1_000_000_000_000_000_000 // 10^18
+    tokenPrice = JSBI.toNumber(currencySelfTokenRatio) / 1_000_000_000_000_000_000 // 10^18
   }
 
   return (

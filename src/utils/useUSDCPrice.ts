@@ -1,7 +1,7 @@
 // TODO: Actually calculate price
 
 // import { ChainId, Currency, currencyEquals, JSBI, Price, WAVAX } from '@swapi-finance/sdk-local'
-import { ChainId, Currency, currencyEquals, JSBI, Price, WMATIC } from '@swapi-finance/sdk-local'
+import { ChainId, Currency, currencyEquals, JSBI, Price, WCURRENCY } from '@swapi-finance/sdk-local'
 import { useMemo } from 'react'
 import { DAI } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
@@ -21,23 +21,23 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
     () => [
       [
         // chainId && wrapped && currencyEquals(WAVAX[chainId], wrapped) ? undefined : currency,
-        chainId && wrapped && currencyEquals(WMATIC[chainId], wrapped) ? undefined : currency,
+        chainId && wrapped && currencyEquals(WCURRENCY[chainId], wrapped) ? undefined : currency,
         // chainId ? WAVAX[chainId] : undefined
-        chainId ? WMATIC[chainId] : undefined
+        chainId ? WCURRENCY[chainId] : undefined
       ],
       // [wrapped?.equals(USDC) ? undefined : wrapped, chainId === ChainId.AVALANCHE ? USDC : undefined],
       // [chainId ? WAVAX[chainId] : undefined, chainId === ChainId.AVALANCHE ? USDC : undefined]
       [wrapped?.equals(USDC) ? undefined : wrapped, chainId === ChainId.POLYGON ? USDC : undefined],
       // [chainId ? WAVAX[chainId] : undefined, chainId === ChainId.POLYGON ? USDC : undefined]
-      [chainId ? WMATIC[chainId] : undefined, chainId === ChainId.POLYGON ? USDC : undefined]
+      [chainId ? WCURRENCY[chainId] : undefined, chainId === ChainId.POLYGON ? USDC : undefined]
     ],
     [chainId, currency, wrapped, USDC]
   )
   // const [[avaxPairState, avaxPair], [usdcPairState, usdcPair], [usdcAvaxPairState, usdcAvaxPair]] = usePairs(tokenPairs)
   const [
-    [/* avaxPairState */ maticPairState, /* avaxPair */ maticPair],
+    [/* avaxPairState */ currencyPairState, /* avaxPair */ currencyPair],
     [usdcPairState, usdcPair],
-    [/* usdcAvaxPairState */ usdcMaticPairState, /* usdcAvaxPair */ usdcMaticPair]
+    [/* usdcAvaxPairState */ usdcCurrencyPairState, /* usdcAvaxPair */ usdcCurrencyPair]
   ] = usePairs(tokenPairs)
 
   return useMemo(() => {
@@ -46,10 +46,10 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
     }
     // handle wavax/avax
     // if (wrapped.equals(WAVAX[chainId])) {
-    if (wrapped.equals(WMATIC[chainId])) {
+    if (wrapped.equals(WCURRENCY[chainId])) {
       if (usdcPair) {
         // const price = usdcPair.priceOf(WAVAX[chainId])
-        const price = usdcPair.priceOf(WMATIC[chainId])
+        const price = usdcPair.priceOf(WCURRENCY[chainId])
         return new Price(currency, USDC, price.denominator, price.numerator)
       } else {
         return undefined
@@ -65,10 +65,10 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
     //   avaxPairAVAXAmount && usdcAvaxPair
     //     ? usdcAvaxPair.priceOf(WAVAX[chainId]).quote(avaxPairAVAXAmount).raw
     //     : JSBI.BigInt(0)
-    const maticPairMATICAmount = /* avaxPair */ maticPair?.reserveOf(WMATIC[chainId])
-    const maticPairMATICUSDCValue: JSBI =
-      maticPairMATICAmount && /* usdcAvaxPair */ usdcMaticPair
-        ? /* usdcAvaxPair.priceOf */ usdcMaticPair.priceOf(WMATIC[chainId]).quote(maticPairMATICAmount).raw
+    const currencyPairMATICAmount = /* avaxPair */ currencyPair?.reserveOf(WCURRENCY[chainId])
+    const currencyPairMATICUSDCValue: JSBI =
+      currencyPairMATICAmount && /* usdcAvaxPair */ usdcCurrencyPair
+        ? /* usdcAvaxPair.priceOf */ usdcCurrencyPair.priceOf(WCURRENCY[chainId]).quote(currencyPairMATICAmount).raw
         : JSBI.BigInt(0)
 
     // all other tokens
@@ -78,26 +78,26 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
       usdcPairState === PairState.EXISTS &&
       usdcPair &&
       // usdcPair.reserveOf(USDC).greaterThan(avaxPairAVAXUSDCValue)
-      usdcPair.reserveOf(USDC).greaterThan(maticPairMATICUSDCValue)
+      usdcPair.reserveOf(USDC).greaterThan(currencyPairMATICUSDCValue)
     ) {
       const price = usdcPair.priceOf(wrapped)
       return new Price(currency, USDC, price.denominator, price.numerator)
     }
     if (
-      /* avaxPairState */ maticPairState === PairState.EXISTS &&
-      /* avaxPair */ maticPair &&
-      /* usdcAvaxPairState */ usdcMaticPairState === PairState.EXISTS &&
-      /* usdcAvaxPair */ usdcMaticPair
+      /* avaxPairState */ currencyPairState === PairState.EXISTS &&
+      /* avaxPair */ currencyPair &&
+      /* usdcAvaxPairState */ usdcCurrencyPairState === PairState.EXISTS &&
+      /* usdcAvaxPair */ usdcCurrencyPair
     ) {
       // if (usdcAvaxPair.reserveOf(USDC).greaterThan('0') && avaxPair.reserveOf(WAVAX[chainId]).greaterThan('0')) {
       if (
-        /* usdcAvaxPair.reserveOf */ usdcMaticPair.reserveOf(USDC).greaterThan('0') &&
-        /* avaxPair */ maticPair.reserveOf(WMATIC[chainId]).greaterThan('0')
+        /* usdcAvaxPair.reserveOf */ usdcCurrencyPair.reserveOf(USDC).greaterThan('0') &&
+        /* avaxPair */ currencyPair.reserveOf(WCURRENCY[chainId]).greaterThan('0')
       ) {
         // const avaxUsdcPrice = usdcAvaxPair.priceOf(USDC)
-        const avaxUsdcPrice = usdcMaticPair.priceOf(USDC)
+        const avaxUsdcPrice = usdcCurrencyPair.priceOf(USDC)
         // const currencyAvaxPrice = avaxPair.priceOf(WAVAX[chainId])
-        const currencyAvaxPrice = /* avaxPair */ maticPair.priceOf(WMATIC[chainId])
+        const currencyAvaxPrice = /* avaxPair */ currencyPair.priceOf(WCURRENCY[chainId])
         const usdcPrice = avaxUsdcPrice.multiply(currencyAvaxPrice).invert()
         return new Price(currency, USDC, usdcPrice.denominator, usdcPrice.numerator)
       }
@@ -107,13 +107,13 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
     chainId,
     currency,
     // avaxPair,
-    maticPair,
+    currencyPair,
     // avaxPairState,
-    maticPairState,
+    currencyPairState,
     // usdcAvaxPair,
-    usdcMaticPair,
+    usdcCurrencyPair,
     // usdcAvaxPairState,
-    usdcMaticPairState,
+    usdcCurrencyPairState,
     usdcPair,
     usdcPairState,
     wrapped,

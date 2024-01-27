@@ -1,4 +1,4 @@
-import { CURRENCY, Currency, WMATIC } from '@swapi-finance/sdk-local'
+import { CURRENCY, Currency, WCURRENCY } from '@swapi-finance/sdk-local'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'
@@ -35,8 +35,8 @@ export default function DoubleCurrencyLogo({
 }: DoubleCurrencyLogoProps) {
   const { chainId } = useActiveWeb3React()
   // Switch to (W)Currency
-  const currency0_ = (chainId && CURRENCY === currency0 ? WMATIC[chainId] : currency0) as Currency
-  const currency1_ = (chainId && CURRENCY === currency1 ? WMATIC[chainId] : currency1) as Currency
+  const currency0_ = (chainId && CURRENCY === currency0 ? WCURRENCY[chainId] : currency0) as Currency
+  const currency1_ = (chainId && CURRENCY === currency1 ? WCURRENCY[chainId] : currency1) as Currency
   // if (currency0 === CURRENCY) {
   //   console.log('currency0 is CURRENCY currency0_ is')
   //   console.dir(currency0_)

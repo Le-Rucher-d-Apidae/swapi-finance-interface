@@ -24,7 +24,7 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
-import { CURRENCY, WMATIC /* Currency, currencyEquals */ } from '@swapi-finance/sdk-local'
+import { CURRENCY, WCURRENCY /* Currency, currencyEquals */ } from '@swapi-finance/sdk-local'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -299,8 +299,8 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 as={Link}
                 width="48%"
                 // to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                to={`/remove/${chainId && currency0 === CURRENCY ? WMATIC[chainId].address : currencyId(currency0)}/${
-                  chainId && currency1 === CURRENCY ? WMATIC[chainId].address : currencyId(currency1)
+                to={`/remove/${chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)}/${
+                  chainId && currency1 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency1)
                 }`}
               >
                 Remove

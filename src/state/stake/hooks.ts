@@ -1,5 +1,5 @@
 // import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WAVAX, Pair } from '@swapi-finance/sdk-local'
-import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WMATIC, Pair } from '@swapi-finance/sdk-local'
+import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WCURRENCY, Pair } from '@swapi-finance/sdk-local'
 import { useMemo } from 'react'
 import {
   // BAG,
@@ -240,7 +240,7 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MUMBAI]: [
     {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], WMATIC[ChainId.MUMBAI]],
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0xb7aB7Cd938D9409c2312c43c807B1C6FA7393777', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
@@ -252,7 +252,7 @@ export const STAKING_REWARDS_INFO: {
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
-      tokens: [WMATIC[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      tokens: [WCURRENCY[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
@@ -267,7 +267,7 @@ export const STAKING_REWARDS_INFO: {
       autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
     },
     {
-      tokens: [WMATIC[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
+      tokens: [WCURRENCY[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
       rewardToken: SELF_TOKEN[ChainId.POLYGON],
       stakingRewardAddress: '0x706c57a2755956e3978f6b4986513E78d0A06520', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
@@ -327,20 +327,26 @@ const calculateTotalStakedAmountInAvaxFromBag = function(
 ): TokenAmount {
   if (JSBI.equal(totalSupply, JSBI.BigInt(0)) || JSBI.equal(avaxBagPairReserveOfBag, JSBI.BigInt(0)))
     // return new TokenAmount(WAVAX[chainId], JSBI.BigInt(0))
-    return new TokenAmount(WMATIC[chainId], JSBI.BigInt(0))
+    return new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
 
-  const oneToken = JSBI.BigInt(1000000000000000000)
+  const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   // const avaxBagRatio = JSBI.divide(JSBI.multiply(oneToken, avaxBagPairReserveOfOtherToken), avaxBagPairReserveOfBag)
   // const valueOfBagInAvax = JSBI.divide(JSBI.multiply(stakingTokenPairReserveOfBag, avaxBagRatio), oneToken)
-  const maticBagRatio = JSBI.divide(JSBI.multiply(oneToken, avaxBagPairReserveOfOtherToken), avaxBagPairReserveOfBag)
-  const valueOfBagInMatic = JSBI.divide(JSBI.multiply(stakingTokenPairReserveOfBag, maticBagRatio), oneToken)
+  const currencySelfTokenRatio = JSBI.divide(
+    JSBI.multiply(oneToken, avaxBagPairReserveOfOtherToken),
+    avaxBagPairReserveOfBag
+  )
+  const valueOfSelfTokenInCurrency = JSBI.divide(
+    JSBI.multiply(stakingTokenPairReserveOfBag, currencySelfTokenRatio),
+    oneToken
+  )
 
   return new TokenAmount(
     // WAVAX[chainId],
-    WMATIC[chainId],
+    WCURRENCY[chainId],
     JSBI.divide(
       JSBI.multiply(
-        JSBI.multiply(totalStakedAmount.raw, valueOfBagInMatic),
+        JSBI.multiply(totalStakedAmount.raw, valueOfSelfTokenInCurrency),
         JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the wavax they entitle owner to
       ),
       totalSupply
@@ -355,12 +361,12 @@ const calculateTotalStakedAmountInAvax = function(
   totalStakedAmount: TokenAmount
 ): TokenAmount {
   // if (JSBI.equal(totalSupply, JSBI.BigInt(0))) return new TokenAmount(WAVAX[chainId], JSBI.BigInt(0))
-  if (JSBI.equal(totalSupply, JSBI.BigInt(0))) return new TokenAmount(WMATIC[chainId], JSBI.BigInt(0))
+  if (JSBI.equal(totalSupply, JSBI.BigInt(0))) return new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
 
   // take the total amount of LP tokens staked, multiply by AVAX value of all LP tokens, divide by all LP tokens
   return new TokenAmount(
     // WAVAX[chainId],
-    WMATIC[chainId],
+    WCURRENCY[chainId],
     JSBI.divide(
       JSBI.multiply(
         JSBI.multiply(totalStakedAmount.raw, reserveInWavax),
@@ -378,14 +384,21 @@ const calculateTotalStakedAmountInAvaxFromToken = function(
   totalStakedAmount: TokenAmount
 ): TokenAmount {
   // if (JSBI.equal(avaxTokenPairReserveOfToken, JSBI.BigInt(0))) return new TokenAmount(WAVAX[chainId], JSBI.BigInt(0))
-  if (JSBI.equal(avaxTokenPairReserveOfToken, JSBI.BigInt(0))) return new TokenAmount(WMATIC[chainId], JSBI.BigInt(0))
+  if (JSBI.equal(avaxTokenPairReserveOfToken, JSBI.BigInt(0)))
+    return new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   // const avaxTokenRatio = JSBI.divide(JSBI.multiply(oneToken, avaxTokenPairReserveOfAvax), avaxTokenPairReserveOfToken)
-  const maticTokenRatio = JSBI.divide(JSBI.multiply(oneToken, avaxTokenPairReserveOfAvax), avaxTokenPairReserveOfToken)
+  const currecnySelfTokenRatio = JSBI.divide(
+    JSBI.multiply(oneToken, avaxTokenPairReserveOfAvax),
+    avaxTokenPairReserveOfToken
+  )
 
   // return new TokenAmount(WAVAX[chainId], JSBI.divide(JSBI.multiply(totalStakedAmount.raw, avaxTokenRatio), oneToken))
-  return new TokenAmount(WMATIC[chainId], JSBI.divide(JSBI.multiply(totalStakedAmount.raw, maticTokenRatio), oneToken))
+  return new TokenAmount(
+    WCURRENCY[chainId],
+    JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currecnySelfTokenRatio), oneToken)
+  )
 }
 
 // gets the staking info from the network for the active chain id
@@ -409,7 +422,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   // const bag = BAG[chainId ? chainId : ChainId.AVALANCHE]
-  const apt = SELF_TOKEN[chainId ? chainId : ChainId.POLYGON]
+  const selfToken = SELF_TOKEN[chainId ? chainId : ChainId.POLYGON]
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const autocompoundingAddresses = useMemo(() => info.map(({ autocompoundingAddress }) => autocompoundingAddress), [
     info
@@ -438,8 +451,11 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   const pairs = usePairs(tokens)
   // const avaxPairs = usePairs(tokens.map(pair => [WAVAX[chainId ? chainId : ChainId.AVALANCHE], pair[0]]))
   // const [avaxBagPairState, avaxBagPair] = usePair(WAVAX[chainId ? chainId : ChainId.AVALANCHE], bag)
-  const maticPairs = usePairs(tokens.map(pair => [WMATIC[chainId ? chainId : ChainId.POLYGON], pair[0]]))
-  const [maticBagPairState, maticBagPair] = usePair(WMATIC[chainId ? chainId : ChainId.POLYGON], apt)
+  const currencyPairs = usePairs(tokens.map(pair => [WCURRENCY[chainId ? chainId : ChainId.POLYGON], pair[0]]))
+  const [currencySelfTokenPairState, currencySelfTokenPair] = usePair(
+    WCURRENCY[chainId ? chainId : ChainId.POLYGON],
+    selfToken
+  )
 
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
@@ -459,7 +475,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
   return useMemo(() => {
     // if (!chainId || !bag) return []
-    if (!chainId || !apt) return []
+    if (!chainId || !selfToken) return []
 
     return rewardsAddresses.reduce<StakingInfo[]>((memo, rewardsAddress, index) => {
       const autocompoundingAddress = autocompoundingAddresses[index]
@@ -479,7 +495,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
       const tokens = info[index].tokens
       // const [avaxTokenPairState, avaxTokenPair] = maticPairs[index]
-      const [maticTokenPairState, maticTokenPair] = maticPairs[index]
+      const [currencyTokenPairState, currencyTokenPair] = currencyPairs[index]
       const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
       const [pairState, pair] = pairs[index]
 
@@ -499,8 +515,8 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
         periodFinishState &&
         !periodFinishState.loading &&
         ((isPair && pair && pairState !== PairState.LOADING) || !isPair) &&
-        /* avaxBagPair */ maticBagPair &&
-        maticBagPairState !== PairState.LOADING
+        /* avaxBagPair */ currencySelfTokenPair &&
+        currencySelfTokenPairState !== PairState.LOADING
       ) {
         if (
           balanceState?.error ||
@@ -509,8 +525,8 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           rewardRateState.error ||
           periodFinishState.error ||
           (isPair && (pairState === PairState.INVALID || pairState === PairState.NOT_EXISTS)) ||
-          maticBagPairState === PairState.INVALID ||
-          maticBagPairState === PairState.NOT_EXISTS
+          currencySelfTokenPairState === PairState.INVALID ||
+          currencySelfTokenPairState === PairState.NOT_EXISTS
         ) {
           return memo
         }
@@ -523,7 +539,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
         let sharesAmount = JSBI.BigInt(0)
         if (isPair && pair) {
           // const wavax = tokens[0].equals(WAVAX[tokens[0].chainId]) ? tokens[0] : tokens[1]
-          const wmatic = tokens[0].equals(WMATIC[tokens[0].chainId]) ? tokens[0] : tokens[1]
+          const wcurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId]) ? tokens[0] : tokens[1]
           const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'), chainId)
           totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, totalSupply)
 
@@ -549,7 +565,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           } else {
             stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(0))
           }
-          totalRewardRate = new TokenAmount(/* bag */ apt, JSBI.BigInt(rewardRateState.result?.[0]))
+          totalRewardRate = new TokenAmount(/* bag */ selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
           // const isUSDPool =
           //   (tokens[0].equals(USDCE[tokens[0].chainId]) && tokens[1].equals(USDTE[tokens[1].chainId])) ||
           //   (tokens[0].equals(USDTE[tokens[0].chainId]) && tokens[1].equals(USDCE[tokens[1].chainId]))
@@ -561,46 +577,46 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             (tokens[1].equals(USDCE[tokens[1].chainId]) ||
               tokens[1].equals(USDT[tokens[1].chainId]) ||
               tokens[1].equals(USDC[tokens[1].chainId]))
-          if (isUSDPool && /* avaxTokenPair */ maticTokenPair) {
+          if (isUSDPool && /* avaxTokenPair */ currencyTokenPair) {
             totalStakedInWavax = calculateTotalStakedAmountInAvaxFromToken(
               chainId,
               // avaxTokenPair.reserveOf(WAVAX[tokens[0].chainId]).raw,
               // avaxTokenPair.reserveOf(WMATIC[tokens[0].chainId]).raw,
               // avaxTokenPair.reserveOf(tokens[0]).raw,
-              maticTokenPair.reserveOf(WMATIC[tokens[0].chainId]).raw,
-              maticTokenPair.reserveOf(tokens[0]).raw,
+              currencyTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
+              currencyTokenPair.reserveOf(tokens[0]).raw,
               totalStakedAmount
             )
           } else {
             // const isAvaxPool = tokens[0].equals(WAVAX[tokens[0].chainId])
-            const isAvaxPool = tokens[0].equals(WMATIC[tokens[0].chainId])
+            const isAvaxPool = tokens[0].equals(WCURRENCY[tokens[0].chainId])
             totalStakedInWavax = isAvaxPool
               ? calculateTotalStakedAmountInAvax(
                   chainId,
                   totalSupply,
-                  pair.reserveOf(/* wavax */ wmatic).raw,
+                  pair.reserveOf(/* wavax */ wcurrency).raw,
                   totalStakedAmount
                 )
               : calculateTotalStakedAmountInAvaxFromBag(
                   chainId,
                   totalSupply,
                   // avaxBagPair.reserveOf(bag).raw,
-                  maticBagPair.reserveOf(apt).raw,
+                  currencySelfTokenPair.reserveOf(selfToken).raw,
                   // avaxBagPair.reserveOf(WAVAX[tokens[1].chainId]).raw,
-                  maticBagPair.reserveOf(WMATIC[tokens[1].chainId]).raw,
+                  currencySelfTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
                   // pair.reserveOf(bag).raw,
-                  pair.reserveOf(apt).raw,
+                  pair.reserveOf(selfToken).raw,
                   totalStakedAmount
                 )
           }
         } else {
           // const isTokenAvax = tokens[0].equals(WAVAX[tokens[0].chainId])
-          const isTokenAvax = tokens[0].equals(WMATIC[tokens[0].chainId])
+          const isTokenAvax = tokens[0].equals(WCURRENCY[tokens[0].chainId])
 
           if (
             !isTokenAvax &&
             // (avaxTokenPairState === PairState.INVALID || avaxTokenPairState === PairState.NOT_EXISTS)
-            (maticTokenPairState === PairState.INVALID || maticTokenPairState === PairState.NOT_EXISTS)
+            (currencyTokenPairState === PairState.INVALID || currencyTokenPairState === PairState.NOT_EXISTS)
           ) {
             console.error('Invalid pair requested')
             return memo
@@ -629,20 +645,20 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           } else {
             stakedAmount = new TokenAmount(tokens[0], JSBI.BigInt(0))
           }
-          totalRewardRate = new TokenAmount(/* bag */ apt, JSBI.BigInt(rewardRateState.result?.[0]))
+          totalRewardRate = new TokenAmount(/* bag */ selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
           totalStakedInWavax = isTokenAvax
             ? totalStakedAmount
-            : /* avaxTokenPair */ maticTokenPair
+            : /* avaxTokenPair */ currencyTokenPair
             ? calculateTotalStakedAmountInAvaxFromToken(
                 chainId,
                 // avaxTokenPair.reserveOf(WAVAX[tokens[0].chainId]).raw,
-                maticTokenPair.reserveOf(WMATIC[tokens[0].chainId]).raw,
+                currencyTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
                 // avaxTokenPair.reserveOf(tokens[0]).raw,
-                maticTokenPair.reserveOf(tokens[0]).raw,
+                currencyTokenPair.reserveOf(tokens[0]).raw,
                 totalStakedAmount
               )
             : // : new TokenAmount(WAVAX[tokens[0].chainId], JSBI.BigInt(0))
-              new TokenAmount(WMATIC[tokens[0].chainId], JSBI.BigInt(0))
+              new TokenAmount(WCURRENCY[tokens[0].chainId], JSBI.BigInt(0))
         }
 
         const getHypotheticalRewardRate = (
@@ -651,7 +667,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           totalRewardRate: TokenAmount
         ): TokenAmount => {
           return new TokenAmount(
-            /* bag */ apt,
+            /* bag */ selfToken,
             JSBI.greaterThan(totalStakedAmount.raw, JSBI.BigInt(0))
               ? JSBI.divide(JSBI.multiply(totalRewardRate.raw, stakedAmount.raw), totalStakedAmount.raw)
               : JSBI.BigInt(0)
@@ -669,7 +685,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           tokens: tokens,
           rewardToken: rewardToken,
           periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
-          earnedAmount: new TokenAmount(/* bag */ apt, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
+          earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
           sharesAmount: sharesAmount,
           rewardRate: individualRewardRate,
           totalRewardRate: totalRewardRate,
@@ -696,14 +712,14 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
     autocompounderShares,
     totalSupplies,
     // avaxcBagPairState,
-    maticBagPairState,
+    currencySelfTokenPairState,
     pairs,
     // bag,
-    apt,
+    selfToken,
     // avaxBagPair,
-    maticBagPair,
+    currencySelfTokenPair,
     // avaxPairs,
-    maticPairs,
+    currencyPairs,
     stakingType,
     oneToken
   ])

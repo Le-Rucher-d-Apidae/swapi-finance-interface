@@ -1,5 +1,5 @@
 // import { ChainId, JSBI, Percent, Token, WAVAX } from '@swapi-finance/sdk-local'
-import { ChainId, JSBI, Percent, Token, WMATIC, FACTORY_ADDRESS as SDK_FACTORY_ADDRESS } from '@swapi-finance/sdk-local'
+import { ChainId, JSBI, Percent, Token, WCURRENCY, FACTORY_ADDRESS as SDK_FACTORY_ADDRESS } from '@swapi-finance/sdk-local'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
@@ -277,9 +277,9 @@ export const AIRDROP_ADDRESS: { [chainId in ChainId]?: string } = {
 //   [ChainId.MUMBAI]: [WAVAX[ChainId.MUMBAI]],
 //   [ChainId.POLYGON]: [WAVAX[ChainId.POLYGON]]
 // }
-const WMATIC_ONLY: ChainTokenList = {
-  [ChainId.MUMBAI]: [WMATIC[ChainId.MUMBAI]],
-  [ChainId.POLYGON]: [WMATIC[ChainId.POLYGON]]
+const WCURRENCY_ONLY: ChainTokenList = {
+  [ChainId.MUMBAI]: [WCURRENCY[ChainId.MUMBAI]],
+  [ChainId.POLYGON]: [WCURRENCY[ChainId.POLYGON]]
 }
 // used to construct intermediary pairs for trading
 // export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
@@ -287,9 +287,9 @@ const WMATIC_ONLY: ChainTokenList = {
 //   [ChainId.POLYGON]: [WAVAX[ChainId.POLYGON], BAG[ChainId.POLYGON], USDTE[ChainId.POLYGON], USDCE[ChainId.POLYGON]]
 // }
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MUMBAI]: [WMATIC[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]],
+  [ChainId.MUMBAI]: [WCURRENCY[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]],
   [ChainId.POLYGON]: [
-    WMATIC[ChainId.POLYGON],
+    WCURRENCY[ChainId.POLYGON],
     SELF_TOKEN[ChainId.POLYGON],
     USDT[ChainId.POLYGON],
     USDC[ChainId.POLYGON]
@@ -307,8 +307,8 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   // ...WAVAX_ONLY,
   // [ChainId.POLYGON]: [...WAVAX_ONLY[ChainId.POLYGON]]
-  [ChainId.MUMBAI]: [...WMATIC_ONLY[ChainId.MUMBAI]],
-  [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]]
+  [ChainId.MUMBAI]: [...WCURRENCY_ONLY[ChainId.MUMBAI]],
+  [ChainId.POLYGON]: [...WCURRENCY_ONLY[ChainId.POLYGON]]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -317,7 +317,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   // ...WMATIC_ONLY,
   // [ChainId.POLYGON]: [...WAVAX_ONLY[ChainId.POLYGON]]
   [ChainId.MUMBAI]: [BAGTEST[ChainId.MUMBAI]],
-  [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]]
+  [ChainId.POLYGON]: [...WCURRENCY_ONLY[ChainId.POLYGON]]
 }
 
 // export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -326,7 +326,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MUMBAI]: [[BAGTEST[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]]],
-  [ChainId.POLYGON]: [[WMATIC[ChainId.POLYGON], SELF_TOKEN[ChainId.POLYGON]]]
+  [ChainId.POLYGON]: [[WCURRENCY[ChainId.POLYGON], SELF_TOKEN[ChainId.POLYGON]]]
 }
 
 // token contracts that should not be used with EIP712
