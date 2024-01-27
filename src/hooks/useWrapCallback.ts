@@ -69,7 +69,9 @@ export default function useWrapCallback(
                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.raw.toString(16)}`)
                   // addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WAVAX to AVAX` })
                   addTransaction(txReceipt, {
-                    summary: `Unwrap ${inputAmount.toSignificant(6)} ${WCURRENCY[ChainId.POLYGON]} to ${CURRENCY.symbol}`
+                    summary: `Unwrap ${inputAmount.toSignificant(6)} ${WCURRENCY[ChainId.POLYGON]} to ${
+                      CURRENCY.symbol
+                    }`
                   })
                 } catch (error) {
                   console.error('Could not withdraw', error)
