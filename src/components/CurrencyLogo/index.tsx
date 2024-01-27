@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 
 // import AvaxLogo from '../../assets/images/avalanche_token_round.png'
-import PolygonLogo from '../../assets/images/polygon_token_round.png'
+import PolygonCurrencyLogo from '../../assets/images/polygon_token_round.png'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
@@ -60,19 +60,8 @@ const getTokenLogoURL = (address: string, chainId?: ChainId) => {
     ? `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}`
     : `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE}${address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
 }
-/*
-  address === SELF_TOKEN[ChainId.POLYGON].address
-    ? process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_LOGO_URL ||
-      TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL
-    : address === SELF_TOKEN[ChainId.MUMBAI].address
-    ? process.env.REACT_APP_TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_LOGO_URL ||
-      TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_TESTNET_DEFAULT_LOGO_URL
-    : `${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_BASE}${address}${process.env.REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_LOGO_URL_DEFAULT_LOGO}` ||
-      `${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_BASE}${address}${TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO}`
-
-      // REACT_APP_TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_LOGO_URL_BASE || TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE
-*/
-const StyledEthereumLogo = styled.img<{ size: string }>`
+// const StyledEthereumLogo = styled.img<{ size: string }>`
+const StyledCurrencyLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
@@ -127,7 +116,7 @@ export default function CurrencyLogo({
   // if (currency === CAVAX) {
   if (currency === CURRENCY) {
     // return <StyledEthereumLogo src={AvaxLogo} size={size} style={style} />
-    return <StyledEthereumLogo src={PolygonLogo} size={size} style={style} />
+    return <StyledCurrencyLogo src={PolygonCurrencyLogo} size={size} style={style} />
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
