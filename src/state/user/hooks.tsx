@@ -199,10 +199,10 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token], chainId: Ch
 export function useTrackedTokenPairs(): [Token, Token][] {
   const { chainId } = useActiveWeb3React()
   const tokens = useAllTokens()
-  console.debug('src/state/user/hooks.tsx useTrackedTokenPairs tokens=', tokens)
+  // console.debug('src/state/user/hooks.tsx useTrackedTokenPairs tokens=', tokens)
   // pinned pairs
   const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
-  console.debug('src/state/user/hooks.tsx useTrackedTokenPairs pinnedPairs=', pinnedPairs)
+  // console.debug('src/state/user/hooks.tsx useTrackedTokenPairs pinnedPairs=', pinnedPairs)
   // debugger
   // pairs for every token against every base
   const generatedPairs: [Token, Token][] = useMemo(
