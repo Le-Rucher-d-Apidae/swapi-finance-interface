@@ -232,7 +232,7 @@ export const WETH: { [chainId in ChainId]: Token } = {
 // }
 
 export const USDCE: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDC.e', 'USD Coin'),
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x0FA8781a83E46826621b3BC094Ea2A0212e71B23', 6, 'USDC.e', 'USD Coin'),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174', 6, 'USDC.e', 'USD Coin')
 }
 
@@ -287,8 +287,13 @@ const WMATIC_ONLY: ChainTokenList = {
 //   [ChainId.POLYGON]: [WAVAX[ChainId.POLYGON], BAG[ChainId.POLYGON], USDTE[ChainId.POLYGON], USDCE[ChainId.POLYGON]]
 // }
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MUMBAI]: [WMATIC[ChainId.MUMBAI], APD[ChainId.MUMBAI]],
-  [ChainId.POLYGON]: [WMATIC[ChainId.POLYGON], APD[ChainId.POLYGON], USDT[ChainId.POLYGON], USDC[ChainId.POLYGON]]
+  [ChainId.MUMBAI]: [WMATIC[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]],
+  [ChainId.POLYGON]: [
+    WMATIC[ChainId.POLYGON],
+    SELF_TOKEN[ChainId.POLYGON],
+    USDT[ChainId.POLYGON],
+    USDC[ChainId.POLYGON]
+  ]
 }
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
@@ -311,8 +316,8 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   // ...WAVAX_ONLY,
   // ...WMATIC_ONLY,
   // [ChainId.POLYGON]: [...WAVAX_ONLY[ChainId.POLYGON]]
-  [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]],
-  [ChainId.MUMBAI]: [BAGTEST[ChainId.MUMBAI]]
+  [ChainId.MUMBAI]: [BAGTEST[ChainId.MUMBAI]],
+  [ChainId.POLYGON]: [...WMATIC_ONLY[ChainId.POLYGON]]
 }
 
 // export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -320,8 +325,8 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 // }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.POLYGON]: [[WMATIC[ChainId.POLYGON], APD[ChainId.POLYGON]]],
-  [ChainId.MUMBAI]: [[BAGTEST[ChainId.MUMBAI], APD[ChainId.MUMBAI]]]
+  [ChainId.MUMBAI]: [[BAGTEST[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]]],
+  [ChainId.POLYGON]: [[WMATIC[ChainId.POLYGON], SELF_TOKEN[ChainId.POLYGON]]]
 }
 
 // token contracts that should not be used with EIP712
