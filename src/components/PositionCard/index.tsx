@@ -11,7 +11,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { TYPE } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
-import { unwrappedToken } from '../../utils/wrappedCurrency'
+import { unwrappedToken, wrappedCurrency } from '../../utils/wrappedCurrency'
 import { ButtonPrimary, ButtonEmpty } from '../Button'
 import { transparentize } from 'polished'
 import { CardNoise } from '../pool/styled'
@@ -165,6 +165,12 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
 
+  console.log('src/components/PositionCard/index.tsx FullPositionCard currency0:', currency0)
+  console.log('src/components/PositionCard/index.tsx FullPositionCard currency1:', currency1)
+
+  const currency0_ = wrappedCurrency(currency0, chainId) || currency0
+  const currency1_ = wrappedCurrency(currency1, chainId) || currency1
+
   const [showMore, setShowMore] = useState(false)
 
   const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
@@ -201,7 +207,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
           <RowFixed>
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin={true} size={20} />
             <Text fontWeight={500} fontSize={20}>
-              {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}
+              {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0_.symbol}/${currency1_.symbol}`}
             </Text>
           </RowFixed>
 
@@ -241,7 +247,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             <FixedHeightRow>
               <RowFixed>
                 <Text fontSize={16} fontWeight={500}>
-                  Pooled {currency0.symbol}:
+                  Pooled {currency0_.symbol}:
                 </Text>
               </RowFixed>
               {token0Deposited ? (
@@ -259,7 +265,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             <FixedHeightRow>
               <RowFixed>
                 <Text fontSize={16} fontWeight={500}>
-                  Pooled {currency1.symbol}:
+                  Pooled {currency1_.symbol}:
                 </Text>
               </RowFixed>
               {token1Deposited ? (
