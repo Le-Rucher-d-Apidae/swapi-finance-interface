@@ -259,7 +259,6 @@ export const STAKING_REWARDS_INFO: {
     }
   ],
   [ChainId.POLYGON]: [
-    // Oven
     {
       tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
       rewardToken: SELF_TOKEN[ChainId.POLYGON],

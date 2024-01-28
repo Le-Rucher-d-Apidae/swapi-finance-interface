@@ -12,10 +12,11 @@ import PoweredByPolygon from '../components/PoweredByPolygon'
 import Web3ReactManager from '../components/Web3ReactManager'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
-import Mill from './Mill'
-import Oven from './Oven'
-import { ManagePair } from './Mill/Manage'
-import { ManageSingle } from './Oven/Manage'
+// import Mill from './Mill'
+import Farm from './Farm'
+// import Oven from './Oven'
+import { ManagePair } from './Farm/Manage'
+// import { ManageSingle } from './Oven/Manage'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -90,8 +91,9 @@ export default function App() {
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
-              <Route exact strict path="/mill" component={Mill} />
-              <Route exact strict path="/oven" component={Oven} />
+              {/* <Route exact strict path="/mill" component={Mill} /> */}
+              <Route exact strict path="/farm" component={Farm} />
+              {/* <Route exact strict path="/oven" component={Oven} /> */}
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
@@ -101,8 +103,9 @@ export default function App() {
               <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
               <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-              <Route exact strict path="/mill/:currencyIdA/:currencyIdB" component={ManagePair} />
-              <Route exact strict path="/oven/:currencyId/:rewardCurrencyId" component={ManageSingle} />
+              {/* <Route exact strict path="/mill/:currencyIdA/:currencyIdB" component={ManagePair} /> */}
+              <Route exact strict path="/farm/:currencyIdA/:currencyIdB" component={ManagePair} />
+              {/* <Route exact strict path="/oven/:currencyId/:rewardCurrencyId" component={ManageSingle} /> */}
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
           </Web3ReactManager>

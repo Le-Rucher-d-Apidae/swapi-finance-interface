@@ -4,9 +4,11 @@ import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { STAKING_REWARDS_INFO, useStakingInfo, StakingType } from '../../state/stake/hooks'
 import { TYPE } from '../../theme'
-import PoolCard from '../../components/mill/PoolCard'
+// import PoolCard from '../../components/mill/PoolCard'
+import PoolCard from '../../components/farm/PoolCard'
 import { RowBetween, AutoRow } from '../../components/Row'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
+// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
+import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/farm/styled'
 import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
@@ -34,7 +36,8 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
-export default function Mill() {
+// export default function Mill() {
+export default function Farm() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.PAIR)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
@@ -91,9 +94,7 @@ export default function Mill() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>
-                  Welcome to the flour mill. Lock LP tokens to bake new fresh Baguettes
-                </TYPE.white>
+                <TYPE.white fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new tokens</TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
@@ -110,7 +111,7 @@ export default function Mill() {
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
-          <TYPE.black fontWeight={400}>Baguette batch #27 ends on December 31st</TYPE.black>
+          {/* <TYPE.black fontWeight={400}>Baguette batch #27 ends on December 31st</TYPE.black> */}
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">

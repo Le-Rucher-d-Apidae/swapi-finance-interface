@@ -301,12 +301,19 @@ export default function Header() {
           >
             {t('pool')}
           </StyledNavLink>
+          {/* 
           <StyledNavLink id={`stake-nav-link`} to={'/mill'}>
             Mill
           </StyledNavLink>
+ */}
+          <StyledNavLink id={`stake-nav-link`} to={'/farm'}>
+            Farm
+          </StyledNavLink>
+          {/*
           <StyledNavLink id={`stake-nav-link`} to={'/oven'}>
             Oven
           </StyledNavLink>
+ */}
           {/*
           <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
             Analytics <span style={{ fontSize: '11px' }}>↗</span>
