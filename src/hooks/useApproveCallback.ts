@@ -65,7 +65,7 @@ export function useApproveCallback(
       console.error('missing amount to approve')
       return
     }
-
+    // console.debug(`amountToApprove=${amountToApprove.toExact()} currentAllowance=${currentAllowance?.toExact()}`)
     if (!spender) {
       console.error('no spender')
       return
