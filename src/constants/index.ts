@@ -99,17 +99,6 @@ export const LINK: { [chainId in ChainId]: Token } = {
   )
 }
 
-export const DAI: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'DAI', 'Dai Stablecoin'),
-  [ChainId.POLYGON]: new Token(
-    ChainId.POLYGON,
-    '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
-    18,
-    'DAI',
-    'Dai Stablecoin'
-  )
-}
-
 // export const UNI: { [chainId in ChainId]: Token } = {
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'UNI', 'Uniswap'),
 //   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xf39f9671906d8630812f9d9863bBEf5D523c84Ab', 18, 'UNI', 'Uniswap')
@@ -237,8 +226,31 @@ export const USDCE: { [chainId in ChainId]: Token } = {
 }
 
 export const USDC: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDC', 'USD Coin'),
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0x52D800ca262522580CeBAD275395ca6e7598C014',
+    6,
+    'USDC',
+    'USD Coin AAVE Testnet'
+  ),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', 6, 'USDC', 'USD Coin')
+}
+
+export const DAI: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0xc8c0Cf9436F4862a8F60Ce680Ca5a9f0f99b5ded',
+    18,
+    'DAI',
+    'DAI AAVE Testnet'
+  ),
+  [ChainId.POLYGON]: new Token(
+    ChainId.POLYGON,
+    '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+    18,
+    'DAI',
+    '(PoS) Dai Stablecoin'
+  )
 }
 
 // export const VOID: { [chainId in ChainId]: Token } = {
