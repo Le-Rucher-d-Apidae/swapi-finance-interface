@@ -6,6 +6,7 @@ import { ExternalLink, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
+import { ChainLabel, ChainId } from '@swapi-finance/sdk-local'
 
 const InputPanel = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}
@@ -103,7 +104,7 @@ export default function AddressInputPanel({
               </TYPE.black>
               {address && chainId && (
                 <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
-                  (View on Avalanche C-Chain Explorer)
+                  (View on {ChainLabel[ChainId.POLYGON]} Explorer)
                 </ExternalLink>
               )}
             </RowBetween>
