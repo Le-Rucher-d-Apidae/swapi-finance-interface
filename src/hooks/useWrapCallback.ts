@@ -48,7 +48,9 @@ export default function useWrapCallback(
                   const txReceipt = await wethContract.deposit({ value: `0x${inputAmount.raw.toString(16)}` })
                   // addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} AVAX to WAVAX` })
                   addTransaction(txReceipt, {
-                    summary: `Wrap ${inputAmount.toSignificant(6)} ${CURRENCY.symbol} to ${WCURRENCY[ChainId.POLYGON]}`
+                    summary: `Wrap ${inputAmount.toSignificant(6)} ${CURRENCY.symbol} to ${
+                      WCURRENCY[chainId ? chainId : ChainId.POLYGON].symbol
+                    }`
                   })
                 } catch (error) {
                   console.error('Could not deposit', error)
@@ -59,7 +61,10 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : `Insufficient ${CURRENCY.symbol} balance`
       }
       // } else if (currencyEquals(WAVAX[chainId], inputCurrency) && outputCurrency === CAVAX) {
-    } else if (currencyEquals(WCURRENCY[chainId], inputCurrency) && outputCurrency === CURRENCY) {
+    } else if (
+      currencyEquals(WCURRENCY[chainId ? chainId : ChainId.POLYGON], inputCurrency) &&
+      outputCurrency === CURRENCY
+    ) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:
@@ -69,9 +74,9 @@ export default function useWrapCallback(
                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.raw.toString(16)}`)
                   // addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WAVAX to AVAX` })
                   addTransaction(txReceipt, {
-                    summary: `Unwrap ${inputAmount.toSignificant(6)} ${WCURRENCY[ChainId.POLYGON]} to ${
-                      CURRENCY.symbol
-                    }`
+                    summary: `Unwrap ${inputAmount.toSignificant(6)} 
+                      ${WCURRENCY[chainId ? chainId : ChainId.POLYGON].symbol} to
+                      ${CURRENCY.symbol}`
                   })
                 } catch (error) {
                   console.error('Could not withdraw', error)
@@ -79,7 +84,9 @@ export default function useWrapCallback(
               }
             : undefined,
         // inputError: sufficientBalance ? undefined : 'Insufficient WAVAX balance'
-        inputError: sufficientBalance ? undefined : `Insufficient ${WCURRENCY[ChainId.POLYGON].symbol} balance`
+        inputError: sufficientBalance
+          ? undefined
+          : `Insufficient ${WCURRENCY[chainId ? chainId : ChainId.POLYGON].symbol} balance`
       }
     } else {
       return NOT_APPLICABLE
