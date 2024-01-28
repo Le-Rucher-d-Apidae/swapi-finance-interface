@@ -3,6 +3,7 @@ import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WCURRENCY, Pair } fr
 import { useMemo } from 'react'
 import {
   // BAG,
+  // BAGTEST,
   // APD,
   SELF_TOKEN,
   // LINK,
@@ -22,6 +23,7 @@ import {
   USDCE,
   USDT,
   USDC,
+  DAI,
   UNDEFINED,
   ZERO_ADDRESS
 } from '../../constants'
@@ -239,38 +241,46 @@ export const STAKING_REWARDS_INFO: {
   }[]
 } = {
   [ChainId.MUMBAI]: [
+    // Mill = Farm
     {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+      tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0xb7aB7Cd938D9409c2312c43c807B1C6FA7393777', // TODO: update this !
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x2d6CA9Ec52B45a029bB97503eA1582cb91bFB55E', // TODO: update this !
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [WCURRENCY[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
+      stakingRewardAddress: '0x', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
     }
+
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0xb7aB7Cd938D9409c2312c43c807B1C6FA7393777', // TODO: update this !
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // },
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x2d6CA9Ec52B45a029bB97503eA1582cb91bFB55E', // TODO: update this !
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // },
+    // {
+    //   tokens: [WCURRENCY[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // }
   ],
   [ChainId.POLYGON]: [
-    {
-      tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-      rewardToken: SELF_TOKEN[ChainId.POLYGON],
-      stakingRewardAddress: '0x2bCE0CAB94770D0F2Eae3E8a582ADC3EaA0BD81f', // TODO: update this !
-      autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
-    },
-    {
-      tokens: [WCURRENCY[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-      rewardToken: SELF_TOKEN[ChainId.POLYGON],
-      stakingRewardAddress: '0x706c57a2755956e3978f6b4986513E78d0A06520', // TODO: update this !
-      autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
-    }
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
+    //   rewardToken: SELF_TOKEN[ChainId.POLYGON],
+    //   stakingRewardAddress: '0x2bCE0CAB94770D0F2Eae3E8a582ADC3EaA0BD81f', // TODO: update this !
+    //   autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
+    // },
+    // {
+    //   tokens: [WCURRENCY[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
+    //   rewardToken: SELF_TOKEN[ChainId.POLYGON],
+    //   stakingRewardAddress: '0x706c57a2755956e3978f6b4986513E78d0A06520', // TODO: update this !
+    //   autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
+    // }
   ]
 }
 
@@ -418,7 +428,8 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
         : [],
     [chainId, pairToFilterBy]
   )
-
+  // console.log(`useStakingInfo: chainId=${chainId} pairToFilterBy=${pairToFilterBy}`)
+  // console.log('useStakingInfo: info=', info)
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   // const bag = BAG[chainId ? chainId : ChainId.AVALANCHE]
   const selfToken = SELF_TOKEN[chainId ? chainId : ChainId.POLYGON]
