@@ -79,7 +79,7 @@ export default function useWrapCallback(
               }
             : undefined,
         // inputError: sufficientBalance ? undefined : 'Insufficient WAVAX balance'
-        inputError: sufficientBalance ? undefined : `Insufficient ${WCURRENCY[ChainId.POLYGON]} balance`
+        inputError: sufficientBalance ? undefined : `Insufficient ${WCURRENCY[ChainId.POLYGON].symbol} balance`
       }
     } else {
       return NOT_APPLICABLE
