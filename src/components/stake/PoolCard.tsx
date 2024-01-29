@@ -12,9 +12,10 @@ import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise, CardBGImage } from './styled'
-import { UNDEFINED, ZERO_ADDRESS } from '../../constants'
+// import { UNDEFINED, ZERO_ADDRESS } from '../../constants'
+import { UNDEFINED } from '../../constants'
 import { Fraction } from '@swapi-finance/sdk-local'
-import YieldYakLogoWhite from '../../assets/images/yieldyak-logo-white.png'
+// import YieldYakLogoWhite from '../../assets/images/yieldyak-logo-white.png'
 
 const StatContainer = styled.div`
   display: flex;
@@ -56,14 +57,14 @@ const TopSection = styled.div`
    `};
 `
 
-const MiddleSection = styled.div`
-  padding: 12px 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 1rem;
-  z-index: 1;
-`
+// const MiddleSection = styled.div`
+//   padding: 12px 12px;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   padding: 1rem;
+//   z-index: 1;
+// `
 
 const BottomSection = styled.div<{ showBackground: boolean }>`
   padding: 12px 16px;
@@ -82,17 +83,17 @@ const HorizontalMerge = styled.div`
   align-items: center;
 `
 
-const StyledLogo = styled.img`
-  display: flex;
-  width: 52px;
-`
+// const StyledLogo = styled.img`
+//   display: flex;
+//   width: 52px;
+// `
 
 export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: StakingInfo; apr: string }) {
   const token0 = stakingInfo.tokens[0]
   const token1 = stakingInfo.tokens[1]
   const rewardToken = stakingInfo.rewardToken
   const isPair = token1 !== UNDEFINED[token1.chainId]
-  const autocompoundAvailable = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
+  // const autocompoundAvailable = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
 
   const currency0 = useCurrency(token0.address) ?? UNDEFINED[token0.chainId]
   const currency1 = useCurrency(token1.address) ?? UNDEFINED[token1.chainId]
@@ -106,12 +107,14 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
   let weeklyRewardAmount: Fraction
   let weeklyRewardPerAvax: Fraction
-  if (stakingInfo.totalStakedInWavax.equalTo(JSBI.BigInt(0))) {
+  // if (stakingInfo.totalStakedInWavax.equalTo(JSBI.BigInt(0))) {
+  if (stakingInfo.totalStakedInWcurrency.equalTo(JSBI.BigInt(0))) {
     weeklyRewardAmount = new Fraction(JSBI.BigInt(0))
     weeklyRewardPerAvax = new Fraction(JSBI.BigInt(0))
   } else {
     weeklyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(60 * 60 * 24 * 7))
-    weeklyRewardPerAvax = weeklyRewardAmount.divide(stakingInfo.totalStakedInWavax)
+    // weeklyRewardPerAvax = weeklyRewardAmount.divide(stakingInfo.totalStakedInWavax)
+    weeklyRewardPerAvax = weeklyRewardAmount.divide(stakingInfo.totalStakedInWcurrency)
   }
 
   return (
@@ -128,7 +131,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             </TYPE.white>
             <StyledInternalLink
               // to={`/mill/${currencyId(currency0)}/${currencyId(currency1)}`}
-              to={`/farm/${currencyId(currency0)}/${currencyId(currency1)}`}
+              to={`/stake/${currencyId(currency0)}/${currencyId(currency1)}`}
               style={{ width: '100%' }}
             >
               <ButtonPrimary padding="8px" borderRadius="8px">
@@ -166,7 +169,8 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         <RowBetween>
           <TYPE.white> Total deposited</TYPE.white>
           <TYPE.white>
-            {`${stakingInfo.totalStakedInWavax.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`}
+            {/* {`${stakingInfo.totalStakedInWavax.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
+            {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`}
           </TYPE.white>
         </RowBetween>
         <RowBetween>
@@ -182,6 +186,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
           } / Week per AVAX`}</TYPE.white>
         </RowBetween>
       </StatContainer>
+      {/* 
       {autocompoundAvailable && (
         <MiddleSection>
           <RowBetween>
@@ -189,7 +194,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <StyledLogo src={YieldYakLogoWhite} alt="Yield Yak Logo" />
           </RowBetween>
         </MiddleSection>
-      )}
+      )} */}
 
       {isStaking && (
         <>

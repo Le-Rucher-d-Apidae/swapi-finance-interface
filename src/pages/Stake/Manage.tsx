@@ -12,15 +12,15 @@ import { TYPE } from '../../theme'
 
 import { RowBetween, RowFixed } from '../../components/Row'
 // import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/farm/styled'
+import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
 // import StakingModal from '../../components/mill/StakingModal'
-import StakingModal from '../../components/farm/StakingModal'
+import StakingModal from '../../components/stake/StakingModal'
 import { useStakingInfo, StakingType } from '../../state/stake/hooks'
 // import UnstakingModal from '../../components/mill/UnstakingModal'
 // import ClaimRewardModal from '../../components/mill/ClaimRewardModal'
-import UnstakingModal from '../../components/farm/UnstakingModal'
-import ClaimRewardModal from '../../components/farm/ClaimRewardModal'
+import UnstakingModal from '../../components/stake/UnstakingModal'
+import ClaimRewardModal from '../../components/stake/ClaimRewardModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useIsDarkMode } from '../../state/user/hooks'
 import { useActiveWeb3React } from '../../hooks'
@@ -35,7 +35,7 @@ import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 import { BIG_INT_ZERO } from '../../constants'
 
-import { ChainId } from '@swapi-finance/sdk-local'
+import { ChainId, CURRENCY } from '@swapi-finance/sdk-local'
 import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
@@ -115,7 +115,8 @@ export function ManagePair({
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
-  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
+  // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
+  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -153,7 +154,9 @@ export function ManagePair({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`}
+              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                CURRENCY.symbol
+              }`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>

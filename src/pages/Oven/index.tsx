@@ -5,10 +5,10 @@ import styled from 'styled-components'
 import { STAKING_REWARDS_INFO, useStakingInfo, StakingType } from '../../state/stake/hooks'
 import { TYPE } from '../../theme'
 // import PoolCard from '../../components/mill/PoolCard'
-import PoolCard from '../../components/farm/PoolCard'
+import PoolCard from '../../components/stake/PoolCard'
 import { RowBetween, AutoRow } from '../../components/Row'
 // import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/farm/styled'
+import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
@@ -47,7 +47,8 @@ export default function Oven() {
       stakingInfos
         ?.sort(function(info_a, info_b) {
           // greater stake in avax comes first
-          return info_a.totalStakedInWavax?.greaterThan(info_b.totalStakedInWavax ?? JSBI.BigInt(0)) ? -1 : 1
+          // return info_a.totalStakedInWavax?.greaterThan(info_b.totalStakedInWavax ?? JSBI.BigInt(0)) ? -1 : 1
+          return info_a.totalStakedInWcurrency?.greaterThan(info_b.totalStakedInWcurrency ?? JSBI.BigInt(0)) ? -1 : 1
         })
         .sort(function(info_a, info_b) {
           if (info_a.stakedAmount.greaterThan(JSBI.BigInt(0))) {
@@ -74,6 +75,7 @@ export default function Oven() {
     ).then(results => {
       setStakingInfoResults(results)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stakingInfos?.length])
 
   const DataRow = styled(RowBetween)`
@@ -113,7 +115,7 @@ export default function Oven() {
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
-          <TYPE.black fontWeight={400}>Baguette batch #27 ends on December 31st</TYPE.black>
+          {/* <TYPE.black fontWeight={400}>Baguette batch #27 ends on December 31st</TYPE.black> */}
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">

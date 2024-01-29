@@ -11,17 +11,17 @@ import { TYPE } from '../../theme'
 
 import { RowBetween, RowFixed } from '../../components/Row'
 // import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/farm/styled'
+import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
 // import StakingModal from '../../components/mill/StakingModal'
-import StakingModal from '../../components/farm/StakingModal'
+import StakingModal from '../../components/stake/StakingModal'
 import { useStakingInfo, StakingType } from '../../state/stake/hooks'
 // import UnstakingModal from '../../components/mill/UnstakingModal'
 // import ClaimRewardModal from '../../components/mill/ClaimRewardModal'
 // import CompoundRewardModal from '../../components/mill/CompoundRewardModal'
-import UnstakingModal from '../../components/farm/UnstakingModal'
-import ClaimRewardModal from '../../components/farm/ClaimRewardModal'
-import CompoundRewardModal from '../../components/farm/CompoundRewardModal'
+import UnstakingModal from '../../components/stake/UnstakingModal'
+import ClaimRewardModal from '../../components/stake/ClaimRewardModal'
+import CompoundRewardModal from '../../components/stake/CompoundRewardModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useIsDarkMode } from '../../state/user/hooks'
 import { useActiveWeb3React } from '../../hooks'
@@ -34,6 +34,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 import { BIG_INT_ZERO, UNDEFINED } from '../../constants'
+import { CURRENCY } from '@swapi-finance/sdk-local'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -110,7 +111,8 @@ export function ManageSingle({
   const [, stakingTokenPair] = usePair(stakingToken, UNDEFINED[chainId ? chainId : ChainId.POLYGON])
   const stakingInfos = useStakingInfo(StakingType.SINGLE, stakingTokenPair)
   const stakingInfo = stakingInfos?.filter(info => info.rewardToken.equals(rewardToken))[0]
-  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
+  // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
+  const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
 
   // get the color of the token
   const backgroundColor = useColor(stakingToken)
@@ -144,7 +146,10 @@ export function ManageSingle({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`}
+              {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
+              {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                CURRENCY.symbol
+              }`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>

@@ -5,10 +5,10 @@ import styled from 'styled-components'
 import { STAKING_REWARDS_INFO, useStakingInfo, StakingType } from '../../state/stake/hooks'
 import { TYPE } from '../../theme'
 // import PoolCard from '../../components/mill/PoolCard'
-import PoolCard from '../../components/farm/PoolCard'
+import PoolCard from '../../components/stake/PoolCard'
 import { RowBetween, AutoRow } from '../../components/Row'
 // import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/farm/styled'
+import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
@@ -37,18 +37,19 @@ const PoolSection = styled.div`
 `
 
 // export default function Mill() {
-export default function Farm() {
+export default function Stake() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.PAIR)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showInactive, setShowInactive] = useState<boolean>(false)
-
+  console.debug('Stake::stakingInfos:', stakingInfos)
   useMemo(() => {
     Promise.all(
       stakingInfos
         ?.sort(function(info_a, info_b) {
           // greater stake in avax comes first
-          return info_a.totalStakedInWavax?.greaterThan(info_b.totalStakedInWavax ?? JSBI.BigInt(0)) ? -1 : 1
+          // return info_a.totalStakedInWavax?.greaterThan(info_b.totalStakedInWavax ?? JSBI.BigInt(0)) ? -1 : 1
+          return info_a.totalStakedInWcurrency?.greaterThan(info_b.totalStakedInWcurrency ?? JSBI.BigInt(0)) ? -1 : 1
         })
         .sort(function(info_a, info_b) {
           if (info_a.stakedAmount.greaterThan(JSBI.BigInt(0))) {
@@ -75,6 +76,7 @@ export default function Farm() {
     ).then(results => {
       setStakingInfoResults(results)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stakingInfos?.length])
 
   const DataRow = styled(RowBetween)`
@@ -94,7 +96,7 @@ export default function Farm() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new tokens</TYPE.white>
+                <TYPE.white fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
