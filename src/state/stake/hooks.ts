@@ -34,9 +34,9 @@ import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 
-export const STAKING_GENESIS = 1600387200
-
-export const REWARDS_DURATION_DAYS = 60
+// UNUSED
+// export const STAKING_GENESIS = 1600387200
+// export const REWARDS_DURATION_DAYS = 60
 
 // // TODO add staking rewards addresses here
 // export const STAKING_REWARDS_INFO: {
@@ -248,6 +248,13 @@ export const STAKING_REWARDS_INFO: {
       stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
     }
+    // ,
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x9acAa2b2A98384a92e9ef07D2Ae4743FEdDD3135',
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // }
 
     // {
     //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
@@ -643,7 +650,7 @@ console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
                   // avaxBagPair.reserveOf(bag).raw,
                   currencySelfTokenPair.reserveOf(selfToken).raw,
                   // avaxBagPair.reserveOf(WAVAX[tokens[1].chainId]).raw,
-                  currencySelfTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
+                  currencySelfTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw, // Error: Invariant failed: TOKEN
                   // pair.reserveOf(bag).raw,
                   pair.reserveOf(selfToken).raw,
                   totalStakedAmount
