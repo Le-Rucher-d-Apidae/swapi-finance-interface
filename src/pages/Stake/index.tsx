@@ -100,7 +100,7 @@ export default function Stake() {
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit your LP tokens to receive {SELF_TOKEN[ChainId.POLYGON].name}.
+                  Deposit your LP tokens to receive {SELF_TOKEN[ChainId.POLYGON].symbol}.
                 </TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>
