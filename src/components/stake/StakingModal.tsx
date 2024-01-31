@@ -12,7 +12,13 @@ import { ButtonConfirmed, ButtonError } from '../Button'
 import ProgressCircles from '../ProgressSteps'
 import CurrencyInputPanel from '../CurrencyInputPanel'
 // import { JSBI, TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
-import { /* JSBI, */ TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
+import {
+  /* JSBI, */ TokenAmount,
+  Pair,
+  ChainId,
+  LIQUIDITY_TOKEN_SYMBOL,
+  LIQUIDITY_TOKEN_NAME
+} from '@swapi-finance/sdk-local'
 import { useActiveWeb3React } from '../../hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { usePairContract, useStakingContract, useTokenContract, useAutocompoundContract } from '../../hooks/useContract'
@@ -24,12 +30,10 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
 // import { UNDEFINED, ZERO_ADDRESS /* , NO_EIP712_SUPPORT */ } from '../../constants'
-import { UNDEFINED /* , ZERO_ADDRESS */ /* , NO_EIP712_SUPPORT */ } from '../../constants'
+import { UNDEFINED /* , ZERO_ADDRESS */, NO_EIP712_SUPPORT, SELF_TOKEN } from '../../constants'
 import { BigNumber } from '@ethersproject/bignumber'
 // import Toggle from '../Toggle'
 // import QuestionHelper from '../QuestionHelper'
-
-import { SELF_TOKEN } from '../../constants'
 
 const HypotheticalRewardRate = styled.div<{ dim: boolean }>`
   display: flex;
@@ -176,17 +180,17 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
 
     let nonce: BigNumber | undefined = undefined
 
-    // if (NO_EIP712_SUPPORT.includes(stakingToken)) {
-    //   autocompound ? autocompoundApproveCallback() : approveCallback()
-    // } else {
-    // try to gather a signature for permission
-    try {
-      nonce = await tokenContract.nonces(account)
-    } catch (error) {
-      // If 'permit' is not supported by the contract, proceed the manual way
+    if (NO_EIP712_SUPPORT.includes(stakingToken)) {
       autocompound ? autocompoundApproveCallback() : approveCallback()
+    } else {
+      // try to gather a signature for permission
+      try {
+        nonce = await tokenContract.nonces(account)
+      } catch (error) {
+        // If 'permit' is not supported by the contract, proceed the manual way
+        autocompound ? autocompoundApproveCallback() : approveCallback()
+      }
     }
-    // }
 
     if (nonce) {
       const EIP712Domain = [
@@ -198,7 +202,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
 
       const domain = {
         // name: dummyPair ? 'Baguette Liquidity' : stakingToken.name,
-        name: dummyPair ? `${SELF_TOKEN[ChainId.POLYGON].name} Liquidity` : stakingToken.name,
+        name: dummyPair ? `${LIQUIDITY_TOKEN_NAME}` : stakingToken.name, // DOMAIN NAME
         version: '1',
         chainId: chainId,
         verifyingContract: tokenContract.address

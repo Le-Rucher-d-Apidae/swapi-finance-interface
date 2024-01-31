@@ -350,6 +350,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
 
 // token contracts that should not be used with EIP712
 // export const NO_EIP712_SUPPORT = [QI[ChainId.POLYGON]]
+export const NO_EIP712_SUPPORT: [Token] = [UNDEFINED[ChainId.POLYGON]]
 
 export interface WalletInfo {
   connector?: AbstractConnector
