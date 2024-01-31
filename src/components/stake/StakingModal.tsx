@@ -1,14 +1,17 @@
+// import React, { useState, useCallback, useContext } from 'react'
 import React, { useState, useCallback /* , useContext */ } from 'react'
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
 // import styled, { ThemeContext } from 'styled-components'
-import styled from 'styled-components'
+import styled /* , { ThemeContext } */ from 'styled-components'
+// import { RowBetween, RowFixed } from '../Row'
 import { RowBetween /* , RowFixed */ } from '../Row'
 import { TYPE, CloseIcon } from '../../theme'
 import { ButtonConfirmed, ButtonError } from '../Button'
 import ProgressCircles from '../ProgressSteps'
 import CurrencyInputPanel from '../CurrencyInputPanel'
+// import { JSBI, TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 import { /* JSBI, */ TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 import { useActiveWeb3React } from '../../hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
@@ -20,6 +23,7 @@ import { wrappedCurrencyAmount } from '../../utils/wrappedCurrency'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
+// import { UNDEFINED, ZERO_ADDRESS /* , NO_EIP712_SUPPORT */ } from '../../constants'
 import { UNDEFINED /* , ZERO_ADDRESS */ /* , NO_EIP712_SUPPORT */ } from '../../constants'
 import { BigNumber } from '@ethersproject/bignumber'
 // import Toggle from '../Toggle'
@@ -50,9 +54,11 @@ interface StakingModalProps {
 export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiquidityUnstaked }: StakingModalProps) {
   // const theme = useContext(ThemeContext)
   const { account, chainId, library } = useActiveWeb3React()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [autocompound, setAutocompound] = useState<boolean>(stakingInfo.useAutocompounding)
-  setAutocompound(false) // const showAutocompound = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
+  // Xeslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const [autocompound, setAutocompound] = useState<boolean>(stakingInfo.useAutocompounding)
+  const [autocompound] = useState<boolean>(stakingInfo.useAutocompounding)
+  // setAutocompound(false)
+  // const showAutocompound = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
 
   // track and parse user input
   const [typedValue, setTypedValue] = useState('')
@@ -276,7 +282,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
             <TYPE.black>
               {hypotheticalRewardRate.multiply((60 * 60 * 24 * 7).toString()).toSignificant(4, { groupSeparator: ',' })}{' '}
               {/* BAG / week */}
-              {SELF_TOKEN[ChainId.POLYGON].name} / week
+              {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} / week
             </TYPE.black>
           </HypotheticalRewardRate>
           {/* 

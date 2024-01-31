@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+// import React, { useCallback } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -35,7 +36,7 @@ import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 import { BIG_INT_ZERO } from '../../constants'
 
-import { ChainId, CURRENCY } from '@swapi-finance/sdk-local'
+import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
 import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
@@ -181,11 +182,15 @@ export function ManagePair({
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Step 1. Get Baguette Liquidity tokens (BGL)</TYPE.white>
+                <TYPE.white fontWeight={600}>
+                  Step 1. Get Baguette Liquidity tokens ({LIQUIDITY_TOKEN_SYMBOL})
+                </TYPE.white>
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`BGL tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`${{ LIQUIDITY_TOKEN_SYMBOL }} tokens are required. Once you've added liquidity to the ${
+                    currencyA?.symbol
+                  }-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
@@ -206,6 +211,7 @@ export function ManagePair({
 
       {stakingInfo && (
         <>
+
           <StakingModal
             isOpen={showStakingModal}
             onDismiss={() => setShowStakingModal(false)}
@@ -222,6 +228,7 @@ export function ManagePair({
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo}
           />
+
         </>
       )}
 
@@ -240,7 +247,7 @@ export function ManagePair({
                     {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                   </TYPE.white>
                   <TYPE.white>
-                    BGL {currencyA?.symbol}-{currencyB?.symbol}
+                    {LIQUIDITY_TOKEN_SYMBOL} {currencyA?.symbol}-{currencyB?.symbol}
                   </TYPE.white>
                 </RowBetween>
               </AutoColumn>
@@ -261,7 +268,7 @@ export function ManagePair({
                       padding="8px"
                       borderRadius="8px"
                       width="fit-content"
-                      onClick={() => setShowClaimRewardModal(true)}
+                      // onClick={() => setShowClaimRewardModal(true)}
                     >
                       Claim
                     </ButtonEmpty>
@@ -319,14 +326,18 @@ export function ManagePair({
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
             </span>
-            Autocompounding automagically converts BAG rewards in BGL tokens. Wait and see your deposited BGL amount
-            increase over time! When you withdraw, you receive the last updated amount of BGL tokens.
+            Autocompounding automagically converts {SELF_TOKEN[ChainId.POLYGON].symbol} rewards in{' '}
+            {LIQUIDITY_TOKEN_SYMBOL} tokens. Wait and see your deposited {LIQUIDITY_TOKEN_SYMBOL} amount increase over
+            time! When you withdraw, you receive the last updated amount of
+            {LIQUIDITY_TOKEN_SYMBOL} tokens.
           </TYPE.main>
         )}
         {!showAddLiquidityButton && (
           <DataRow style={{ marginBottom: '1rem' }}>
             <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
-              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Deposit' : 'Deposit BGL Tokens'}
+              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0))
+                ? 'Deposit'
+                : `Deposit ${LIQUIDITY_TOKEN_SYMBOL} Tokens`}
             </ButtonPrimary>
 
             {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
@@ -335,7 +346,7 @@ export function ManagePair({
                   padding="8px"
                   borderRadius="8px"
                   width="160px"
-                  onClick={() => setShowUnstakingModal(true)}
+                  // onClick={() => setShowUnstakingModal(true)}
                 >
                   Withdraw
                 </ButtonPrimary>
@@ -344,7 +355,9 @@ export function ManagePair({
           </DataRow>
         )}
         {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : (
-          <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} BGL tokens available</TYPE.main>
+          <TYPE.main>
+            {userLiquidityUnstaked.toSignificant(6)} {LIQUIDITY_TOKEN_SYMBOL} tokens available
+          </TYPE.main>
         )}
       </PositionInfo>
     </PageWrapper>

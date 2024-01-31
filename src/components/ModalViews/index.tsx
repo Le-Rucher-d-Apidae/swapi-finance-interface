@@ -10,6 +10,7 @@ import { ArrowUpCircle } from 'react-feather'
 import Circle from '../../assets/images/blue-loader.svg'
 import { getEtherscanLink } from '../../utils'
 import { ExternalLink } from '../../theme/components'
+import { ChainId, ChainLabel } from '@swapi-finance/sdk-local'
 
 const ConfirmOrLoadingWrapper = styled.div`
   width: 100%;
@@ -63,7 +64,8 @@ export function SubmittedView({
         {children}
         {chainId && hash && (
           <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ marginLeft: '4px' }}>
-            <TYPE.subHeader>View transaction on the C-Chain Explorer</TYPE.subHeader>
+            {/* <TYPE.subHeader>View transaction on the C-Chain Explorer</TYPE.subHeader> */}
+            <TYPE.subHeader>View transaction on the {ChainLabel[ChainId.POLYGON]} Explorer</TYPE.subHeader>
           </ExternalLink>
         )}
       </AutoColumn>
