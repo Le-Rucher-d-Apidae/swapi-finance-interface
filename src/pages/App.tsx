@@ -92,7 +92,7 @@ export default function App() {
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
               {/* <Route exact strict path="/mill" component={Mill} /> */}
-              <Route exact strict path="/stake" component={Stake} />
+              <Route exact strict path="/stake-farm" component={Stake} />
               {/* <Route exact strict path="/oven" component={Oven} /> */}
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
@@ -104,7 +104,7 @@ export default function App() {
               <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
               {/* <Route exact strict path="/mill/:currencyIdA/:currencyIdB" component={ManagePair} /> */}
-              <Route exact strict path="/stake/:currencyIdA/:currencyIdB" component={ManagePair} />
+              <Route exact strict path="/stake-farm/:currencyIdA/:currencyIdB" component={ManagePair} />
               {/* <Route exact strict path="/oven/:currencyId/:rewardCurrencyId" component={ManageSingle} /> */}
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
