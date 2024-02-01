@@ -242,19 +242,19 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MUMBAI]: [
     // Mill = Stake
-    {
-      tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4', // TODO: update this !
-      autocompoundingAddress: ZERO_ADDRESS
-    }
-    // ,
     // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+    //   tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
     //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x9acAa2b2A98384a92e9ef07D2Ae4743FEdDD3135',
+    //   stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4', // TODO: update this !
     //   autocompoundingAddress: ZERO_ADDRESS
     // }
+    // ,
+    {
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x9acAa2b2A98384a92e9ef07D2Ae4743FEdDD3135',
+      autocompoundingAddress: ZERO_ADDRESS
+    }
 
     // {
     //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
