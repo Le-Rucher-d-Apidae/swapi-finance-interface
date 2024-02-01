@@ -153,11 +153,11 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">
+            <TYPE.yellow color="yellow1">
               {/* Your BAG Breakdown */}
               Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
-            </TYPE.white>
-            <StyledClose stroke="white" onClick={() => setShowTokenBalanceModal(false)} />
+            </TYPE.yellow>
+            <StyledClose stroke="yellow1" onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
         </CardSection>
         <Break />
@@ -166,14 +166,14 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <CardSection gap="sm">
               <AutoColumn gap="md" justify="center">
                 <BagTokenAnimated width="48px" src={tokenLogo} />{' '}
-                <TYPE.white fontSize={48} fontWeight={600} color="white">
+                <TYPE.white fontSize={48} fontWeight={600} color="yellow1">
                   {total?.toFixed(2, { groupSeparator: ',' })}
                 </TYPE.white>
               </AutoColumn>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.white color="white">Balance:</TYPE.white>
-                  <TYPE.white color="white">{selfTokenBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
+                  <TYPE.white color="yellow1">Balance:</TYPE.white>
+                  <TYPE.white color="yellow1">{selfTokenBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
                 </RowBetween>
               </AutoColumn>
             </CardSection>
@@ -183,26 +183,26 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">
+              <TYPE.yellow color="yellow1">
                 {/* BAG price: */}
                 {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:
-              </TYPE.white>
-              {/* <TYPE.white color="white">{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
-              <TYPE.white color="white">
+              </TYPE.yellow>
+              {/* <TYPE.white color="yellow1">{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
+              <TYPE.yellow color="yellow1">
                 {/* {bagPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol} */}
                 {tokenPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol}
-              </TYPE.white>
+              </TYPE.yellow>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">
+              <TYPE.yellow color="yellow1">
                 {/* BAG in circulation: */}
                 {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
-              </TYPE.white>
-              <TYPE.white color="white">{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
+              </TYPE.yellow>
+              <TYPE.yellow color="yellow1">{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.yellow>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">Total Supply</TYPE.white>
-              <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
+              <TYPE.yellow color="yellow1">Total Supply</TYPE.yellow>
+              <TYPE.yellow color="yellow1">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.yellow>
             </RowBetween>
           </AutoColumn>
         </CardSection>

@@ -8,10 +8,11 @@ import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 
-import Logo from '../../assets/svg/icon.svg'
-import LogoDark from '../../assets/svg/icon.svg'
+// import Logo from '../../assets/svg/icon.svg'
+// import LogoDark from '../../assets/svg/icon.svg'
+import bannerLogo from '../../assets/images/apidaeSwap-banner.png'
 import { useActiveWeb3React } from '../../hooks'
-import { useDarkModeManager } from '../../state/user/hooks'
+// import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateBagBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../pool/styled'
 import { CountUp } from 'use-count-up'
@@ -31,6 +32,7 @@ import usePrevious from '../../hooks/usePrevious'
 // import { ANALYTICS_PAGE , BRIDGE_PAGE } from '../../constants'
 // import { BAG } from '../../constants'
 import { SELF_TOKEN } from '../../constants'
+import { MEDIA_WIDTHS } from '../../theme'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -40,6 +42,7 @@ const HeaderFrame = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
+  background-color: ${({ theme }) => theme.bg6};
   top: 0;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -57,18 +60,40 @@ const HeaderFrame = styled.div`
   `}
 `
 
+// const HeaderControls = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-self: flex-end;
+//   ${({ theme }) => theme.mediaWidth.upToMedium`
+//     flex-direction: row;
+//     justify-content: space-between;
+//     justify-self: center;
+//     width: 100%;
+//     max-width: 960px;
+//     padding: 1rem;
+//     position: fixed;
+//     bottom: 0px;
+//     left: 0px;
+//     width: 100%;
+//     z-index: 99;
+//     height: 72px;
+//     border-radius: 12px 12px 0 0;
+//     background-color: ${({ theme }) => theme.bg1};
+//   `};
+// `
+
 const HeaderControls = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-self: flex-end;
-
   ${({ theme }) => theme.mediaWidth.upToMedium`
     flex-direction: row;
     justify-content: space-between;
     justify-self: center;
     width: 100%;
-    max-width: 960px;
+    max-width: ${MEDIA_WIDTHS.upToMedium};
     padding: 1rem;
     position: fixed;
     bottom: 0px;
@@ -115,6 +140,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  color: ${({ theme }) => theme.text2};
   background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
   border-radius: 12px;
   white-space: nowrap;
@@ -129,15 +155,21 @@ const AccountElement = styled.div<{ active: boolean }>`
   } */
 `
 
+// const TokenAmountStyle = styled(AccountElement)`
+//   color: white;
+//   padding: 4px 8px;
+//   height: 36px;
+//   font-weight: 500;
+//   background-color: ${({ theme }) => theme.bg3};
+//   background: radial-gradient(174.47% 188.91% at 1.84% 0%, #e8c177 0%, #ecd0a3 100%), #edeef2;
+// `
 const TokenAmountStyle = styled(AccountElement)`
-  color: white;
+  color: ${({ theme }) => theme.text2};
   padding: 4px 8px;
   height: 36px;
   font-weight: 500;
   background-color: ${({ theme }) => theme.bg3};
-  background: radial-gradient(174.47% 188.91% at 1.84% 0%, #e8c177 0%, #ecd0a3 100%), #edeef2;
 `
-
 const TokenWrapper = styled.span`
   width: fit-content;
   position: relative;
@@ -159,6 +191,7 @@ const HideSmall = styled.span`
 const NetworkCard = styled(PurpleCard)`
   border-radius: 12px;
   padding: 8px 12px;
+  text-align: center;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     margin: 0;
     margin-right: 0.5rem;
@@ -175,12 +208,26 @@ const BalanceText = styled(Text)`
   `};
 `
 
+// const Title = styled.a`
+//   display: flex;
+//   align-items: center;
+//   pointer-events: auto;
+//   justify-self: flex-start;
+//   margin-right: 12px;
+//   ${({ theme }) => theme.mediaWidth.upToSmall`
+//     justify-self: center;
+//   `};
+//   :hover {
+//     cursor: pointer;
+//   }
+// `
+
 const Title = styled.a`
   display: flex;
   align-items: center;
   pointer-events: auto;
+  margin-top: 0.5rem;
   justify-self: flex-start;
-  margin-right: 12px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     justify-self: center;
   `};
@@ -215,7 +262,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
   &.${activeClassName} {
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 800;
     color: ${({ theme }) => theme.text1};
   }
 
@@ -264,7 +311,7 @@ export default function Header() {
   const { t } = useTranslation()
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-  const [isDark] = useDarkModeManager()
+  // const [isDark] = useDarkModeManager()
 
   const aggregateBalance: TokenAmount | undefined = useAggregateBagBalance()
 
@@ -281,7 +328,8 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <TokenIcon>
-            <img width={'24px'} src={isDark ? LogoDark : Logo} alt="logo" />
+            {/* <img width={'24px'} src={isDark ? LogoDark : Logo} alt="logo" /> */}
+            <img height={'48px'} style={{ margin: 2 }} src={bannerLogo} alt="logo" />
           </TokenIcon>
         </Title>
         <HeaderLinks>
@@ -338,7 +386,7 @@ export default function Header() {
               <TokenAmountStyle active={!!account} style={{ pointerEvents: 'auto' }}>
                 {account && (
                   <HideSmall>
-                    <TYPE.white
+                    <TYPE.black
                       style={{
                         paddingRight: '.4rem'
                       }}
@@ -351,7 +399,7 @@ export default function Header() {
                         thousandsSeparator={','}
                         duration={1}
                       />
-                    </TYPE.white>
+                    </TYPE.black>
                   </HideSmall>
                 )}
                 {/* BAG */}

@@ -96,12 +96,12 @@ export default function Stake() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.white>
+                <TYPE.yellow fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.yellow>
               </RowBetween>
               <RowBetween>
-                <TYPE.white fontSize={14}>
+                <TYPE.yellow fontSize={14}>
                   Deposit your LP tokens to receive {SELF_TOKEN[ChainId.POLYGON].symbol}.
-                </TYPE.white>
+                </TYPE.yellow>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>
