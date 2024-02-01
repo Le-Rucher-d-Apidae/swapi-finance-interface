@@ -43,6 +43,8 @@ export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_TESTNET_DEFAULT_LOGO_URL_BASE =
   'https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/assets/blockchains/polygonmumbai/assets/'
 export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO = '/logo.png'
 
+export const HOME_URL_DEFAULT_WARNING_VISIBLE = true
+
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]

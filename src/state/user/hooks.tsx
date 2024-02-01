@@ -14,6 +14,8 @@ import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
 import { AppDispatch, AppState } from '../index'
+import { HOME_URL_DEFAULT_WARNING_VISIBLE } from '../../constants/index'
+
 import {
   addSerializedPair,
   addSerializedToken,
@@ -169,7 +171,15 @@ export function usePairAdder(): (pair: Pair) => void {
 }
 
 export function useURLWarningVisible(): boolean {
-  return useSelector((state: AppState) => state.user.URLWarningVisible)
+  // return useSelector((state: AppState) => state.user.URLWarningVisible)
+  // adds default value for URLWarningVisible
+  const userURLWarningVisible = useSelector<AppState, AppState['user']['URLWarningVisible']>(state => {
+    return state.user.URLWarningVisible === undefined
+      ? new Boolean(process.env.REACT_APP_HOME_URL_WARNING_VISIBLE).valueOf() || HOME_URL_DEFAULT_WARNING_VISIBLE
+      : state.user.URLWarningVisible
+  })
+  // debugger
+  return userURLWarningVisible
 }
 
 export function useURLWarningToggle(): () => void {

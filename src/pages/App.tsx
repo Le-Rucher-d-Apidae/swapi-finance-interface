@@ -6,7 +6,6 @@ import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
 import Popups from '../components/Popups'
-// import PoweredByAVAX from '../components/PoweredByAVAX'
 import PoweredByPolygon from '../components/PoweredByPolygon'
 
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -82,7 +81,6 @@ export default function App() {
         <BodyWrapper>
           <Popups />
           <Polling />
-          {/* <PoweredByAVAX /> */}
           <PoweredByPolygon />
           <Web3ReactManager>
             <Switch>
