@@ -211,7 +211,6 @@ export function ManagePair({
 
       {stakingInfo && (
         <>
-
           <StakingModal
             isOpen={showStakingModal}
             onDismiss={() => setShowStakingModal(false)}
@@ -228,7 +227,6 @@ export function ManagePair({
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo}
           />
-
         </>
       )}
 
@@ -261,14 +259,14 @@ export function ManagePair({
                 <RowBetween>
                   <div>
                     {/* <TYPE.black>Your unclaimed BAG</TYPE.black> */}
-                    <TYPE.black>Your unclaimed {SELF_TOKEN[ChainId.POLYGON].name}</TYPE.black>
+                    <TYPE.black>Your unclaimed {SELF_TOKEN[ChainId.POLYGON].symbol}</TYPE.black>
                   </div>
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
                       padding="8px"
                       borderRadius="8px"
                       width="fit-content"
-                      // onClick={() => setShowClaimRewardModal(true)}
+                      onClick={() => setShowClaimRewardModal(true)}
                     >
                       Claim
                     </ButtonEmpty>
@@ -346,7 +344,7 @@ export function ManagePair({
                   padding="8px"
                   borderRadius="8px"
                   width="160px"
-                  // onClick={() => setShowUnstakingModal(true)}
+                  onClick={() => setShowUnstakingModal(true)}
                 >
                   Withdraw
                 </ButtonPrimary>
