@@ -39,17 +39,23 @@ const mediaWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } 
 ) as any
 
 const white = '#FFFFFF'
+
+const yellow = '#ffff00'
 const yellow1 = '#f4da85'
 const yellow2 = '#dabe39'
 
 const dark1 = '#08060b'
 // const dark2 = '#27262c'
 
-const orange1 = '#ffba00'
+const darkYellow = '#ffba00'
 
 const brown = '#51331b'
 const lightPurple = '#b8add2'
-const darkPurple = '#201335' // 9, 7, 12
+const darkPurple1 = '#201335' // 9, 7, 12
+
+const darkPurple2 = '#280d5f' // 40, 13, 95
+const purple1 = '#3b4155' // 59, 65, 85
+const purple2 = '#3a3045' // 58, 48, 69
 
 const grey = '#888D9B'
 
@@ -76,7 +82,7 @@ export function colors(darkMode: boolean): Colors {
     // bg1: darkMode ? '#212429' : '#FFFFFF',
     bg1: darkMode ? dark1 : yellow2,
     // bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-    bg2: darkMode ? darkPurple : yellow1,
+    bg2: darkMode ? darkPurple1 : yellow1,
     // bg3: darkMode ? '#40444F' : '#EDEEF2',
     bg3: darkMode ? grey : white,
     // bg4: darkMode ? '#565A69' : '#CED0D9',
@@ -92,13 +98,13 @@ export function colors(darkMode: boolean): Colors {
     // primary1: darkMode ? '#2172E5' : '#EAC178',
     primary1: darkMode ? dark1 : black,
     // primary2: darkMode ? '#3680E7' : '#EAC178',
-    primary2: darkMode ? darkPurple : '#FF0000',
+    primary2: darkMode ? darkPurple1 : '#FF0000',
     // primary3: darkMode ? '#4D8FEA' : '#EAC178',
     primary3: darkMode ? '#4D8FEA' : white, // button border focus
     // primary4: darkMode ? '#376bad70' : '#EAC178',
     primary4: darkMode ? '#376bad70' : grey, // button border
     // primary5: darkMode ? '#153d6f70' : '#EAC178',
-    primary5: darkMode ? orange1 : orange1,
+    primary5: darkMode ? darkYellow : darkYellow,
     primary6: darkMode ? '#2172E5' : '#FFFFFF',
 
     // color text
@@ -119,11 +125,29 @@ export function colors(darkMode: boolean): Colors {
 
     // avaxRed: '#E84142',
 
-    polygonPurple: '#8247e5'
+    polygonPurple: '#8247e5',
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',
+
+    pageBackground: darkMode
+      ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%);`
+      : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+
+    wrapperBackground: darkMode
+      ? `linear-gradient(${purple2} 60%, ${purple1} 90%);`
+      : `linear-gradient(${yellow2} 60%, ${yellow1} 90%);`,
+
+    buttonLightBackground: darkMode ? darkYellow : darkYellow,
+    buttonLightText: darkMode ? white : white,
+
+    buttonClosePopup: darkMode ? darkYellow : darkYellow,
+
+    textPopupHeader: darkMode ? white : brown,
+    textHighlight1: darkMode ? yellow : brown,
+    textHighlight2: darkMode ? white : darkPurple2,
+    textInfoLink: darkMode ? darkYellow : darkYellow
   }
 }
 
@@ -215,17 +239,57 @@ export const TYPE = {
   },
   error({ error, ...props }: { error: boolean } & TextProps) {
     return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
+  },
+  homeLarge(props: TextProps) {
+    return <TextWrapper fontWeight={600} fontSize={32} {...props} />
+  },
+  homeNormal(props: TextProps) {
+    return <TextWrapper fontWeight={500} {...props} />
   }
 }
 
 export const FixedGlobalStyle = createGlobalStyle`
+
+/* thai */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcraBGwCYdA.woff2) format('woff2');
+  unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcraaGwCYdA.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcrabGwCYdA.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcraVGwA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 html, input, textarea, button {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Kanit', sans-serif;
   font-display: fallback;
 }
 @supports (font-variation-settings: normal) {
   html, input, textarea, button {
-    font-family: 'Inter var', sans-serif;
+    font-family: 'Kanit', sans-serif;
   }
 }
 
@@ -277,11 +341,10 @@ html {
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg2};
 }
-
 body {
   min-height: 100vh;
   background-position: 0 -30vh;
   background-repeat: no-repeat;
-  background: ${({ theme }) => `linear-gradient(${theme.bg1} 22%, ${theme.bg2} 100%);`};
+  background: ${({ theme }) => theme.pageBackground};
   }
   `

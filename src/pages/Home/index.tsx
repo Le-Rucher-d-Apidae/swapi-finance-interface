@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-// import styled, { ThemeContext } from 'styled-components'
 // import styled from 'styled-components'
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, ThemeContext } from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 // import { AutoRow } from '../../components/Row'
 // import { RowBetween, RowFixed } from '../../components/Row'
 // import { RowBetween } from '../../components/Row'
 import { Box } from 'rebass/styled-components'
+import { Text } from 'rebass'
 
-import { TYPE } from '../../theme'
+import { TYPE, StyledInternalLink } from '../../theme'
 import apidaeCoin from '../../assets/images/apidae-coin.png'
+// import { ButtonPrimary } from '../../components/Button'
+import { ButtonSecondary } from '../../components/Button'
+
+import { Link } from 'react-router-dom'
+import { darken } from 'polished'
 
 const PageWrapper = styled(AutoColumn)`
   border: 3px solid black;
@@ -53,45 +58,100 @@ const BagTokenAnimated = styled.img`
   animation: ${floatingImg} 8s infinite ease-in-out;
 `
 
+// const ButtonBuy = styled.button`
+//   height: 48px;
+//   background-color: ${({ theme }) => theme.primary5};
+//   border-radius: 0.5rem;
+//   padding: 0 1rem;
+//   font-size: 1rem;
+//   font-weight: 600;
+//   cursor: pointer;
+//   margin-right: 0.5rem;
+//   color: ${({ theme }) => theme.buttonLightText};
+//   &:hover {
+//     background-color: ${({ theme }) => darken(0.05, theme.primary5)};
+//   }
+//   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+//     margin-right: 0.5rem;
+//   `};
+// `
+
+const ButtonBuy2 = styled(ButtonSecondary)`
+  height: 48px;
+  color: ${({ theme }) => theme.buttonLightText};
+  background-color: ${({ theme }) => theme.primary5};
+  width: fit-content;
+  font-weight: 800;
+  margin-right: 0.5rem;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 48%;
+  `};
+  &:hover {
+    background-color: ${({ theme }) => darken(0.1, theme.primary5)};
+  }
+`
+
+const CustomInternalLink = styled(StyledInternalLink)`
+  font-weight: 600;
+  color: ${({ theme }) => theme.textInfoLink};
+`
+
 export default function Home() {
+  const theme = useContext(ThemeContext)
   return (
     <>
       <PageWrapper>
-
-
         <Section>
-
-          <Row border={'1px solid blue'} display={'flex'}>
-            <TYPE.largeHeader fontWeight={600}>La</TYPE.largeHeader>
-            <TYPE.white fontWeight={600}>
+          <Row border={'1px solid white'} display={'flex'}>
+            <TYPE.homeLarge color={theme.textHighlight2} style={{ display: 'inline-block' }}>
+              <TYPE.homeLarge color={theme.textHighlight1} style={{ display: 'inline-block' }}>
+                La&nbsp;
+              </TYPE.homeLarge>
               première ferme de rendement au profit de la préservation des abeilles
-            </TYPE.white>
+            </TYPE.homeLarge>
 
-            <TYPE.white fontWeight={600}>
-              Les jetons APT sont au cœur de l&apos;écosystème de Swapi qui fait le lien entre investisseur et producteur.
-              Achetez-les, gagnez-les, dépensez-les, utilisez-les pour le yield farming ou le staking tout en participant
-              a une bonne œuvre.
-            </TYPE.white>
+            <TYPE.homeNormal>
+              Les jetons APT sont au cœur de l&apos;écosystème de Swapi qui fait le lien entre investisseur et
+              producteur. producteur. Achetez-les, gagnez-les, dépensez-les, utilisez-les pour le yield farming ou le en
+              en participant a une bonne œuvre.
+            </TYPE.homeNormal>
 
-            <TYPE.white fontWeight={600}>
-              La première ferme de rendement au profit de la préservation des abeilles
-            </TYPE.white>
+            <Row display={'block'} padding={'20px 0px 0px 10px ;'}>
+              {/*
+               <ButtonBuy style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
+                Acheter des APT
+              </ButtonBuy>
+              <ButtonBuy style={{ display: 'inline-block' }}>Acheter des APT</ButtonBuy>
+ */}
 
-            <TYPE.white>...</TYPE.white>
+              <ButtonBuy2 style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
+                <Text fontWeight={500} fontSize={16}>
+                  Acheter des APT
+                </Text>
+              </ButtonBuy2>
 
-            <AutoColumn gap="md" justify="flex-start">
-              <TYPE.white fontSize={48} fontWeight={600} color="yellow1">
-                A
-              </TYPE.white>
-            </AutoColumn>
+              {/* 
+              <ButtonPrimary
+                padding="8px"
+                borderRadius="8px"
+                as={Link}
+                to={`/`}
+                width="auto"
+                style={{ display: 'inline-block' }}
+              >
+              En savoir plus
+              </ButtonPrimary>
+*/}
+
+              <CustomInternalLink id="info" to={'/todo'}>
+                {'En savoir plus'}
+              </CustomInternalLink>
+            </Row>
           </Row>
           <Row display={'block'} padding={'0px 0% 0px 0px ;'}>
             <AutoColumn gap="md" justify="flex-end">
-              <BagTokenAnimated object-fit={'fill'} src={apidaeCoin} />{' '}
+              <BagTokenAnimated height={420} object-fit={'fill'} src={apidaeCoin} />{' '}
             </AutoColumn>
-
-            <TYPE.white fontWeight={600}>Liquidity provider rewards</TYPE.white>
-            <TYPE.white></TYPE.white>
 
             <AutoColumn gap="md" justify="flex-start">
               <TYPE.white fontSize={48} fontWeight={600} color="yellow1">
@@ -99,21 +159,15 @@ export default function Home() {
               </TYPE.white>
             </AutoColumn>
           </Row>
-
-
         </Section>
 
         <Section>
-
           <AutoColumn gap="md" justify="flex-start">
             <TYPE.white fontSize={48} fontWeight={600} color="yellow1">
               C
             </TYPE.white>
           </AutoColumn>
-
         </Section>
-
-
       </PageWrapper>
     </>
   )

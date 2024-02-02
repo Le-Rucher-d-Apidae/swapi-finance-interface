@@ -48,8 +48,18 @@ export interface Colors {
   blue1: Color
 
   // avaxRed: Color
-
   polygonPurple: Color
+
+  pageBackground: Color
+  wrapperBackground: darkMode
+
+  buttonLightBackground: Color
+  buttonLightText: Color
+  buttonClosePopup: Color
+  textPopupHeader: Color
+  textHighlight1: Color
+  textHighlight2: Color
+  textInfoLink: Color
 }
 
 export interface Grids {

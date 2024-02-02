@@ -35,7 +35,7 @@ const StyledClose = styled(X)`
   position: absolute;
   right: 16px;
   top: 16px;
-
+  color: ${({ theme }) => theme.buttonClosePopup};
   :hover {
     cursor: pointer;
   }
@@ -157,7 +157,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
               {/* Your BAG Breakdown */}
               Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
             </TYPE.yellow>
-            <StyledClose stroke="yellow1" onClick={() => setShowTokenBalanceModal(false)} />
+            <StyledClose onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
         </CardSection>
         <Break />

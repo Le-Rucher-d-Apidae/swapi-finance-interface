@@ -38,7 +38,7 @@ export const YellowCard = styled(Card)`
 //   font-weight: 500;
 // `
 
-export const PurpleCard = styled(Card)`
+export const PolygonNetworkCard = styled(Card)`
   background-color: white;
   color: ${({ theme }) => theme.polygonPurple};
   font-weight: 500;

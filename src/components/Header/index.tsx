@@ -19,7 +19,7 @@ import { CountUp } from 'use-count-up'
 import { TYPE /* , ExternalLink */ } from '../../theme'
 
 // import { RedCard } from '../Card'
-import { PurpleCard } from '../Card'
+import { PolygonNetworkCard } from '../Card'
 
 import Settings from '../Settings'
 import Menu from '../Menu'
@@ -188,7 +188,7 @@ const HideSmall = styled.span`
   `};
 `
 
-const NetworkCard = styled(PurpleCard)`
+const NetworkCard = styled(PolygonNetworkCard)`
   border-radius: 12px;
   padding: 8px 12px;
   text-align: center;
