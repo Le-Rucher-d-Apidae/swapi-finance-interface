@@ -98,7 +98,7 @@ export function colors(darkMode: boolean): Colors {
     // primary1: darkMode ? '#2172E5' : '#EAC178',
     primary1: darkMode ? dark1 : black,
     // primary2: darkMode ? '#3680E7' : '#EAC178',
-    primary2: darkMode ? darkPurple1 : '#FF0000',
+    primary2: darkMode ? darkPurple1 : yellow2,
     // primary3: darkMode ? '#4D8FEA' : '#EAC178',
     primary3: darkMode ? '#4D8FEA' : white, // button border focus
     // primary4: darkMode ? '#376bad70' : '#EAC178',
@@ -142,7 +142,7 @@ export function colors(darkMode: boolean): Colors {
     buttonLightBackground: darkMode ? darkYellow : darkYellow,
     buttonLightText: darkMode ? white : white,
 
-    buttonClosePopup: darkMode ? darkYellow : darkYellow,
+    buttonClosePopup: darkMode ? darkYellow : brown,
 
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,

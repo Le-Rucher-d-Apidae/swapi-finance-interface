@@ -25,9 +25,13 @@ const ContentWrapper = styled(AutoColumn)`
   width: 100%;
 `
 
+// const ModalUpper = styled(DataCard)`
+//   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+//   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #e8c177 0%, #ecd0a3 100%);
+//   padding: 0.5rem;
+// `
 const ModalUpper = styled(DataCard)`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #e8c177 0%, #ecd0a3 100%);
   padding: 0.5rem;
 `
 
@@ -149,7 +153,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   return (
     <ContentWrapper gap="lg">
       <ModalUpper>
-        <CardBGImage />
+        <CardBGImage desaturate={true} />
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>

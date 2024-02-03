@@ -16,17 +16,16 @@ import { ButtonSecondary } from '../../components/Button'
 
 import { Link } from 'react-router-dom'
 import { darken } from 'polished'
+// import { ReactComponent as Line } from '../../assets/images/line.svg'
 
 const PageWrapper = styled(AutoColumn)`
-  border: 3px solid black;
-  padding: 10px;
+  padding: 0px;
   width: 100%;
   display: block;
 `
 
 const Section = styled(AutoColumn)`
-  border: 2px solid blue;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
   display: flex;
 `
@@ -52,6 +51,32 @@ const floatingImg = keyframes`
   100% {
     transform:translate(0);
   }
+`
+
+const LineSection = styled(AutoColumn)`
+  padding: 0px;
+  width: 100%;
+  display: flex;
+  position: absolute;
+`
+
+// const LineIcon = styled.div`
+//   opacity: 1;
+// `
+
+// const LineColor = styled(Line)`
+//   path {
+//     stroke: ${({ theme }) => theme.buttonClosePopup};
+//   }
+// `
+
+const StyledSVG = styled.svg<{ size: string; stroke?: string }>`
+  height: ${({ size }) => size};
+  width: ${({ size }) => size};
+  path {
+    stroke: ${({ stroke, theme }) => stroke ?? theme.primary2};
+  }
+  fill: ${({ fill, theme }) => fill ?? theme.primary2};
 `
 
 const BagTokenAnimated = styled.img`
@@ -118,7 +143,8 @@ export default function Home() {
     <>
       <PageWrapper>
         <Section>
-          <Row border={'1px solid white'} display={'flex'}>
+          {/* <Row border={'1px solid white'} display={'flex'}> */}
+          <Row display={'flex'}>
             <TYPE.homeLarge color={theme.textHighlight2} style={{ display: 'inline-block' }}>
               <TYPE.homeLarge color={theme.textHighlight1} style={{ display: 'inline-block' }}>
                 La&nbsp;
@@ -163,21 +189,13 @@ export default function Home() {
                 {'En savoir plus'}
               </CustomInternalLink>
             </Row>
-            <TYPE.white>
-              A
-            </TYPE.white>
-
           </Row>
           <Row display={'block'} padding={'0px 0% 0px 0px ;'}>
             <AutoColumn gap="md" justify="flex-end">
               <BagTokenAnimated height={420} object-fit={'fill'} src={apidaeCoin} />{' '}
             </AutoColumn>
 
-            <AutoColumn gap="md" justify="flex-start">
-              <TYPE.white fontSize={48} fontWeight={600} color="yellow1">
-                B
-              </TYPE.white>
-            </AutoColumn>
+            <Row display={'block'} padding={'20%'}></Row>
           </Row>
         </Section>
 
@@ -186,46 +204,36 @@ export default function Home() {
             <Grid>
               <PaddedColumn>
                 Quantité en circulation
-                <TYPE.homeMedium color={theme.textHighlight2}>
-                  32,000,000
-                </TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Apport total
-                <TYPE.homeMedium color={theme.textHighlight2}>
-                  32,000,000
-                </TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>
-                  32,000,000
-                </TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
-                <TYPE.homeMedium color={theme.textHighlight2}>
-                  6,5 mille $
-                </TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>6,5 mille $</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Total brûlé
-                <TYPE.homeMedium color={theme.textHighlight2}>
-                  32,000,000
-                </TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
-              Émissions actuelles
-                <TYPE.homeMedium color={theme.textHighlight2}>
-                0.095/bloc
-                </TYPE.homeMedium>
+                Émissions actuelles
+                <TYPE.homeMedium color={theme.textHighlight2}>0.095/bloc</TYPE.homeMedium>
               </PaddedColumn>
             </Grid>
-            <div>
-              C
-            </div>
           </AutoColumn>
         </Section>
+        <LineSection style={{ width: '140%' }}>
+          <StyledSVG viewBox="0 0 1660 48" xmlns="http://www.w3.org/2000/svg" size={'140%'}>
+            <path d="M -346 48 C 174.985 46.1887 977.744 15.2453 1314 0 H -346 V 48 Z"></path>
+          </StyledSVG>
+        </LineSection>
       </PageWrapper>
     </>
   )

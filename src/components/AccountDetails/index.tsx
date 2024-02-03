@@ -143,18 +143,16 @@ const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
 const CloseIcon = styled.div`
   position: absolute;
   right: 1rem;
+  color: ${({ theme }) => theme.buttonClosePopup};
   top: 14px;
   &:hover {
     cursor: pointer;
     opacity: 0.6;
+    transform: scale(1.1);
   }
 `
 
-const CloseColor = styled(Close)`
-  path {
-    stroke: ${({ theme }) => theme.buttonClosePopup};
-  }
-`
+const CloseColor = styled(Close)``
 
 const WalletName = styled.div`
   width: initial;

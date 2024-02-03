@@ -37,7 +37,7 @@ const Wrapper = styled(AutoColumn)<{ showBackground: boolean; bgColor: any }>`
   position: relative;
   opacity: ${({ showBackground }) => (showBackground ? '1' : '1')};
   background: ${({ theme, bgColor, showBackground }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${showBackground ? theme.black : theme.bg5} 100%) `};
+    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${showBackground ? theme.bg2 : theme.bg1} 100%) `};
   color: ${({ theme, showBackground }) => (showBackground ? theme.white : theme.text1)} !important;
   ${({ showBackground }) =>
     showBackground &&
@@ -160,14 +160,14 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
       <StatContainer>
         <RowBetween>
-          <TYPE.white> Earn</TYPE.white>
+          <TYPE.white>Earn</TYPE.white>
           <HorizontalMerge>
             <TYPE.white style={{ marginRight: '8px' }}>{rewardCurrency.symbol}</TYPE.white>
             <CurrencyLogo currency={rewardCurrency} size="24px" />
           </HorizontalMerge>
         </RowBetween>
         <RowBetween>
-          <TYPE.white> Total deposited</TYPE.white>
+          <TYPE.white>Total deposited</TYPE.white>
           <TYPE.white>
             {/* {`${stakingInfo.totalStakedInWavax.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
             {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`}
@@ -200,18 +200,18 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         <>
           <Break />
           <BottomSection showBackground={true}>
-            <TYPE.black color={'white'} fontWeight={500}>
+            <TYPE.white fontWeight={500}>
               <span>Your rate</span>
-            </TYPE.black>
+            </TYPE.white>
 
-            <TYPE.black style={{ textAlign: 'right' }} color={'white'} fontWeight={500}>
+            <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
               <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                 ⚡
               </span>
               {`${stakingInfo.rewardRate?.multiply(`${60 * 60 * 24 * 7}`)?.toSignificant(4, { groupSeparator: ',' })} ${
                 stakingInfo?.rewardToken.symbol
               } / week`}
-            </TYPE.black>
+            </TYPE.white>
           </BottomSection>
         </>
       )}

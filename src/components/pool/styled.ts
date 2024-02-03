@@ -39,6 +39,20 @@ export const CardBGImage = styled.span<{ desaturate?: boolean }>`
   ${({ desaturate }) => desaturate && `filter: saturate(0)`}
 `
 
+// export const CardBGImage = styled.span<{ desaturate?: boolean }>`
+//   background: url(${uImage});
+//   filter: invert(1);
+//   width: 1000px;
+//   height: 600px;
+//   position: absolute;
+//   border-radius: 12px;
+//   opacity: 0.1;
+//   top: -100px;
+//   left: -100px;
+//   transform: rotate(-15deg);
+//   user-select: none;
+// `
+
 export const CardBGImageSmaller = styled.span<{ desaturate?: boolean }>`
   background: url(${xlUnicorn});
   width: 1200px;
