@@ -243,6 +243,9 @@ export const TYPE = {
   homeLarge(props: TextProps) {
     return <TextWrapper fontWeight={600} fontSize={32} {...props} />
   },
+  homeMedium(props: TextProps) {
+    return <TextWrapper fontWeight={600} fontSize={22} {...props} />
+  },
   homeNormal(props: TextProps) {
     return <TextWrapper fontWeight={500} {...props} />
   }

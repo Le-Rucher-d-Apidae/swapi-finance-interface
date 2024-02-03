@@ -96,6 +96,22 @@ const CustomInternalLink = styled(StyledInternalLink)`
   color: ${({ theme }) => theme.textInfoLink};
 `
 
+const Grid = styled.div`
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  `};
+`
+
+export const PaddedColumn = styled(AutoColumn)`
+  padding: 20px;
+  padding-bottom: 12px;
+  border-left: 1px solid ${({ theme }) => darken(0.5, theme.text1)};
+`
+
 export default function Home() {
   const theme = useContext(ThemeContext)
   return (
@@ -147,6 +163,10 @@ export default function Home() {
                 {'En savoir plus'}
               </CustomInternalLink>
             </Row>
+            <TYPE.white>
+              A
+            </TYPE.white>
+
           </Row>
           <Row display={'block'} padding={'0px 0% 0px 0px ;'}>
             <AutoColumn gap="md" justify="flex-end">
@@ -163,9 +183,47 @@ export default function Home() {
 
         <Section>
           <AutoColumn gap="md" justify="flex-start">
-            <TYPE.white fontSize={48} fontWeight={600} color="yellow1">
+            <Grid>
+              <PaddedColumn>
+                Quantité en circulation
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  32,000,000
+                </TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Apport total
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  32,000,000
+                </TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Approvisionnement maximal
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  32,000,000
+                </TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Capitalisation
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  6,5 mille $
+                </TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Total brûlé
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  32,000,000
+                </TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+              Émissions actuelles
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                0.095/bloc
+                </TYPE.homeMedium>
+              </PaddedColumn>
+            </Grid>
+            <div>
               C
-            </TYPE.white>
+            </div>
           </AutoColumn>
         </Section>
       </PageWrapper>
