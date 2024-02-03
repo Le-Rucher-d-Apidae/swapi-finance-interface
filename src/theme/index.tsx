@@ -76,7 +76,7 @@ export function colors(darkMode: boolean): Colors {
     // text3: darkMode ? '#6C7284' : '#888D9B',
     text3: darkMode ? '#6C7284' : '#888D9B',
     text4: darkMode ? '#565A69' : '#C3C5CB',
-    text5: darkMode ? '#2C2F36' : '#EDEEF2',
+    text5: darkMode ? lightPurple : white,
 
     // backgrounds / greys
     // bg1: darkMode ? '#212429' : '#FFFFFF',
@@ -248,6 +248,12 @@ export const TYPE = {
   },
   homeNormal(props: TextProps) {
     return <TextWrapper fontWeight={500} {...props} />
+  },
+  text1(props: TextProps) {
+    return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+  },
+  text5(props: TextProps) {
+    return <TextWrapper fontWeight={500} color={'text5'} {...props} />
   }
 }
 

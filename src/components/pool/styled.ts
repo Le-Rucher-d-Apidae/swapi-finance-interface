@@ -24,34 +24,34 @@ export const DataCard = styled(AutoColumn)<{ disabled?: boolean }>`
   overflow: hidden;
 `
 
+// export const CardBGImage = styled.span<{ desaturate?: boolean }>`
+//   background: url(${uImage});
+//   width: 1000px;
+//   height: 600px;
+//   position: absolute;
+//   border-radius: 12px;
+//   opacity: 0.4;
+//   top: -100px;
+//   left: -100px;
+//   transform: rotate(-15deg);
+//   user-select: none;
+//   filter: brightness(30%);
+//   ${({ desaturate }) => desaturate && `filter: saturate(0)`}
+// `
+
 export const CardBGImage = styled.span<{ desaturate?: boolean }>`
   background: url(${uImage});
   width: 1000px;
   height: 600px;
   position: absolute;
   border-radius: 12px;
-  opacity: 0.4;
+  filter: grayscale(1);
+  opacity: 1;
   top: -100px;
   left: -100px;
   transform: rotate(-15deg);
   user-select: none;
-  filter: brightness(30%);
-  ${({ desaturate }) => desaturate && `filter: saturate(0)`}
 `
-
-// export const CardBGImage = styled.span<{ desaturate?: boolean }>`
-//   background: url(${uImage});
-//   filter: invert(1);
-//   width: 1000px;
-//   height: 600px;
-//   position: absolute;
-//   border-radius: 12px;
-//   opacity: 0.1;
-//   top: -100px;
-//   left: -100px;
-//   transform: rotate(-15deg);
-//   user-select: none;
-// `
 
 export const CardBGImageSmaller = styled.span<{ desaturate?: boolean }>`
   background: url(${xlUnicorn});
