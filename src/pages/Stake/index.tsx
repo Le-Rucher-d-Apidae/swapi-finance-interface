@@ -97,10 +97,10 @@ export default function Stake() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.yellow fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new LP</TYPE.yellow>
+                <TYPE.text5 fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new LP</TYPE.text5>
               </RowBetween>
               <RowBetween>
-                <TYPE.yellow fontSize={14}>Deposit your LP tokens to receive {LIQUIDITY_TOKEN_SYMBOL}.</TYPE.yellow>
+                <TYPE.text5 fontSize={14}>Deposit your LP tokens to receive {LIQUIDITY_TOKEN_SYMBOL}.</TYPE.text5>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>

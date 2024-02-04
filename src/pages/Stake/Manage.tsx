@@ -36,7 +36,8 @@ import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 import { BIG_INT_ZERO } from '../../constants'
 
-import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
+// import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
+import { ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
@@ -117,7 +118,8 @@ export function ManagePair({
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
   // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
-  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
+  // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
+  const valueOfTotalStakedAmount = stakingInfo?.totalStakedAmount
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -155,8 +157,11 @@ export function ManagePair({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+              {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
+              }`} */}
+              {`${valueOfTotalStakedAmount?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                '$'
               }`}
             </TYPE.body>
           </AutoColumn>

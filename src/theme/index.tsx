@@ -41,15 +41,15 @@ const mediaWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } 
 const white = '#FFFFFF'
 
 const yellow = '#ffff00'
-const yellow1 = '#f4da85'
+const yellow1 = '#f4da85' // 244, 218, 133
 const yellow2 = '#dabe39'
 
 const dark1 = '#08060b'
 
-const darkYellow = '#ffba00'
+const darkYellow = '#ffba00' // 255, 186, 0
 
-const brown = '#51331b'
-const lightPurple = '#b8add2'
+const brown = '#51331b' // 81, 51, 27
+const lightPurple = '#b8add2' // 184, 173, 210
 const darkPurple1 = '#201335' // 9, 7, 12
 
 const darkPurple2 = '#280d5f' // 40, 13, 95
@@ -92,7 +92,8 @@ export function colors(darkMode: boolean): Colors {
     bg6: darkMode ? dark1 : yellow2,
 
     //specialty colors
-    modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
+    // modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
+    modalBgOverlay: darkMode ? 'rgba(184, 173, 210,.425)' : 'rgba(255, 255, 255,0.3)',
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
@@ -163,6 +164,12 @@ export function colors(darkMode: boolean): Colors {
     poolCardBg1: darkMode ? lightPurple : yellow2,
     infoCardBg1: darkMode ? purple1 : yellow1,
     textBottom: darkMode ? lightPurple : white,
+    pollingText: darkMode ? lightPurple : white,
+    pollingDot: darkMode ? lightPurple : white,
+    pollingSpinner: darkMode ? lightPurple : white,
+    internalLink: darkMode ? lightPurple : black,
+    modalBG: darkMode ? darkPurple3 : yellow1,
+
   }
 }
 
@@ -266,6 +273,9 @@ export const TYPE = {
   },
   text1(props: TextProps) {
     return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+  },
+  text2(props: TextProps) {
+    return <TextWrapper fontWeight={500} color={'text2'} {...props} />
   },
   text5(props: TextProps) {
     return <TextWrapper fontWeight={500} color={'text5'} {...props} />

@@ -86,9 +86,9 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
           <AutoColumn gap="12px">
             <FixedHeightRow>
               <RowFixed>
-                <Text fontWeight={500} fontSize={16}>
+                <TYPE.text2 fontWeight={500} fontSize={16}>
                   Your position
-                </Text>
+                </TYPE.text2>
               </RowFixed>
             </FixedHeightRow>
             <FixedHeightRow onClick={() => setShowMore(!showMore)}>
@@ -207,9 +207,9 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
         <FixedHeightRow>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currency0_} currency1={currency1_} margin={true} size={20} />
-            <Text fontWeight={500} fontSize={20}>
+            <TYPE.text2 fontWeight={500} fontSize={20}>
               {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0_.symbol}/${currency1_.symbol}`}
-            </Text>
+            </TYPE.text2>
           </RowFixed>
 
           <RowFixed gap="8px">
@@ -238,24 +238,24 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
         {showMore && (
           <AutoColumn gap="8px">
             <FixedHeightRow>
-              <Text fontSize={16} fontWeight={500}>
+              <TYPE.text2 fontSize={16} fontWeight={500}>
                 Your pool tokens:
-              </Text>
-              <Text fontSize={16} fontWeight={500}>
+              </TYPE.text2>
+              <TYPE.text2 fontSize={16} fontWeight={500}>
                 {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
-              </Text>
+              </TYPE.text2>
             </FixedHeightRow>
             <FixedHeightRow>
               <RowFixed>
-                <Text fontSize={16} fontWeight={500}>
+                <TYPE.text2 fontSize={16} fontWeight={500}>
                   Pooled {currency0_.symbol}:
-                </Text>
+                </TYPE.text2>
               </RowFixed>
               {token0Deposited ? (
                 <RowFixed>
-                  <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+                  <TYPE.text2 fontSize={16} fontWeight={500} marginLeft={'6px'}>
                     {token0Deposited?.toSignificant(6)}
-                  </Text>
+                  </TYPE.text2>
                   <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency0_} />
                 </RowFixed>
               ) : (
@@ -265,15 +265,15 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
 
             <FixedHeightRow>
               <RowFixed>
-                <Text fontSize={16} fontWeight={500}>
+                <TYPE.text2 fontSize={16} fontWeight={500}>
                   Pooled {currency1_.symbol}:
-                </Text>
+                </TYPE.text2>
               </RowFixed>
               {token1Deposited ? (
                 <RowFixed>
-                  <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+                  <TYPE.text2 fontSize={16} fontWeight={500} marginLeft={'6px'}>
                     {token1Deposited?.toSignificant(6)}
-                  </Text>
+                  </TYPE.text2>
                   <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency1_} />
                 </RowFixed>
               ) : (
@@ -282,12 +282,12 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             </FixedHeightRow>
 
             <FixedHeightRow>
-              <Text fontSize={16} fontWeight={500}>
+              <TYPE.text2 fontSize={16} fontWeight={500}>
                 Your pool share:
-              </Text>
-              <Text fontSize={16} fontWeight={500}>
+              </TYPE.text2>
+              <TYPE.text2 fontSize={16} fontWeight={500}>
                 {poolTokenPercentage ? poolTokenPercentage.toFixed(2) + '%' : '-'}
-              </Text>
+              </TYPE.text2>
             </FixedHeightRow>
 
             <RowBetween marginTop="10px">

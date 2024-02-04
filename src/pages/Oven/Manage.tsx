@@ -112,7 +112,8 @@ export function ManageSingle({
   const stakingInfos = useStakingInfo(StakingType.SINGLE, stakingTokenPair)
   const stakingInfo = stakingInfos?.filter(info => info.rewardToken.equals(rewardToken))[0]
   // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
-  const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
+  // const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
+  const valueOfTotalStakedAmount = stakingInfo?.totalStakedAmount
 
   // get the color of the token
   const backgroundColor = useColor(stakingToken)
@@ -147,7 +148,8 @@ export function ManageSingle({
             <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
-              {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+              {/* {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${ */}
+              {`${valueOfTotalStakedAmount?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
               }`}
             </TYPE.body>

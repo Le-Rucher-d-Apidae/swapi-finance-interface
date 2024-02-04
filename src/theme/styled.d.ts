@@ -21,7 +21,8 @@ export interface Colors {
   bg5: Color
   bg6: Color
 
-  modalBG: Color
+  // modalBG: Color
+  modalBgOverlay: Color
   advancedBG: Color
 
   //blues
@@ -65,6 +66,11 @@ export interface Colors {
   poolCardBg1: Color
   infoCardBg1: Color
   textBottom: Color
+  pollingText: Color
+  pollingDot: Color
+  pollingSpinner: Color
+  internalLink: Color
+  modalBG: Color
 }
 
 export interface Grids {
