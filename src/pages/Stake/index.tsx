@@ -12,11 +12,10 @@ import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/
 import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
-import { JSBI } from '@swapi-finance/sdk-local'
+import { JSBI } from '@swapi-finance/sdk'
 
-// import { ChainId } from '@swapi-finance/sdk-local'
-// import { SELF_TOKEN } from '../../constants'
-import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
+import { ChainId } from '@swapi-finance/sdk'
+import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;

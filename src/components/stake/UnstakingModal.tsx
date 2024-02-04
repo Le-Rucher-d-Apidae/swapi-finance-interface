@@ -14,9 +14,9 @@ import FormattedCurrencyAmount from '../FormattedCurrencyAmount'
 import { useActiveWeb3React } from '../../hooks'
 import { UNDEFINED } from '../../constants'
 
-// import { ChainId } from '@swapi-finance/sdk-local'
+// import { ChainId } from '@swapi-finance/sdk'
 // import { SELF_TOKEN } from '../../constants'
-import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
+import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;

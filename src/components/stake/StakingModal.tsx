@@ -11,14 +11,14 @@ import { TYPE, CloseIcon } from '../../theme'
 import { ButtonConfirmed, ButtonError } from '../Button'
 import ProgressCircles from '../ProgressSteps'
 import CurrencyInputPanel from '../CurrencyInputPanel'
-// import { JSBI, TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk-local'
+// import { JSBI, TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 import {
   /* JSBI, */ TokenAmount,
   Pair,
   ChainId,
   LIQUIDITY_TOKEN_SYMBOL,
   LIQUIDITY_TOKEN_NAME
-} from '@swapi-finance/sdk-local'
+} from '@swapi-finance/sdk'
 import { useActiveWeb3React } from '../../hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { usePairContract, useStakingContract, useTokenContract, useAutocompoundContract } from '../../hooks/useContract'

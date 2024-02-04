@@ -1,4 +1,4 @@
-import { Currency, /* CAVAX */ CURRENCY, JSBI, TokenAmount } from '@swapi-finance/sdk-local'
+import { Currency, /* CAVAX */ CURRENCY, JSBI, TokenAmount } from '@swapi-finance/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Plus } from 'react-feather'
 import { Text } from 'rebass'

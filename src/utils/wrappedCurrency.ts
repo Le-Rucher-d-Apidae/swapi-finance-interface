@@ -1,5 +1,5 @@
-// import { ChainId, Currency, CurrencyAmount, CAVAX, Token, TokenAmount, WAVAX } from '@swapi-finance/sdk-local'
-import { ChainId, Currency, CurrencyAmount, CURRENCY, Token, TokenAmount, WCURRENCY } from '@swapi-finance/sdk-local'
+// import { ChainId, Currency, CurrencyAmount, CAVAX, Token, TokenAmount, WAVAX } from '@swapi-finance/sdk'
+import { ChainId, Currency, CurrencyAmount, CURRENCY, Token, TokenAmount, WCURRENCY } from '@swapi-finance/sdk'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   // return chainId && currency === CAVAX ? WAVAX[chainId] : currency instanceof Token ? currency : undefined

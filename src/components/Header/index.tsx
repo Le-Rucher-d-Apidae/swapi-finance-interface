@@ -1,4 +1,4 @@
-import { ChainId, ChainLabel, TokenAmount, CURRENCY } from '@swapi-finance/sdk-local'
+import { ChainId, ChainLabel, TokenAmount, CURRENCY } from '@swapi-finance/sdk'
 
 import React, { useState } from 'react'
 import { Text } from 'rebass'

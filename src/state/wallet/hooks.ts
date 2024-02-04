@@ -1,6 +1,6 @@
 // import { BAG } from './../../constants/index'
 import { SELF_TOKEN } from './../../constants/index'
-import { Currency, CurrencyAmount, /* CAVAX */ CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk-local'
+import { Currency, CurrencyAmount, /* CAVAX */ CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useAllTokens } from '../../hooks/Tokens'

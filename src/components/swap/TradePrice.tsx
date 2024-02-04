@@ -1,5 +1,5 @@
 import React from 'react'
-import { Price } from '@swapi-finance/sdk-local'
+import { Price } from '@swapi-finance/sdk'
 import { useContext } from 'react'
 import { Repeat } from 'react-feather'
 import { Text } from 'rebass'

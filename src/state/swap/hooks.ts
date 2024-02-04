@@ -9,7 +9,7 @@ import {
   TokenAmount,
   Trade,
   ChainId
-} from '@swapi-finance/sdk-local'
+} from '@swapi-finance/sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

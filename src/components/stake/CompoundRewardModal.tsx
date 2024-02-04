@@ -12,7 +12,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 
-import { ChainId } from '@swapi-finance/sdk-local'
+import { ChainId } from '@swapi-finance/sdk'
 import { SELF_TOKEN } from '../../constants'
 
 const ContentWrapper = styled(AutoColumn)`

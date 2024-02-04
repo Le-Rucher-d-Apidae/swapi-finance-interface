@@ -1,5 +1,5 @@
-// import { CURRENCY, Currency, WCURRENCY } from '@swapi-finance/sdk-local'
-import { Currency } from '@swapi-finance/sdk-local'
+// import { CURRENCY, Currency, WCURRENCY } from '@swapi-finance/sdk'
+import { Currency } from '@swapi-finance/sdk'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'

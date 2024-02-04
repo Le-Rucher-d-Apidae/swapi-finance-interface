@@ -22,7 +22,7 @@ import {
   POLYGON_MAINNET_HEX_CHAIN_ID,
   ChainExplorer,
   RPC_URL
-} from '@swapi-finance/sdk-local'
+} from '@swapi-finance/sdk'
 
 import Modal from '../Modal'
 import Option from './Option'

@@ -1,4 +1,4 @@
-import { Currency, /* CAVAX */ CURRENCY, Token } from '@swapi-finance/sdk-local'
+import { Currency, /* CAVAX */ CURRENCY, Token } from '@swapi-finance/sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === /* CAVAX */ CURRENCY) return /* 'AVAX' */ CURRENCY.symbol || '?'

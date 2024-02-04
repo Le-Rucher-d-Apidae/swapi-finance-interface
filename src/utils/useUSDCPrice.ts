@@ -1,7 +1,7 @@
 // TODO: Actually calculate price
 
-// import { ChainId, Currency, currencyEquals, JSBI, Price, WAVAX } from '@swapi-finance/sdk-local'
-import { ChainId, Currency, currencyEquals, JSBI, Price, WCURRENCY } from '@swapi-finance/sdk-local'
+// import { ChainId, Currency, currencyEquals, JSBI, Price, WAVAX } from '@swapi-finance/sdk'
+import { ChainId, Currency, currencyEquals, JSBI, Price, WCURRENCY } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
 import { DAI } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'

@@ -18,7 +18,7 @@ import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../../theme'
 
-import { ChainId, ChainLabel } from '@swapi-finance/sdk-local'
+import { ChainId, ChainLabel } from '@swapi-finance/sdk'
 
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};

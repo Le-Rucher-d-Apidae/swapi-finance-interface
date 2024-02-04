@@ -1,4 +1,4 @@
-import { ChainId, ChainLabel } from '@swapi-finance/sdk-local'
+import { ChainId, ChainLabel } from '@swapi-finance/sdk'
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import Modal from '../Modal'

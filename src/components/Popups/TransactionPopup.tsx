@@ -7,7 +7,7 @@ import { ExternalLink } from '../../theme/components'
 import { getEtherscanLink } from '../../utils'
 import { AutoColumn } from '../Column'
 import { AutoRow } from '../Row'
-import { ChainId, ChainLabel } from '@swapi-finance/sdk-local'
+import { ChainId, ChainLabel } from '@swapi-finance/sdk'
 
 const RowNoFlex = styled(AutoRow)`
   flex-wrap: nowrap;

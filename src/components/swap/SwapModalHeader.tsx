@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@swapi-finance/sdk-local'
+import { Trade, TradeType } from '@swapi-finance/sdk'
 import React, { useContext, useMemo } from 'react'
 import { ArrowDown, AlertTriangle } from 'react-feather'
 import { Text } from 'rebass'
