@@ -14,8 +14,9 @@ import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk'
 
-import { ChainId } from '@swapi-finance/sdk'
-import { SELF_TOKEN } from '../../constants'
+// import { ChainId } from '@swapi-finance/sdk'
+// import { SELF_TOKEN } from '../../constants'
+import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
