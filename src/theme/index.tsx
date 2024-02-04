@@ -133,7 +133,7 @@ export function colors(darkMode: boolean): Colors {
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',
 
     pageBackground: darkMode
-      ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%);`
+      ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%) linear-gradient(to top, transparent, #FFFFDD 100%) grey;`
       : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
 
     wrapperBackground: darkMode
