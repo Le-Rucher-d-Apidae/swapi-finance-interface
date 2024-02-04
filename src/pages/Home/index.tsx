@@ -22,7 +22,6 @@ const PageWrapper = styled(AutoColumn)`
   padding: 0px;
   width: 100%;
   display: block;
-  background: ${({ theme }) => theme.pageBackground};
 `
 
 const Section = styled(AutoColumn)`
@@ -125,7 +124,6 @@ export default function Home() {
     <>
       <PageWrapper>
         <Section>
-          {/* <Row border={'1px solid white'} display={'flex'}> */}
           <Row display={'flex'}>
             <TYPE.homeLarge color={theme.textHighlight2} style={{ display: 'inline-block' }}>
               <TYPE.homeLarge color={theme.textHighlight1} style={{ display: 'inline-block' }}>
@@ -141,12 +139,6 @@ export default function Home() {
             </TYPE.homeNormal>
 
             <Row display={'block'} padding={'20px 0px 0px 10px ;'}>
-              {/*
-               <ButtonBuy style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
-                Acheter des APT
-              </ButtonBuy>
-              <ButtonBuy style={{ display: 'inline-block' }}>Acheter des APT</ButtonBuy>
- */}
 
               <ButtonBuy2 style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
                 <Text fontWeight={500} fontSize={16}>
@@ -154,24 +146,12 @@ export default function Home() {
                 </Text>
               </ButtonBuy2>
 
-              {/* 
-              <ButtonPrimary
-                padding="8px"
-                borderRadius="8px"
-                as={Link}
-                to={`/`}
-                width="auto"
-                style={{ display: 'inline-block' }}
-              >
-              En savoir plus
-              </ButtonPrimary>
-*/}
-
               <CustomInternalLink id="info" to={'/todo'}>
                 {'En savoir plus'}
               </CustomInternalLink>
             </Row>
           </Row>
+
           <Row display={'block'} padding={'0px 0% 0px 0px ;'}>
             <AutoColumn gap="md" justify="flex-end">
               <BagTokenAnimated height={420} object-fit={'fill'} src={apidaeCoin} />{' '}
@@ -216,28 +196,51 @@ export default function Home() {
             <path d="M -346 48 C 174.985 46.1887 977.744 15.2453 1314 0 H -346 V 48 Z"></path>
           </StyledSVG>
         </LineSection>
-        <Section
-          style={{ display: 'block', padding: '50px 0px', background: theme.pageBottomBackground, height: '20px' }}
-        >
+        <Section style={{ display: 'block', padding: '50px 0px', height: '20px' }}>
           <Bottom style={{ display: 'block' }}>
             <AutoColumn gap="md" justify="flex-start">
-              Bottom 1
+              <TYPE.textBottom>Bottom 1</TYPE.textBottom>
             </AutoColumn>
             <AutoColumn gap="md" justify="flex-start">
-              Bottom 2
+              <TYPE.textBottom>Bottom 2</TYPE.textBottom>
             </AutoColumn>
             <AutoColumn gap="md" justify="flex-start">
-              Bottom 3
+              <TYPE.textBottom>Bottom 3</TYPE.textBottom>
             </AutoColumn>
           </Bottom>
         </Section>
-        <Section
-          style={{ display: 'block', padding: '50px 0px', background: theme.pageBottomBackground2, height: '20px' }}
-        >
+{/* 
+        <Section>
           <AutoColumn gap="md" justify="flex-start">
-            Bottom 4
+            <Grid>
+              <PaddedColumn>
+                Quantité en circulation
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Apport total
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Approvisionnement maximal
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Capitalisation
+                <TYPE.homeMedium color={theme.textHighlight2}>6,5 mille $</TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Total brûlé
+                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+              </PaddedColumn>
+              <PaddedColumn>
+                Émissions actuelles
+                <TYPE.homeMedium color={theme.textHighlight2}>0.095/bloc</TYPE.homeMedium>
+              </PaddedColumn>
+            </Grid>
           </AutoColumn>
         </Section>
+ */}
       </PageWrapper>
     </>
   )

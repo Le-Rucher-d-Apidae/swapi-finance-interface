@@ -64,6 +64,7 @@ export interface Colors {
   textInfoLink: Color
   poolCardBg1: Color
   infoCardBg1: Color
+  textBottom: Color
 }
 
 export interface Grids {

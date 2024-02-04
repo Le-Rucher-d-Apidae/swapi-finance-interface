@@ -133,16 +133,21 @@ export function colors(darkMode: boolean): Colors {
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',
 
     pageBackground: darkMode
-      ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%) linear-gradient(to top, transparent, #FFFFDD 100%) grey;`
-      : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+      // ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%) linear-gradient(to top, transparent, #FFFFDD 10%) red;`
+      // ? `linear-gradient(${dark1} 22%, ${yellow} 70%, ${'green'} 15%);`
+      // ? `linear-gradient(to top, green, transparent 15%) transparent;`
+      ? `linear-gradient(to top, ${darkPurple3}, ${dark1} 22%, ${darkPurple1}) transparent;`
+      // : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+      : `linear-gradient(to top, ${black}, ${yellow1} 22%, ${yellow2}) transparent;`,
 
     wrapperBackground: darkMode
       ? `linear-gradient(${purple2} 60%, ${purple1} 90%);`
       : `linear-gradient(${yellow2} 60%, ${yellow1} 90%);`,
 
     pageBottomBackground: darkMode
-      ? `linear-gradient(166.77deg, rgb(59, 65, 85) 0%, rgb(58, 48, 69) 100%);`
-      : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+      ? `linear-gradient(166.77deg, rgb(${purple1}) 0%, rgb(${purple2}) 100%);`
+      // : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+      : `linear-gradient(166.77deg, ${yellow1} 0%, black) 100%);`,
 
     pageBottomBackground2: darkMode ? darkPurple3 : darkPurple3,
 
@@ -154,9 +159,10 @@ export function colors(darkMode: boolean): Colors {
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
     textHighlight2: darkMode ? white : darkPurple2,
-    textInfoLink: darkMode ? darkYellow : darkYellow,
+    textInfoLink: darkMode ? darkYellow : brown,
     poolCardBg1: darkMode ? lightPurple : yellow2,
     infoCardBg1: darkMode ? purple1 : yellow1,
+    textBottom: darkMode ? lightPurple : white,
   }
 }
 
@@ -263,6 +269,9 @@ export const TYPE = {
   },
   text5(props: TextProps) {
     return <TextWrapper fontWeight={500} color={'text5'} {...props} />
+  },
+  textBottom(props: TextProps) {
+    return <TextWrapper fontWeight={500} color={'textBottom'} {...props} />
   }
 }
 
