@@ -22,6 +22,7 @@ const PageWrapper = styled(AutoColumn)`
   padding: 0px;
   width: 100%;
   display: block;
+  background: ${({ theme }) => theme.pageBackground};
 `
 
 const Section = styled(AutoColumn)`
@@ -58,17 +59,8 @@ const LineSection = styled(AutoColumn)`
   width: 100%;
   display: flex;
   position: absolute;
+  background: ${({ theme }) => theme.pageBottomBackground};
 `
-
-// const LineIcon = styled.div`
-//   opacity: 1;
-// `
-
-// const LineColor = styled(Line)`
-//   path {
-//     stroke: ${({ theme }) => theme.buttonClosePopup};
-//   }
-// `
 
 const StyledSVG = styled.svg<{ size: string; stroke?: string }>`
   height: ${({ size }) => size};
@@ -82,24 +74,6 @@ const StyledSVG = styled.svg<{ size: string; stroke?: string }>`
 const BagTokenAnimated = styled.img`
   animation: ${floatingImg} 8s infinite ease-in-out;
 `
-
-// const ButtonBuy = styled.button`
-//   height: 48px;
-//   background-color: ${({ theme }) => theme.primary5};
-//   border-radius: 0.5rem;
-//   padding: 0 1rem;
-//   font-size: 1rem;
-//   font-weight: 600;
-//   cursor: pointer;
-//   margin-right: 0.5rem;
-//   color: ${({ theme }) => theme.buttonLightText};
-//   &:hover {
-//     background-color: ${({ theme }) => darken(0.05, theme.primary5)};
-//   }
-//   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-//     margin-right: 0.5rem;
-//   `};
-// `
 
 const ButtonBuy2 = styled(ButtonSecondary)`
   height: 48px;
@@ -131,10 +105,18 @@ const Grid = styled.div`
   `};
 `
 
-export const PaddedColumn = styled(AutoColumn)`
+const PaddedColumn = styled(AutoColumn)`
   padding: 20px;
   padding-bottom: 12px;
   border-left: 1px solid ${({ theme }) => darken(0.5, theme.text1)};
+`
+
+const Bottom = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background: ${({ theme }) => theme.pageBottomBackground};
+  padding: 1rem;
 `
 
 export default function Home() {
@@ -234,6 +216,28 @@ export default function Home() {
             <path d="M -346 48 C 174.985 46.1887 977.744 15.2453 1314 0 H -346 V 48 Z"></path>
           </StyledSVG>
         </LineSection>
+        <Section
+          style={{ display: 'block', padding: '50px 0px', background: theme.pageBottomBackground, height: '20px' }}
+        >
+          <Bottom style={{ display: 'block' }}>
+            <AutoColumn gap="md" justify="flex-start">
+              Bottom 1
+            </AutoColumn>
+            <AutoColumn gap="md" justify="flex-start">
+              Bottom 2
+            </AutoColumn>
+            <AutoColumn gap="md" justify="flex-start">
+              Bottom 3
+            </AutoColumn>
+          </Bottom>
+        </Section>
+        <Section
+          style={{ display: 'block', padding: '50px 0px', background: theme.pageBottomBackground2, height: '20px' }}
+        >
+          <AutoColumn gap="md" justify="flex-start">
+            Bottom 4
+          </AutoColumn>
+        </Section>
       </PageWrapper>
     </>
   )

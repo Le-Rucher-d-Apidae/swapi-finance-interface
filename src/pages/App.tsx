@@ -34,6 +34,7 @@ const AppWrapper = styled.div`
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
+  background-color: ${({ theme }) => theme.pageBackground};
 `
 
 const HeaderWrapper = styled.div`

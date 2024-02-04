@@ -51,7 +51,9 @@ export interface Colors {
   polygonPurple: Color
 
   pageBackground: Color
-  wrapperBackground: darkMode
+  wrapperBackground: Color
+  pageBottomBackground: Color
+  pageBottomBackground2: Color
 
   buttonLightBackground: Color
   buttonLightText: Color
@@ -60,6 +62,8 @@ export interface Colors {
   textHighlight1: Color
   textHighlight2: Color
   textInfoLink: Color
+  poolCardBg1: Color
+  infoCardBg1: Color
 }
 
 export interface Grids {

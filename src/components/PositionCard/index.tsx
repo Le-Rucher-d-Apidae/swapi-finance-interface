@@ -18,7 +18,8 @@ import { CardNoise } from '../pool/styled'
 
 import { useColor } from '../../hooks/useColor'
 
-import Card, { GreyCard, LightCard } from '../Card'
+// import Card, { GreyCard, LightCard } from '../Card'
+import Card, { PoolInfoCard, LightCard } from '../Card'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
@@ -33,13 +34,13 @@ export const FixedHeightRow = styled(RowBetween)`
 export const HoverCard = styled(Card)`
   border: 1px solid transparent;
   :hover {
-    border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
+    border: 1px solid ${({ theme }) => darken(0.1, theme.poolCardBg1)};
   }
 `
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   border: none;
   background: ${({ theme, bgColor }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `};
+    `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.poolCardBg1} 100%) `};
   position: relative;
   overflow: hidden;
 `
@@ -81,7 +82,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
   return (
     <>
       {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
-        <GreyCard border={border}>
+        <PoolInfoCard border={border}>
           <AutoColumn gap="12px">
             <FixedHeightRow>
               <RowFixed>
@@ -142,7 +143,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
               </FixedHeightRow>
             </AutoColumn>
           </AutoColumn>
-        </GreyCard>
+        </PoolInfoCard>
       ) : (
         <LightCard>
           <TYPE.subHeader style={{ textAlign: 'center' }}>

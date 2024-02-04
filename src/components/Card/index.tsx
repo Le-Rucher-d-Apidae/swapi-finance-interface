@@ -18,9 +18,16 @@ export const LightCard = styled(Card)`
   background-color: ${({ theme }) => theme.bg1};
 `
 
+// Pool card position info, Swap info card (insufficient liquidity)
 export const GreyCard = styled(Card)`
   background-color: ${({ theme }) => theme.bg3};
 `
+
+const InfoCard = styled(Card)`
+  background-color: ${({ theme }) => theme.infoCardBg1};
+`
+export const PoolInfoCard = styled(InfoCard)``
+export const SwapInfoCard = styled(InfoCard)``
 
 export const OutlineCard = styled(Card)`
   border: 1px solid ${({ theme }) => theme.bg3};

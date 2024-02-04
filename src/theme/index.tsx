@@ -45,7 +45,6 @@ const yellow1 = '#f4da85'
 const yellow2 = '#dabe39'
 
 const dark1 = '#08060b'
-// const dark2 = '#27262c'
 
 const darkYellow = '#ffba00'
 
@@ -54,6 +53,8 @@ const lightPurple = '#b8add2'
 const darkPurple1 = '#201335' // 9, 7, 12
 
 const darkPurple2 = '#280d5f' // 40, 13, 95
+const darkPurple3 = '#27262c' // 39, 38, 44
+
 const purple1 = '#3b4155' // 59, 65, 85
 const purple2 = '#3a3045' // 58, 48, 69
 
@@ -139,6 +140,12 @@ export function colors(darkMode: boolean): Colors {
       ? `linear-gradient(${purple2} 60%, ${purple1} 90%);`
       : `linear-gradient(${yellow2} 60%, ${yellow1} 90%);`,
 
+    pageBottomBackground: darkMode
+      ? `linear-gradient(166.77deg, rgb(59, 65, 85) 0%, rgb(58, 48, 69) 100%);`
+      : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+
+    pageBottomBackground2: darkMode ? darkPurple3 : darkPurple3,
+
     buttonLightBackground: darkMode ? darkYellow : darkYellow,
     buttonLightText: darkMode ? white : white,
 
@@ -147,7 +154,9 @@ export function colors(darkMode: boolean): Colors {
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
     textHighlight2: darkMode ? white : darkPurple2,
-    textInfoLink: darkMode ? darkYellow : darkYellow
+    textInfoLink: darkMode ? darkYellow : darkYellow,
+    poolCardBg1: darkMode ? lightPurple : yellow2,
+    infoCardBg1: darkMode ? purple1 : yellow1,
   }
 }
 
