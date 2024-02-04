@@ -1,0 +1,158 @@
+.jXfjpx :nth-child(2) {
+    animation: 3s ease-in-out 1s infinite normal none running bRTaPl;
+}
+
+.jXfjpx :nth-child(2) {
+    animation: 3s ease-in-out 1s infinite normal none running bRTaPl;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: bRTaPl;
+    animation-timeline: auto;
+    animation-range-start: normal;
+    animation-range-end: normal;
+}
+
+
+.box {
+  animation: MoveUpDown 1s linear infinite;}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 30px;
+  }
+}
+
+
+
+<style>
+	div.at-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+	.at-item {
+		width: 100px; height: 100px; background-color:#ffe672;
+
+		animation-name: vibrate-slow;
+		animation-duration: 3.2s;
+		animation-timing-function: ease-in;
+		animation-delay: 0s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate-reverse;
+		animation-fill-mode: none;
+
+		/* shorthand
+		animation: vibrate-slow 3.2s ease-in 0s infinite alternate-reverse none;*/
+	}
+	@keyframes vibrate-slow {
+
+		0% {
+			transform:translate(0);
+		}
+		20% {
+			transform:translate(4px,-4px);
+		}
+		40% {
+			transform:translate(4px,4px);
+		}
+		60% {
+			transform:translate(-4px,4px);
+		}
+		80% {
+			transform:translate(-4px,-4px);
+		}
+		100% {
+			transform:translate(0);
+		}
+	}
+</style>
+<div class='at-container'>
+	<div class='at-item' ></div>
+</div>
+
+
+
+
+
+LIGHT
+
+fond
+background-color: rgb(244, 218, 133) #f4da85
+dégradé fond
+background: linear-gradient(rgb(244, 218, 133) 22%, rgb(254, 218, 135) 100%);
+
+popup
+background: rgb(218, 190, 57); #dabe39
+dégradé bandeau haut popup
+background: linear-gradient(111.68deg, rgb(244, 218, 133) 22%, rgb(254, 218, 133) 100%);
+
+couleur bouton
+background-color: rgb(255, 186, 0);
+transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+
+connexion
+texte white
+background-color: rgb(255, 186, 0);
+transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+
+texte accueil  (bleu sombre) #280d5f
+color: rgb(40, 13, 95);
+
+texte accueil (marron) #51331b
+color: rgb(81, 51, 27);
+
+
+
+DARK
+
+fond
+background-color: rgb(8, 6, 11); #08060b
+
+connexion
+texte white
+background-color: rgb(255, 186, 0);
+transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+
+
+dégradé
+background: linear-gradient(rgb(9, 7, 12) 22%, rgb(32, 19, 53) 100%);
+
+popup
+
+texte rubrique
+color: yellow;
+
+background: rgb(39, 38, 44);
+dégradé bandeau haut popup
+box-shadow: rgba(14, 14, 44, 0.1) 0px 20px 36px -8px, rgba(0, 0, 0, 0.05) 0px 1px 1px;
+
+couleur bouton
+transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+
+bouton actif
+texte white
+fond background-color: rgb(255, 186, 0);
+transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+
+bouton inactif
+texte color: rgb(255, 186, 0);
+fond background-color: rgb(53, 53, 71);
+transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+
+texte accueil
+color: rgb(184, 173, 210); #b8add2
+
+texte mis en avant
+color: yellow;
+
+
+background: linear-gradient(166.77deg, rgb(59, 65, 85) 0%, rgb(58, 48, 69) 100%);
