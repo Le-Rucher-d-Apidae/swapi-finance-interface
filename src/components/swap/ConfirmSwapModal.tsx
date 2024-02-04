@@ -1,4 +1,4 @@
-import { currencyEquals, Trade } from '@swapi-finance/sdk-local'
+import { currencyEquals, Trade } from '@swapi-finance/sdk'
 import React, { useCallback, useMemo } from 'react'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,

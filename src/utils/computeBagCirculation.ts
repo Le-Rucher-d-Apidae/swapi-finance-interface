@@ -1,4 +1,4 @@
-import { JSBI, Token, TokenAmount } from '@swapi-finance/sdk-local'
+import { JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
 
 // export async function computeBagCirculation(
 //   bag: Token,

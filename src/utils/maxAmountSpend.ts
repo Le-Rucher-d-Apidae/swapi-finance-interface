@@ -1,4 +1,4 @@
-import { CurrencyAmount, /* CAVAX */ CURRENCY, JSBI } from '@swapi-finance/sdk-local'
+import { CurrencyAmount, /* CAVAX */ CURRENCY, JSBI } from '@swapi-finance/sdk'
 import { MIN_ETH } from '../constants'
 
 /**

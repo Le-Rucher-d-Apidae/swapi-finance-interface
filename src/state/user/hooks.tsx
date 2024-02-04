@@ -5,7 +5,7 @@ import {
   LIQUIDITY_TOKEN_PRECISION,
   LIQUIDITY_TOKEN_SYMBOL,
   LIQUIDITY_TOKEN_NAME
-} from '@swapi-finance/sdk-local'
+} from '@swapi-finance/sdk'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'

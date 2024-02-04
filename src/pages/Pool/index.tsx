@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Pair } from '@swapi-finance/sdk-local'
+import { Pair } from '@swapi-finance/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 
@@ -17,7 +17,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
-import { ChainId } from '@swapi-finance/sdk-local'
+import { ChainId } from '@swapi-finance/sdk'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/pool/styled'
 
 const PageWrapper = styled(AutoColumn)`

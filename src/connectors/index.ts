@@ -2,7 +2,7 @@ import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@pangolindex/web3-react-injected-connector'
 
 import { NetworkConnector } from './NetworkConnector'
-import { ChainId } from '@swapi-finance/sdk-local'
+import { ChainId } from '@swapi-finance/sdk'
 
 const NETWORK_URL = process.env.REACT_APP_NETWORK_URL
 

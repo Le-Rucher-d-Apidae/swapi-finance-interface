@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from 'rebass'
-// import { ChainId, Currency, currencyEquals, CAVAX, Token } from '@swapi-finance/sdk-local'
-import { ChainId, Currency, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk-local'
+// import { ChainId, Currency, currencyEquals, CAVAX, Token } from '@swapi-finance/sdk'
+import { ChainId, Currency, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk'
 import styled from 'styled-components'
 
 import { SUGGESTED_BASES } from '../../constants'

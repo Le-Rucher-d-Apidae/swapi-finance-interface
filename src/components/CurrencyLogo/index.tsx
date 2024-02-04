@@ -1,5 +1,5 @@
-// import { Currency, CAVAX, Token, ChainId } from '@swapi-finance/sdk-local'
-import { Currency, CURRENCY, Token, ChainId } from '@swapi-finance/sdk-local'
+// import { Currency, CAVAX, Token, ChainId } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, Token, ChainId } from '@swapi-finance/sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 

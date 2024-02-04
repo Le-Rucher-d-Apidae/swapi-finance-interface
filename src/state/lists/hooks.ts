@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@swapi-finance/sdk-local'
+import { ChainId, Token } from '@swapi-finance/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'

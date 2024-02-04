@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-// import { Currency, currencyEquals, CAVAX, TokenAmount, WAVAX } from '@swapi-finance/sdk-local'
-import { Currency, currencyEquals, CURRENCY, TokenAmount, WCURRENCY } from '@swapi-finance/sdk-local'
+// import { Currency, currencyEquals, CAVAX, TokenAmount, WAVAX } from '@swapi-finance/sdk'
+import { Currency, currencyEquals, CURRENCY, TokenAmount, WCURRENCY } from '@swapi-finance/sdk'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 // import ReactGA from 'react-ga'
@@ -39,7 +39,7 @@ import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
-import { ChainId } from '@swapi-finance/sdk-local'
+import { ChainId } from '@swapi-finance/sdk'
 
 export default function AddLiquidity({
   match: {

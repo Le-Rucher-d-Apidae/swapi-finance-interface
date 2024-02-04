@@ -1,5 +1,5 @@
-// import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk-local'
-import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk-local'
+// import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk'
+import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk'
 // import React, { useState, useEffect } from 'react'
 import React, { useState } from 'react'
 import { useEffect } from 'react'

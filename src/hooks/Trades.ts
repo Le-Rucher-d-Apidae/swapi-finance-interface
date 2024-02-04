@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Pair, Token, Trade } from '@swapi-finance/sdk-local'
+import { Currency, CurrencyAmount, Pair, Token, Trade } from '@swapi-finance/sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 

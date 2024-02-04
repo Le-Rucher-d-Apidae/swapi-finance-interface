@@ -1,4 +1,4 @@
-import { Token } from '@swapi-finance/sdk-local'
+import { Token } from '@swapi-finance/sdk'
 import { transparentize } from 'polished'
 import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
@@ -12,7 +12,7 @@ import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 import { AlertTriangle } from 'react-feather'
 import { ButtonError } from '../Button'
-import { ChainId, ChainLabel } from '@swapi-finance/sdk-local'
+import { ChainId, ChainLabel } from '@swapi-finance/sdk'
 
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.bg3)};

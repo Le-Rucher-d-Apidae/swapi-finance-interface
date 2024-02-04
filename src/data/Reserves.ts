@@ -1,6 +1,6 @@
-import { JSBI, TokenAmount, Pair, Currency, ChainId } from '@swapi-finance/sdk-local'
+import { JSBI, TokenAmount, Pair, Currency, ChainId } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
-import { abi as IBaguettePairABI } from '@swapi-finance/contracts-local/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
+import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 

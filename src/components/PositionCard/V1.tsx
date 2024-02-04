@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
-// import { Token, TokenAmount, WAVAX } from '@swapi-finance/sdk-local'
-import { Token, TokenAmount, WCURRENCY, CURRENCY } from '@swapi-finance/sdk-local'
+// import { Token, TokenAmount, WAVAX } from '@swapi-finance/sdk'
+import { Token, TokenAmount, WCURRENCY, CURRENCY } from '@swapi-finance/sdk'
 
 import { Text } from 'rebass'
 import { AutoColumn } from '../Column'

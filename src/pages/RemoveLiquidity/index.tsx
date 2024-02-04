@@ -1,8 +1,8 @@
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-// import { Currency, currencyEquals, CAVAX, Percent, WAVAX } from '@swapi-finance/sdk-local'
-import { Currency, currencyEquals, CURRENCY, Percent, WCURRENCY } from '@swapi-finance/sdk-local'
+// import { Currency, currencyEquals, CAVAX, Percent, WAVAX } from '@swapi-finance/sdk'
+import { Currency, currencyEquals, CURRENCY, Percent, WCURRENCY } from '@swapi-finance/sdk'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { ArrowDown, Plus } from 'react-feather'
 // import ReactGA from 'react-ga'
@@ -43,7 +43,7 @@ import { Field } from '../../state/burn/actions'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, LIQUIDITY_TOKEN_SYMBOL, LIQUIDITY_TOKEN_NAME } from '@swapi-finance/sdk-local'
+import { ChainId, LIQUIDITY_TOKEN_SYMBOL, LIQUIDITY_TOKEN_NAME } from '@swapi-finance/sdk'
 
 export default function RemoveLiquidity({
   history,

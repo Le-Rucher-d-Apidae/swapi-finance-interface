@@ -3,7 +3,7 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { abi as IBaguetteRouterABI } from '@swapi-finance/contracts-local/artifacts/contracts/swapi-periphery/interfaces/IBaguetteRouter.sol/IBaguetteRouter.json'
+import { abi as IBaguetteRouterABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-periphery/interfaces/IBaguetteRouter.sol/IBaguetteRouter.json'
 import { ROUTER_ADDRESS } from '../constants'
 import {
   ChainId,
@@ -14,7 +14,7 @@ import {
   Currency,
   /* CAVAX */ CURRENCY,
   ChainExplorer
-} from '@swapi-finance/sdk-local'
+} from '@swapi-finance/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false

@@ -2,7 +2,7 @@ import { useState, useLayoutEffect, useContext } from 'react'
 import { shade } from 'polished'
 import Vibrant from 'node-vibrant'
 import { hex } from 'wcag-contrast'
-import { Token } from '@swapi-finance/sdk-local'
+import { Token } from '@swapi-finance/sdk'
 // import { BAG } from '../constants'
 import { SELF_TOKEN } from '../constants'
 import {
