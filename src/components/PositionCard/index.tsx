@@ -304,8 +304,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 padding="8px"
                 borderRadius="8px"
                 as={Link}
-                width="48%"
-                // to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+                width="48%" // to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
                 to={`/remove/${chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)}/${
                   chainId && currency1 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency1)
                 }`}

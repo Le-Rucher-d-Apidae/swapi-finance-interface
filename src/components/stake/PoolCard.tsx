@@ -2,7 +2,8 @@ import React from 'react'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import styled from 'styled-components'
-import { TYPE, StyledInternalLink } from '../../theme'
+// import { TYPE, StyledInternalLink } from '../../theme'
+import { TYPE, InternalLink } from '../../theme'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import CurrencyLogo from '../CurrencyLogo'
 import { JSBI } from '@swapi-finance/sdk'
@@ -11,7 +12,8 @@ import { StakingInfo } from '../../state/stake/hooks'
 import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
-import { Break, CardNoise, CardBGImage } from './styled'
+// import { Break, CardNoise, CardBGImage } from './styled'
+import { Break, CardNoise } from './styled'
 // import { UNDEFINED, ZERO_ADDRESS } from '../../constants'
 import { UNDEFINED } from '../../constants'
 import { Fraction } from '@swapi-finance/sdk'
@@ -119,7 +121,8 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
   return (
     <Wrapper showBackground={isStaking} bgColor={backgroundColor}>
-      <CardBGImage desaturate />
+
+      {/* <CardBGImage desaturate /> */}
       <CardNoise />
 
       <TopSection>
@@ -129,7 +132,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
               {currency0?.symbol}-{currency1?.symbol}
             </TYPE.white>
-            <StyledInternalLink
+            <InternalLink
               // to={`/mill/${currencyId(currency0)}/${currencyId(currency1)}`}
               to={`/stake-farm/${currencyId(currency0)}/${currencyId(currency1)}`}
               style={{ width: '100%' }}
@@ -137,7 +140,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
               <ButtonPrimary padding="8px" borderRadius="8px">
                 {isStaking ? 'Manage' : 'Deposit'}
               </ButtonPrimary>
-            </StyledInternalLink>
+            </InternalLink>
           </>
         )}
         {!isPair && (
@@ -146,14 +149,11 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
               {currency0.symbol}
             </TYPE.white>
-            <StyledInternalLink
-              to={`/oven/${currencyId(currency0)}/${currencyId(rewardCurrency)}`}
-              style={{ width: '100%' }}
-            >
+            <InternalLink to={`/oven/${currencyId(currency0)}/${currencyId(rewardCurrency)}`} style={{ width: '100%' }}>
               <ButtonPrimary padding="8px" borderRadius="8px">
                 {isStaking ? 'Manage' : 'Deposit'}
               </ButtonPrimary>
-            </StyledInternalLink>
+            </InternalLink>
           </>
         )}
       </TopSection>

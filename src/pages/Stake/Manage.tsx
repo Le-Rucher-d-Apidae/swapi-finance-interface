@@ -160,9 +160,7 @@ export function ManagePair({
               {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
               }`} */}
-              {`${valueOfTotalStakedAmount?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                '$'
-              }`}
+              {`${valueOfTotalStakedAmount?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${'$'}`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>

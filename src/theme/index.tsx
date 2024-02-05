@@ -47,6 +47,7 @@ const yellow2 = '#dabe39'
 const dark1 = '#08060b'
 
 const darkYellow = '#ffba00' // 255, 186, 0
+const darkYellow2 = '#ffb300' // 255, 179, 0
 
 const brown = '#51331b' // 81, 51, 27
 const lightPurple = '#b8add2' // 184, 173, 210
@@ -94,7 +95,8 @@ export function colors(darkMode: boolean): Colors {
     //specialty colors
     // modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
     modalBgOverlay: darkMode ? 'rgba(184, 173, 210,.425)' : 'rgba(255, 255, 255,0.3)',
-    advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
+    // advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
+    advancedBG: darkMode ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
     // primary1: darkMode ? '#2172E5' : '#EAC178',
@@ -133,12 +135,12 @@ export function colors(darkMode: boolean): Colors {
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',
 
+    // pageBackground: darkMode
+    // ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%) linear-gradient(to top, transparent, #FFFFDD 10%) red;`
+    // : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
+
     pageBackground: darkMode
-      // ? `linear-gradient(${dark1} 22%, ${darkPurple1} 100%) linear-gradient(to top, transparent, #FFFFDD 10%) red;`
-      // ? `linear-gradient(${dark1} 22%, ${yellow} 70%, ${'green'} 15%);`
-      // ? `linear-gradient(to top, green, transparent 15%) transparent;`
       ? `linear-gradient(to top, ${darkPurple3}, ${dark1} 22%, ${darkPurple1}) transparent;`
-      // : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
       : `linear-gradient(to top, ${black}, ${yellow1} 22%, ${yellow2}) transparent;`,
 
     wrapperBackground: darkMode
@@ -147,7 +149,6 @@ export function colors(darkMode: boolean): Colors {
 
     pageBottomBackground: darkMode
       ? `linear-gradient(166.77deg, rgb(${purple1}) 0%, rgb(${purple2}) 100%);`
-      // : `linear-gradient(${yellow1} 22%, ${yellow2} 100%);`,
       : `linear-gradient(166.77deg, ${yellow1} 0%, black) 100%);`,
 
     pageBottomBackground2: darkMode ? darkPurple3 : darkPurple3,
@@ -156,6 +157,20 @@ export function colors(darkMode: boolean): Colors {
     buttonLightText: darkMode ? white : white,
 
     buttonClosePopup: darkMode ? darkYellow : brown,
+
+    buttonBalanceMaxBg: darkMode ? lightPurple : darkYellow,
+    buttonBalanceMaxText: darkMode ? white : brown,
+    buttonBalanceMaxBorder: darkMode ? lightPurple : grey,
+    buttonBalanceMaxBorderFocus: darkMode ? white : white,
+
+    buttonPrimaryText: darkMode ? white : white,
+    buttonPrimaryTextDisabled: darkMode ? white : white,
+    buttonPrimaryBg: darkMode ? lightPurple : darkYellow,
+    buttonPrimaryHover: darkMode ? lightPurple : darkYellow2,
+    buttonPrimaryFocus: darkMode ? lightPurple : darkYellow2,
+    buttonPrimaryBorder: darkMode ? lightPurple : darkYellow2,
+    buttonPrimaryDisabled: darkMode ? lightPurple : grey,
+
 
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
@@ -168,8 +183,7 @@ export function colors(darkMode: boolean): Colors {
     pollingDot: darkMode ? lightPurple : white,
     pollingSpinner: darkMode ? lightPurple : white,
     internalLink: darkMode ? lightPurple : black,
-    modalBG: darkMode ? darkPurple3 : yellow1,
-
+    modalBG: darkMode ? darkPurple3 : yellow1
   }
 }
 

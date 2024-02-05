@@ -59,10 +59,25 @@ export interface Colors {
   buttonLightBackground: Color
   buttonLightText: Color
   buttonClosePopup: Color
+
+  buttonBalanceMaxBg: Color
+  buttonBalanceMaxText: Color
+  buttonBalanceMaxBorder: Color
+  buttonBalanceMaxBorderFocus: Color
+
+  buttonPrimaryText: Color
+  buttonPrimaryTextDisabled: Color
+  buttonPrimaryBg: Color
+  buttonPrimaryHover: Color
+  buttonPrimaryFocus: Color
+  buttonPrimaryBorder: Color
+  buttonPrimaryDisabled: Color
+
   textPopupHeader: Color
   textHighlight1: Color
   textHighlight2: Color
   textInfoLink: Color
+
   poolCardBg1: Color
   infoCardBg1: Color
   textBottom: Color
