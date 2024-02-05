@@ -86,6 +86,8 @@ export interface Colors {
   pollingSpinner: Color
   internalLink: Color
   modalBG: Color
+
+  scrollbarColor: Color
 }
 
 export interface Grids {

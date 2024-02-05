@@ -171,7 +171,6 @@ export function colors(darkMode: boolean): Colors {
     buttonPrimaryBorder: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryDisabled: darkMode ? lightPurple : grey,
 
-
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
     textHighlight2: darkMode ? white : darkPurple2,
@@ -183,7 +182,10 @@ export function colors(darkMode: boolean): Colors {
     pollingDot: darkMode ? lightPurple : white,
     pollingSpinner: darkMode ? lightPurple : white,
     internalLink: darkMode ? lightPurple : black,
-    modalBG: darkMode ? darkPurple3 : yellow1
+    modalBG: darkMode ? darkPurple3 : yellow1,
+
+    scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`
+    // scrollbarColor: 'red blue'
   }
 }
 
@@ -365,9 +367,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
-
 }
 `
+
+// scrollbar-color: #007 #FF0000;
 
 // export const ThemedGlobalStyle = createGlobalStyle`
 // html {
@@ -391,6 +394,7 @@ export const ThemedGlobalStyle = createGlobalStyle`
 html {
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg2};
+  scrollbar-color: ${({ theme }) => ( theme.scrollbarColor )};
 }
 body {
   min-height: 100vh;

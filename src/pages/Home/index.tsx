@@ -22,11 +22,17 @@ const PageWrapper = styled(AutoColumn)`
   padding: 0px;
   width: 100%;
   display: block;
+  scrollbar-color: red red;
 `
 
 const Section = styled(AutoColumn)`
   padding: 20px;
   width: 100%;
+  display: flex;
+`
+
+const Section2 = styled(AutoColumn)`
+  width: 150%;
   display: flex;
 `
 
@@ -56,12 +62,13 @@ const floatingImg = keyframes`
 const LineSection = styled(AutoColumn)`
   padding: 0px;
   width: 100%;
+  height: 100%;
   display: flex;
-  position: absolute;
   background: ${({ theme }) => theme.pageBottomBackground};
 `
-
 const StyledSVG = styled.svg<{ size: string; stroke?: string }>`
+  display: flex;
+  overflow: hidden;
   height: ${({ size }) => size};
   width: ${({ size }) => size};
   path {
@@ -139,7 +146,6 @@ export default function Home() {
             </TYPE.homeNormal>
 
             <Row display={'block'} padding={'20px 0px 0px 10px ;'}>
-
               <ButtonBuy2 style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
                 <Text fontWeight={500} fontSize={16}>
                   Acheter des APT
@@ -191,11 +197,13 @@ export default function Home() {
             </Grid>
           </AutoColumn>
         </Section>
-        <LineSection style={{ width: '140%' }}>
-          <StyledSVG viewBox="0 0 1660 48" xmlns="http://www.w3.org/2000/svg" size={'140%'}>
-            <path d="M -346 48 C 174.985 46.1887 977.744 15.2453 1314 0 H -346 V 48 Z"></path>
-          </StyledSVG>
-        </LineSection>
+        <Section2>
+          <LineSection>
+            <StyledSVG viewBox="0 0 1660 48" xmlns="http://www.w3.org/2000/svg" size={'100%'}>
+              <path d="M -346 48 C 174.985 46.1887 977.744 15.2453 1314 0 H -346 V 48 Z"></path>
+            </StyledSVG>
+          </LineSection>
+        </Section2>
         <Section style={{ display: 'block', padding: '50px 0px', height: '20px' }}>
           <Bottom style={{ display: 'block' }}>
             <AutoColumn gap="md" justify="flex-start">
@@ -209,7 +217,7 @@ export default function Home() {
             </AutoColumn>
           </Bottom>
         </Section>
-{/* 
+        {/* 
         <Section>
           <AutoColumn gap="md" justify="flex-start">
             <Grid>

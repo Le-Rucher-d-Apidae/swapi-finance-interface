@@ -36,6 +36,7 @@ const AppWrapper = styled.div`
   overflow-x: hidden;
   background-color: ${({ theme }) => theme.pageBackground};
 `
+//   scrollbar-color: ${({ theme }) => theme.scrollbarColor} ${({ theme }) => theme.scrollbarColor};
 
 const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
