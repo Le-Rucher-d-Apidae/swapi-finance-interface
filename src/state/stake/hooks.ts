@@ -241,7 +241,7 @@ export const STAKING_REWARDS_INFO: {
   }[]
 } = {
   [ChainId.MUMBAI]: [
-    // Mill = Stake
+    // Mill = Farm
     // {
     //   tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
     //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
