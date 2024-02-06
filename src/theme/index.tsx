@@ -51,6 +51,9 @@ const darkYellow2 = '#ffb300' // 255, 179, 0
 
 const brown = '#51331b' // 81, 51, 27
 const lightPurple = '#b8add2' // 184, 173, 210
+const lightPurple2 = '#a297b8' // 162, 151, 184
+const lightPurple3 = '#b8abd1' // 184, 171, 209
+
 const darkPurple1 = '#201335' // 9, 7, 12
 
 const darkPurple2 = '#280d5f' // 40, 13, 95
@@ -58,6 +61,7 @@ const darkPurple3 = '#27262c' // 39, 38, 44
 
 const purple1 = '#3b4155' // 59, 65, 85
 const purple2 = '#3a3045' // 58, 48, 69
+const purple3 = '#4d418e' // 77, 65, 142
 
 const grey = '#888D9B'
 
@@ -158,13 +162,14 @@ export function colors(darkMode: boolean): Colors {
 
     buttonClosePopup: darkMode ? darkYellow : brown,
 
-    buttonBalanceMaxBg: darkMode ? lightPurple : darkYellow,
+    buttonBalanceMaxBg: darkMode ? lightPurple3 : darkYellow,
     buttonBalanceMaxText: darkMode ? white : brown,
     buttonBalanceMaxBorder: darkMode ? lightPurple : grey,
     buttonBalanceMaxBorderFocus: darkMode ? white : white,
 
     buttonPrimaryText: darkMode ? white : white,
     buttonPrimaryTextDisabled: darkMode ? white : white,
+    // buttonPrimaryBg: darkMode ? lightPurple : darkYellow,
     buttonPrimaryBg: darkMode ? lightPurple : darkYellow,
     buttonPrimaryHover: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryFocus: darkMode ? lightPurple : darkYellow2,
@@ -175,14 +180,16 @@ export function colors(darkMode: boolean): Colors {
     textHighlight1: darkMode ? yellow : brown,
     textHighlight2: darkMode ? white : darkPurple2,
     textInfoLink: darkMode ? darkYellow : brown,
-    poolCardBg1: darkMode ? lightPurple : yellow2,
+    poolCardBg1: darkMode ? lightPurple2 : yellow2,
     infoCardBg1: darkMode ? purple1 : yellow1,
     textBottom: darkMode ? lightPurple : white,
     pollingText: darkMode ? lightPurple : white,
     pollingDot: darkMode ? lightPurple : white,
     pollingSpinner: darkMode ? lightPurple : white,
     internalLink: darkMode ? lightPurple : black,
-    modalBG: darkMode ? darkPurple3 : yellow1,
+    modalBG: darkMode ? purple3 : yellow1,
+    InputPanelBG: darkMode ? purple3 : yellow2,
+    InputPanelInputFieldBG: darkMode ? darkPurple1 : yellow1,
 
     scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`
     // scrollbarColor: 'red blue'

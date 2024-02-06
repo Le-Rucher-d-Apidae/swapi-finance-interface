@@ -86,6 +86,8 @@ export interface Colors {
   pollingSpinner: Color
   internalLink: Color
   modalBG: Color
+  InputPanelBG: Color
+  InputPanelInputFieldBG: Color
 
   scrollbarColor: Color
 }

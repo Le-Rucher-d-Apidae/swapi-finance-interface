@@ -204,7 +204,7 @@ export default function SettingsTab() {
               deadline={ttl}
               setDeadline={setTtl}
             />
-            <Text fontWeight={600} fontSize={14}>
+            <Text color={theme.textPopupHeader} fontWeight={600} fontSize={14}>
               Interface Settings
             </Text>
             <RowBetween>
