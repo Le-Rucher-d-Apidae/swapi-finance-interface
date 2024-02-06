@@ -15,14 +15,7 @@ import { useModalOpen, useWalletModalToggle } from '../../state/application/hook
 import { ExternalLink } from '../../theme'
 import { ButtonPrimary } from '../../components/Button'
 import AccountDetails from '../AccountDetails'
-import {
-  ChainLabel,
-  ChainId,
-  CURRENCY,
-  POLYGON_MAINNET_HEX_CHAIN_ID,
-  ChainExplorer,
-  RPC_URL
-} from '@swapi-finance/sdk'
+import { ChainLabel, ChainId, CURRENCY, POLYGON_MAINNET_HEX_CHAIN_ID, ChainExplorer, RPC_URL } from '@swapi-finance/sdk'
 
 import Modal from '../Modal'
 import Option from './Option'

@@ -121,7 +121,6 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
   return (
     <Wrapper showBackground={isStaking} bgColor={backgroundColor}>
-
       {/* <CardBGImage desaturate /> */}
       <CardNoise />
 

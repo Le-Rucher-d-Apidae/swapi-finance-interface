@@ -394,7 +394,7 @@ export const ThemedGlobalStyle = createGlobalStyle`
 html {
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg2};
-  scrollbar-color: ${({ theme }) => ( theme.scrollbarColor )};
+  scrollbar-color: ${({ theme }) => theme.scrollbarColor};
 }
 body {
   min-height: 100vh;
