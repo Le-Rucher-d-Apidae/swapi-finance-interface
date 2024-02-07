@@ -1,12 +1,5 @@
 // import { ChainId, JSBI, Percent, Token, WAVAX } from '@swapi-finance/sdk'
-import {
-  ChainId,
-  JSBI,
-  Percent,
-  Token,
-  WCURRENCY,
-  FACTORY_ADDRESS as SDK_FACTORY_ADDRESS
-} from '@swapi-finance/sdk'
+import { ChainId, JSBI, Percent, Token, WCURRENCY, FACTORY_ADDRESS as SDK_FACTORY_ADDRESS } from '@swapi-finance/sdk'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
