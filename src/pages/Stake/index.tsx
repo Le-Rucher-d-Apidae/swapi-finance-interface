@@ -96,9 +96,7 @@ export default function Stake() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>
-                  Welcome to the baking oven. Stake tokens to bake new fresh Baguettes
-                </TYPE.white>
+                <TYPE.white fontWeight={600}>Welcome to the staking. Stake tokens to receive new Apidea</TYPE.white>
               </RowBetween>
               <RowBetween>
                 {/* <TYPE.white fontSize={14}>Deposit your tokens to receive BAG.</TYPE.white> */}
