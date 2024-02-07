@@ -14,6 +14,7 @@ import AddLiquidity from './AddLiquidity'
 // import Mill from './Mill'
 import StakePool from './StakePool'
 // import Oven from './Oven'
+import Stake from './Stake'
 import { ManagePair } from './StakePool/Manage'
 // import { ManageSingle } from './Oven/Manage'
 import {
@@ -92,6 +93,7 @@ export default function App() {
               {/* <Route exact strict path="/mill" component={Mill} /> */}
               <Route exact strict path="/stake-pool" component={StakePool} />
               {/* <Route exact strict path="/oven" component={Oven} /> */}
+              <Route exact strict path="/stake" component={Stake} />
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />

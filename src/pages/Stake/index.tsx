@@ -36,7 +36,8 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
-export default function Oven() {
+// export default function Oven() {
+export default function Stake() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.SINGLE)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()

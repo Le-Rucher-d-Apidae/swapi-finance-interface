@@ -241,7 +241,7 @@ export const STAKING_REWARDS_INFO: {
   }[]
 } = {
   [ChainId.MUMBAI]: [
-    // Mill = Farm
+    // Mill = Stake-Farm
     // {
     //   tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
     //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
@@ -279,7 +279,7 @@ export const STAKING_REWARDS_INFO: {
     //   stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
     //   autocompoundingAddress: ZERO_ADDRESS
     // }
-    // Oven = StakePool
+    // Oven = Stake
   ],
   [ChainId.POLYGON]: [
     // {
