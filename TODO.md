@@ -18,7 +18,7 @@ src/components/WalletModal/index.tsx
 computeBagCirculation
 src/utils/computeBagCirculation.ts
 
-src/pages/Stake/index.tsx
+src/pages/StakePool/index.tsx
 
 API
 https://api.baguette.exchange/bag/circulating-supply

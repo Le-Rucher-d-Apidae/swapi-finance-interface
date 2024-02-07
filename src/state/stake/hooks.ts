@@ -279,7 +279,7 @@ export const STAKING_REWARDS_INFO: {
     //   stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
     //   autocompoundingAddress: ZERO_ADDRESS
     // }
-    // Oven = Stake
+    // Oven = StakePool
   ],
   [ChainId.POLYGON]: [
     // {

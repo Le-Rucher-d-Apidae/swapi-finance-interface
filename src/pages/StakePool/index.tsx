@@ -37,12 +37,12 @@ const PoolSection = styled.div`
 `
 
 // export default function Mill() {
-export default function Stake() {
+export default function StakePool() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.PAIR)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showInactive, setShowInactive] = useState<boolean>(false)
-  console.debug('Stake::stakingInfos:', stakingInfos)
+  console.debug('StakePool::stakingInfos:', stakingInfos)
   useMemo(() => {
     Promise.all(
       stakingInfos
