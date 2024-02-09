@@ -569,7 +569,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
       const tokens = info[index].tokens
       // const [avaxTokenPairState, avaxTokenPair] = maticPairs[index]
       const [currencyTokenPairState, currencyTokenPair] = currencyPairs[index]
-      // console.log(`currencyTokenPair =`, currencyTokenPair) 
+      // console.log(`currencyTokenPair =`, currencyTokenPair)
       const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
       const [pairState, pair] = pairs[index]
       // console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
