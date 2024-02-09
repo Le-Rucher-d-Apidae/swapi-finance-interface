@@ -241,25 +241,40 @@ export const STAKING_REWARDS_INFO: {
   }[]
 } = {
   [ChainId.MUMBAI]: [
+    //
     // Mill = Stake-Farm
-    // {
-    //   tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4', // TODO: update this !
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
+    {
+      tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
+      rewardToken: USDC[ChainId.MUMBAI],
+      stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4', // TODO: update this !
+      autocompoundingAddress: ZERO_ADDRESS
+    },
     {
       tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x9acAa2b2A98384a92e9ef07D2Ae4743FEdDD3135',
       autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
-      autocompoundingAddress: ZERO_ADDRESS
     }
+
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // }
+    // ,
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+    //   rewardToken: new Token(
+    //     ChainId.MUMBAI,
+    //     '0xc107149b65d5682DE7414110337f7a999F40B8AE',
+    //     18,
+    //     'APD01/WMATIC',
+    //     'APD01/WMATIC'
+    //   ),
+    //   stakingRewardAddress: '0x48B6EA182868eEC3bdC941370689BB2a5F260951',
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // }
 
     // {
     //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
@@ -501,15 +516,18 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   // console.log(`useStakingInfo: earnedAmounts=`, earnedAmounts)
   // console.log(`useStakingInfo: totalSupplies`, totalSupplies)
   const pairs = usePairs(tokens)
-  console.log(`useStakingInfo: pairs`, pairs)
+  // console.log(`useStakingInfo: tokens`, tokens)
+  // console.log(`useStakingInfo: pairs`, pairs)
   // const avaxPairs = usePairs(tokens.map(pair => [WAVAX[chainId ? chainId : ChainId.AVALANCHE], pair[0]]))
   // const [avaxBagPairState, avaxBagPair] = usePair(WAVAX[chainId ? chainId : ChainId.AVALANCHE], bag)
   const currencyPairs = usePairs(tokens.map(pair => [WCURRENCY[chainId ? chainId : ChainId.POLYGON], pair[0]]))
+  // console.log(`useStakingInfo: currencyPairs`, currencyPairs)
   const [currencySelfTokenPairState, currencySelfTokenPair] = usePair(
     WCURRENCY[chainId ? chainId : ChainId.POLYGON],
     selfToken
   )
-
+  // console.log(`useStakingInfo: currencySelfTokenPairState`, currencySelfTokenPairState)
+  // console.log(`useStakingInfo: currencySelfTokenPair`, currencySelfTokenPair)
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
     rewardsAddresses,
@@ -529,8 +547,9 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   return useMemo(() => {
     // if (!chainId || !bag) return []
     // debugger
+    // if (!chainId || !selfToken) console.log(`useStakingInfo: return []`)
     if (!chainId || !selfToken) return []
-console.log(`useStakingInfo: rewardsAddresses`, rewardsAddresses)
+    // console.log(`useStakingInfo: rewardsAddresses`, rewardsAddresses)
     return rewardsAddresses.reduce<StakingInfo[]>((memo, rewardsAddress, index) => {
       const autocompoundingAddress = autocompoundingAddresses[index]
       const rewardToken = rewardTokens[index]
@@ -550,10 +569,12 @@ console.log(`useStakingInfo: rewardsAddresses`, rewardsAddresses)
       const tokens = info[index].tokens
       // const [avaxTokenPairState, avaxTokenPair] = maticPairs[index]
       const [currencyTokenPairState, currencyTokenPair] = currencyPairs[index]
+      // console.log(`currencyTokenPair =`, currencyTokenPair) 
       const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
       const [pairState, pair] = pairs[index]
-console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
+      // console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
       if ((isPair && stakingType === StakingType.SINGLE) || (!isPair && stakingType === StakingType.PAIR)) {
+        // console.log(`useStakingInfo: skipping pairState=${pairState} pair=`, pair)
         return memo
       }
 
@@ -595,6 +616,8 @@ console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
         if (isPair && pair) {
           // const wavax = tokens[0].equals(WAVAX[tokens[0].chainId]) ? tokens[0] : tokens[1]
           const wcurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId]) ? tokens[0] : tokens[1]
+          // console.log(`useStakingInfo: isPair=${isPair} pair=${pair} wcurrency=`)
+          // console.dir(wcurrency)
           const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'), chainId)
           totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, totalSupply)
 
@@ -624,6 +647,8 @@ console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
           // const isUSDPool =
           //   (tokens[0].equals(USDCE[tokens[0].chainId]) && tokens[1].equals(USDTE[tokens[1].chainId])) ||
           //   (tokens[0].equals(USDTE[tokens[0].chainId]) && tokens[1].equals(USDCE[tokens[1].chainId]))
+          // console.debug(`useStakingInfo: isUSD=${isUSD(tokens[0], tokens[0].chainId)}`)
+
           const isUSDPool = isUSD(tokens[0], tokens[0].chainId) && isUSD(tokens[1], tokens[1].chainId)
           if (isUSDPool && /* avaxTokenPair */ currencyTokenPair) {
             // totalStakedInWavax = calculateTotalStakedAmountInAvaxFromToken(
@@ -640,6 +665,12 @@ console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)
             // const isAvaxPool = tokens[0].equals(WAVAX[tokens[0].chainId])
             const isCurrencyPool = tokens[0].equals(WCURRENCY[tokens[0].chainId])
             // totalStakedInWavax = isAvaxPool
+            // console.debug(`useStakingInfo: isCurrencyPool=${isCurrencyPool}`)
+            // console.debug(`useStakingInfo: isCurrencyPool=${isCurrencyPool}`)
+            // console.debug(`tokens[0]=`)
+            // console.dir(tokens[0])
+            // console.debug(`tokens[1]=`)
+            // console.dir(tokens[1])
             totalStakedInWcurrency = isCurrencyPool
               ? // calculateTotalStakedAmountInAvax(
                 calculateTotalStakedAmountInCurrency(

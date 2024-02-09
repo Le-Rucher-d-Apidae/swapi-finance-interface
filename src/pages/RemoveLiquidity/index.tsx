@@ -230,10 +230,10 @@ export default function RemoveLiquidity({
     let methodNames: string[], args: Array<string | string[] | number | boolean>
     // we have approval, use normal remove liquidity
     if (approval === ApprovalState.APPROVED) {
-      console.debug('Removing liquidity with approved tokens')
+      // console.debug('Removing liquidity with approved tokens')
       // removeLiquidityAVAX
       if (oneCurrencyIsETH) {
-        console.debug('removeLiquidityAVAX, removeLiquidityAVAXSupportingFeeOnTransferTokens')
+        // console.debug('removeLiquidityAVAX, removeLiquidityAVAXSupportingFeeOnTransferTokens')
         methodNames = ['removeLiquidityAVAX', 'removeLiquidityAVAXSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
@@ -246,7 +246,7 @@ export default function RemoveLiquidity({
       }
       // removeLiquidity
       else {
-        console.debug('removeLiquidity')
+        // console.debug('removeLiquidity')
         methodNames = ['removeLiquidity']
         args = [
           tokenA.address,
@@ -263,7 +263,7 @@ export default function RemoveLiquidity({
     else if (signatureData !== null) {
       // removeLiquidityAVAXWithPermit
       if (oneCurrencyIsETH) {
-        console.debug('removeLiquidityAVAXWithPermit, removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens')
+        // console.debug('removeLiquidityAVAXWithPermit, removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens')
         methodNames = ['removeLiquidityAVAXWithPermit', 'removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
@@ -280,7 +280,7 @@ export default function RemoveLiquidity({
       }
       // removeLiquidityAVAXWithPermit
       else {
-        console.debug('removeLiquidityWithPermit')
+        // console.debug('removeLiquidityWithPermit')
         methodNames = ['removeLiquidityWithPermit']
         args = [
           tokenA.address,

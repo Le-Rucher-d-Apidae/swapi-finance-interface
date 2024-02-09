@@ -165,8 +165,8 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
 
-  console.log('src/components/PositionCard/index.tsx FullPositionCard currency0:', currency0)
-  console.log('src/components/PositionCard/index.tsx FullPositionCard currency1:', currency1)
+  // console.log('src/components/PositionCard/index.tsx FullPositionCard currency0:', currency0)
+  // console.log('src/components/PositionCard/index.tsx FullPositionCard currency1:', currency1)
 
   const currency0_ = wrappedCurrency(currency0, chainId) || currency0
   const currency1_ = wrappedCurrency(currency1, chainId) || currency1

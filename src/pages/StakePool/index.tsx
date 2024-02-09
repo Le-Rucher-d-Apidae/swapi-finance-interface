@@ -42,7 +42,7 @@ export default function StakePool() {
   const stakingInfos = useStakingInfo(StakingType.PAIR)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showInactive, setShowInactive] = useState<boolean>(false)
-  console.debug('StakePool::stakingInfos:', stakingInfos)
+  // console.debug('StakePool::stakingInfos:', stakingInfos)
   useMemo(() => {
     Promise.all(
       stakingInfos
