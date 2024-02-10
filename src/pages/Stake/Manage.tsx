@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 
-import { JSBI } from '@swapi-finance/sdk'
+import { JSBI, ChainId } from '@swapi-finance/sdk'
 import { RouteComponentProps } from 'react-router-dom'
 import CurrencyLogo from '../../components/CurrencyLogo'
 import { useCurrency } from '../../hooks/Tokens'
@@ -35,8 +35,8 @@ import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 
 // import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
-import { ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
-import { SELF_TOKEN } from '../../constants'
+// import { ChainId } from '@swapi-finance/sdk'
+// import { SELF_TOKEN } from '../../constants'
 import { BIG_INT_ZERO, UNDEFINED } from '../../constants'
 import { CURRENCY } from '@swapi-finance/sdk'
 
@@ -117,7 +117,7 @@ export function ManageSingle({
   const stakingInfo = stakingInfos?.filter(info => info.rewardToken.equals(rewardToken))[0]
   // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
   // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
-  const valueOfTotalStakedAmount = stakingInfo?.totalStakedAmount
+  // const valueOfTotalStakedAmount = stakingInfo?.totalStakedAmount
   const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
 
   // get the color of the token
@@ -152,12 +152,10 @@ export function ManageSingle({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
               {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
               {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
               }`}
-              {`${valueOfTotalStakedAmount?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${'$'}`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
