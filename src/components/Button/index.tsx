@@ -9,7 +9,7 @@ import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
 const Base = styled(RebassButton)<{
   padding?: string
   width?: string
-  borderRadius?: string
+  borderradius?: string
   altDisabledStyle?: boolean
 }>`
   padding: ${({ padding }) => (padding ? padding : '18px')};
@@ -17,7 +17,7 @@ const Base = styled(RebassButton)<{
   font-weight: 500;
   text-align: center;
   border-radius: 12px;
-  border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
+  border-radius: ${({ borderradius }) => borderradius && borderradius};
   outline: none;
   border: 1px solid transparent;
   color: white;

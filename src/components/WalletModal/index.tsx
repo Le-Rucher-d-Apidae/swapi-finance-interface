@@ -323,7 +323,7 @@ export default function WalletModal({
             {error instanceof UnsupportedChainIdError ? (
               <>
                 <h5>{`Please connect to the appropriate ${ChainLabel[ChainId.POLYGON]} network.`}</h5>
-                <ButtonPrimary padding="8px" borderRadius="8px" height="60px" onClick={switchToPolygon}>
+                <ButtonPrimary padding="8px" borderradius="8px" height="60px" onClick={switchToPolygon}>
                   {`Switch to ${ChainLabel[ChainId.POLYGON]} Chain`}
                 </ButtonPrimary>
               </>

@@ -215,7 +215,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
           <RowFixed gap="8px">
             <ButtonEmpty
               padding="6px 8px"
-              borderRadius="12px"
+              borderradius="12px"
               width="fit-content"
               onClick={() => setShowMore(!showMore)}
             >
@@ -293,7 +293,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             <RowBetween marginTop="10px">
               <ButtonPrimary
                 padding="8px"
-                borderRadius="8px"
+                borderradius="8px"
                 as={Link}
                 to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                 width="48%"
@@ -302,7 +302,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
               </ButtonPrimary>
               <ButtonPrimary
                 padding="8px"
-                borderRadius="8px"
+                borderradius="8px"
                 as={Link}
                 width="48%" // to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
                 to={`/remove/${chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)}

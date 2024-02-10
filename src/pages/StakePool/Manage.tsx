@@ -195,7 +195,7 @@ export function ManagePair({
               </RowBetween>
               <ButtonPrimary
                 padding="8px"
-                borderRadius="8px"
+                borderradius="8px"
                 width={'fit-content'}
                 as={Link}
                 to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
@@ -264,7 +264,7 @@ export function ManagePair({
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
                       padding="8px"
-                      borderRadius="8px"
+                      borderradius="8px"
                       width="fit-content"
                       onClick={() => setShowClaimRewardModal(true)}
                     >
@@ -332,7 +332,7 @@ export function ManagePair({
         )}
         {!showAddLiquidityButton && (
           <DataRow style={{ marginBottom: '1rem' }}>
-            <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
+            <ButtonPrimary padding="8px" borderradius="8px" width="160px" onClick={handleDepositClick}>
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0))
                 ? 'Deposit'
                 : `Deposit ${LIQUIDITY_TOKEN_SYMBOL} Tokens`}
@@ -342,7 +342,7 @@ export function ManagePair({
               <>
                 <ButtonPrimary
                   padding="8px"
-                  borderRadius="8px"
+                  borderradius="8px"
                   width="160px"
                   onClick={() => setShowUnstakingModal(true)}
                 >

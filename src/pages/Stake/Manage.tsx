@@ -231,7 +231,7 @@ export function ManageSingle({
                     JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                       <ButtonEmpty
                         padding="8px"
-                        borderRadius="8px"
+                        borderradius="8px"
                         width="fit-content"
                         onClick={() => setShowCompoundRewardModal(true)}
                       >
@@ -241,7 +241,7 @@ export function ManageSingle({
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
                       padding="8px"
-                      borderRadius="8px"
+                      borderradius="8px"
                       width="fit-content"
                       onClick={() => setShowClaimRewardModal(true)}
                     >
@@ -313,13 +313,13 @@ export function ManageSingle({
           </TYPE.main>
         )}
         <DataRow style={{ marginBottom: '1rem' }}>
-          <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
+          <ButtonPrimary padding="8px" borderradius="8px" width="160px" onClick={handleDepositClick}>
             {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake Tokens'}
           </ButtonPrimary>
 
           {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
             <>
-              <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={() => setShowUnstakingModal(true)}>
+              <ButtonPrimary padding="8px" borderradius="8px" width="160px" onClick={() => setShowUnstakingModal(true)}>
                 Withdraw
               </ButtonPrimary>
             </>
