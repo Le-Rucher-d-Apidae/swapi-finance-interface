@@ -98,6 +98,7 @@ const StyledBalanceMax = styled.button`
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
+  margin-left: 0.5rem;
   margin-right: 0.5rem;
   color: ${({ theme }) => theme.buttonBalanceMaxText};
   :hover {
