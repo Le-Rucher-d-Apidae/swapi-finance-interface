@@ -93,6 +93,8 @@ export interface Colors {
   accountMiddlePanelBG: Color
   accountLowerPanelBG: Color
 
+  popupBorderColor: Color
+
   scrollbarColor: Color
 }
 

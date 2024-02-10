@@ -198,6 +198,8 @@ export function colors(darkMode: boolean): Colors {
     accountMiddlePanelBG: darkMode ? purple3 : yellow2,
     accountLowerPanelBG: darkMode ? darkPurple1 : lightYellow1,
 
+    popupBorderColor: darkMode ? darkPurple3 : yellow2,
+
     scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`
     // scrollbarColor: 'red blue'
   }

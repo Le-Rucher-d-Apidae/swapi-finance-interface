@@ -32,6 +32,9 @@ const ContentWrapper = styled(AutoColumn)`
 //   padding: 0.5rem;
 // `
 const ModalUpper = styled(DataCard)`
+  border-radius: 20px;
+  border: outset;
+  border-color: ${({ theme }) => theme.popupBorderColor};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
 `
