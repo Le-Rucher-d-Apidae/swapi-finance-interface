@@ -178,7 +178,6 @@ export function useURLWarningVisible(): boolean {
       ? 'true' === process.env.REACT_APP_HOME_URL_WARNING_VISIBLE || HOME_URL_DEFAULT_WARNING_VISIBLE
       : state.user.URLWarningVisible
   })
-  // debugger
   return userURLWarningVisible
 }
 
