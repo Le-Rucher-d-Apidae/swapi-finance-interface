@@ -1,11 +1,11 @@
 // import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk'
 import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk'
 // import React, { useState, useEffect } from 'react'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useEffect } from 'react'
 // import { useMemo } from 'react'
 import { X } from 'react-feather'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
 // import { BAG } from '../../constants'
 import { SELF_TOKEN } from '../../constants'
@@ -20,6 +20,7 @@ import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../pool/styled'
 import { usePair } from '../../data/Reserves'
+import { Color } from '../../theme/styled'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -35,12 +36,12 @@ const ModalUpper = styled(DataCard)`
   padding: 0.5rem;
 `
 
-const StyledClose = styled(X)`
+const StyledClose = styled(X)<{ color?: Color }>`
   cursor: pointer;
   position: absolute;
   right: 16px;
   top: 16px;
-  color: ${({ theme }) => theme.buttonClosePopup};
+  color: ${({ color, theme }) => (color ? color : theme.buttonClosePopup)};
   :hover {
     transform: scale(1.1);
     opacity: 0.6;
@@ -52,6 +53,7 @@ const StyledClose = styled(X)`
  */
 export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setShowTokenBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
+  const theme = useContext(ThemeContext)
   const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
   // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
   // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
@@ -163,7 +165,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
               {/* Your BAG Breakdown */}
               Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
             </TYPE.text5>
-            <StyledClose onClick={() => setShowTokenBalanceModal(false)} />
+            <StyledClose color={theme.white} onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
         </CardSection>
         <Break />
