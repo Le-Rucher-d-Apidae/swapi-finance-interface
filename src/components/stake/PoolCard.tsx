@@ -133,7 +133,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             </TYPE.white>
             <InternalLink
               // to={`/mill/${currencyId(currency0)}/${currencyId(currency1)}`}
-              to={`/stake-farm/${currencyId(currency0)}/${currencyId(currency1)}`}
+              to={`/stake-pool/${currencyId(currency0)}/${currencyId(currency1)}`}
               style={{ width: '100%' }}
             >
               <ButtonPrimary padding="8px" borderRadius="8px">

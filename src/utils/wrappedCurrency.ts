@@ -12,7 +12,7 @@ export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId
   // console.log('wrappedCurrency WCURRENCY[chainId]', chainId ? WMATIC[chainId] : 'undefined')
   // return chainId && currency === CURRENCY ? WCURRENCY[chainId] : currency instanceof Token ? currency : undefined
   const res = chainId && currency === CURRENCY ? WCURRENCY[chainId] : currency instanceof Token ? currency : undefined
-  console.log('wrappedCurrency: res=', res)
+  // console.log('wrappedCurrency: res=', res)
   return res
   // if (chainId && currency === CURRENCY) {
   //   // console.log('wrappedCurrency WMATIC[chainId]', WMATIC[chainId])

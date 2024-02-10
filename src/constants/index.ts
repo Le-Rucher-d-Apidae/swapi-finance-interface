@@ -1,12 +1,5 @@
 // import { ChainId, JSBI, Percent, Token, WAVAX } from '@swapi-finance/sdk'
-import {
-  ChainId,
-  JSBI,
-  Percent,
-  Token,
-  WCURRENCY,
-  FACTORY_ADDRESS as SDK_FACTORY_ADDRESS
-} from '@swapi-finance/sdk'
+import { ChainId, JSBI, Percent, Token, WCURRENCY, FACTORY_ADDRESS as SDK_FACTORY_ADDRESS } from '@swapi-finance/sdk'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
@@ -308,7 +301,14 @@ const WCURRENCY_ONLY: ChainTokenList = {
 //   [ChainId.POLYGON]: [WAVAX[ChainId.POLYGON], BAG[ChainId.POLYGON], USDTE[ChainId.POLYGON], USDCE[ChainId.POLYGON]]
 // }
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MUMBAI]: [WCURRENCY[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]],
+  [ChainId.MUMBAI]: [
+    WCURRENCY[ChainId.MUMBAI],
+    SELF_TOKEN[ChainId.MUMBAI],
+    USDT[ChainId.MUMBAI],
+    USDC[ChainId.MUMBAI],
+    USDC[ChainId.MUMBAI],
+    DAI[ChainId.MUMBAI]
+  ],
   [ChainId.POLYGON]: [
     WCURRENCY[ChainId.POLYGON],
     SELF_TOKEN[ChainId.POLYGON],

@@ -175,10 +175,9 @@ export function useURLWarningVisible(): boolean {
   // adds default value for URLWarningVisible
   const userURLWarningVisible = useSelector<AppState, AppState['user']['URLWarningVisible']>(state => {
     return state.user.URLWarningVisible === undefined
-      ? new Boolean(process.env.REACT_APP_HOME_URL_WARNING_VISIBLE).valueOf() || HOME_URL_DEFAULT_WARNING_VISIBLE
+      ? 'true' === process.env.REACT_APP_HOME_URL_WARNING_VISIBLE || HOME_URL_DEFAULT_WARNING_VISIBLE
       : state.user.URLWarningVisible
   })
-  // debugger
   return userURLWarningVisible
 }
 

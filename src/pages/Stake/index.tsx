@@ -37,13 +37,13 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
-// export default function Mill() {
+// export default function Oven() {
 export default function Stake() {
   const { chainId } = useActiveWeb3React()
-  const stakingInfos = useStakingInfo(StakingType.PAIR)
+  const stakingInfos = useStakingInfo(StakingType.SINGLE)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showInactive, setShowInactive] = useState<boolean>(false)
-  console.debug('Stake::stakingInfos:', stakingInfos)
+
   useMemo(() => {
     Promise.all(
       stakingInfos
@@ -73,7 +73,7 @@ export default function Stake() {
             .then(res => res.text())
             .then(res => ({ apr: res, ...stakingInfo }))
         })
-      */
+        */
     ).then(results => {
       setStakingInfoResults(results)
     })

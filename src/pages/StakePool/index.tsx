@@ -36,12 +36,13 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
-export default function Oven() {
+// export default function Mill() {
+export default function StakePool() {
   const { chainId } = useActiveWeb3React()
-  const stakingInfos = useStakingInfo(StakingType.SINGLE)
+  const stakingInfos = useStakingInfo(StakingType.PAIR)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showInactive, setShowInactive] = useState<boolean>(false)
-
+  // console.debug('StakePool::stakingInfos:', stakingInfos)
   useMemo(() => {
     Promise.all(
       stakingInfos
@@ -71,7 +72,7 @@ export default function Oven() {
             .then(res => res.text())
             .then(res => ({ apr: res, ...stakingInfo }))
         })
-        */
+      */
     ).then(results => {
       setStakingInfoResults(results)
     })
@@ -95,14 +96,11 @@ export default function Oven() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>
-                  Welcome to the baking oven. Stake tokens to bake new fresh Baguettes
-                </TYPE.white>
+                <TYPE.white fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.white>
               </RowBetween>
               <RowBetween>
-                {/* <TYPE.white fontSize={14}>Deposit your tokens to receive BAG.</TYPE.white> */}
                 <TYPE.white fontSize={14}>
-                  Deposit your tokens to receive {SELF_TOKEN[ChainId.POLYGON].symbol}.
+                  Deposit your LP tokens to receive {SELF_TOKEN[ChainId.POLYGON].symbol}.
                 </TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>
