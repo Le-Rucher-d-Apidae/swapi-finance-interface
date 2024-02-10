@@ -144,7 +144,8 @@ export function ExternalLink({
         // })
       }
     },
-    [href, target]
+    // [href, target]
+    [target]
   )
   return <StyledLink target={target} rel={rel} href={href} onClick={handleClick} {...rest} />
 }
