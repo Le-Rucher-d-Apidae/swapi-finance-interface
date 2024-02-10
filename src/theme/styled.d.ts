@@ -89,6 +89,10 @@ export interface Colors {
   InputPanelBG: Color
   InputPanelInputFieldBG: Color
 
+  accountUpperPanelBG: Color
+  accountMiddlePanelBG: Color
+  accountLowerPanelBG: Color
+
   scrollbarColor: Color
 }
 

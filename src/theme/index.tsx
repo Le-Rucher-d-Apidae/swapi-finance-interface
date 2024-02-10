@@ -44,6 +44,9 @@ const yellow = '#ffff00'
 const yellow1 = '#f4da85' // 244, 218, 133
 const yellow2 = '#dabe39'
 
+const lightYellow1 = '#f0e6b7' // 240, 230, 183
+
+
 const dark1 = '#08060b'
 
 const darkYellow = '#ffba00' // 255, 186, 0
@@ -190,6 +193,10 @@ export function colors(darkMode: boolean): Colors {
     modalBG: darkMode ? purple3 : yellow1,
     InputPanelBG: darkMode ? purple3 : yellow2,
     InputPanelInputFieldBG: darkMode ? darkPurple1 : yellow1,
+
+    accountUpperPanelBG: darkMode ? purple3 : yellow2,
+    accountMiddlePanelBG: darkMode ? purple3 : yellow2,
+    accountLowerPanelBG: darkMode ? darkPurple1 : lightYellow1,
 
     scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`
     // scrollbarColor: 'red blue'
