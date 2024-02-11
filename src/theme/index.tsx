@@ -196,7 +196,7 @@ export function colors(darkMode: boolean): Colors {
 
     textInfoLink: darkMode ? darkYellow : brown,
     internalLink: darkMode ? lightPurple : black,
-    styledLink: darkMode ? lightPurple : black,
+    styledLink: darkMode ? darkYellow : black,
 
     modalBG: darkMode ? purple3 : yellow1,
     InputPanelBG: darkMode ? purple3 : yellow2,
