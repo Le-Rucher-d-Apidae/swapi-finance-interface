@@ -90,7 +90,7 @@ function TransactionSubmittedContent({
               {/* <Text fontWeight={500} fontSize={14} color={theme.primary1}>
                 View on the C-Chain Explorer
               </Text> */}
-              <Text fontWeight={500} fontSize={14} color={theme.primary1}>
+              <Text fontWeight={500} fontSize={14} color={theme.textInfoLink}>
                 View on the {ChainLabel[ChainId.POLYGON]} Explorer
               </Text>
             </ExternalLink>

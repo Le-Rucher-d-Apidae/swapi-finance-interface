@@ -24,7 +24,7 @@ const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
   padding: 1rem 1rem;
   font-weight: 500;
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
+  color: ${({ theme }) => theme.textPopupHeader};
   ${({ theme }) => theme.mediaWidth.upToMedium`
     padding: 1rem;
   `};
@@ -32,7 +32,7 @@ const HeaderRow = styled.div`
 
 const UpperSection = styled.div`
   position: relative;
-
+  background-color: ${({ theme }) => theme.accountUpperPanelBG};
   h5 {
     margin: 0;
     margin-bottom: 0.5rem;
@@ -74,7 +74,7 @@ const AccountGroupingRow = styled.div`
 `
 
 const AccountSection = styled.div`
-  background-color: ${({ theme }) => theme.bg1};
+  background-color: ${({ theme }) => theme.accountMiddlePanelBG};
   padding: 0rem 1rem;
   ${({ theme }) => theme.mediaWidth.upToMedium`padding: 0rem 1rem 1.5rem 1rem;`};
 `
@@ -96,7 +96,7 @@ const LowerSection = styled.div`
   padding: 1.5rem;
   flex-grow: 1;
   overflow: auto;
-  background-color: ${({ theme }) => theme.bg2};
+  background-color: ${({ theme }) => theme.accountLowerPanelBG};
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 20px;
 
@@ -143,24 +143,22 @@ const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
 const CloseIcon = styled.div`
   position: absolute;
   right: 1rem;
+  color: ${({ theme }) => theme.buttonClosePopup};
   top: 14px;
   &:hover {
     cursor: pointer;
     opacity: 0.6;
+    transform: scale(1.1);
   }
 `
 
-const CloseColor = styled(Close)`
-  path {
-    stroke: ${({ theme }) => theme.text4};
-  }
-`
+const CloseColor = styled(Close)``
 
 const WalletName = styled.div`
   width: initial;
   font-size: 0.825rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.text3};
+  color: ${({ theme }) => theme.text1};
 `
 
 const IconWrapper = styled.div<{ size?: number }>`
@@ -321,7 +319,7 @@ export default function AccountDetails({
                             <LinkIcon size={16} />
                             {/* <span style={{ marginLeft: '4px' }}>View on the C-Chain Explorer</span> */}
                             <span style={{ marginLeft: '4px' }}>
-                              `View on the {ChainLabel[ChainId.POLYGON]} Explorer`
+                              View on the {ChainLabel[ChainId.POLYGON]} Explorer
                             </span>
                           </AddressLink>
                         )}
@@ -346,7 +344,7 @@ export default function AccountDetails({
                             <LinkIcon size={16} />
                             {/* <span style={{ marginLeft: '4px' }}>View on the C-Chain Explorer</span> */}
                             <span style={{ marginLeft: '4px' }}>
-                              `View on the {ChainLabel[ChainId.POLYGON]} Explorer`
+                              View on the {ChainLabel[ChainId.POLYGON]} Explorer
                             </span>
                           </AddressLink>
                         )}

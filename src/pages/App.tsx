@@ -28,13 +28,16 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
+import Home from './Home'
 
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
+  background-color: ${({ theme }) => theme.pageBackground};
 `
+//   scrollbar-color: ${({ theme }) => theme.scrollbarColor} ${({ theme }) => theme.scrollbarColor};
 
 const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -52,12 +55,10 @@ const BodyWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 10;
-
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 16px;
     padding-top: 2rem;
   `};
-
   z-index: 1;
 `
 
@@ -85,6 +86,7 @@ export default function App() {
           <PoweredByPolygon />
           <Web3ReactManager>
             <Switch>
+              <Route exact strict path="/" component={Home} />
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />

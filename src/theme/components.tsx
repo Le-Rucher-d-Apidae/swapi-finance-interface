@@ -37,6 +37,11 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
 
 export const CloseIcon = styled(X)<{ onClick: () => void }>`
   cursor: pointer;
+  color: ${({ theme }) => theme.buttonClosePopup};
+  :hover {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
 `
 
 // A button that triggers some onClick result, but looks like a link.
@@ -46,7 +51,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
   background: none;
 
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  color: ${({ theme, disabled }) => (disabled ? theme.text2 : theme.primary1)};
+  color: ${({ theme, disabled }) => (disabled ? theme.internalLink : theme.internalLink)};
   font-weight: 500;
 
   :hover {
@@ -67,7 +72,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
 export const StyledInternalLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.internalLink};
   font-weight: 500;
 
   :hover {
@@ -83,11 +88,27 @@ export const StyledInternalLink = styled(Link)`
     text-decoration: none;
   }
 `
+export const InternalLink = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
+  color: ${({ theme }) => theme.internalLink};
+  font-weight: 500;
+  :hover {
+    text-decoration: none;
+  }
+  :focus {
+    outline: none;
+    text-decoration: none;
+  }
+  :active {
+    text-decoration: none;
+  }
+`
 
 const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.styledLink};
   font-weight: 500;
 
   :hover {

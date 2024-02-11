@@ -82,7 +82,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
               {/* <TYPE.body>Unclaimed BAG</TYPE.body> */}
-              <TYPE.body>Unclaimed {SELF_TOKEN[ChainId.POLYGON].name}</TYPE.body>
+              <TYPE.body>Unclaimed {SELF_TOKEN[ChainId.POLYGON].symbol}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>

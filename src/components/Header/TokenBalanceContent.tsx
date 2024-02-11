@@ -1,11 +1,11 @@
 // import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk'
 import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk'
 // import React, { useState, useEffect } from 'react'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useEffect } from 'react'
 // import { useMemo } from 'react'
 import { X } from 'react-feather'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
 // import { BAG } from '../../constants'
 import { SELF_TOKEN } from '../../constants'
@@ -20,24 +20,34 @@ import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../pool/styled'
 import { usePair } from '../../data/Reserves'
+import { Color } from '../../theme/styled'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
 `
 
+// const ModalUpper = styled(DataCard)`
+//   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+//   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #e8c177 0%, #ecd0a3 100%);
+//   padding: 0.5rem;
+// `
 const ModalUpper = styled(DataCard)`
+  border-radius: 20px;
+  border: outset;
+  border-color: ${({ theme }) => theme.popupBorderColor};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #e8c177 0%, #ecd0a3 100%);
   padding: 0.5rem;
 `
 
-const StyledClose = styled(X)`
+const StyledClose = styled(X)<{ color?: Color }>`
+  cursor: pointer;
   position: absolute;
   right: 16px;
   top: 16px;
-
+  color: ${({ color, theme }) => (color ? color : theme.buttonClosePopup)};
   :hover {
-    cursor: pointer;
+    transform: scale(1.1);
+    opacity: 0.6;
   }
 `
 
@@ -46,6 +56,7 @@ const StyledClose = styled(X)`
  */
 export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setShowTokenBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
+  const theme = useContext(ThemeContext)
   const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
   // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
   // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
@@ -149,15 +160,15 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   return (
     <ContentWrapper gap="lg">
       <ModalUpper>
-        <CardBGImage />
+        <CardBGImage desaturate={true} />
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">
+            <TYPE.text5>
               {/* Your BAG Breakdown */}
               Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
-            </TYPE.white>
-            <StyledClose stroke="white" onClick={() => setShowTokenBalanceModal(false)} />
+            </TYPE.text5>
+            <StyledClose color={theme.white} onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
         </CardSection>
         <Break />
@@ -166,14 +177,14 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <CardSection gap="sm">
               <AutoColumn gap="md" justify="center">
                 <BagTokenAnimated width="48px" src={tokenLogo} />{' '}
-                <TYPE.white fontSize={48} fontWeight={600} color="white">
+                <TYPE.text5 fontSize={48} fontWeight={600}>
                   {total?.toFixed(2, { groupSeparator: ',' })}
-                </TYPE.white>
+                </TYPE.text5>
               </AutoColumn>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.white color="white">Balance:</TYPE.white>
-                  <TYPE.white color="white">{selfTokenBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
+                  <TYPE.text5>Balance:</TYPE.text5>
+                  <TYPE.text5>{selfTokenBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.text5>
                 </RowBetween>
               </AutoColumn>
             </CardSection>
@@ -183,26 +194,26 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">
+              <TYPE.text5>
                 {/* BAG price: */}
                 {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:
-              </TYPE.white>
-              {/* <TYPE.white color="white">{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
-              <TYPE.white color="white">
+              </TYPE.text5>
+              {/* <TYPE.white>{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
+              <TYPE.text5>
                 {/* {bagPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol} */}
                 {tokenPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol}
-              </TYPE.white>
+              </TYPE.text5>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">
+              <TYPE.text5>
                 {/* BAG in circulation: */}
                 {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
-              </TYPE.white>
-              <TYPE.white color="white">{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
+              </TYPE.text5>
+              <TYPE.text5>{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.text5>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">Total Supply</TYPE.white>
-              <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
+              <TYPE.text5>Total Supply</TYPE.text5>
+              <TYPE.text5>{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.text5>
             </RowBetween>
           </AutoColumn>
         </CardSection>

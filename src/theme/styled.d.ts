@@ -19,8 +19,10 @@ export interface Colors {
   bg3: Color
   bg4: Color
   bg5: Color
+  bg6: Color
 
-  modalBG: Color
+  // modalBG: Color
+  modalBgOverlay: Color
   advancedBG: Color
 
   //blues
@@ -47,8 +49,61 @@ export interface Colors {
   blue1: Color
 
   // avaxRed: Color
-
   polygonPurple: Color
+
+  pageBackground: Color
+  wrapperBackground: Color
+  pageBottomBackground: Color
+  pageBottomBackground2: Color
+
+  buttonLightBackground: Color
+  buttonLightText: Color
+
+  buttonClosePopup: Color
+  popupTxBackground: Color
+
+  buttonBalanceMaxBg: Color
+  buttonBalanceMaxText: Color
+  buttonBalanceMaxBorder: Color
+  buttonBalanceMaxBorderFocus: Color
+
+  buttonPrimaryText: Color
+  buttonPrimaryTextDisabled: Color
+  buttonPrimaryBg: Color
+  buttonPrimaryHover: Color
+  buttonPrimaryFocus: Color
+  buttonPrimaryBorder: Color
+  buttonPrimaryDisabled: Color
+
+  textPopupHeader: Color
+  textHighlight1: Color
+  textHighlight2: Color
+
+  textInfoLink: Color
+  internalLink: Color
+  styledLink: Color
+
+  poolCardBg1: Color
+
+  poolCardBgStaked: Color
+  poolCardBgNotStaked: Color
+
+  infoCardBg1: Color
+  textBottom: Color
+  pollingText: Color
+  pollingDot: Color
+  pollingSpinner: Color
+  modalBG: Color
+  InputPanelBG: Color
+  InputPanelInputFieldBG: Color
+
+  accountUpperPanelBG: Color
+  accountMiddlePanelBG: Color
+  accountLowerPanelBG: Color
+
+  popupBorderColor: Color
+
+  scrollbarColor: Color
 }
 
 export interface Grids {

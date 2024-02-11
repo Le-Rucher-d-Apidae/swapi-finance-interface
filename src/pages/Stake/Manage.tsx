@@ -33,6 +33,10 @@ import YieldYakLogoGrey from '../../assets/images/yieldyak-logo-grey.png'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
+
+// import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
+// import { ChainId } from '@swapi-finance/sdk'
+// import { SELF_TOKEN } from '../../constants'
 import { BIG_INT_ZERO, UNDEFINED } from '../../constants'
 import { CURRENCY } from '@swapi-finance/sdk'
 
@@ -112,6 +116,8 @@ export function ManageSingle({
   const stakingInfos = useStakingInfo(StakingType.SINGLE, stakingTokenPair)
   const stakingInfo = stakingInfos?.filter(info => info.rewardToken.equals(rewardToken))[0]
   // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
+  // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
+  // const valueOfTotalStakedAmount = stakingInfo?.totalStakedAmount
   const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
 
   // get the color of the token
@@ -225,7 +231,7 @@ export function ManageSingle({
                     JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                       <ButtonEmpty
                         padding="8px"
-                        borderRadius="8px"
+                        borderradius="8px"
                         width="fit-content"
                         onClick={() => setShowCompoundRewardModal(true)}
                       >
@@ -235,7 +241,7 @@ export function ManageSingle({
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
                       padding="8px"
-                      borderRadius="8px"
+                      borderradius="8px"
                       width="fit-content"
                       onClick={() => setShowClaimRewardModal(true)}
                     >
@@ -307,13 +313,13 @@ export function ManageSingle({
           </TYPE.main>
         )}
         <DataRow style={{ marginBottom: '1rem' }}>
-          <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
+          <ButtonPrimary padding="8px" borderradius="8px" width="160px" onClick={handleDepositClick}>
             {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake Tokens'}
           </ButtonPrimary>
 
           {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
             <>
-              <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={() => setShowUnstakingModal(true)}>
+              <ButtonPrimary padding="8px" borderradius="8px" width="160px" onClick={() => setShowUnstakingModal(true)}>
                 Withdraw
               </ButtonPrimary>
             </>

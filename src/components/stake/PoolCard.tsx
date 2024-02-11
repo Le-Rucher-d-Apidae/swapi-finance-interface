@@ -2,7 +2,8 @@ import React from 'react'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import styled from 'styled-components'
-import { TYPE, StyledInternalLink } from '../../theme'
+// import { TYPE, StyledInternalLink } from '../../theme'
+import { TYPE, InternalLink } from '../../theme'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import CurrencyLogo from '../CurrencyLogo'
 import { JSBI } from '@swapi-finance/sdk'
@@ -11,7 +12,8 @@ import { StakingInfo } from '../../state/stake/hooks'
 import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
-import { Break, CardNoise, CardBGImage } from './styled'
+// import { Break, CardNoise, CardBGImage } from './styled'
+import { Break, CardNoise } from './styled'
 // import { UNDEFINED, ZERO_ADDRESS } from '../../constants'
 import { UNDEFINED } from '../../constants'
 import { Fraction } from '@swapi-finance/sdk'
@@ -37,7 +39,9 @@ const Wrapper = styled(AutoColumn)<{ showBackground: boolean; bgColor: any }>`
   position: relative;
   opacity: ${({ showBackground }) => (showBackground ? '1' : '1')};
   background: ${({ theme, bgColor, showBackground }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${showBackground ? theme.black : theme.bg5} 100%) `};
+    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${
+      showBackground ? theme.poolCardBgStaked : theme.poolCardBgNotStaked
+    } 100%) `};
   color: ${({ theme, showBackground }) => (showBackground ? theme.white : theme.text1)} !important;
   ${({ showBackground }) =>
     showBackground &&
@@ -119,7 +123,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
   return (
     <Wrapper showBackground={isStaking} bgColor={backgroundColor}>
-      <CardBGImage desaturate />
+      {/* <CardBGImage desaturate /> */}
       <CardNoise />
 
       <TopSection>
@@ -129,15 +133,15 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
               {currency0?.symbol}-{currency1?.symbol}
             </TYPE.white>
-            <StyledInternalLink
+            <InternalLink
               // to={`/mill/${currencyId(currency0)}/${currencyId(currency1)}`}
               to={`/stake-pool/${currencyId(currency0)}/${currencyId(currency1)}`}
               style={{ width: '100%' }}
             >
-              <ButtonPrimary padding="8px" borderRadius="8px">
+              <ButtonPrimary padding="8px" borderradius="8px">
                 {isStaking ? 'Manage' : 'Deposit'}
               </ButtonPrimary>
-            </StyledInternalLink>
+            </InternalLink>
           </>
         )}
         {!isPair && (
@@ -146,28 +150,25 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
               {currency0.symbol}
             </TYPE.white>
-            <StyledInternalLink
-              to={`/oven/${currencyId(currency0)}/${currencyId(rewardCurrency)}`}
-              style={{ width: '100%' }}
-            >
-              <ButtonPrimary padding="8px" borderRadius="8px">
+            <InternalLink to={`/oven/${currencyId(currency0)}/${currencyId(rewardCurrency)}`} style={{ width: '100%' }}>
+              <ButtonPrimary padding="8px" borderradius="8px">
                 {isStaking ? 'Manage' : 'Deposit'}
               </ButtonPrimary>
-            </StyledInternalLink>
+            </InternalLink>
           </>
         )}
       </TopSection>
 
       <StatContainer>
         <RowBetween>
-          <TYPE.white> Earn</TYPE.white>
+          <TYPE.white>Earn</TYPE.white>
           <HorizontalMerge>
             <TYPE.white style={{ marginRight: '8px' }}>{rewardCurrency.symbol}</TYPE.white>
             <CurrencyLogo currency={rewardCurrency} size="24px" />
           </HorizontalMerge>
         </RowBetween>
         <RowBetween>
-          <TYPE.white> Total deposited</TYPE.white>
+          <TYPE.white>Total deposited</TYPE.white>
           <TYPE.white>
             {/* {`${stakingInfo.totalStakedInWavax.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
             {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`}
@@ -200,18 +201,18 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         <>
           <Break />
           <BottomSection showBackground={true}>
-            <TYPE.black color={'white'} fontWeight={500}>
+            <TYPE.white fontWeight={500}>
               <span>Your rate</span>
-            </TYPE.black>
+            </TYPE.white>
 
-            <TYPE.black style={{ textAlign: 'right' }} color={'white'} fontWeight={500}>
+            <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
               <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                 ⚡
               </span>
               {`${stakingInfo.rewardRate?.multiply(`${60 * 60 * 24 * 7}`)?.toSignificant(4, { groupSeparator: ',' })} ${
                 stakingInfo?.rewardToken.symbol
               } / week`}
-            </TYPE.black>
+            </TYPE.white>
           </BottomSection>
         </>
       )}

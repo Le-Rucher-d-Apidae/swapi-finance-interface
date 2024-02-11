@@ -15,14 +15,7 @@ import { useModalOpen, useWalletModalToggle } from '../../state/application/hook
 import { ExternalLink } from '../../theme'
 import { ButtonPrimary } from '../../components/Button'
 import AccountDetails from '../AccountDetails'
-import {
-  ChainLabel,
-  ChainId,
-  CURRENCY,
-  POLYGON_MAINNET_HEX_CHAIN_ID,
-  ChainExplorer,
-  RPC_URL
-} from '@swapi-finance/sdk'
+import { ChainLabel, ChainId, CURRENCY, POLYGON_MAINNET_HEX_CHAIN_ID, ChainExplorer, RPC_URL } from '@swapi-finance/sdk'
 
 import Modal from '../Modal'
 import Option from './Option'
@@ -42,7 +35,7 @@ const CloseIcon = styled.div`
 
 const CloseColor = styled(Close)`
   path {
-    stroke: ${({ theme }) => theme.text4};
+    stroke: ${({ theme }) => theme.buttonClosePopup};
   }
 `
 
@@ -330,7 +323,7 @@ export default function WalletModal({
             {error instanceof UnsupportedChainIdError ? (
               <>
                 <h5>{`Please connect to the appropriate ${ChainLabel[ChainId.POLYGON]} network.`}</h5>
-                <ButtonPrimary padding="8px" borderRadius="8px" height="60px" onClick={switchToPolygon}>
+                <ButtonPrimary padding="8px" borderradius="8px" height="60px" onClick={switchToPolygon}>
                   {`Switch to ${ChainLabel[ChainId.POLYGON]} Chain`}
                 </ButtonPrimary>
               </>

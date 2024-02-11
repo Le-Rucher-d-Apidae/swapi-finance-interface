@@ -25,8 +25,13 @@ const PageWrapper = styled(AutoColumn)`
   width: 100%;
 `
 
+// const VoteCard = styled(DataCard)`
+// background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+// overflow: hidden;
+// `
+
 const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+  ${({ theme }) => `background: radial-gradient(76.02% 75.41% at 1.84% 0%, ${theme.bg3} 0%, #000000 100%)`};
   overflow: hidden;
 `
 
@@ -187,12 +192,12 @@ export default function Pool() {
             )}
 
             <AutoColumn justify={'center'} gap="md">
-              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
-                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
+              <TYPE.text2 textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined ?"}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                 </StyledInternalLink>
-              </Text>
+              </TYPE.text2>
             </AutoColumn>
           </AutoColumn>
         </AutoColumn>

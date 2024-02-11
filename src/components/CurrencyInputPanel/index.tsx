@@ -81,7 +81,7 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
   border: 1px solid ${({ theme }) => theme.bg2};
-  background-color: ${({ theme }) => theme.bg1};
+  background-color: ${({ theme }) => theme.InputPanelBG};
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -92,20 +92,20 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
 
 const StyledBalanceMax = styled.button`
   height: 28px;
-  background-color: ${({ theme }) => theme.primary5};
-  border: 1px solid ${({ theme }) => theme.primary5};
+  background-color: ${({ theme }) => theme.buttonBalanceMaxBg};
+  border: 1px solid ${({ theme }) => theme.buttonBalanceMaxBorder};
   border-radius: 0.5rem;
   font-size: 0.875rem;
-
   font-weight: 500;
   cursor: pointer;
+  margin-left: 0.5rem;
   margin-right: 0.5rem;
-  color: ${({ theme }) => theme.primaryText1};
+  color: ${({ theme }) => theme.buttonBalanceMaxText};
   :hover {
-    border: 1px solid ${({ theme }) => theme.primary1};
+    border: 1px solid ${({ theme }) => theme.buttonBalanceMaxBorderFocus};
   }
   :focus {
-    border: 1px solid ${({ theme }) => theme.primary1};
+    border: 1px solid ${({ theme }) => theme.buttonBalanceMaxBorderFocus};
     outline: none;
   }
 
@@ -172,7 +172,7 @@ export default function CurrencyInputPanel({
               {account && (
                 <TYPE.body
                   onClick={onMax}
-                  color={theme.text2}
+                  color={theme.text1}
                   fontWeight={500}
                   fontSize={14}
                   style={{ display: 'inline', cursor: 'pointer' }}

@@ -14,8 +14,9 @@ import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk'
 
-import { ChainId } from '@swapi-finance/sdk'
-import { SELF_TOKEN } from '../../constants'
+// import { ChainId } from '@swapi-finance/sdk'
+// import { SELF_TOKEN } from '../../constants'
+import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -96,13 +97,10 @@ export default function Stake() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Welcome to the staking. Stake tokens to receive new Apidae</TYPE.white>
+                <TYPE.text5 fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new LP</TYPE.text5>
               </RowBetween>
               <RowBetween>
-                {/* <TYPE.white fontSize={14}>Deposit your tokens to receive BAG.</TYPE.white> */}
-                <TYPE.white fontSize={14}>
-                  Deposit your tokens to receive {SELF_TOKEN[ChainId.POLYGON].symbol}.
-                </TYPE.white>
+                <TYPE.text5 fontSize={14}>Deposit your LP tokens to receive {LIQUIDITY_TOKEN_SYMBOL}.</TYPE.text5>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>
