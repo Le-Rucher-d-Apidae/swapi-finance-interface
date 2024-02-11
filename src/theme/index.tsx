@@ -44,6 +44,8 @@ const yellow = '#ffff00'
 const yellow1 = '#f4da85' // 244, 218, 133
 const yellow2 = '#dabe39'
 
+const lightYellow1 = '#f0e6b7' // 240, 230, 183
+
 const dark1 = '#08060b'
 
 const darkYellow = '#ffba00' // 255, 186, 0
@@ -162,6 +164,8 @@ export function colors(darkMode: boolean): Colors {
 
     buttonClosePopup: darkMode ? darkYellow : brown,
 
+    popupTxBackground: darkMode ? darkPurple3 : yellow1,
+
     buttonBalanceMaxBg: darkMode ? lightPurple3 : darkYellow,
     buttonBalanceMaxText: darkMode ? white : brown,
     buttonBalanceMaxBorder: darkMode ? lightPurple : grey,
@@ -179,20 +183,32 @@ export function colors(darkMode: boolean): Colors {
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
     textHighlight2: darkMode ? white : darkPurple2,
-    textInfoLink: darkMode ? darkYellow : brown,
+
     poolCardBg1: darkMode ? lightPurple2 : yellow2,
+    poolCardBgStaked: darkMode ? lightPurple3 : yellow2,
+    poolCardBgNotStaked: darkMode ? purple2 : grey,
+
     infoCardBg1: darkMode ? purple1 : yellow1,
     textBottom: darkMode ? lightPurple : white,
     pollingText: darkMode ? lightPurple : white,
     pollingDot: darkMode ? lightPurple : white,
     pollingSpinner: darkMode ? lightPurple : white,
+
+    textInfoLink: darkMode ? darkYellow : brown,
     internalLink: darkMode ? lightPurple : black,
+    styledLink: darkMode ? darkYellow : black,
+
     modalBG: darkMode ? purple3 : yellow1,
     InputPanelBG: darkMode ? purple3 : yellow2,
     InputPanelInputFieldBG: darkMode ? darkPurple1 : yellow1,
 
+    accountUpperPanelBG: darkMode ? purple3 : yellow2,
+    accountMiddlePanelBG: darkMode ? purple3 : yellow2,
+    accountLowerPanelBG: darkMode ? darkPurple1 : lightYellow1,
+
+    popupBorderColor: darkMode ? darkPurple3 : yellow2,
+
     scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`
-    // scrollbarColor: 'red blue'
   }
 }
 

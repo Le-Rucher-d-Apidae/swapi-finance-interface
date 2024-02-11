@@ -34,6 +34,7 @@ export const Popup = styled.div`
       margin-right: 20px;
     }
   `}
+  background-color: ${({ theme }) => theme.popupTxBackground};
 `
 const Fader = styled.div`
   position: absolute;

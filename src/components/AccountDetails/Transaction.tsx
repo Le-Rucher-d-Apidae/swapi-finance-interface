@@ -18,6 +18,7 @@ const TransactionStatusText = styled.div`
   :hover {
     text-decoration: underline;
   }
+  color: ${({ theme }) => theme.text1};
 `
 
 const TransactionState = styled(ExternalLink)<{ pending: boolean; success?: boolean }>`
