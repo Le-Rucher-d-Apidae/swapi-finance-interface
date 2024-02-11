@@ -58,7 +58,9 @@ export interface Colors {
 
   buttonLightBackground: Color
   buttonLightText: Color
+
   buttonClosePopup: Color
+  popupTxBackground: Color
 
   buttonBalanceMaxBg: Color
   buttonBalanceMaxText: Color
@@ -76,15 +78,21 @@ export interface Colors {
   textPopupHeader: Color
   textHighlight1: Color
   textHighlight2: Color
+
   textInfoLink: Color
+  internalLink: Color
+  styledLink: Color
 
   poolCardBg1: Color
+
+  poolCardBgStaked: Color
+  poolCardBgNotStaked: Color
+
   infoCardBg1: Color
   textBottom: Color
   pollingText: Color
   pollingDot: Color
   pollingSpinner: Color
-  internalLink: Color
   modalBG: Color
   InputPanelBG: Color
   InputPanelInputFieldBG: Color

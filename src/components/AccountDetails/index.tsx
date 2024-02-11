@@ -319,7 +319,7 @@ export default function AccountDetails({
                             <LinkIcon size={16} />
                             {/* <span style={{ marginLeft: '4px' }}>View on the C-Chain Explorer</span> */}
                             <span style={{ marginLeft: '4px' }}>
-                              `View on the {ChainLabel[ChainId.POLYGON]} Explorer`
+                              View on the {ChainLabel[ChainId.POLYGON]} Explorer
                             </span>
                           </AddressLink>
                         )}
@@ -344,7 +344,7 @@ export default function AccountDetails({
                             <LinkIcon size={16} />
                             {/* <span style={{ marginLeft: '4px' }}>View on the C-Chain Explorer</span> */}
                             <span style={{ marginLeft: '4px' }}>
-                              `View on the {ChainLabel[ChainId.POLYGON]} Explorer`
+                              View on the {ChainLabel[ChainId.POLYGON]} Explorer
                             </span>
                           </AddressLink>
                         )}

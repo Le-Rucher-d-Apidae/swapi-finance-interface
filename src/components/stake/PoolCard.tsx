@@ -39,7 +39,9 @@ const Wrapper = styled(AutoColumn)<{ showBackground: boolean; bgColor: any }>`
   position: relative;
   opacity: ${({ showBackground }) => (showBackground ? '1' : '1')};
   background: ${({ theme, bgColor, showBackground }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${showBackground ? theme.bg2 : theme.bg1} 100%) `};
+    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${
+      showBackground ? theme.poolCardBgStaked : theme.poolCardBgNotStaked
+    } 100%) `};
   color: ${({ theme, showBackground }) => (showBackground ? theme.white : theme.text1)} !important;
   ${({ showBackground }) =>
     showBackground &&

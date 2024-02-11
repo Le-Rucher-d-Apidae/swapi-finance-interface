@@ -77,7 +77,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
             <ExternalLink style={{ fontWeight: 400 }} href={getEtherscanLink(chainId, token.address, 'token')}>
               {/* <TYPE.blue title={token.address}>{shortenAddress(token.address)} (View on the C-Chain Explorer)</TYPE.blue> */}
               <TYPE.blue title={token.address}>
-                {shortenAddress(token.address)} `View on the {ChainLabel[ChainId.POLYGON]} Explorer`
+                {shortenAddress(token.address)} View on the {ChainLabel[ChainId.POLYGON]} Explorer
               </TYPE.blue>
             </ExternalLink>
           )}
