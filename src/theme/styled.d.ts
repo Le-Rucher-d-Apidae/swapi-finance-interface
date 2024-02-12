@@ -126,6 +126,10 @@ export interface Colors {
   popupBorderColor: Color
 
   scrollbarColor: Color
+
+  iconSuccess: Color
+  iconPending: Color
+  iconFailure: Color
 }
 
 export interface Grids {

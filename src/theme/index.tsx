@@ -70,6 +70,9 @@ const lightgrey = '#e9e9e9'
 
 const black = '#000000'
 
+const green1 = '#27AE60'
+const red1 = '#FF6871'
+
 export function colors(darkMode: boolean): Colors {
   return {
     // base
@@ -128,9 +131,11 @@ export function colors(darkMode: boolean): Colors {
     secondary3: darkMode ? '#17000b26' : '#FDEAF1',
 
     // other
-    red1: '#FF6871',
+    // red1: '#FF6871',
+    red1: red1,
     red2: '#F82D3A',
-    green1: '#27AE60',
+    // green1: '#27AE60',
+    green1: green1,
     yellow1: '#FFE270',
     yellow2: '#F3841E',
     blue1: '#2172E5',
@@ -236,7 +241,11 @@ export function colors(darkMode: boolean): Colors {
 
     popupBorderColor: darkMode ? darkPurple3 : yellow2,
 
-    scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`
+    scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`,
+
+    iconSuccess: darkMode ? green1 : green1,
+    iconPending: darkMode ? white : black,
+    iconFailure: darkMode ? red1 : red1
   }
 }
 
