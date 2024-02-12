@@ -89,6 +89,7 @@ export interface Colors {
   textPopupHeader: Color
   textHighlight1: Color
   textHighlight2: Color
+  textPlaceHolder: Color
 
   textInfoLink: Color
   internalLink: Color
@@ -101,6 +102,9 @@ export interface Colors {
   poolCardBorder: Color
   poolInfoCardBorder: Color
   poolStakeUnstakeModalBorder: Color
+
+  lightCardBG: Color
+  lightCardBorder: Color
 
   infoCardBg1: Color
   textBottom: Color

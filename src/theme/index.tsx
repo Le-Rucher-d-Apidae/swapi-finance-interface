@@ -196,6 +196,7 @@ export function colors(darkMode: boolean): Colors {
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
     textHighlight2: darkMode ? white : darkPurple2,
+    textPlaceHolder: darkMode ? lightPurple : grey,
 
     poolCardBg1: darkMode ? lightPurple2 : yellow2,
     poolCardBgStaked: darkMode ? lightPurple3 : yellow2,
@@ -203,6 +204,12 @@ export function colors(darkMode: boolean): Colors {
     poolCardBorder: darkMode ? grey : white,
     poolInfoCardBorder: darkMode ? grey : white,
     poolStakeUnstakeModalBorder: darkMode ? grey : white,
+
+    // lightCardBG: darkMode ? purple1 : yellow1,
+    // lightCardBG: darkMode ? darkPurple3 : darkYellow2,
+    // lightCardBG: darkMode ? dark1 : yellow2,
+    lightCardBG: darkMode ? purple1 : yellow1,
+    lightCardBorder: darkMode ? grey : white,
 
     infoCardBg1: darkMode ? purple1 : yellow1,
     textBottom: darkMode ? lightPurple : white,
@@ -219,6 +226,8 @@ export function colors(darkMode: boolean): Colors {
     settingsModalBorder: darkMode ? grey : white,
     InputPanelBG: darkMode ? purple3 : yellow2,
     InputPanelInputFieldBG: darkMode ? darkPurple1 : yellow1,
+    // InputPanelBG: darkMode ? darkPurple1 : yellow1,
+    // InputPanelInputFieldBG: darkMode ? purple3 : yellow2,
 
     accountUpperPanelBG: darkMode ? purple3 : yellow2,
     accountMiddlePanelBG: darkMode ? purple3 : yellow2,

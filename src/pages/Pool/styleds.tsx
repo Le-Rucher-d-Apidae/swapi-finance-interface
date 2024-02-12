@@ -5,12 +5,19 @@ export const Wrapper = styled.div`
   position: relative;
 `
 
+// export const ClickableText = styled(Text)`
+//   :hover {
+//     cursor: pointer;
+//   }
+//   color: ${({ theme }) => theme.primary1};
+// `
 export const ClickableText = styled(Text)`
   :hover {
     cursor: pointer;
   }
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text1};
 `
+
 export const MaxButton = styled.button<{ width: string }>`
   padding: 0.5rem 1rem;
   background-color: ${({ theme }) => theme.primary5};

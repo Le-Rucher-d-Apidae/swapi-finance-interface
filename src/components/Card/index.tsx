@@ -13,11 +13,14 @@ const Card = styled(Box)<{ padding?: string; border?: string; borderRadius?: str
 `
 export default Card
 
+// export const LightCard = styled(Card)`
+//   border: 1px solid ${({ theme }) => theme.bg2};
+//   background-color: ${({ theme }) => theme.bg1};
+// `
 export const LightCard = styled(Card)`
-  border: 1px solid ${({ theme }) => theme.bg2};
-  background-color: ${({ theme }) => theme.bg1};
+  border: 1px solid ${({ theme }) => theme.lightCardBorder};
+  background-color: ${({ theme }) => theme.lightCardBG};
 `
-
 // Pool card position info, Swap info card (insufficient liquidity)
 export const GreyCard = styled(Card)`
   background-color: ${({ theme }) => theme.bg3};
