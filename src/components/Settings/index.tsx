@@ -85,7 +85,7 @@ const StyledMenu = styled.div`
 
 const MenuFlyout = styled.span`
   min-width: 20.125rem;
-  background-color: ${({ theme }) => theme.modalBG};
+  background-color: ${({ theme }) => theme.settingsModalBG};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
   border-radius: 12px;
@@ -96,7 +96,7 @@ const MenuFlyout = styled.span`
   top: 4rem;
   right: 0rem;
   z-index: 100;
-
+  border: 1px solid ${({ theme }) => theme.settingsModalBorder};
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     min-width: 18.125rem;
     right: -46px;

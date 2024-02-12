@@ -42,6 +42,11 @@ import { SELF_TOKEN } from '../../constants'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
+  background: ${({ theme }) => theme.appBodyWrapperBackground};
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`
@@ -55,6 +60,7 @@ const BottomSection = styled(AutoColumn)`
   border-radius: 12px;
   width: 100%;
   position: relative;
+  border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
 `
 
 const StyledDataCard = styled(DataCard)<{ bgColor?: any; showBackground?: any }>`

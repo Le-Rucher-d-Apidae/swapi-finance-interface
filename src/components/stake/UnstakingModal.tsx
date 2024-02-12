@@ -21,6 +21,9 @@ import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
   padding: 1rem;
+  border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.poolStakeUnstakeModalBorder};
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 `
 
 interface StakingModalProps {

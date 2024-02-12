@@ -25,6 +25,7 @@ export const GreyCard = styled(Card)`
 
 const InfoCard = styled(Card)`
   background-color: ${({ theme }) => theme.infoCardBg1};
+  border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
 `
 export const PoolInfoCard = styled(InfoCard)``
 export const SwapInfoCard = styled(InfoCard)``

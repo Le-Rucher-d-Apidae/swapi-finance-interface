@@ -66,6 +66,7 @@ const purple2 = '#3a3045' // 58, 48, 69
 const purple3 = '#4d418e' // 77, 65, 142
 
 const grey = '#888D9B'
+const lightgrey = '#e9e9e9'
 
 const black = '#000000'
 
@@ -100,7 +101,8 @@ export function colors(darkMode: boolean): Colors {
 
     //specialty colors
     // modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
-    modalBgOverlay: darkMode ? 'rgba(184, 173, 210,.425)' : 'rgba(255, 255, 255,0.3)',
+    // modalBgOverlay: darkMode ? 'rgba(184, 173, 210,.425)' : 'rgba(255, 255, 255,0.3)',
+    modalBgOverlay: darkMode ? 'rgba(0, 0, 0,.425)' : 'rgba(0,0,0,0.3)',
     // advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
     advancedBG: darkMode ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.6)',
 
@@ -149,9 +151,11 @@ export function colors(darkMode: boolean): Colors {
       ? `linear-gradient(to top, ${darkPurple3}, ${dark1} 22%, ${darkPurple1}) transparent;`
       : `linear-gradient(to top, ${black}, ${yellow1} 22%, ${yellow2}) transparent;`,
 
-    wrapperBackground: darkMode
-      ? `linear-gradient(${purple2} 60%, ${purple1} 90%);`
-      : `linear-gradient(${yellow2} 60%, ${yellow1} 90%);`,
+    appBodyWrapperBackground: darkMode
+      ? `linear-gradient( ${purple3} 60%, ${purple1} 90%);`
+      : `linear-gradient( ${yellow2} 60%, ${yellow1} 90%);`,
+
+    appBodyWrapperBorder: darkMode ? grey : white,
 
     pageBottomBackground: darkMode
       ? `linear-gradient(166.77deg, rgb(${purple1}) 0%, rgb(${purple2}) 100%);`
@@ -163,6 +167,7 @@ export function colors(darkMode: boolean): Colors {
     buttonLightText: darkMode ? white : white,
 
     buttonClosePopup: darkMode ? darkYellow : brown,
+    buttonCloseDarkPopup: darkMode ? darkYellow : white,
 
     popupTxBackground: darkMode ? darkPurple3 : yellow1,
 
@@ -172,13 +177,21 @@ export function colors(darkMode: boolean): Colors {
     buttonBalanceMaxBorderFocus: darkMode ? white : white,
 
     buttonPrimaryText: darkMode ? white : white,
-    buttonPrimaryTextDisabled: darkMode ? white : white,
     // buttonPrimaryBg: darkMode ? lightPurple : darkYellow,
     buttonPrimaryBg: darkMode ? lightPurple : darkYellow,
     buttonPrimaryHover: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryFocus: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryBorder: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryDisabled: darkMode ? lightPurple : grey,
+    buttonPrimaryTextDisabled: darkMode ? white : white,
+
+    buttonSecondaryText: darkMode ? lightgrey : lightgrey,
+    buttonSecondaryBg: darkMode ? purple1 : darkYellow2,
+    buttonSecondaryHover: darkMode ? purple1 : darkYellow2,
+    buttonSecondaryFocus: darkMode ? purple1 : darkYellow2,
+    buttonSecondaryBorder: darkMode ? purple1 : darkYellow2,
+    buttonSecondaryDisabled: darkMode ? purple1 : grey,
+    buttonSecondaryTextDisabled: darkMode ? white : white,
 
     textPopupHeader: darkMode ? white : brown,
     textHighlight1: darkMode ? yellow : brown,
@@ -187,6 +200,9 @@ export function colors(darkMode: boolean): Colors {
     poolCardBg1: darkMode ? lightPurple2 : yellow2,
     poolCardBgStaked: darkMode ? lightPurple3 : yellow2,
     poolCardBgNotStaked: darkMode ? purple2 : grey,
+    poolCardBorder: darkMode ? grey : white,
+    poolInfoCardBorder: darkMode ? grey : white,
+    poolStakeUnstakeModalBorder: darkMode ? grey : white,
 
     infoCardBg1: darkMode ? purple1 : yellow1,
     textBottom: darkMode ? lightPurple : white,
@@ -199,12 +215,15 @@ export function colors(darkMode: boolean): Colors {
     styledLink: darkMode ? darkYellow : black,
 
     modalBG: darkMode ? purple3 : yellow1,
+    settingsModalBG: darkMode ? purple3 : yellow1,
+    settingsModalBorder: darkMode ? grey : white,
     InputPanelBG: darkMode ? purple3 : yellow2,
     InputPanelInputFieldBG: darkMode ? darkPurple1 : yellow1,
 
     accountUpperPanelBG: darkMode ? purple3 : yellow2,
     accountMiddlePanelBG: darkMode ? purple3 : yellow2,
     accountLowerPanelBG: darkMode ? darkPurple1 : lightYellow1,
+    accountModalBorder: darkMode ? grey : white,
 
     popupBorderColor: darkMode ? darkPurple3 : yellow2,
 

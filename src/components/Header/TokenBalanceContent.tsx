@@ -32,9 +32,8 @@ const ContentWrapper = styled(AutoColumn)`
 //   padding: 0.5rem;
 // `
 const ModalUpper = styled(DataCard)`
-  border-radius: 20px;
-  border: outset;
-  border-color: ${({ theme }) => theme.popupBorderColor};
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.accountModalBorder};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
 `
@@ -168,7 +167,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
               {/* Your BAG Breakdown */}
               Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
             </TYPE.text5>
-            <StyledClose color={theme.white} onClick={() => setShowTokenBalanceModal(false)} />
+            <StyledClose color={theme.buttonCloseDarkPopup} onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
         </CardSection>
         <Break />
