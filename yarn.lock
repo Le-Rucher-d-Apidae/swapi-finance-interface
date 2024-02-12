@@ -2835,10 +2835,10 @@
     abi-decoder "^2.4.0"
     base-58 "0.0.1"
 
-"@swapi-finance/sdk@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.3.tgz#7961b26a0eb2187a920945b55545efa54b736692"
-  integrity sha512-tZ5jvH5IHdgenhhkEN6OJQj4+2zmihSCjyxJyGMNNs1k0UHIgqqnyPlrMbGU8Ot6ch6UX9h9er+/XbJzQX916w==
+"@swapi-finance/sdk@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.4.tgz#5f01f019a3349a8f5a1bc181704d47a51048b19f"
+  integrity sha512-Q3kYE8hQ8+gk1Ntt+cjDXzrdqmgGKN35J86ucJq2ptfAlV/1/qK0IvG92/l0hTmDZkTwXcxH/gChw45IRMx9fw==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
     big.js "^5.2.2"
@@ -7209,12 +7209,12 @@ deferred-leveldown@~1.2.1:
     abstract-leveldown "~2.6.0"
 
 define-data-property@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/define-data-property/-/define-data-property-1.1.2.tgz#f3c33b4f0102360cd7c0f5f28700f5678510b63a"
-  integrity sha512-SRtsSqsDbgpJBbW3pABMCOt6rQyeM8s8RiyeSN8jYG8sYmt/kGJejbydttUsnDs1tadr19tvhT4ShwMyoqAm4g==
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/define-data-property/-/define-data-property-1.1.3.tgz#281845e04737d709c2de99e278546189b65d3055"
+  integrity sha512-h3GBouC+RPtNX2N0hHVLo2ZwPYurq8mLmXpOLTsw71gr7lHt5VaI4vVkDUNOfiWmm48JEXe3VM7PmLX45AMmmg==
   dependencies:
     es-errors "^1.3.0"
-    get-intrinsic "^1.2.2"
+    get-intrinsic "^1.2.4"
     gopd "^1.0.1"
     has-property-descriptors "^1.0.1"
 
@@ -9637,7 +9637,7 @@ get-intrinsic@^1.0.1, get-intrinsic@^1.0.2, get-intrinsic@^1.1.0:
     has "^1.0.3"
     has-symbols "^1.0.1"
 
-get-intrinsic@^1.1.3, get-intrinsic@^1.2.2, get-intrinsic@^1.2.3:
+get-intrinsic@^1.1.3, get-intrinsic@^1.2.2, get-intrinsic@^1.2.3, get-intrinsic@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/get-intrinsic/-/get-intrinsic-1.2.4.tgz#e385f5a4b5227d449c3eabbad05494ef0abbeadd"
   integrity sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==
@@ -10094,9 +10094,9 @@ hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3, hash.js@^1.1.7:
     minimalistic-assert "^1.0.1"
 
 hasown@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/hasown/-/hasown-2.0.0.tgz#f4c513d454a57b7c7e1650778de226b11700546c"
-  integrity sha512-vUptKVTpIJhcczKBbgnS+RtcuYMB8+oNzPK2/Hp3hanz8JmpATdmmgLgSaadVREkDm+e2giHwY3ZRkyjSIDDFA==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/hasown/-/hasown-2.0.1.tgz#26f48f039de2c0f8d3356c223fb8d50253519faa"
+  integrity sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==
   dependencies:
     function-bind "^1.1.2"
 

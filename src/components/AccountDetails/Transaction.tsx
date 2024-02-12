@@ -35,7 +35,6 @@ const TransactionState = styled(ExternalLink)<{ pending: boolean; success?: bool
 `
 // color: ${({ theme }) => theme.primary1};
 
-
 // const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
 //   color: ${({ pending, success, theme }) => (pending ? theme.primary1 : success ? theme.green1 : theme.red1)};
 // `
