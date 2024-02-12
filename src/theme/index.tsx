@@ -72,6 +72,7 @@ const black = '#000000'
 
 const green1 = '#27AE60'
 const red1 = '#FF6871'
+const blue1 = '#2172E5'
 
 export function colors(darkMode: boolean): Colors {
   return {
@@ -138,7 +139,8 @@ export function colors(darkMode: boolean): Colors {
     green1: green1,
     yellow1: '#FFE270',
     yellow2: '#F3841E',
-    blue1: '#2172E5',
+    // blue1: '#2172E5',
+    blue1: blue1,
 
     // avaxRed: '#E84142',
 
@@ -244,7 +246,7 @@ export function colors(darkMode: boolean): Colors {
     scrollbarColor: darkMode ? `${darkPurple3} ${lightPurple}` : `${darkYellow} ${yellow1}`,
 
     iconSuccess: darkMode ? green1 : green1,
-    iconPending: darkMode ? white : black,
+    iconPending: darkMode ? blue1 : black,
     iconFailure: darkMode ? red1 : red1
   }
 }
