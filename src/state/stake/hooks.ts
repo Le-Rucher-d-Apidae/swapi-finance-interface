@@ -249,6 +249,14 @@ export const STAKING_REWARDS_INFO: {
       stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4', // TODO: update this !
       autocompoundingAddress: ZERO_ADDRESS
     },
+
+    {
+      tokens: [USDT[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
+      rewardToken: USDC[ChainId.MUMBAI],
+      stakingRewardAddress: '0xd5057bF582eB47b33f4C1D6FaEfF1DC82Aff14a6', // TODO: update this !
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+
     {
       tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
@@ -520,8 +528,21 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   // console.log(`useStakingInfo: pairs`, pairs)
   // const avaxPairs = usePairs(tokens.map(pair => [WAVAX[chainId ? chainId : ChainId.AVALANCHE], pair[0]]))
   // const [avaxBagPairState, avaxBagPair] = usePair(WAVAX[chainId ? chainId : ChainId.AVALANCHE], bag)
+  // const currencyPairs = usePairs(tokens.map(pair => [WCURRENCY[chainId ? chainId : ChainId.POLYGON], pair[0]]))
   const currencyPairs = usePairs(tokens.map(pair => [WCURRENCY[chainId ? chainId : ChainId.POLYGON], pair[0]]))
   // console.log(`useStakingInfo: currencyPairs`, currencyPairs)
+
+  // Adds a warning if the pair is not found
+  currencyPairs?.forEach((pair, index) => {
+    if (pair[0] === PairState.NOT_EXISTS && !pair[1]) {
+      console.warn(
+        `useStakingInfo: PAIR NOT FOUND (${index})  `,
+        WCURRENCY[chainId ? chainId : ChainId.POLYGON],
+        tokens[index][0]
+      )
+    }
+  })
+
   const [currencySelfTokenPairState, currencySelfTokenPair] = usePair(
     WCURRENCY[chainId ? chainId : ChainId.POLYGON],
     selfToken
@@ -569,7 +590,12 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
       const tokens = info[index].tokens
       // const [avaxTokenPairState, avaxTokenPair] = maticPairs[index]
       const [currencyTokenPairState, currencyTokenPair] = currencyPairs[index]
+
+      // Adds a warning if the pair is not found
       // console.log(`currencyTokenPair =`, currencyTokenPair)
+      // if (currencyTokenPairState == PairState.NOT_EXISTS && !currencyTokenPair) {
+      //   console.error(`useStakingInfo: PAIR NOT FOUND currencyTokenPairState=${currencyTokenPairState} currencyTokenPair=`, currencyTokenPair)
+      // }
       const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
       const [pairState, pair] = pairs[index]
       // console.log(`useStakingInfo: pairState=${pairState} pair=`, pair)

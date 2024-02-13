@@ -74,8 +74,18 @@ export const BAGTEST: { [chainId in ChainId]: Token } = {
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, ZERO_ADDRESS, 18, 'BAGTST', 'BaguetteTest') // TODO: change to polygon BAGTST
 }
 
+// export const USDT: { [chainId in ChainId]: Token } = {
+//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDT', 'Tether USD'),
+//   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD')
+// }
 export const USDT: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDT', 'Tether USD'),
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0x1fdE0eCc619726f4cD597887C9F3b4c8740e19e2',
+    6,
+    'USDT Coin AAVE Testnet',
+    'Tether USD'
+  ),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD')
 }
 
