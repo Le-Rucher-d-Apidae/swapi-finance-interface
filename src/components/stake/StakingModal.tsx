@@ -260,6 +260,8 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
     }
   }
 
+  const stakingTokenSymbol = dummyPair ? LIQUIDITY_TOKEN_SYMBOL : stakingToken.symbol
+
   return (
     <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
       {!attempting && !hash && (
@@ -366,7 +368,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
             <TYPE.largeHeader>{dummyPair ? 'Depositing Liquidity' : 'Staking Tokens'}</TYPE.largeHeader>
             <TYPE.body fontSize={20}>
               {/* {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol} */}
-              {parsedAmount?.toSignificant(4)} {dummyPair ? LIQUIDITY_TOKEN_SYMBOL : stakingToken.symbol}
+              {parsedAmount?.toSignificant(4)} {stakingTokenSymbol}
             </TYPE.body>
           </AutoColumn>
         </LoadingView>
@@ -377,7 +379,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             <TYPE.body fontSize={20}>
               {/* Deposited {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol} */}
-              Deposited {parsedAmount?.toSignificant(4)} {dummyPair ? LIQUIDITY_TOKEN_SYMBOL : stakingToken.symbol}
+              Deposited {parsedAmount?.toSignificant(4)} {stakingTokenSymbol}
             </TYPE.body>
           </AutoColumn>
         </SubmittedView>
