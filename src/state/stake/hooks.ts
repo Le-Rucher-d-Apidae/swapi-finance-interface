@@ -245,21 +245,21 @@ export const STAKING_REWARDS_INFO: {
     // Mill = Stake-Farm
     {
       tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: USDC[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4',
       autocompoundingAddress: ZERO_ADDRESS
     },
 
     {
       tokens: [USDT[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: USDC[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0xd5057bF582eB47b33f4C1D6FaEfF1DC82Aff14a6',
       autocompoundingAddress: ZERO_ADDRESS
     },
 
     {
       tokens: [USDCE[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: USDC[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x02a2FCF42C09b60E2e7DA95D217C6a0567235446',
       autocompoundingAddress: ZERO_ADDRESS
     },
@@ -793,24 +793,23 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
 
-        // if (!wcurrencyPairNotFound)
-          memo.push({
-            stakingRewardAddress: rewardsAddress,
-            autocompoundingAddress: autocompoundingAddress,
-            useAutocompounding: useAutocompounding,
-            tokens: tokens,
-            rewardToken: rewardToken,
-            periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
-            earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
-            sharesAmount: sharesAmount,
-            rewardRate: individualRewardRate,
-            totalRewardRate: totalRewardRate,
-            stakedAmount: stakedAmount,
-            totalStakedAmount: totalStakedAmount,
-            // totalStakedInWavax: totalStakedInWavax,
-            totalStakedInWcurrency: totalStakedInWcurrency,
-            getHypotheticalRewardRate
-          })
+        memo.push({
+          stakingRewardAddress: rewardsAddress,
+          autocompoundingAddress: autocompoundingAddress,
+          useAutocompounding: useAutocompounding,
+          tokens: tokens,
+          rewardToken: rewardToken,
+          periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
+          earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
+          sharesAmount: sharesAmount,
+          rewardRate: individualRewardRate,
+          totalRewardRate: totalRewardRate,
+          stakedAmount: stakedAmount,
+          totalStakedAmount: totalStakedAmount,
+          // totalStakedInWavax: totalStakedInWavax,
+          totalStakedInWcurrency: totalStakedInWcurrency,
+          getHypotheticalRewardRate
+        })
       }
 
       return memo
