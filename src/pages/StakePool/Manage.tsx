@@ -189,7 +189,7 @@ export function ManagePair({
             <AutoColumn gap="md">
               <RowBetween>
                 <TYPE.white fontWeight={600}>
-                  Step 1. Get Baguette Liquidity tokens ({LIQUIDITY_TOKEN_SYMBOL})
+                  Step 1. Get Liquidity tokens ({LIQUIDITY_TOKEN_SYMBOL})
                 </TYPE.white>
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
