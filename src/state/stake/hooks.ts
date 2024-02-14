@@ -462,15 +462,6 @@ const isUSD = function(token: Token, chainId: ChainId): boolean {
     token.equals(USDC[chainId]) ||
     token.equals(DAI[chainId])
   )
-  /*
-(tokens[0].equals(USDCE[tokens[0].chainId]) ||
-              tokens[0].equals(USDT[tokens[0].chainId]) ||
-              tokens[0].equals(USDC[tokens[0].chainId])) &&
-            tokens[0] !== tokens[1] &&
-            (tokens[1].equals(USDCE[tokens[1].chainId]) ||
-              tokens[1].equals(USDT[tokens[1].chainId]) ||
-              tokens[1].equals(USDC[tokens[1].chainId]))
-*/
 }
 
 // gets the staking info from the network for the active chain id
@@ -533,8 +524,10 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   // console.log(`useStakingInfo: currencyPairs`, currencyPairs)
 
   // Adds a warning if the pair is not found
+  let wcurrencyPairNotFound = false
   currencyPairs?.forEach((pair, index) => {
     if (pair[0] === PairState.NOT_EXISTS && !pair[1]) {
+      wcurrencyPairNotFound = true
       console.warn(
         `useStakingInfo: PAIR NOT FOUND (${index})  `,
         WCURRENCY[chainId ? chainId : ChainId.POLYGON],
@@ -707,7 +700,9 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                   totalStakedAmount
                 )
               : // calculateTotalStakedAmountInAvaxFromBag(
-                calculateTotalStakedAmountInCurrencyFromSelfToken(
+              wcurrencyPairNotFound
+              ? new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
+              : calculateTotalStakedAmountInCurrencyFromSelfToken(
                   chainId,
                   totalSupply,
                   // avaxBagPair.reserveOf(bag).raw,
@@ -791,23 +786,24 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
 
-        memo.push({
-          stakingRewardAddress: rewardsAddress,
-          autocompoundingAddress: autocompoundingAddress,
-          useAutocompounding: useAutocompounding,
-          tokens: tokens,
-          rewardToken: rewardToken,
-          periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
-          earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
-          sharesAmount: sharesAmount,
-          rewardRate: individualRewardRate,
-          totalRewardRate: totalRewardRate,
-          stakedAmount: stakedAmount,
-          totalStakedAmount: totalStakedAmount,
-          // totalStakedInWavax: totalStakedInWavax,
-          totalStakedInWcurrency: totalStakedInWcurrency,
-          getHypotheticalRewardRate
-        })
+        if (!wcurrencyPairNotFound)
+          memo.push({
+            stakingRewardAddress: rewardsAddress,
+            autocompoundingAddress: autocompoundingAddress,
+            useAutocompounding: useAutocompounding,
+            tokens: tokens,
+            rewardToken: rewardToken,
+            periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
+            earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
+            sharesAmount: sharesAmount,
+            rewardRate: individualRewardRate,
+            totalRewardRate: totalRewardRate,
+            stakedAmount: stakedAmount,
+            totalStakedAmount: totalStakedAmount,
+            // totalStakedInWavax: totalStakedInWavax,
+            totalStakedInWcurrency: totalStakedInWcurrency,
+            getHypotheticalRewardRate
+          })
       }
 
       return memo
