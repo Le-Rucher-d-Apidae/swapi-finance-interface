@@ -15,6 +15,8 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.POLYGON]: '0xF7b1e993d1b4F7348D64Aa55A294E4B74512F7f2' // TODO: change to polygon router
 }
 
+export const CURRENCY_LABEL = 'MATIC'
+
 export const FACTORY_ADDRESS = SDK_FACTORY_ADDRESS
 
 export const TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL =

@@ -279,21 +279,14 @@ export default function WalletModal({
   }
 
   function switchToPolygon() {
-    // const AVALANCHE_MAINNET_PARAMS = {
     const POLYGON_MAINNET_PARAMS = {
-      // chainId: '0xa86a',
       chainId: POLYGON_MAINNET_HEX_CHAIN_ID,
-      // chainName: 'Avalanche Mainnet C-Chain',
       chainName: 'Polygon Mainnet',
       nativeCurrency: {
-        // name: 'Polygon',
         name: ChainLabel[ChainId.POLYGON],
-        // symbol: 'AVAX',
         symbol: CURRENCY.symbol,
         decimals: 18
       },
-      // rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-      // blockExplorerUrls: ['https://cchain.explorer.avax.network/']
       rpcUrls: [process.env.REACT_APP_NETWORK_URL || RPC_URL[ChainId.POLYGON]],
       blockExplorerUrls: [process.env.REACT_APP_MAINNET_EXPLORER_URL || ChainExplorer[ChainId.POLYGON]]
     }
@@ -302,7 +295,7 @@ export default function WalletModal({
       provider
         .request({
           method: 'wallet_addEthereumChain',
-          params: [/* AVALANCHE_MAINNET_PARAMS */ POLYGON_MAINNET_PARAMS]
+          params: [POLYGON_MAINNET_PARAMS]
         })
         .catch((error: any) => {
           console.log(error)
@@ -378,7 +371,6 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              {/* <span>New to Avalanche? &nbsp;</span>{' '} */}
               <span>New to {ChainLabel[ChainId.POLYGON]} ? &nbsp;</span>{' '}
               <ExternalLink href={WALLET_TUTORIAL}>Learn more about setting up a wallet</ExternalLink>
             </Blurb>

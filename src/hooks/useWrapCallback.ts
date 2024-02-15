@@ -1,4 +1,3 @@
-// import { Currency, currencyEquals, CAVAX, WAVAX } from '@swapi-finance/sdk'
 import { Currency, currencyEquals, CURRENCY, WCURRENCY, ChainId } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
 import { tryParseAmount } from '../state/swap/hooks'
@@ -37,7 +36,6 @@ export default function useWrapCallback(
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
-    // if (inputCurrency === CAVAX && currencyEquals(WAVAX[chainId], outputCurrency)) {
     if (inputCurrency === CURRENCY && currencyEquals(WCURRENCY[chainId], outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
@@ -46,7 +44,6 @@ export default function useWrapCallback(
             ? async () => {
                 try {
                   const txReceipt = await wethContract.deposit({ value: `0x${inputAmount.raw.toString(16)}` })
-                  // addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} AVAX to WAVAX` })
                   addTransaction(txReceipt, {
                     summary: `Wrap ${inputAmount.toSignificant(6)} ${CURRENCY.symbol} to ${
                       WCURRENCY[chainId ? chainId : ChainId.POLYGON].symbol
@@ -57,10 +54,8 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        // inputError: sufficientBalance ? undefined : 'Insufficient AVAX balance'
         inputError: sufficientBalance ? undefined : `Insufficient ${CURRENCY.symbol} balance`
       }
-      // } else if (currencyEquals(WAVAX[chainId], inputCurrency) && outputCurrency === CAVAX) {
     } else if (
       currencyEquals(WCURRENCY[chainId ? chainId : ChainId.POLYGON], inputCurrency) &&
       outputCurrency === CURRENCY
@@ -72,7 +67,6 @@ export default function useWrapCallback(
             ? async () => {
                 try {
                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.raw.toString(16)}`)
-                  // addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WAVAX to AVAX` })
                   addTransaction(txReceipt, {
                     summary: `Unwrap ${inputAmount.toSignificant(6)} 
                       ${WCURRENCY[chainId ? chainId : ChainId.POLYGON].symbol} to
@@ -83,7 +77,6 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        // inputError: sufficientBalance ? undefined : 'Insufficient WAVAX balance'
         inputError: sufficientBalance
           ? undefined
           : `Insufficient ${WCURRENCY[chainId ? chainId : ChainId.POLYGON].symbol} balance`
