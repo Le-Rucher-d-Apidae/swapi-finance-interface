@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-// import React, { useCallback } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -12,14 +11,10 @@ import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
 
 import { RowBetween, RowFixed } from '../../components/Row'
-// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
-// import StakingModal from '../../components/mill/StakingModal'
 import StakingModal from '../../components/stake/StakingModal'
 import { useStakingInfo, StakingType } from '../../state/stake/hooks'
-// import UnstakingModal from '../../components/mill/UnstakingModal'
-// import ClaimRewardModal from '../../components/mill/ClaimRewardModal'
 import UnstakingModal from '../../components/stake/UnstakingModal'
 import ClaimRewardModal from '../../components/stake/ClaimRewardModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
@@ -122,7 +117,6 @@ export function ManagePair({
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
-  // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWavax
   const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
 
   // get the color of the second token of the pair
@@ -174,7 +168,6 @@ export function ManagePair({
               {stakingInfo?.totalRewardRate
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
-              {/* {' BAG / week'} */}
               {` ${SELF_TOKEN[ChainId.POLYGON].symbol} / week`}
             </TYPE.body>
           </AutoColumn>
@@ -262,7 +255,6 @@ export function ManagePair({
               {!stakingInfo?.useAutocompounding && (
                 <RowBetween>
                   <div>
-                    {/* <TYPE.black>Your unclaimed BAG</TYPE.black> */}
                     <TYPE.black>Your unclaimed {SELF_TOKEN[ChainId.POLYGON].symbol}</TYPE.black>
                   </div>
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
@@ -306,7 +298,6 @@ export function ManagePair({
                   {stakingInfo?.rewardRate
                     ?.multiply((60 * 60 * 24 * 7).toString())
                     ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
-                  {/* {' BAG / week'} */}
                   {` ${SELF_TOKEN[ChainId.POLYGON].symbol} / week`}
                 </TYPE.black>
               </RowBetween>

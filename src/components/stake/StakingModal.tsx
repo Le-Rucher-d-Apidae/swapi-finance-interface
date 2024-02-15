@@ -1,24 +1,14 @@
-// import React, { useState, useCallback, useContext } from 'react'
 import React, { useState, useCallback /* , useContext */ } from 'react'
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
-// import styled, { ThemeContext } from 'styled-components'
 import styled /* , { ThemeContext } */ from 'styled-components'
-// import { RowBetween, RowFixed } from '../Row'
 import { RowBetween /* , RowFixed */ } from '../Row'
 import { TYPE, CloseIcon } from '../../theme'
 import { ButtonConfirmed, ButtonError } from '../Button'
 import ProgressCircles from '../ProgressSteps'
 import CurrencyInputPanel from '../CurrencyInputPanel'
-// import { JSBI, TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
-import {
-  /* JSBI, */ TokenAmount,
-  Pair,
-  ChainId,
-  LIQUIDITY_TOKEN_SYMBOL,
-  LIQUIDITY_TOKEN_NAME
-} from '@swapi-finance/sdk'
+import { TokenAmount, Pair, ChainId, LIQUIDITY_TOKEN_SYMBOL, LIQUIDITY_TOKEN_NAME } from '@swapi-finance/sdk'
 import { useActiveWeb3React } from '../../hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { usePairContract, useStakingContract, useTokenContract, useAutocompoundContract } from '../../hooks/useContract'
@@ -29,7 +19,6 @@ import { wrappedCurrencyAmount } from '../../utils/wrappedCurrency'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
-// import { UNDEFINED, ZERO_ADDRESS /* , NO_EIP712_SUPPORT */ } from '../../constants'
 import { UNDEFINED /* , ZERO_ADDRESS */, NO_EIP712_SUPPORT, SELF_TOKEN } from '../../constants'
 import { BigNumber } from '@ethersproject/bignumber'
 // import Toggle from '../Toggle'
@@ -91,13 +80,6 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
     onDismiss()
   }, [onDismiss])
 
-  // const dummyPair = stakingInfo.tokens[1].equals(UNDEFINED[chainId ? chainId : ChainId.AVALANCHE])
-  //   ? undefined
-  //   : new Pair(
-  //       new TokenAmount(stakingInfo.tokens[0], '0'),
-  //       new TokenAmount(stakingInfo.tokens[1], '0'),
-  //       chainId ? chainId : ChainId.AVALANCHE
-  //     )
   const dummyPair = stakingInfo.tokens[1].equals(UNDEFINED[chainId ? chainId : ChainId.POLYGON])
     ? undefined
     : new Pair(
@@ -204,7 +186,6 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
       ]
 
       const domain = {
-        // name: dummyPair ? 'Baguette Liquidity' : stakingToken.name,
         name: dummyPair ? `${LIQUIDITY_TOKEN_NAME}` : stakingToken.name, // DOMAIN NAME
         version: '1',
         chainId: chainId,
@@ -367,7 +348,6 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{dummyPair ? 'Depositing Liquidity' : 'Staking Tokens'}</TYPE.largeHeader>
             <TYPE.body fontSize={20}>
-              {/* {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol} */}
               {parsedAmount?.toSignificant(4)} {stakingTokenSymbol}
             </TYPE.body>
           </AutoColumn>
@@ -378,7 +358,6 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             <TYPE.body fontSize={20}>
-              {/* Deposited {parsedAmount?.toSignificant(4)} {dummyPair ? 'BGL' : stakingToken.symbol} */}
               Deposited {parsedAmount?.toSignificant(4)} {stakingTokenSymbol}
             </TYPE.body>
           </AutoColumn>
