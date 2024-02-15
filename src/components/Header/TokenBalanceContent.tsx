@@ -1,21 +1,17 @@
-// import { ChainId, TokenAmount, WAVAX, JSBI } from '@swapi-finance/sdk'
 import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk'
-// import React, { useState, useEffect } from 'react'
 import React, { useState, useContext } from 'react'
 import { useEffect } from 'react'
-// import { useMemo } from 'react'
 import { X } from 'react-feather'
 import styled, { ThemeContext } from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-// import { BAG } from '../../constants'
 import { SELF_TOKEN } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 // import { useAggregateBagBalance, useTokenBalance } from '../../state/wallet/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { TYPE, BagTokenAnimated } from '../../theme'
-// import { computeBagCirculation } from '../../utils/computeBagCirculation'
-import { computeBagCirculation } from '../../utils/computeBagCirculation'
+// import { computeSelfTokenCirculation } from '../../utils/computeSelfTokenCirculation'
+import { computeSelfTokenCirculation } from '../../utils/computeSelfTokenCirculation'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../pool/styled'
@@ -57,8 +53,6 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   const { account, chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
   const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
-  // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
-  // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>(defaultTokenAmount)
@@ -90,7 +84,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
 
   // useEffect(() => {
   // 	bag && chainId === ChainId.AVALANCHE
-  // 		? computeBagCirculation(bag)
+  // 		? computeSelfTokenCirculation(bag)
   // 			.then(circulating => {
   // 				setCirculatingSupply(circulating)
   // 			})
@@ -99,7 +93,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   /*
   useEffect(() => {
     if (apd && chainId === ChainId.POLYGON) {
-      computeBagCirculation(apd).then(circulating => {
+      computeSelfTokenCirculation(apd).then(circulating => {
         // setCirculatingSupply(circulating)
         console.log('TODO: IF setCirculatingSupply circulating=', circulating)
       })
@@ -114,7 +108,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
 */
   useEffect(() => {
     if (selfToken && chainId === ChainId.POLYGON) {
-      computeBagCirculation(selfToken).then(circulating => {
+      computeSelfTokenCirculation(selfToken).then(circulating => {
         setCirculatingSupply(circulating)
         // console.log('TODO: IF setCirculatingSupply circulating=', circulating)
       })
@@ -163,10 +157,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.text5>
-              {/* Your BAG Breakdown */}
-              Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown
-            </TYPE.text5>
+            <TYPE.text5>Your {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} Breakdown</TYPE.text5>
             <StyledClose color={theme.buttonCloseDarkPopup} onClick={() => setShowTokenBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -193,21 +184,13 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
+              <TYPE.text5>{SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:</TYPE.text5>
               <TYPE.text5>
-                {/* BAG price: */}
-                {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:
-              </TYPE.text5>
-              {/* <TYPE.white>{bagPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white> */}
-              <TYPE.text5>
-                {/* {bagPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol} */}
                 {tokenPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol}
               </TYPE.text5>
             </RowBetween>
             <RowBetween>
-              <TYPE.text5>
-                {/* BAG in circulation: */}
-                {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:
-              </TYPE.text5>
+              <TYPE.text5>{SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:</TYPE.text5>
               <TYPE.text5>{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.text5>
             </RowBetween>
             <RowBetween>

@@ -15,14 +15,14 @@ src/components/Menu/index.tsx
 WALLET_TUTORIAL
 src/components/WalletModal/index.tsx
 
-computeBagCirculation
-src/utils/computeBagCirculation.ts
+computeSelfTokenCirculation
+src/utils/computeSelfTokenCirculation.ts
 
 src/pages/StakePool/index.tsx
 
 API
 https://api.baguette.exchange/bag/circulating-supply
-src/utils/computeBagCirculation.ts
+src/utils/computeSelfTokenCirculation.ts
 process.env.REACT_APP_API_BASE_URL
 REACT_APP_API_CIRCULATING_SUPPLY
 
