@@ -96,7 +96,7 @@ export default function StakePool() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.white>
+                <TYPE.white fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new tokens</TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
