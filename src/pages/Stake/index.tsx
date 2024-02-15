@@ -4,10 +4,8 @@ import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { STAKING_REWARDS_INFO, useStakingInfo, StakingType } from '../../state/stake/hooks'
 import { TYPE } from '../../theme'
-// import PoolCard from '../../components/mill/PoolCard'
 import PoolCard from '../../components/stake/PoolCard'
 import { RowBetween, AutoRow } from '../../components/Row'
-// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
@@ -34,7 +32,6 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
-// export default function Oven() {
 export default function Stake() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.SINGLE)
@@ -45,8 +42,7 @@ export default function Stake() {
     Promise.all(
       stakingInfos
         ?.sort(function(info_a, info_b) {
-          // greater stake in avax comes first
-          // return info_a.totalStakedInWavax?.greaterThan(info_b.totalStakedInWavax ?? JSBI.BigInt(0)) ? -1 : 1
+          // greater stake in currency comes first
           return info_a.totalStakedInWcurrency?.greaterThan(info_b.totalStakedInWcurrency ?? JSBI.BigInt(0)) ? -1 : 1
         })
         .sort(function(info_a, info_b) {
@@ -84,7 +80,7 @@ export default function Stake() {
   `
 
   // const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
-  // STAKING_REWARDS_INFO contains both staking and farming pools
+  // STAKING_REWARDS_INFO contains both staking and farming pools, only look at single asset staking pools
   const stakingRewardsExist =
     Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0) && stakingInfos.length > 0
 
@@ -112,7 +108,7 @@ export default function Stake() {
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
-          {/* <TYPE.black fontWeight={400}>Baguette batch #27 ends on December 31st</TYPE.black> */}
+          {/* <TYPE.black fontWeight={400}>Info message</TYPE.black> */}
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">
