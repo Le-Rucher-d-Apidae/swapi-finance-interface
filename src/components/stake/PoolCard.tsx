@@ -2,7 +2,6 @@ import React from 'react'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import styled from 'styled-components'
-// import { TYPE, StyledInternalLink } from '../../theme'
 import { TYPE, InternalLink } from '../../theme'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import CurrencyLogo from '../CurrencyLogo'
@@ -12,12 +11,9 @@ import { StakingInfo } from '../../state/stake/hooks'
 import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
-// import { Break, CardNoise, CardBGImage } from './styled'
 import { Break, CardNoise } from './styled'
-// import { UNDEFINED, ZERO_ADDRESS } from '../../constants'
 import { UNDEFINED } from '../../constants'
 import { Fraction } from '@swapi-finance/sdk'
-// import YieldYakLogoWhite from '../../assets/images/yieldyak-logo-white.png'
 
 const StatContainer = styled.div`
   display: flex;
@@ -71,6 +67,11 @@ const TopSection = styled.div`
 //   z-index: 1;
 // `
 
+// const StyledLogo = styled.img`
+//   display: flex;
+//   width: 52px;
+// `
+
 const BottomSection = styled.div<{ showBackground: boolean }>`
   padding: 12px 16px;
   opacity: ${({ showBackground }) => (showBackground ? '1' : '0.4')};
@@ -87,11 +88,6 @@ const HorizontalMerge = styled.div`
   flex-direction: row;
   align-items: center;
 `
-
-// const StyledLogo = styled.img`
-//   display: flex;
-//   width: 52px;
-// `
 
 export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: StakingInfo; apr: string }) {
   const token0 = stakingInfo.tokens[0]
