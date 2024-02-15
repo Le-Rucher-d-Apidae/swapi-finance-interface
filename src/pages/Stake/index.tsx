@@ -13,9 +13,6 @@ import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk'
-
-// import { ChainId } from '@swapi-finance/sdk'
-// import { SELF_TOKEN } from '../../constants'
 import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
@@ -86,7 +83,10 @@ export default function Stake() {
    `};
   `
 
-  const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
+  // const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
+  // STAKING_REWARDS_INFO contains both staking and farming pools
+  const stakingRewardsExist =
+    Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0) && stakingInfos.length > 0
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -97,7 +97,7 @@ export default function Stake() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.text5 fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new LP</TYPE.text5>
+                <TYPE.text5 fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.text5>
               </RowBetween>
               <RowBetween>
                 <TYPE.text5 fontSize={14}>Deposit your LP tokens to receive {LIQUIDITY_TOKEN_SYMBOL}.</TYPE.text5>

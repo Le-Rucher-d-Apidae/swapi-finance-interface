@@ -85,7 +85,10 @@ export default function StakePool() {
    `};
   `
 
-  const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
+  // const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
+  // STAKING_REWARDS_INFO contains both staking and farming pools
+  const stakingRewardsExist =
+    Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0) && stakingInfos.length > 0
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -96,7 +99,7 @@ export default function StakePool() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.white>
+                <TYPE.white fontWeight={600}>Welcome to the farm. Lock LP tokens to earn new tokens</TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>

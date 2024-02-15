@@ -245,21 +245,21 @@ export const STAKING_REWARDS_INFO: {
     // Mill = Stake-Farm
     {
       tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: USDC[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4',
       autocompoundingAddress: ZERO_ADDRESS
     },
 
     {
       tokens: [USDT[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: USDC[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0xd5057bF582eB47b33f4C1D6FaEfF1DC82Aff14a6',
       autocompoundingAddress: ZERO_ADDRESS
     },
 
     {
       tokens: [USDCE[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: USDC[ChainId.MUMBAI],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x02a2FCF42C09b60E2e7DA95D217C6a0567235446',
       autocompoundingAddress: ZERO_ADDRESS
     },
@@ -269,15 +269,8 @@ export const STAKING_REWARDS_INFO: {
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x9acAa2b2A98384a92e9ef07D2Ae4743FEdDD3135',
       autocompoundingAddress: ZERO_ADDRESS
-    }
+    },
 
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // }
-    // ,
     // {
     //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
     //   rewardToken: new Token(
@@ -309,7 +302,14 @@ export const STAKING_REWARDS_INFO: {
     //   stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
     //   autocompoundingAddress: ZERO_ADDRESS
     // }
+
     // Oven = Stake
+    {
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
+      autocompoundingAddress: ZERO_ADDRESS
+    }
   ],
   [ChainId.POLYGON]: [
     // {

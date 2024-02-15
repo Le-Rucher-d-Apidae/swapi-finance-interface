@@ -151,7 +151,11 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
               {currency0.symbol}
             </TYPE.white>
-            <InternalLink to={`/oven/${currencyId(currency0)}/${currencyId(rewardCurrency)}`} style={{ width: '100%' }}>
+            {/* to={`/oven/${currencyId(currency0)}/${currencyId(rewardCurrency)}`} */}
+            <InternalLink
+              to={`/stake/${currencyId(currency0)}/${currencyId(rewardCurrency)}`}
+              style={{ width: '100%' }}
+            >
               <ButtonPrimary padding="8px" borderradius="8px">
                 {isStaking ? 'Manage' : 'Deposit'}
               </ButtonPrimary>

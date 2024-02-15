@@ -17,6 +17,7 @@ import StakePool from './StakePool'
 import Stake from './Stake'
 import { ManagePair } from './StakePool/Manage'
 // import { ManageSingle } from './Oven/Manage'
+import { ManageSingle } from './Stake/Manage'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -108,6 +109,7 @@ export default function App() {
               {/* <Route exact strict path="/mill/:currencyIdA/:currencyIdB" component={ManagePair} /> */}
               <Route exact strict path="/stake-pool/:currencyIdA/:currencyIdB" component={ManagePair} />
               {/* <Route exact strict path="/oven/:currencyId/:rewardCurrencyId" component={ManageSingle} /> */}
+              <Route exact strict path="/stake/:currencyId/:rewardCurrencyId" component={ManageSingle} />
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
           </Web3ReactManager>
