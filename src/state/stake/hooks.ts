@@ -793,23 +793,24 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
 
-        memo.push({
-          stakingRewardAddress: rewardsAddress,
-          autocompoundingAddress: autocompoundingAddress,
-          useAutocompounding: useAutocompounding,
-          tokens: tokens,
-          rewardToken: rewardToken,
-          periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
-          earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
-          sharesAmount: sharesAmount,
-          rewardRate: individualRewardRate,
-          totalRewardRate: totalRewardRate,
-          stakedAmount: stakedAmount,
-          totalStakedAmount: totalStakedAmount,
-          // totalStakedInWavax: totalStakedInWavax,
-          totalStakedInWcurrency: totalStakedInWcurrency,
-          getHypotheticalRewardRate
-        })
+        // if (!wcurrencyPairNotFound)
+          memo.push({
+            stakingRewardAddress: rewardsAddress,
+            autocompoundingAddress: autocompoundingAddress,
+            useAutocompounding: useAutocompounding,
+            tokens: tokens,
+            rewardToken: rewardToken,
+            periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
+            earnedAmount: new TokenAmount(/* bag */ selfToken, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
+            sharesAmount: sharesAmount,
+            rewardRate: individualRewardRate,
+            totalRewardRate: totalRewardRate,
+            stakedAmount: stakedAmount,
+            totalStakedAmount: totalStakedAmount,
+            // totalStakedInWavax: totalStakedInWavax,
+            totalStakedInWcurrency: totalStakedInWcurrency,
+            getHypotheticalRewardRate
+          })
       }
 
       return memo
