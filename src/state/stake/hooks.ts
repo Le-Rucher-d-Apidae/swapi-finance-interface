@@ -1,32 +1,6 @@
-// import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WAVAX, Pair } from '@swapi-finance/sdk'
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WCURRENCY, Pair } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
-import {
-  // BAG,
-  // BAGTEST,
-  // APD,
-  SELF_TOKEN,
-  // LINK,
-  // DAI,
-  // ETH,
-  // WBTC,
-  // USDT,
-  // XAVA,
-  // SHIBX,
-  // QI,
-  // USDTE,
-  // YAK,
-  // WET,
-  // XSLR,
-  // XMTL,
-  // XCRS,
-  USDCE,
-  USDT,
-  USDC,
-  DAI,
-  UNDEFINED,
-  ZERO_ADDRESS
-} from '../../constants'
+import { SELF_TOKEN, USDCE, USDT, USDC, DAI, UNDEFINED, ZERO_ADDRESS } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { AUTOCOMPOUND_INTERFACE } from '../../constants/abis/autocompound'
 import { PairState, usePair, usePairs } from '../../data/Reserves'
@@ -38,200 +12,7 @@ import { tryParseAmount } from '../swap/hooks'
 // export const STAKING_GENESIS = 1600387200
 // export const REWARDS_DURATION_DAYS = 60
 
-// // TODO add staking rewards addresses here
-// export const STAKING_REWARDS_INFO: {
-//   [chainId in ChainId]?: {
-//     tokens: [Token, Token]
-//     rewardToken: Token
-//     stakingRewardAddress: string
-//     autocompoundingAddress: string
-//   }[]
-// } = {
-//   [ChainId.FUJI]: [
-//     {
-//       tokens: [BAG[ChainId.FUJI], WAVAX[ChainId.FUJI]],
-//       rewardToken: BAG[ChainId.FUJI],
-//       stakingRewardAddress: '0xb7aB7Cd938D9409c2312c43c807B1C6FA7393777',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.FUJI], UNDEFINED[ChainId.FUJI]],
-//       rewardToken: BAG[ChainId.FUJI],
-//       stakingRewardAddress: '0x2d6CA9Ec52B45a029bB97503eA1582cb91bFB55E',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.FUJI], UNDEFINED[ChainId.FUJI]],
-//       rewardToken: BAG[ChainId.FUJI],
-//       stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     }
-//   ],
-//   [ChainId.AVALANCHE]: [
-//     // Oven
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], UNDEFINED[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x2bCE0CAB94770D0F2Eae3E8a582ADC3EaA0BD81f',
-//       autocompoundingAddress: '0xf487044eD85F2d47A8eAD6b86c834976B8c31736'
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], UNDEFINED[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x706c57a2755956e3978f6b4986513E78d0A06520',
-//       autocompoundingAddress: '0x58887009A412Ad52a4FB746D0846585346d83BC0'
-//     },
-//     {
-//       tokens: [XAVA[ChainId.AVALANCHE], UNDEFINED[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xfc6B409109e84B681786660405cff09C43FE9b4E',
-//       autocompoundingAddress: '0x562ACEA3c03dBDDc25e2F24bb2685D17Bdb4e62f'
-//     },
-//     {
-//       tokens: [QI[ChainId.AVALANCHE], UNDEFINED[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xcf09570845adc0df5dcfa5b93882b115ed0da89c',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [WET[ChainId.AVALANCHE], UNDEFINED[ChainId.AVALANCHE]],
-//       rewardToken: WET[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x3141ae9c20b952917384d7527d136d10ee06b969',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     // Mill
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], WAVAX[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x266CB810A383b70bfeCa7285E0464746690e849b',
-//       autocompoundingAddress: '0x908698B561eA14f153dDD1Ee02f99EBE0A4cea0f'
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], DAI[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x6268c39511825d9a3FD4e7De75e8a4c784DCa02B',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], XAVA[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x3963b5b570f9Eae630d645c109D3BDEC299CBBEe',
-//       autocompoundingAddress: '0xb667121B4D4b6ea5DE4bb61bd3a02E53529BfcCA'
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], ETH[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x7b68d44FcDeF34a57f5c95C4a46c8a2e72fAe4e2',
-//       autocompoundingAddress: '0xBD9f16EeE869808bF22823427D1f4a1E7A440E8D'
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], LINK[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x1c596eaA585263519AdC39d3896b6AE35C5830f6',
-//       autocompoundingAddress: '0x90E24A2dfd80F02D01c7B630E8e3199C8A0388D3'
-//     },
-//     {
-//       tokens: [WBTC[ChainId.AVALANCHE], BAG[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x507B2f7435E8fF982a17CeD0988832e632c60E7e',
-//       autocompoundingAddress: '0x8F871D05d7AfB9dAffA5Df13A91c74e870e6c31E'
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], USDCE[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x336e29bb600a4c25b3b8988d3e8f87be18128235',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], XMTL[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x57330912470d987bb81668ee4131ff314d6f6729',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], XSLR[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xff49e5d1e6e6827d66ef83dce9de33b415e9bb06',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], XCRS[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xe6d84ee5eb3a5d9581a537691d25ef6efec1198c',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], LINK[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x6cBB1696D45E066b4Ca79C58690d5b5146BE94c5',
-//       autocompoundingAddress: '0xfb5Aa7660fDe5013996FD72a193ACCF00212Af32'
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], USDT[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xDB12cd73c8b547511E0171eA76223Df227D27CEb',
-//       autocompoundingAddress: '0xFD1F86448b56942C32B954092F2fDBCE91E37Bf6'
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], DAI[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x30393161E53B56E51A4f4c72d3C6Ae6907F44a2F',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], WBTC[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xF125771F27b5a639C08e3086872085f8270C3FfB',
-//       autocompoundingAddress: '0xFC47515433eE291E692958a2D15F99896FAFC0BC'
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], SHIBX[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xE958DCc86632D7421A86133026423a232Ea2212E',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], SHIBX[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x1D96eb4BDe096eF3A73583E02b3FfA4c2BB97933',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], USDTE[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x81a6fedcf8bd3de346b3d368904f536ffa13fdf0',
-//       autocompoundingAddress: '0xb940da8b71791c1f42cc612d1af427878ec1a369'
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], YAK[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x4aafe44a0cdec72be791271013cee8af3f8c5753',
-//       autocompoundingAddress: '0x1b53500677cb1b042b12081a8661a6f08781d58c'
-//     },
-//     {
-//       tokens: [BAG[ChainId.AVALANCHE], QI[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x8bcacf09adf3d9404ef34c3324eeec525adb5a65',
-//       autocompoundingAddress: '0x9ee89f3a3dfd596bb6f53696e2ed1d09c738f8c8'
-//     },
-//     {
-//       tokens: [WAVAX[ChainId.AVALANCHE], USDTE[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0xb00d89c3f65cef0742f9d0cc59c9ad90a01b8faf',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     },
-//     {
-//       tokens: [USDCE[ChainId.AVALANCHE], USDTE[ChainId.AVALANCHE]],
-//       rewardToken: BAG[ChainId.AVALANCHE],
-//       stakingRewardAddress: '0x02e6f336aaaf772045c32803fb93d41f08c043e3',
-//       autocompoundingAddress: ZERO_ADDRESS
-//     }
-//   ],
-//   [ChainId.CRYPTOSEALS]: [
-//   ]
-// }
-
-// TODO add staking rewards addresses here
+// Add staking rewards addresses here
 export const STAKING_REWARDS_INFO: {
   [chainId in ChainId]?: {
     tokens: [Token, Token]
@@ -242,7 +23,8 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MUMBAI]: [
     //
-    // Mill = Stake-Farm
+    // Stake-Farm = rewarded pairs
+    //
     {
       tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
@@ -271,39 +53,10 @@ export const STAKING_REWARDS_INFO: {
       autocompoundingAddress: ZERO_ADDRESS
     },
 
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
-    //   rewardToken: new Token(
-    //     ChainId.MUMBAI,
-    //     '0xc107149b65d5682DE7414110337f7a999F40B8AE',
-    //     18,
-    //     'APD01/WMATIC',
-    //     'APD01/WMATIC'
-    //   ),
-    //   stakingRewardAddress: '0x48B6EA182868eEC3bdC941370689BB2a5F260951',
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // }
+    //
+    // Stake = rewarded single tokens
+    //
 
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0xb7aB7Cd938D9409c2312c43c807B1C6FA7393777', // TODO: update this !
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x2d6CA9Ec52B45a029bB97503eA1582cb91bFB55E', // TODO: update this !
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [WCURRENCY[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x1744CEeB870793E26a21e34b367F4161b076B6bf', // TODO: update this !
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // }
-
-    // Oven = Stake
     {
       tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
@@ -311,20 +64,7 @@ export const STAKING_REWARDS_INFO: {
       autocompoundingAddress: ZERO_ADDRESS
     }
   ],
-  [ChainId.POLYGON]: [
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-    //   rewardToken: SELF_TOKEN[ChainId.POLYGON],
-    //   stakingRewardAddress: '0x2bCE0CAB94770D0F2Eae3E8a582ADC3EaA0BD81f', // TODO: update this !
-    //   autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
-    // },
-    // {
-    //   tokens: [WCURRENCY[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-    //   rewardToken: SELF_TOKEN[ChainId.POLYGON],
-    //   stakingRewardAddress: '0x706c57a2755956e3978f6b4986513E78d0A06520', // TODO: update this !
-    //   autocompoundingAddress: ZERO_ADDRESS // TODO: update this !
-    // }
-  ]
+  [ChainId.POLYGON]: []
 }
 
 export enum StakingType {
