@@ -52,7 +52,9 @@ export interface Colors {
   polygonPurple: Color
 
   pageBackground: Color
-  wrapperBackground: Color
+  appBodyWrapperBackground: Color
+  appBodyWrapperBorder: Color
+
   pageBottomBackground: Color
   pageBottomBackground2: Color
 
@@ -60,6 +62,7 @@ export interface Colors {
   buttonLightText: Color
 
   buttonClosePopup: Color
+  buttonCloseDarkPopup: Color
   popupTxBackground: Color
 
   buttonBalanceMaxBg: Color
@@ -75,9 +78,18 @@ export interface Colors {
   buttonPrimaryBorder: Color
   buttonPrimaryDisabled: Color
 
+  buttonSecondaryText: Color
+  buttonSecondaryTextDisabled: Color
+  buttonSecondaryBg: Color
+  buttonSecondaryHover: Color
+  buttonSecondaryFocus: Color
+  buttonSecondaryBorder: Color
+  buttonSecondaryDisabled: Color
+
   textPopupHeader: Color
   textHighlight1: Color
   textHighlight2: Color
+  textPlaceHolder: Color
 
   textInfoLink: Color
   internalLink: Color
@@ -87,23 +99,37 @@ export interface Colors {
 
   poolCardBgStaked: Color
   poolCardBgNotStaked: Color
+  poolCardBorder: Color
+  poolInfoCardBorder: Color
+  poolStakeUnstakeModalBorder: Color
+
+  lightCardBG: Color
+  lightCardBorder: Color
 
   infoCardBg1: Color
   textBottom: Color
   pollingText: Color
   pollingDot: Color
   pollingSpinner: Color
+
   modalBG: Color
+  settingsModalBG: Color
+  settingsModalBorder: Color
   InputPanelBG: Color
   InputPanelInputFieldBG: Color
 
   accountUpperPanelBG: Color
   accountMiddlePanelBG: Color
   accountLowerPanelBG: Color
+  accountModalBorder: Color
 
   popupBorderColor: Color
 
   scrollbarColor: Color
+
+  iconSuccess: Color
+  iconPending: Color
+  iconFailure: Color
 }
 
 export interface Grids {

@@ -166,25 +166,30 @@ export const ButtonGray = styled(Base)`
 // `
 
 export const ButtonSecondary = styled(Base)`
-  border: 1px solid ${({ theme }) => theme.primary4};
-  color: ${({ theme }) => theme.text1};
-  background-color: transparent;
+  border: 1px solid ${({ theme }) => theme.buttonSecondaryBorder};
+  color: ${({ theme }) => theme.buttonSecondaryText};
+  background-color: ${({ theme }) => theme.buttonSecondaryBg};
   font-size: 16px;
   border-radius: 12px;
   padding: ${({ padding }) => (padding ? padding : '10px')};
 
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => theme.primary4};
-    border: 1px solid ${({ theme }) => theme.primary3};
+    border: 1px solid ${({ theme }) => theme.buttonSecondaryBorder};
+    background-color: ${({ theme, disabled }) => !disabled && darken(0.03, theme.buttonLightBackground)};
   }
   &:hover {
-    border: 1px solid ${({ theme }) => theme.primary3};
+    border: 1px solid ${({ theme }) => theme.buttonSecondaryBorder};
+    background-color: ${({ theme }) => darken(0.05, theme.buttonSecondaryHover)};
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme }) => theme.primary4};
-    border: 1px solid ${({ theme }) => theme.primary3};
+    border: 1px solid ${({ theme }) => theme.buttonSecondaryBorder};
+    background-color: ${({ theme }) => darken(0.1, theme.buttonSecondaryHover)};
   }
   &:disabled {
+    background-color: ${({ theme, altDisabledStyle }) =>
+      altDisabledStyle ? theme.buttonSecondaryDisabled : theme.buttonSecondaryBg};
     opacity: 50%;
     cursor: auto;
   }

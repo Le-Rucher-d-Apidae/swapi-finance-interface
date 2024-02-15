@@ -73,33 +73,16 @@ export const BAGTEST: { [chainId in ChainId]: Token } = {
   ), // TODO: change to mumbai BAGTST
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, ZERO_ADDRESS, 18, 'BAGTST', 'BaguetteTest') // TODO: change to polygon BAGTST
 }
-
-export const USDT: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDT', 'Tether USD'),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD')
-}
-
-export const WBTC: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 8, 'WBTC', 'Wrapped Bitcoin'),
-  [ChainId.POLYGON]: new Token(
-    ChainId.POLYGON,
-    '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
-    8,
-    'WBTC',
-    'Wrapped Bitcoin'
-  )
-}
-
-export const LINK: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'LINK', 'ChainLink Token'),
-  [ChainId.POLYGON]: new Token(
-    ChainId.POLYGON,
-    '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
-    18,
-    'LINK',
-    'ChainLink Token'
-  )
-}
+// export const LINK: { [chainId in ChainId]: Token } = {
+//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'LINK', 'ChainLink Token'),
+//   [ChainId.POLYGON]: new Token(
+//     ChainId.POLYGON,
+//     '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
+//     18,
+//     'LINK',
+//     'ChainLink Token'
+//   )
+// }
 
 // export const UNI: { [chainId in ChainId]: Token } = {
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'UNI', 'Uniswap'),
@@ -111,10 +94,10 @@ export const LINK: { [chainId in ChainId]: Token } = {
 //   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x39cf1BD5f15fb22eC3D9Ff86b0727aFc203427cc', 18, 'SUSHI', 'SushiToken')
 // }
 
-export const AAVE: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'AAVE', 'Aave Token'),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xf329e36C7bF6E5E86ce2150875a84Ce77f477375', 18, 'AAVE', 'Aave Token')
-}
+// export const AAVE: { [chainId in ChainId]: Token } = {
+//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'AAVE', 'Aave Token'),
+//   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xf329e36C7bF6E5E86ce2150875a84Ce77f477375', 18, 'AAVE', 'Aave Token')
+// }
 
 // export const YFI: { [chainId in ChainId]: Token } = {
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'YFI', 'yearn.finance'),
@@ -162,17 +145,6 @@ export const AAVE: { [chainId in ChainId]: Token } = {
 //     'Chainlink Token'
 //   )
 // }
-
-export const WETH: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.POLYGON]: new Token(
-    ChainId.POLYGON,
-    '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
-    18,
-    'WETH',
-    'Wrapped Ether'
-  )
-}
 
 // export const WET: { [chainId in ChainId]: Token } = {
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'WET', 'Weble Ecosystem Token'),
@@ -222,6 +194,23 @@ export const WETH: { [chainId in ChainId]: Token } = {
 //   )
 // }
 
+
+// export const USDT: { [chainId in ChainId]: Token } = {
+//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 6, 'USDT', 'Tether USD'),
+//   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD')
+// }
+
+export const USDT: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0x1fdE0eCc619726f4cD597887C9F3b4c8740e19e2',
+    6,
+    'USDT Coin AAVE Testnet',
+    'Tether USD'
+  ),
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD')
+}
+
 export const USDCE: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x0FA8781a83E46826621b3BC094Ea2A0212e71B23', 6, 'USDC.e', 'USD Coin'),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174', 6, 'USDC.e', 'USD Coin')
@@ -255,6 +244,34 @@ export const DAI: { [chainId in ChainId]: Token } = {
   )
 }
 
+export const WBTC: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0x2Fa2e7a6dEB7bb51B625336DBe1dA23511914a8A',
+    8,
+    'WBTC',
+    'Wrapped Bitcoin'
+  ),
+  [ChainId.POLYGON]: new Token(
+    ChainId.POLYGON,
+    '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+    8,
+    'WBTC',
+    'Wrapped Bitcoin'
+  )
+}
+
+export const WETH: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.POLYGON]: new Token(
+    ChainId.POLYGON,
+    '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  )
+}
+
 // export const VOID: { [chainId in ChainId]: Token } = {
 //   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'VOID', 'https://twitter.com/AvalancheVoid'),
 //   [ChainId.POLYGON]: new Token(
@@ -282,10 +299,10 @@ export const UNDEFINED: { [chainId in ChainId]: Token } = {
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, ZERO_ADDRESS, 0)
 }
 
-export const AIRDROP_ADDRESS: { [chainId in ChainId]?: string } = {
-  [ChainId.MUMBAI]: ZERO_ADDRESS,
-  [ChainId.POLYGON]: ZERO_ADDRESS
-}
+// export const AIRDROP_ADDRESS: { [chainId in ChainId]?: string } = {
+//   [ChainId.MUMBAI]: ZERO_ADDRESS,
+//   [ChainId.POLYGON]: ZERO_ADDRESS
+// }
 
 // const WAVAX_ONLY: ChainTokenList = {
 //   [ChainId.MUMBAI]: [WAVAX[ChainId.MUMBAI]],

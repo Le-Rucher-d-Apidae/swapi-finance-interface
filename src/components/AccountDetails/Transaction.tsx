@@ -30,11 +30,17 @@ const TransactionState = styled(ExternalLink)<{ pending: boolean; success?: bool
   padding: 0.25rem 0rem;
   font-weight: 500;
   font-size: 0.825rem;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ pending, success, theme }) =>
+    pending ? theme.iconPending : success ? theme.iconSuccess : theme.iconFailure};
 `
+// color: ${({ theme }) => theme.primary1};
 
+// const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
+//   color: ${({ pending, success, theme }) => (pending ? theme.primary1 : success ? theme.green1 : theme.red1)};
+// `
 const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
-  color: ${({ pending, success, theme }) => (pending ? theme.primary1 : success ? theme.green1 : theme.red1)};
+  color: ${({ pending, success, theme }) =>
+    pending ? theme.iconPending : success ? theme.iconSuccess : theme.iconFailure};
 `
 
 export default function Transaction({ hash }: { hash: string }) {

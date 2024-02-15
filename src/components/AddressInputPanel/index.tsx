@@ -47,7 +47,7 @@ const Input = styled.input<{ error?: boolean }>`
   font-weight: 500;
   width: 100%;
   ::placeholder {
-    color: ${({ theme }) => theme.text4};
+    color: ${({ theme }) => theme.textPlaceHolder};
   }
   padding: 0px;
   -webkit-appearance: textfield;
@@ -62,7 +62,7 @@ const Input = styled.input<{ error?: boolean }>`
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.text4};
+    color: ${({ theme }) => theme.textPlaceHolder};
   }
 `
 

@@ -43,6 +43,7 @@ const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
     `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.poolCardBg1} 100%) `};
   position: relative;
   overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.poolCardBorder};
 `
 
 interface PositionCardProps {
