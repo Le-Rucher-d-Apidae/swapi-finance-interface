@@ -135,7 +135,7 @@ const calculateTotalStakedAmountInCurrencyFromSelfToken = function(
     JSBI.divide(
       JSBI.multiply(
         JSBI.multiply(totalStakedAmount.raw, valueOfSelfTokenInCurrency),
-        JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the wavax they entitle owner to
+        JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
       ),
       totalSupply
     )
@@ -145,18 +145,18 @@ const calculateTotalStakedAmountInCurrencyFromSelfToken = function(
 const calculateTotalStakedAmountInCurrency = function(
   chainId: ChainId,
   totalSupply: JSBI,
-  reserveInWavax: JSBI,
+  reserveInWcurrency: JSBI,
   totalStakedAmount: TokenAmount
 ): TokenAmount {
   if (JSBI.equal(totalSupply, JSBI.BigInt(0))) return new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
 
-  // take the total amount of LP tokens staked, multiply by AVAX value of all LP tokens, divide by all LP tokens
+  // take the total amount of LP tokens staked, multiply by CURRENCY value of all LP tokens, divide by all LP tokens
   return new TokenAmount(
     WCURRENCY[chainId],
     JSBI.divide(
       JSBI.multiply(
-        JSBI.multiply(totalStakedAmount.raw, reserveInWavax),
-        JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the wavax they entitle owner to
+        JSBI.multiply(totalStakedAmount.raw, reserveInWcurrency),
+        JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
       ),
       totalSupply
     )
@@ -165,17 +165,17 @@ const calculateTotalStakedAmountInCurrency = function(
 
 const calculateTotalStakedAmountInCurrencyFromToken = function(
   chainId: ChainId,
-  avaxTokenPairReserveOfAvax: JSBI,
-  avaxTokenPairReserveOfToken: JSBI,
+  currencyTokenPairReserveOfCurrency: JSBI,
+  currencyTokenPairReserveOfToken: JSBI,
   totalStakedAmount: TokenAmount
 ): TokenAmount {
-  if (JSBI.equal(avaxTokenPairReserveOfToken, JSBI.BigInt(0)))
+  if (JSBI.equal(currencyTokenPairReserveOfToken, JSBI.BigInt(0)))
     return new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   const currecnySelfTokenRatio = JSBI.divide(
-    JSBI.multiply(oneToken, avaxTokenPairReserveOfAvax),
-    avaxTokenPairReserveOfToken
+    JSBI.multiply(oneToken, currencyTokenPairReserveOfCurrency),
+    currencyTokenPairReserveOfToken
   )
 
   return new TokenAmount(
