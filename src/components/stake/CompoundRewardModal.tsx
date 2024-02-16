@@ -82,7 +82,6 @@ export default function CompoundRewardModal({ isOpen, onDismiss, stakingInfo }: 
               <TYPE.body fontWeight={600} fontSize={36}>
                 {earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              {/* <TYPE.body>Available BAG</TYPE.body> */}
               <TYPE.body>Available {SELF_TOKEN[ChainId.POLYGON].name}</TYPE.body>
             </AutoColumn>
           )}
@@ -105,7 +104,6 @@ export default function CompoundRewardModal({ isOpen, onDismiss, stakingInfo }: 
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            {/* <TYPE.body fontSize={20}>BAG compounded</TYPE.body> */}
             <TYPE.body fontSize={20}>{SELF_TOKEN[ChainId.POLYGON].name} compounded</TYPE.body>
           </AutoColumn>
         </SubmittedView>
