@@ -1,4 +1,3 @@
-// import { CURRENCY, Currency, WCURRENCY } from '@swapi-finance/sdk'
 import { Currency } from '@swapi-finance/sdk'
 import React from 'react'
 import styled from 'styled-components'
@@ -16,7 +15,6 @@ interface DoubleCurrencyLogoProps {
   size?: number
   currency0?: Currency
   currency1?: Currency
-  // chainId?: ChainId
 }
 
 const HigherLogo = styled(CurrencyLogo)`
@@ -31,20 +29,8 @@ export default function DoubleCurrencyLogo({
   currency0,
   currency1,
   size = 16,
-  margin = false // , chainId
+  margin = false
 }: DoubleCurrencyLogoProps) {
-  // const { chainId } = useActiveWeb3React()
-  // Switch to (W)Currency
-  // const currency0_ = (chainId && CURRENCY === currency0 ? WCURRENCY[chainId] : currency0) as Currency
-  // const currency1_ = (chainId && CURRENCY === currency1 ? WCURRENCY[chainId] : currency1) as Currency
-  // if (currency0 === CURRENCY) {
-  //   console.log('currency0 is CURRENCY currency0_ is')
-  //   console.dir(currency0_)
-  // }
-  // if (currency1 == CURRENCY) {
-  //   console.log('currency1 is CURRENCY currency1_ is')
-  //   console.dir(currency1_)
-  // }
   return (
     <Wrapper sizeraw={size} margin={margin}>
       {currency0 && <HigherLogo currency={currency0} size={size.toString() + 'px'} />}
