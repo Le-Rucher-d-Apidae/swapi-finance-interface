@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
-// import { Token, TokenAmount, WAVAX } from '@swapi-finance/sdk'
 import { Token, TokenAmount, WCURRENCY, CURRENCY } from '@swapi-finance/sdk'
 
 import { Text } from 'rebass'
@@ -29,7 +28,6 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
           <RowFixed>
             <DoubleCurrencyLogo currency0={token} margin={true} size={20} />
             <Text fontWeight={500} fontSize={20} style={{ marginLeft: '' }}>
-              {/* {`${chainId && token.equals(WAVAX[chainId]) ? 'WAVAX' : token.symbol}/AVAX`} */}
               {`${chainId && token.equals(WCURRENCY[chainId]) ? WCURRENCY[chainId].name : token.symbol}/${
                 CURRENCY.symbol
               }`}

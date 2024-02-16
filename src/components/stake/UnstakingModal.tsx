@@ -15,8 +15,8 @@ import { useActiveWeb3React } from '../../hooks'
 import { UNDEFINED } from '../../constants'
 
 // import { ChainId } from '@swapi-finance/sdk'
-// import { SELF_TOKEN } from '../../constants'
-import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
+import { SELF_TOKEN } from '../../constants'
+import { ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -33,7 +33,7 @@ interface StakingModalProps {
 }
 
 export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: StakingModalProps) {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   // monitor call to help UI loading state
   const addTransaction = useTransactionAdder()
@@ -91,9 +91,9 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
   }
 
   const isPair = stakingInfo?.tokens[1] !== UNDEFINED[stakingInfo?.tokens[1].chainId]
-  // const tokenSymbol = isPair ? 'BGL' : stakingInfo?.tokens[0].symbol
   const tokenSymbol = isPair ? LIQUIDITY_TOKEN_SYMBOL : stakingInfo?.tokens[0].symbol
   const rewardToken = stakingInfo?.rewardToken
+  const selfTokenSymbol = SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol
 
   return (
     <Modal isOpen={isOpen} onDismiss={wrappedOndismiss} maxHeight={90}>
@@ -121,9 +121,9 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
           )}
           {isPair && (
             <TYPE.subHeader style={{ textAlign: 'center' }}>
-              When you withdraw, your BAG is claimed and your Baguette Liquidity tokens, BGL, are returned to you. You
-              will no longer earn BAG rewards on this liquidity. Your original token liquidity will remain in its
-              liquidity pool.
+              When you withdraw, your {selfTokenSymbol} is claimed and your Baguette Liquidity tokens,
+              {LIQUIDITY_TOKEN_SYMBOL}, are returned to you. You will no longer earn {selfTokenSymbol} rewards on this
+              liquidity. Your original token liquidity will remain in its liquidity pool.
             </TYPE.subHeader>
           )}
           {!isPair && !stakingInfo.useAutocompounding && (

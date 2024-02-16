@@ -17,18 +17,13 @@ import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
-import { ChainId } from '@swapi-finance/sdk'
+import { ChainId, CURRENCY } from '@swapi-finance/sdk'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/pool/styled'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
 `
-
-// const VoteCard = styled(DataCard)`
-// background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
-// overflow: hidden;
-// `
 
 const VoteCard = styled(DataCard)`
   ${({ theme }) => `background: radial-gradient(76.02% 75.41% at 1.84% 0%, ${theme.bg3} 0%, #000000 100%)`};
@@ -83,12 +78,6 @@ export default function Pool() {
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
-  // console.debug('src/pages/App.tsx trackedTokenPairs', trackedTokenPairs)
-  // const tokenPairsWithLiquidityTokens = useMemo(
-  //   () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens, chainId ? chainId : ChainId.AVALANCHE), tokens })),
-  //   [trackedTokenPairs, chainId]
-  // )
-  // debugger
   const tokenPairsWithLiquidityTokens = useMemo(
     () =>
       trackedTokenPairs.map(tokens => ({
@@ -154,10 +143,15 @@ export default function Pool() {
                 </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/AVAX">
+                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to={`/create/${CURRENCY.symbol}`}>
                   Create a pair
                 </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 8px" to="/add/AVAX">
+                <ResponsiveButtonPrimary
+                  id="join-pool-button"
+                  as={Link}
+                  padding="6px 8px"
+                  to={`/add/${CURRENCY.symbol}`}
+                >
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity
                   </Text>

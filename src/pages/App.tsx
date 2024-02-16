@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-// import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
@@ -11,12 +10,9 @@ import PoweredByPolygon from '../components/PoweredByPolygon'
 import Web3ReactManager from '../components/Web3ReactManager'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
-// import Mill from './Mill'
 import StakePool from './StakePool'
-// import Oven from './Oven'
 import Stake from './Stake'
 import { ManagePair } from './StakePool/Manage'
-// import { ManageSingle } from './Oven/Manage'
 import { ManageSingle } from './Stake/Manage'
 import {
   RedirectDuplicateTokenIds,
@@ -38,7 +34,6 @@ const AppWrapper = styled.div`
   overflow-x: hidden;
   background-color: ${({ theme }) => theme.pageBackground};
 `
-//   scrollbar-color: ${({ theme }) => theme.scrollbarColor} ${({ theme }) => theme.scrollbarColor};
 
 const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -93,9 +88,7 @@ export default function App() {
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
-              {/* <Route exact strict path="/mill" component={Mill} /> */}
               <Route exact strict path="/stake-pool" component={StakePool} />
-              {/* <Route exact strict path="/oven" component={Oven} /> */}
               <Route exact strict path="/stake" component={Stake} />
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
@@ -106,9 +99,7 @@ export default function App() {
               <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
               <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-              {/* <Route exact strict path="/mill/:currencyIdA/:currencyIdB" component={ManagePair} /> */}
               <Route exact strict path="/stake-pool/:currencyIdA/:currencyIdB" component={ManagePair} />
-              {/* <Route exact strict path="/oven/:currencyId/:rewardCurrencyId" component={ManageSingle} /> */}
               <Route exact strict path="/stake/:currencyId/:rewardCurrencyId" component={ManageSingle} />
               <Route component={RedirectPathToSwapOnly} />
             </Switch>

@@ -48,7 +48,6 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         .getReward({ gasLimit: 350000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            // summary: `Claim accumulated BAG rewards`
             summary: `Claim accumulated ${SELF_TOKEN[ChainId.POLYGON].name} rewards`
           })
           setHash(response.hash)
@@ -81,7 +80,6 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
               <TYPE.body fontWeight={600} fontSize={36}>
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              {/* <TYPE.body>Unclaimed BAG</TYPE.body> */}
               <TYPE.body>Unclaimed {SELF_TOKEN[ChainId.POLYGON].symbol}</TYPE.body>
             </AutoColumn>
           )}
@@ -96,7 +94,6 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            {/* <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)}BAG</TYPE.body> */}
             <TYPE.body fontSize={20}>
               Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} {SELF_TOKEN[ChainId.POLYGON].name}
             </TYPE.body>
@@ -107,8 +104,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            {/* <TYPE.body fontSize={20}>Claimed BAG!</TYPE.body> */}
-            <TYPE.body fontSize={20}>Claimed {SELF_TOKEN[ChainId.POLYGON].name}!</TYPE.body>
+            <TYPE.body fontSize={20}>Claimed {SELF_TOKEN[ChainId.POLYGON].symbol}!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

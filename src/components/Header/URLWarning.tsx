@@ -25,8 +25,6 @@ export const StyledClose = styled(X)`
 export default function URLWarning() {
   const toggleURLWarning = useURLWarningToggle()
   const showURLWarning = useURLWarningVisible()
-  // debugger
-  // console.log(process.env.NODE_ENV)
   return isMobile ? (
     <PhishAlert isActive={showURLWarning}>
       <div style={{ display: 'flex' }}>
@@ -37,8 +35,7 @@ export default function URLWarning() {
       </div>
       <StyledClose size={12} onClick={toggleURLWarning} />
     </PhishAlert>
-  ) : //   ) : window.location.hostname === 'app.baguette.exchange' ? (
-  // process.env.NODE_ENV === 'development' || window.location.hostname === process.env.REACT_APP_HOSTNAME ? (
+  ) : // process.env.NODE_ENV === 'development' || window.location.hostname === process.env.REACT_APP_HOSTNAME ? (
   window.location.hostname === process.env.REACT_APP_HOSTNAME ? (
     <PhishAlert isActive={showURLWarning}>
       <div style={{ display: 'flex' }}>

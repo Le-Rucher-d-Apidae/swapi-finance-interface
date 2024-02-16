@@ -1,15 +1,6 @@
 import { Version } from '../../hooks/useToggledVersion'
 import { parseUnits } from '@ethersproject/units'
-import {
-  Currency,
-  CurrencyAmount,
-  /* CAVAX */ CURRENCY,
-  JSBI,
-  Token,
-  TokenAmount,
-  Trade,
-  ChainId
-} from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, CURRENCY, JSBI, Token, TokenAmount, Trade, ChainId } from '@swapi-finance/sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,7 +16,7 @@ import { SwapState } from './reducer'
 import useToggledVersion from '../../hooks/useToggledVersion'
 import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
-import { ROUTER_ADDRESS, FACTORY_ADDRESS } from '../../constants'
+import { ROUTER_ADDRESS, FACTORY_ADDRESS, CURRENCY_LABEL } from '../../constants'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>(state => state.swap)
@@ -43,12 +34,7 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId:
-            currency instanceof Token
-              ? currency.address
-              : currency === /* CAVAX */ CURRENCY
-              ? /* 'AVAX' */ CURRENCY.symbol || '?'
-              : ''
+          currencyId: currency instanceof Token ? currency.address : currency === CURRENCY ? CURRENCY.symbol || '?' : ''
         })
       )
     },
@@ -101,10 +87,6 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   return undefined
 }
 
-// const BAD_RECIPIENT_ADDRESSES: string[] = [
-//   FACTORY_ADDRESS[ChainId.AVALANCHE], // v2 factory
-//   ROUTER_ADDRESS[ChainId.AVALANCHE] // v2 router 02
-// ]
 const BAD_RECIPIENT_ADDRESSES: string[] = [
   FACTORY_ADDRESS[ChainId.POLYGON], // v2 factory
   ROUTER_ADDRESS[ChainId.POLYGON] // v2 router 02
@@ -233,23 +215,14 @@ export function useDerivedSwapInfo(): {
   }
 }
 
-// function parseCurrencyFromURLParameter(urlParam: any): string {
-//   if (typeof urlParam === 'string') {
-//     const valid = isAddress(urlParam)
-//     if (valid) return valid
-//     if (urlParam.toUpperCase() === 'AVAX') return 'AVAX'
-//     if (valid === false) return 'AVAX'
-//   }
-//   return 'AVAX' ?? ''
-// }
 function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === (CURRENCY.symbol || 'MATIC')) return CURRENCY.symbol || 'MATIC'
-    if (valid === false) return CURRENCY.symbol || 'MATIC'
+    if (urlParam.toUpperCase() === (CURRENCY.symbol || CURRENCY_LABEL)) return CURRENCY.symbol || CURRENCY_LABEL
+    if (valid === false) return CURRENCY.symbol || CURRENCY_LABEL
   }
-  return 'MATIC' ?? ''
+  return CURRENCY_LABEL ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {

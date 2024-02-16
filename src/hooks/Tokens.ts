@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, /* CAVAX */ CURRENCY, Token, currencyEquals } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, Token, currencyEquals } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
 import { useSelectedTokenList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
@@ -102,7 +102,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const /* isAVAX */ isMATIC = currencyId?.toUpperCase() === /* 'AVAX' */ CURRENCY.symbol
-  const token = useToken(/* isAVAX */ isMATIC ? undefined : currencyId)
-  return /* isAVAX */ isMATIC ? /* CAVAX */ CURRENCY : token
+  const isMATIC = currencyId?.toUpperCase() === CURRENCY.symbol
+  const token = useToken(isMATIC ? undefined : currencyId)
+  return isMATIC ? CURRENCY : token
 }

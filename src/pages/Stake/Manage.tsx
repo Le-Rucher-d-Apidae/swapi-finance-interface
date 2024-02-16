@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 
-import { JSBI, ChainId } from '@swapi-finance/sdk'
+import { JSBI, ChainId, CURRENCY } from '@swapi-finance/sdk'
 import { RouteComponentProps } from 'react-router-dom'
 import CurrencyLogo from '../../components/CurrencyLogo'
 import { useCurrency } from '../../hooks/Tokens'
@@ -10,15 +10,10 @@ import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
 
 import { RowBetween, RowFixed } from '../../components/Row'
-// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/mill/styled'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/stake/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
-// import StakingModal from '../../components/mill/StakingModal'
 import StakingModal from '../../components/stake/StakingModal'
 import { useStakingInfo, StakingType } from '../../state/stake/hooks'
-// import UnstakingModal from '../../components/mill/UnstakingModal'
-// import ClaimRewardModal from '../../components/mill/ClaimRewardModal'
-// import CompoundRewardModal from '../../components/mill/CompoundRewardModal'
 import UnstakingModal from '../../components/stake/UnstakingModal'
 import ClaimRewardModal from '../../components/stake/ClaimRewardModal'
 import CompoundRewardModal from '../../components/stake/CompoundRewardModal'
@@ -34,11 +29,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 
-// import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
-// import { ChainId } from '@swapi-finance/sdk'
-// import { SELF_TOKEN } from '../../constants'
-import { BIG_INT_ZERO, UNDEFINED } from '../../constants'
-import { CURRENCY } from '@swapi-finance/sdk'
+import { BIG_INT_ZERO, UNDEFINED, SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -141,6 +132,8 @@ export function ManageSingle({
     }
   }, [account, toggleWalletModal])
 
+  const selfTokenSymbol = SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol
+
   return (
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
@@ -152,7 +145,6 @@ export function ManageSingle({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {/* {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} AVAX`} */}
               {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
               }`}
@@ -293,22 +285,23 @@ export function ManageSingle({
             When you withdraw, the contract will automagically claim {stakingInfo?.rewardToken.symbol} on your behalf!
           </TYPE.main>
         )}
-        {stakingInfo?.useAutocompounding && currency?.symbol === 'BAG' && (
+        {stakingInfo?.useAutocompounding && currency?.symbol === selfTokenSymbol && (
           <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
             </span>
-            Autocompounding automagically deposits your BAG rewards, wait and see your deposited BAG amount increase!
-            When you withdraw, you receive the last updated amount of BAG tokens.
+            Autocompounding automagically deposits your {selfTokenSymbol} rewards, wait and see your deposited{' '}
+            {selfTokenSymbol} amount increase! When you withdraw, you receive the last updated amount of{' '}
+            {selfTokenSymbol} tokens.
           </TYPE.main>
         )}
-        {stakingInfo?.useAutocompounding && currency?.symbol !== 'BAG' && (
+        {stakingInfo?.useAutocompounding && currency?.symbol !== selfTokenSymbol && (
           <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
             </span>
-            Autocompounding automagically converts your BAG rewards into {currency?.symbol}, wait and see your deposited{' '}
-            {currency?.symbol} amount increase! When you withdraw, you receive the last updated amount of{' '}
+            Autocompounding automagically converts your {selfTokenSymbol} rewards into {currency?.symbol}, wait and see
+            your deposited {currency?.symbol} amount increase! When you withdraw, you receive the last updated amount of{' '}
             {currency?.symbol} tokens.
           </TYPE.main>
         )}

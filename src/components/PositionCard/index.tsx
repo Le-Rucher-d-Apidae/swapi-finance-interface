@@ -18,14 +18,13 @@ import { CardNoise } from '../pool/styled'
 
 import { useColor } from '../../hooks/useColor'
 
-// import Card, { GreyCard, LightCard } from '../Card'
-import Card, { PoolInfoCard, LightCard } from '../Card'
+import Card, { /* GreyCard, */ PoolInfoCard, LightCard } from '../Card'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
-import { CURRENCY, WCURRENCY /* Currency, currencyEquals */ } from '@swapi-finance/sdk'
+import { CURRENCY, WCURRENCY } from '@swapi-finance/sdk'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -161,14 +160,10 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
 }
 
 export default function FullPositionCard({ pair, border }: PositionCardProps) {
-  // const { account } = useActiveWeb3React()
   const { account, chainId } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
-
-  // console.log('src/components/PositionCard/index.tsx FullPositionCard currency0:', currency0)
-  // console.log('src/components/PositionCard/index.tsx FullPositionCard currency1:', currency1)
 
   const currency0_ = wrappedCurrency(currency0, chainId) || currency0
   const currency1_ = wrappedCurrency(currency1, chainId) || currency1
@@ -196,10 +191,6 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
       : [undefined, undefined]
 
   const backgroundColor = useColor(pair?.token0)
-
-  // if (currency0 === CURRENCY) {
-  //   console.log('src/components/PositionCard/index.tsx currency0 === CURRENCY')
-  // }
 
   return (
     <StyledPositionCard border={border} bgColor={backgroundColor}>
@@ -305,9 +296,10 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 padding="8px"
                 borderradius="8px"
                 as={Link}
-                width="48%" // to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                to={`/remove/${chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)}
-                  /${chainId && currency1 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency1)}`}
+                width="48%"
+                to={`/remove/${
+                  chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)
+                }/${chainId && currency1 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency1)}`}
               >
                 Remove
               </ButtonPrimary>

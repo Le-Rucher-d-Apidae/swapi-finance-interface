@@ -27,3 +27,18 @@ Adding a staking Pool
 Requires an existing Pool. Create one before then deploy a StakingRewards contract :
  StakingRewards( rewardTokenAddress, pairAddress )
 
+
+Rewarding
+
+Duration must be set first (setRewardsDuration) before using notifyRewardAmount (once notifyRewardAmount is called, the rewards will be distributed over the duration period and cannot be changed until the previous duration is over), then immediatly call notifyRewardAmount to start the rewards distribution.
+Default duration is 1 day.
+Duration is in seconds (1 day = 60 * 60 * 24 = 86400 seconds)
+
+When setting reward the contract must already have at least enough reward tokens to cover the duration of the rewards (else notifyRewardAmount() will revert).
+Once notifyRewardAmount() is called, the rewards will be distributed over the duration period and cannot be changed until the previous duration is over.
+
+- Send enough reward tokens to the StakingRewards contract
+- Call setRewardsDuration
+- Call notifyRewardAmount
+
+- notifyRewardAmountcan be called anytime to increase or decrease the rewards for the current  duration set (or remaining).

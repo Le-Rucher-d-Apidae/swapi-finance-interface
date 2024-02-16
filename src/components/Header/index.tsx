@@ -18,7 +18,6 @@ import { CardNoise } from '../pool/styled'
 import { CountUp } from 'use-count-up'
 import { TYPE /* , ExternalLink */ } from '../../theme'
 
-// import { RedCard } from '../Card'
 import { PolygonNetworkCard } from '../Card'
 
 import Settings from '../Settings'
@@ -30,7 +29,6 @@ import Modal from '../Modal'
 import TokenBalanceContent from './TokenBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 // import { ANALYTICS_PAGE , BRIDGE_PAGE } from '../../constants'
-// import { BAG } from '../../constants'
 import { SELF_TOKEN } from '../../constants'
 import { MEDIA_WIDTHS } from '../../theme'
 
@@ -349,19 +347,9 @@ export default function Header() {
           >
             {t('pool')}
           </StyledNavLink>
-          {/* 
-          <StyledNavLink id={`stake-nav-link`} to={'/mill'}>
-            Mill
-          </StyledNavLink>
- */}
           <StyledNavLink id={`stake-nav-link`} to={'/stake-pool'}>
             Farm
           </StyledNavLink>
-          {/*
-          <StyledNavLink id={`stake-nav-link`} to={'/oven'}>
-            Oven
-          </StyledNavLink>
- */}
           <StyledNavLink id={`stake-nav-link`} to={'/stake'}>
             Stake
           </StyledNavLink>
@@ -405,7 +393,6 @@ export default function Header() {
                     </TYPE.black>
                   </HideSmall>
                 )}
-                {/* BAG */}
                 {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol}
               </TokenAmountStyle>
               <CardNoise />
@@ -414,7 +401,6 @@ export default function Header() {
           <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
             {account && userEthBalance ? (
               <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
-                {/* {userEthBalance?.toSignificant(4)} AVAX */}
                 {userEthBalance?.toSignificant(4)} {CURRENCY.symbol}
               </BalanceText>
             ) : null}

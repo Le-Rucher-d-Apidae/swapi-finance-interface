@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, /* CAVAX */ CURRENCY, Token } from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
@@ -18,11 +18,7 @@ import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
 
 function currencyKey(currency: Currency): string {
-  return currency instanceof Token
-    ? currency.address
-    : currency === /* CAVAX */ CURRENCY
-    ? /* 'AVAX' */ CURRENCY.symbol || '?'
-    : ''
+  return currency instanceof Token ? currency.address : currency === CURRENCY ? CURRENCY.symbol || '?' : ''
 }
 
 const StyledBalanceText = styled(Text)`
@@ -175,10 +171,7 @@ export default function CurrencyList({
   fixedListRef?: MutableRefObject<FixedSizeList | undefined>
   showETH: boolean
 }) {
-  const itemData = useMemo(() => (showETH ? [/* Currency.CAVAX */ Currency.CMATIC, ...currencies] : currencies), [
-    currencies,
-    showETH
-  ])
+  const itemData = useMemo(() => (showETH ? [Currency.CMATIC, ...currencies] : currencies), [currencies, showETH])
 
   const Row = useCallback(
     ({ data, index, style }) => {
