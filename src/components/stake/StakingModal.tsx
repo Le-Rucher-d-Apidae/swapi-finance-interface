@@ -21,8 +21,7 @@ import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
 import { UNDEFINED /* , ZERO_ADDRESS */, NO_EIP712_SUPPORT, SELF_TOKEN } from '../../constants'
 import { BigNumber } from '@ethersproject/bignumber'
-// import Toggle from '../Toggle'
-// import QuestionHelper from '../QuestionHelper'
+// import Toggle from '../Toggle' // import QuestionHelper from '../QuestionHelper'
 
 const HypotheticalRewardRate = styled.div<{ dim: boolean }>`
   display: flex;
@@ -220,7 +219,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
         .send('eth_signTypedData_v4', [account, data])
         .then(splitSignature)
         .then(signature => {
-          console.log('signature: ', signature)
+          console.info('signature: ', signature)
           setSignatureData({
             v: signature.v,
             r: signature.r,
