@@ -124,11 +124,12 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     // debugger
   }, [selfToken, chainId, totalSupply, circulatingSupply])
 
-  // TODO: Determine SELF_TOKEN price in WCURRENCY
-  // TODO: Determine SELF_TOKEN price in WCURRENCY
-  // TODO: Determine SELF_TOKEN price in WCURRENCY
-  // TODO: Determine SELF_TOKEN price in WCURRENCY
-  // TODO: Determine SELF_TOKEN price in WCURRENCY
+  // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
+  // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
+  // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
+  // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
+  // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
+  // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
   // Determine BAG price in AVAX
   // const wavax = WAVAX[chainId ? chainId : 43114]
   const wcurrency = WCURRENCY[chainId ? chainId : ChainId.POLYGON]
