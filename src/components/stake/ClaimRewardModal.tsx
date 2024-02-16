@@ -104,7 +104,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Claimed {SELF_TOKEN[ChainId.POLYGON].name}!</TYPE.body>
+            <TYPE.body fontSize={20}>Claimed {SELF_TOKEN[ChainId.POLYGON].symbol}!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
