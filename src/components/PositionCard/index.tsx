@@ -297,8 +297,9 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 borderradius="8px"
                 as={Link}
                 width="48%"
-                to={`/remove/${chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)}
-                  /${chainId && currency1 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency1)}`}
+                to={`/remove/${
+                  chainId && currency0 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency0)
+                }/${chainId && currency1 === CURRENCY ? WCURRENCY[chainId].address : currencyId(currency1)}`}
               >
                 Remove
               </ButtonPrimary>
