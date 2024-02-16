@@ -247,7 +247,9 @@ export function colors(darkMode: boolean): Colors {
 
     iconSuccess: darkMode ? green1 : green1,
     iconPending: darkMode ? blue1 : black,
-    iconFailure: darkMode ? red1 : red1
+    iconFailure: darkMode ? red1 : red1,
+
+    logo: darkMode ? dark1 : black
   }
 }
 

@@ -130,6 +130,8 @@ export interface Colors {
   iconSuccess: Color
   iconPending: Color
   iconFailure: Color
+
+  logo: Color
 }
 
 export interface Grids {

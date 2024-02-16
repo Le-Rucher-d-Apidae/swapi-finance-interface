@@ -50,12 +50,8 @@ interface StakingModalProps {
 export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiquidityUnstaked }: StakingModalProps) {
   // const theme = useContext(ThemeContext)
   const { account, chainId, library } = useActiveWeb3React()
-  // Xeslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const [autocompound, setAutocompound] = useState<boolean>(stakingInfo.useAutocompounding)
-  const [autocompound] = useState<boolean>(stakingInfo.useAutocompounding)
-  // setAutocompound(false)
+  const [autocompound /*, setAutocompound */] = useState<boolean>(stakingInfo.useAutocompounding)
   // const showAutocompound = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
-
   // track and parse user input
   const [typedValue, setTypedValue] = useState('')
   const { parsedAmount, error } = useDerivedStakeInfo(typedValue, stakingInfo.stakedAmount.token, userLiquidityUnstaked)
@@ -271,7 +267,6 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
 
             <TYPE.black>
               {hypotheticalRewardRate.multiply((60 * 60 * 24 * 7).toString()).toSignificant(4, { groupSeparator: ',' })}{' '}
-              {/* BAG / week */}
               {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} / week
             </TYPE.black>
           </HypotheticalRewardRate>
