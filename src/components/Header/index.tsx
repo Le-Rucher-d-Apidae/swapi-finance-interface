@@ -393,7 +393,6 @@ export default function Header() {
                     </TYPE.black>
                   </HideSmall>
                 )}
-                {/* BAG */}
                 {SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol}
               </TokenAmountStyle>
               <CardNoise />

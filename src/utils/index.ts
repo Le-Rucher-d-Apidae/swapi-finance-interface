@@ -5,16 +5,7 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IBaguetteRouterABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-periphery/interfaces/IBaguetteRouter.sol/IBaguetteRouter.json'
 import { ROUTER_ADDRESS } from '../constants'
-import {
-  ChainId,
-  JSBI,
-  Percent,
-  Token,
-  CurrencyAmount,
-  Currency,
-  /* CAVAX */ CURRENCY,
-  ChainExplorer
-} from '@swapi-finance/sdk'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, CURRENCY, ChainExplorer } from '@swapi-finance/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
@@ -26,11 +17,6 @@ export function isAddress(value: any): string | false {
   }
 }
 
-// const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-//   [ChainId.FUJI]: 'https://cchain.explorer.avax-test.network',
-//   [ChainId.AVALANCHE]: 'https://cchain.explorer.avax.network',
-//   [ChainId.CRYPTOSEALS]: 'https://subnetexplorer.cryptoseals.art',
-// }
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   [ChainId.MUMBAI]: process.env.REACT_APP_TESTNET_EXPLORER_URL || ChainExplorer[ChainId.MUMBAI],
   [ChainId.POLYGON]: process.env.REACT_APP_MAINNET_EXPLORER_URL || ChainExplorer[ChainId.POLYGON]
@@ -41,7 +27,6 @@ export function getEtherscanLink(
   data: string,
   type: 'transaction' | 'token' | 'address' | 'block'
 ): string {
-  // const prefix = `${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[ChainId.AVALANCHE]}`
   const prefix = `${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[ChainId.POLYGON]}`
 
   switch (type) {
@@ -110,9 +95,6 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 }
 
 // account is optional
-// export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string): Contract {
-//   return getContract(chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE], IBaguetteRouterABI, library, account)
-// }
 export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string): Contract {
   return getContract(
     chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.POLYGON],
@@ -127,6 +109,6 @@ export function escapeRegExp(string: string): string {
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === /* CAVAX */ CURRENCY) return true
+  if (currency === CURRENCY) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }

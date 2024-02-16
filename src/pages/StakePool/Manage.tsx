@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { SELF_TOKEN } from './../../constants/index'
 
 import { JSBI } from '@swapi-finance/sdk'
 import { RouteComponentProps } from 'react-router-dom'
@@ -309,7 +310,6 @@ export function ManagePair({
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
             </span>
-            {/* When you withdraw, the contract will automagically claim BAG on your behalf! */}
             When you withdraw, the contract will automagically claim {SELF_TOKEN[ChainId.POLYGON].symbol} on your
             behalf!
           </TYPE.main>

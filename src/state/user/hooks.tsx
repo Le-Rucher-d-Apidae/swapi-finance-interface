@@ -192,7 +192,6 @@ export function useURLWarningToggle(): () => void {
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token], chainId: ChainId): Token {
-  // return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB, chainId), 18, 'BGL', 'Baguette Liquidity')
   return new Token(
     tokenA.chainId,
     Pair.getAddress(tokenA, tokenB, chainId),
@@ -208,11 +207,8 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token], chainId: Ch
 export function useTrackedTokenPairs(): [Token, Token][] {
   const { chainId } = useActiveWeb3React()
   const tokens = useAllTokens()
-  // console.debug('src/state/user/hooks.tsx useTrackedTokenPairs tokens=', tokens)
   // pinned pairs
   const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
-  // console.debug('src/state/user/hooks.tsx useTrackedTokenPairs pinnedPairs=', pinnedPairs)
-  // debugger
   // pairs for every token against every base
   const generatedPairs: [Token, Token][] = useMemo(
     () =>

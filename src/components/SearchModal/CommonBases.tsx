@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text } from 'rebass'
-// import { ChainId, Currency, currencyEquals, CAVAX, Token } from '@swapi-finance/sdk'
 import { ChainId, Currency, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk'
 import styled from 'styled-components'
 
@@ -46,13 +45,13 @@ export default function CommonBases({
       <AutoRow gap="4px">
         <BaseWrapper
           onClick={() => {
-            if (!selectedCurrency || !currencyEquals(selectedCurrency, /* CAVAX */ CURRENCY)) {
-              onSelect(/* CAVAX */ CURRENCY)
+            if (!selectedCurrency || !currencyEquals(selectedCurrency, CURRENCY)) {
+              onSelect(CURRENCY)
             }
           }}
-          disable={selectedCurrency === /* CAVAX */ CURRENCY}
+          disable={selectedCurrency === CURRENCY}
         >
-          <CurrencyLogo currency={/* CAVAX */ CURRENCY} style={{ marginRight: 8 }} />
+          <CurrencyLogo currency={CURRENCY} style={{ marginRight: 8 }} />
           <Text fontWeight={500} fontSize={16}>
             {CURRENCY.symbol}
           </Text>
@@ -61,8 +60,7 @@ export default function CommonBases({
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address
           return (
             <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected} key={token.address}>
-              {/* <CurrencyLogo currency={token} style={{ marginRight: 8 }} /> */}
-              <CurrencyLogo currency={token} /* chainId={chainId} */ style={{ marginRight: 8 }} />
+              <CurrencyLogo currency={token} style={{ marginRight: 8 }} />
               <Text fontWeight={500} fontSize={16}>
                 {token.symbol}
               </Text>

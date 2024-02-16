@@ -1,6 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-// import { Currency, currencyEquals, CAVAX, TokenAmount, WAVAX } from '@swapi-finance/sdk'
 import { Currency, currencyEquals, CURRENCY, TokenAmount, WCURRENCY } from '@swapi-finance/sdk'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
@@ -53,13 +52,11 @@ export default function AddLiquidity({
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
 
-  const /* oneCurrencyIsWAVAX */ oneCurrencyIsWCURRENCY = Boolean(
-      chainId &&
-        // ((currencyA && currencyEquals(currencyA, WAVAX[chainId])) ||
-        //   (currencyB && currencyEquals(currencyB, WAVAX[chainId])))
-        ((currencyA && currencyEquals(currencyA, WCURRENCY[chainId])) ||
-          (currencyB && currencyEquals(currencyB, WCURRENCY[chainId])))
-    )
+  const oneCurrencyIsWCURRENCY = Boolean(
+    chainId &&
+      ((currencyA && currencyEquals(currencyA, WCURRENCY[chainId])) ||
+        (currencyB && currencyEquals(currencyB, WCURRENCY[chainId])))
+  )
 
   const toggleWalletModal = useWalletModalToggle() // toggle wallet when disconnected
 
@@ -90,7 +87,6 @@ export default function AddLiquidity({
 
   // txn values
   const deadline = useTransactionDeadline() // custom from users settings
-  // console.debug(`deadline=${deadline}`)
   const [allowedSlippage] = useUserSlippageTolerance() // custom from users
   const [txHash, setTxHash] = useState<string>('')
 
@@ -122,8 +118,6 @@ export default function AddLiquidity({
   )
 
   // check whether the user has approved the router on the tokens
-  // const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE])
-  // const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE])
   const [approvalA, approveACallback] = useApproveCallback(
     parsedAmounts[Field.CURRENCY_A],
     chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.POLYGON]
@@ -137,7 +131,6 @@ export default function AddLiquidity({
 
   async function onAdd() {
     if (!chainId || !library || !account) return
-    // debugger
     const router = getRouterContract(chainId, library, account)
 
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
@@ -154,9 +147,7 @@ export default function AddLiquidity({
       method: (...args: any) => Promise<TransactionResponse>,
       args: Array<string | string[] | number>,
       value: BigNumber | null
-    // if (currencyA === CAVAX || currencyB === CAVAX) {
     if (currencyA === CURRENCY || currencyB === CURRENCY) {
-      // const tokenBIsETH = currencyB === CAVAX
       const tokenBIsETH = currencyB === CURRENCY
       estimate = router.estimateGas.addLiquidityAVAX
       method = router.addLiquidityAVAX
@@ -209,7 +200,6 @@ export default function AddLiquidity({
           })
 
           setTxHash(response.hash)
-
           // ReactGA.event({
           //   category: 'Liquidity',
           //   action: 'Add',
@@ -465,7 +455,7 @@ export default function AddLiquidity({
 
       {pair && !noLiquidity && pairState !== PairState.INVALID ? (
         <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
-          <MinimalPositionCard showUnwrapped={/* oneCurrencyIsWAVAX */ oneCurrencyIsWCURRENCY} pair={pair} />
+          <MinimalPositionCard showUnwrapped={oneCurrencyIsWCURRENCY} pair={pair} />
         </AutoColumn>
       ) : null}
     </>

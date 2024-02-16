@@ -1,6 +1,5 @@
-// import { BAG } from './../../constants/index'
 import { SELF_TOKEN } from './../../constants/index'
-import { Currency, CurrencyAmount, /* CAVAX */ CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useAllTokens } from '../../hooks/Tokens'
@@ -105,9 +104,7 @@ export function useCurrencyBalances(
   ])
 
   const tokenBalances = useTokenBalances(account, tokens)
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === /* CAVAX */ CURRENCY) ?? false, [
-    currencies
-  ])
+  const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === CURRENCY) ?? false, [currencies])
   const ethBalance = useETHBalances(containsETH ? [account] : [])
 
   return useMemo(
@@ -115,7 +112,7 @@ export function useCurrencyBalances(
       currencies?.map(currency => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === /* CAVAX */ CURRENCY) return ethBalance[account]
+        if (currency === CURRENCY) return ethBalance[account]
         return undefined
       }) ?? [],
     [account, currencies, ethBalance, tokenBalances]
@@ -139,14 +136,9 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
 export function useAggregateBagBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 
-  // const bag = chainId ? BAG[chainId] : undefined
   const selfToken = chainId ? SELF_TOKEN[chainId] : undefined
-  // const bagBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, bag)
   const selfTokenBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, selfToken)
-  // console.debug('useAggregateBagBalance apdBalance=', apdBalance)
-  // if (!bag) return undefined
   if (!selfToken) return undefined
 
-  // return new TokenAmount(bag, bagBalance?.raw ?? JSBI.BigInt(0))
   return new TokenAmount(selfToken, selfTokenBalance?.raw ?? JSBI.BigInt(0))
 }

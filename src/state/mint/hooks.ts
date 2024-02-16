@@ -1,13 +1,4 @@
-import {
-  Currency,
-  CurrencyAmount,
-  /* CAVAX */ CURRENCY,
-  JSBI,
-  Pair,
-  Percent,
-  Price,
-  TokenAmount
-} from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, CURRENCY, JSBI, Pair, Percent, Price, TokenAmount } from '@swapi-finance/sdk'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PairState, usePair } from '../../data/Reserves'
@@ -92,9 +83,7 @@ export function useDerivedMintInfo(
           dependentField === Field.CURRENCY_B
             ? pair.priceOf(tokenA).quote(wrappedIndependentAmount)
             : pair.priceOf(tokenB).quote(wrappedIndependentAmount)
-        return dependentCurrency === /* CAVAX */ CURRENCY
-          ? CurrencyAmount.ether(dependentTokenAmount.raw)
-          : dependentTokenAmount
+        return dependentCurrency === CURRENCY ? CurrencyAmount.ether(dependentTokenAmount.raw) : dependentTokenAmount
       }
       return undefined
     } else {
@@ -104,7 +93,7 @@ export function useDerivedMintInfo(
   const parsedAmounts: { [field in Field]: CurrencyAmount | undefined } = {
     [Field.CURRENCY_A]: independentField === Field.CURRENCY_A ? independentAmount : dependentAmount,
     [Field.CURRENCY_B]: independentField === Field.CURRENCY_A ? dependentAmount : independentAmount
-  }
+  } // TODO : fix dep warning ?
 
   const price = useMemo(() => {
     if (noLiquidity) {
