@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { SELF_TOKEN } from './../../constants/index'
 
 import { JSBI } from '@swapi-finance/sdk'
 import { RouteComponentProps } from 'react-router-dom'
@@ -30,10 +29,9 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { currencyId } from '../../utils/currencyId'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
-import { BIG_INT_ZERO } from '../../constants'
+import { BIG_INT_ZERO, SELF_TOKEN } from '../../constants'
 
 import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
-import { SELF_TOKEN } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
