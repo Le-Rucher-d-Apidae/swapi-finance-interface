@@ -1,6 +1,5 @@
 import { Contract } from '@ethersproject/contracts'
-// import { WAVAX } from '@swapi-finance/sdk'
-import { WCURRENCY } from '@swapi-finance/sdk'
+import { WCURRENCY } from '@swapi-finance/sdk2'
 import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
 import { abi as STAKING_REWARDS_ABI } from '@swapi-finance/contracts/artifacts/contracts/StakingRewards.sol/StakingRewards.json'
 import { useMemo } from 'react'
@@ -50,7 +49,6 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
-  // return useContract(chainId ? WAVAX[chainId].address : undefined, WETH_ABI, withSignerIfPossible)
   return useContract(chainId ? WCURRENCY[chainId].address : undefined, WETH_ABI, withSignerIfPossible)
 }
 
