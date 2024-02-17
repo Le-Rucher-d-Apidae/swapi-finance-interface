@@ -1,4 +1,4 @@
-import { ChainId } from '@swapi-finance/sdk'
+import { ChainId } from '@swapi-finance/sdk2'
 import MULTICALL_ABI from './abi.json'
 
 // const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {

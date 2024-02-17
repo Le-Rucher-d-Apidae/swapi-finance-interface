@@ -1,4 +1,4 @@
-import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk'
+import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk2'
 import React, { useState, useContext } from 'react'
 import { useEffect } from 'react'
 import { X } from 'react-feather'

@@ -1,6 +1,6 @@
 import { Version } from '../../hooks/useToggledVersion'
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, CURRENCY, JSBI, Token, TokenAmount, Trade, ChainId } from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, CURRENCY, JSBI, Token, TokenAmount, Trade, ChainId } from '@swapi-finance/sdk2'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

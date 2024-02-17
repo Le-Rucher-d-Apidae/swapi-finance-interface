@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, currencyEquals, CURRENCY, Token } from '@swapi-finance/sdk2'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'

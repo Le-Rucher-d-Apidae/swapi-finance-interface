@@ -1,4 +1,4 @@
-import { Currency, CURRENCY, JSBI, TokenAmount } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, JSBI, TokenAmount } from '@swapi-finance/sdk2'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Plus } from 'react-feather'
 import { Text } from 'rebass'

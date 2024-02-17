@@ -1,4 +1,4 @@
-import { Currency, CURRENCY, Token, ChainId } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, Token, ChainId } from '@swapi-finance/sdk2'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import PolygonCurrencyLogo from '../../assets/images/polygon_token_round.png'

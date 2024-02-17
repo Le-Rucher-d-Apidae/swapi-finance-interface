@@ -10,7 +10,7 @@ import { ArrowUpCircle } from 'react-feather'
 import Circle from '../../assets/images/blue-loader.svg'
 import { getEtherscanLink } from '../../utils'
 import { ExternalLink } from '../../theme/components'
-import { ChainId, ChainLabel } from '@swapi-finance/sdk'
+import { ChainId, ChainLabel } from '@swapi-finance/sdk2'
 
 const ConfirmOrLoadingWrapper = styled.div`
   width: 100%;

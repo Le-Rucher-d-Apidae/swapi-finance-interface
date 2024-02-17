@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { TYPE, InternalLink } from '../../theme'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import CurrencyLogo from '../CurrencyLogo'
-import { JSBI } from '@swapi-finance/sdk'
+import { JSBI } from '@swapi-finance/sdk2'
 import { ButtonPrimary } from '../Button'
 import { StakingInfo } from '../../state/stake/hooks'
 import { useColor } from '../../hooks/useColor'
@@ -13,7 +13,7 @@ import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise } from './styled'
 import { UNDEFINED } from '../../constants'
-import { Fraction, CURRENCY } from '@swapi-finance/sdk'
+import { Fraction, CURRENCY } from '@swapi-finance/sdk2'
 
 const StatContainer = styled.div`
   display: flex;

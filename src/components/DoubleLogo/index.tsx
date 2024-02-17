@@ -1,4 +1,4 @@
-import { Currency } from '@swapi-finance/sdk'
+import { Currency } from '@swapi-finance/sdk2'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'

@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
+import { ChainId, JSBI, Token, TokenAmount } from '@swapi-finance/sdk2'
 import { BigNumber } from 'ethers'
 import { ZERO_ADDRESS } from '../constants'
 import { computeSelfTokenCirculation } from './computeSelfTokenCirculation'

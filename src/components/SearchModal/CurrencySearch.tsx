@@ -1,4 +1,4 @@
-import { Currency, CURRENCY, Token } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, Token } from '@swapi-finance/sdk2'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 // import ReactGA from 'react-ga'
 import { useTranslation } from 'react-i18next'

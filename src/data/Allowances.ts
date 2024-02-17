@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from '@swapi-finance/sdk'
+import { Token, TokenAmount } from '@swapi-finance/sdk2'
 import { useMemo } from 'react'
 
 import { useTokenContract } from '../hooks/useContract'

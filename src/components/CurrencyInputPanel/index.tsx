@@ -1,4 +1,4 @@
-import { Currency, Pair } from '@swapi-finance/sdk'
+import { Currency, Pair } from '@swapi-finance/sdk2'
 import React, { useState, useContext, useCallback } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { darken } from 'polished'

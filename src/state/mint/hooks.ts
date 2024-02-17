@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, CURRENCY, JSBI, Pair, Percent, Price, TokenAmount } from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, CURRENCY, JSBI, Pair, Percent, Price, TokenAmount } from '@swapi-finance/sdk2'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PairState, usePair } from '../../data/Reserves'

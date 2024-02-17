@@ -1,4 +1,4 @@
-import { ChainId } from '@swapi-finance/sdk'
+import { ChainId } from '@swapi-finance/sdk2'
 import { createStore, Store } from 'redux'
 import { addPopup, ApplicationModal, removePopup, setOpenModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

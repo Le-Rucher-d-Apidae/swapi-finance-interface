@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, CURRENCY, Token, currencyEquals } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, Token, currencyEquals } from '@swapi-finance/sdk2'
 import { useMemo } from 'react'
 import { useSelectedTokenList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'

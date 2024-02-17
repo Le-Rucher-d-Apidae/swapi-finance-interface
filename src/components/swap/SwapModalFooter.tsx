@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@swapi-finance/sdk'
+import { Trade, TradeType } from '@swapi-finance/sdk2'
 import React, { useContext, useMemo, useState } from 'react'
 import { Repeat } from 'react-feather'
 import { Text } from 'rebass'

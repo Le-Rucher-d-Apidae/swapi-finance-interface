@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@swapi-finance/sdk'
+import { Trade, TradeType } from '@swapi-finance/sdk2'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Field } from '../../state/swap/actions'

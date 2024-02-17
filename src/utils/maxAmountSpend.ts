@@ -1,4 +1,4 @@
-import { CurrencyAmount, CURRENCY, JSBI } from '@swapi-finance/sdk'
+import { CurrencyAmount, CURRENCY, JSBI } from '@swapi-finance/sdk2'
 import { MIN_ETH } from '../constants'
 
 /**

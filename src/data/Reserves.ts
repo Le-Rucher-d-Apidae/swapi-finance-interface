@@ -1,4 +1,4 @@
-import { JSBI, TokenAmount, Pair, Currency, ChainId } from '@swapi-finance/sdk'
+import { JSBI, TokenAmount, Pair, Currency, ChainId } from '@swapi-finance/sdk2'
 import { useMemo } from 'react'
 import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
 import { Interface } from '@ethersproject/abi'

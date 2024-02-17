@@ -1,4 +1,4 @@
-import { JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
+import { JSBI, Token, TokenAmount } from '@swapi-finance/sdk2'
 
 export async function computeSelfTokenCirculation(token: Token): Promise<TokenAmount> {
   const url = `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_CIRCULATING_SUPPLY}`

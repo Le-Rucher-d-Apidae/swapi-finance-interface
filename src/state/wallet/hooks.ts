@@ -1,5 +1,5 @@
 import { SELF_TOKEN } from './../../constants/index'
-import { Currency, CurrencyAmount, CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
+import { Currency, CurrencyAmount, CURRENCY, JSBI, Token, TokenAmount } from '@swapi-finance/sdk2'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useAllTokens } from '../../hooks/Tokens'

@@ -1,4 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, CURRENCY, Token, TokenAmount, WCURRENCY } from '@swapi-finance/sdk'
+import { ChainId, Currency, CurrencyAmount, CURRENCY, Token, TokenAmount, WCURRENCY } from '@swapi-finance/sdk2'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   const res = chainId && currency === CURRENCY ? WCURRENCY[chainId] : currency instanceof Token ? currency : undefined

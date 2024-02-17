@@ -1,4 +1,4 @@
-import { JSBI, Pair, Percent } from '@swapi-finance/sdk'
+import { JSBI, Pair, Percent, CURRENCY, WCURRENCY } from '@swapi-finance/sdk2'
 import { darken } from 'polished'
 import React, { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
@@ -24,7 +24,6 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
-import { CURRENCY, WCURRENCY } from '@swapi-finance/sdk'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;

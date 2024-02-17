@@ -1,4 +1,4 @@
-import { Currency } from '@swapi-finance/sdk'
+import { Currency } from '@swapi-finance/sdk2'
 import React, { useCallback, useEffect, useState } from 'react'
 // import ReactGA from 'react-ga'
 import useLast from '../../hooks/useLast'

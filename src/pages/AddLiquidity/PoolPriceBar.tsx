@@ -1,4 +1,4 @@
-import { Currency, Percent, Price } from '@swapi-finance/sdk'
+import { Currency, Percent, Price } from '@swapi-finance/sdk2'
 import React, { useContext } from 'react'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'

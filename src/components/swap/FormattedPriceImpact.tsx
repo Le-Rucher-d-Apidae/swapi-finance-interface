@@ -1,4 +1,4 @@
-import { Percent } from '@swapi-finance/sdk'
+import { Percent } from '@swapi-finance/sdk2'
 import React from 'react'
 import { ONE_BIPS } from '../../constants'
 import { warningSeverity } from '../../utils/prices'

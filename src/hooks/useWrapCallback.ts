@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, CURRENCY, WCURRENCY, ChainId } from '@swapi-finance/sdk'
+import { Currency, currencyEquals, CURRENCY, WCURRENCY, ChainId } from '@swapi-finance/sdk2'
 import { useMemo } from 'react'
 import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'

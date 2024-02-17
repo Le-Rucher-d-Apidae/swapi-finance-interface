@@ -6,7 +6,7 @@ import { ExternalLink, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
-import { ChainLabel, ChainId } from '@swapi-finance/sdk'
+import { ChainLabel, ChainId } from '@swapi-finance/sdk2'
 
 const InputPanel = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}
