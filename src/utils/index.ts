@@ -5,7 +5,7 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IBaguetteRouterABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-periphery/interfaces/IBaguetteRouter.sol/IBaguetteRouter.json'
 import { ROUTER_ADDRESS } from '../constants'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, CURRENCY, ChainExplorer } from '@swapi-finance/sdk'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, CURRENCY, CHAIN_EXPLORER } from '@swapi-finance/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
@@ -18,8 +18,8 @@ export function isAddress(value: any): string | false {
 }
 
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: process.env.REACT_APP_TESTNET_EXPLORER_URL || ChainExplorer[ChainId.MUMBAI],
-  [ChainId.POLYGON]: process.env.REACT_APP_MAINNET_EXPLORER_URL || ChainExplorer[ChainId.POLYGON]
+  [ChainId.MUMBAI]: process.env.REACT_APP_TESTNET_EXPLORER_URL || CHAIN_EXPLORER[ChainId.MUMBAI],
+  [ChainId.POLYGON]: process.env.REACT_APP_MAINNET_EXPLORER_URL || CHAIN_EXPLORER[ChainId.POLYGON]
 }
 
 export function getEtherscanLink(

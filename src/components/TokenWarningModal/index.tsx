@@ -12,7 +12,7 @@ import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 import { AlertTriangle } from 'react-feather'
 import { ButtonError } from '../Button'
-import { ChainId, ChainLabel } from '@swapi-finance/sdk'
+import { ChainId, CHAIN_LABEL } from '@swapi-finance/sdk'
 
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.bg3)};
@@ -77,7 +77,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
             <ExternalLink style={{ fontWeight: 400 }} href={getEtherscanLink(chainId, token.address, 'token')}>
               {/* <TYPE.blue title={token.address}>{shortenAddress(token.address)} (View on the C-Chain Explorer)</TYPE.blue> */}
               <TYPE.blue title={token.address}>
-                {shortenAddress(token.address)} View on the {ChainLabel[ChainId.POLYGON]} Explorer
+                {shortenAddress(token.address)} View on the {CHAIN_LABEL[ChainId.POLYGON]} Explorer
               </TYPE.blue>
             </ExternalLink>
           )}

@@ -1,4 +1,4 @@
-import { ChainId, ChainLabel, TokenAmount, CURRENCY } from '@swapi-finance/sdk'
+import { ChainId, CHAIN_LABEL, TokenAmount, CURRENCY } from '@swapi-finance/sdk'
 
 import React, { useState } from 'react'
 import { Text } from 'rebass'
@@ -300,8 +300,8 @@ const StyledExternalLink = styled(ExternalLink).attrs({
 `
 */
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
-  [ChainId.MUMBAI]: ChainLabel[ChainId.MUMBAI],
-  [ChainId.POLYGON]: ChainLabel[ChainId.POLYGON]
+  [ChainId.MUMBAI]: CHAIN_LABEL[ChainId.MUMBAI],
+  [ChainId.POLYGON]: CHAIN_LABEL[ChainId.POLYGON]
 }
 
 export default function Header() {

@@ -15,7 +15,7 @@ import { useModalOpen, useWalletModalToggle } from '../../state/application/hook
 import { ExternalLink } from '../../theme'
 import { ButtonPrimary } from '../../components/Button'
 import AccountDetails from '../AccountDetails'
-import { ChainLabel, ChainId, CURRENCY, POLYGON_MAINNET_HEX_CHAIN_ID, ChainExplorer, RPC_URL } from '@swapi-finance/sdk'
+import { CHAIN_LABEL, ChainId, CURRENCY, HEX_CHAIN_ID, CHAIN_EXPLORER, RPC_URL } from '@swapi-finance/sdk'
 
 import Modal from '../Modal'
 import Option from './Option'
@@ -280,15 +280,15 @@ export default function WalletModal({
 
   function switchToPolygon() {
     const POLYGON_MAINNET_PARAMS = {
-      chainId: POLYGON_MAINNET_HEX_CHAIN_ID,
+      chainId: HEX_CHAIN_ID[ChainId.POLYGON],
       chainName: 'Polygon Mainnet',
       nativeCurrency: {
-        name: ChainLabel[ChainId.POLYGON],
+        name: CHAIN_LABEL[ChainId.POLYGON],
         symbol: CURRENCY.symbol,
         decimals: 18
       },
       rpcUrls: [process.env.REACT_APP_NETWORK_URL || RPC_URL[ChainId.POLYGON]],
-      blockExplorerUrls: [process.env.REACT_APP_MAINNET_EXPLORER_URL || ChainExplorer[ChainId.POLYGON]]
+      blockExplorerUrls: [process.env.REACT_APP_MAINNET_EXPLORER_URL || CHAIN_EXPLORER[ChainId.POLYGON]]
     }
 
     injected.getProvider().then(provider => {
@@ -314,9 +314,9 @@ export default function WalletModal({
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
               <>
-                <h5>{`Please connect to the appropriate ${ChainLabel[ChainId.POLYGON]} network.`}</h5>
+                <h5>{`Please connect to the appropriate ${CHAIN_LABEL[ChainId.POLYGON]} network.`}</h5>
                 <ButtonPrimary padding="8px" borderradius="8px" height="60px" onClick={switchToPolygon}>
-                  {`Switch to ${ChainLabel[ChainId.POLYGON]} Chain`}
+                  {`Switch to ${CHAIN_LABEL[ChainId.POLYGON]} Chain`}
                 </ButtonPrimary>
               </>
             ) : (
@@ -371,7 +371,7 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              <span>New to {ChainLabel[ChainId.POLYGON]} ? &nbsp;</span>{' '}
+              <span>New to {CHAIN_LABEL[ChainId.POLYGON]} ? &nbsp;</span>{' '}
               <ExternalLink href={WALLET_TUTORIAL}>Learn more about setting up a wallet</ExternalLink>
             </Blurb>
           )}
