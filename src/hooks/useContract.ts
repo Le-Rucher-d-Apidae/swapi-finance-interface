@@ -1,7 +1,8 @@
 import { Contract } from '@ethersproject/contracts'
 // import { WAVAX } from '@swapi-finance/sdk'
 import { WCURRENCY } from '@swapi-finance/sdk'
-import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
+// import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
+import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { abi as STAKING_REWARDS_ABI } from '@swapi-finance/contracts/artifacts/contracts/StakingRewards.sol/StakingRewards.json'
 import { useMemo } from 'react'
 import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
@@ -10,7 +11,7 @@ import ERC20_ABI from '../constants/abis/erc20.json'
 import AUTOCOMPOUND_ABI from '../constants/abis/autocompound.json'
 // import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
 import WETH_ABI from '../constants/abis/weth.json'
-import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
+import { MULTICALL_ABI, MULTICALL_NETWORKS_MAP } from '../constants/multicall'
 import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'
 import { ZERO_ADDRESS } from '../constants'
 import { getContract } from '../utils'
@@ -63,12 +64,12 @@ export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossi
 }
 
 export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(pairAddress, IBaguettePairABI, withSignerIfPossible)
+  return useContract(pairAddress, IUniswapV2PairABI, withSignerIfPossible)
 }
 
 export function useMulticallContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
+  return useContract(chainId && MULTICALL_NETWORKS_MAP[chainId], MULTICALL_ABI, false)
 }
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {

@@ -18,7 +18,7 @@ import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../../theme'
 
-import { ChainId, CHAIN_LABEL } from '@swapi-finance/sdk'
+import { ChainId, CHAIN_LABEL_MAP } from '@swapi-finance/sdk'
 
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
@@ -319,7 +319,7 @@ export default function AccountDetails({
                             <LinkIcon size={16} />
                             {/* <span style={{ marginLeft: '4px' }}>View on the C-Chain Explorer</span> */}
                             <span style={{ marginLeft: '4px' }}>
-                              View on the {CHAIN_LABEL[ChainId.POLYGON]} Explorer
+                              View on the {CHAIN_LABEL_MAP[ChainId.POLYGON]} Explorer
                             </span>
                           </AddressLink>
                         )}
@@ -344,7 +344,7 @@ export default function AccountDetails({
                             <LinkIcon size={16} />
                             {/* <span style={{ marginLeft: '4px' }}>View on the C-Chain Explorer</span> */}
                             <span style={{ marginLeft: '4px' }}>
-                              View on the {CHAIN_LABEL[ChainId.POLYGON]} Explorer
+                              View on the {CHAIN_LABEL_MAP[ChainId.POLYGON]} Explorer
                             </span>
                           </AddressLink>
                         )}

@@ -228,10 +228,8 @@ export default function RemoveLiquidity({
     // we have approval, use normal remove liquidity
     if (approval === ApprovalState.APPROVED) {
       // console.debug('Removing liquidity with approved tokens')
-      // removeLiquidityAVAX
       if (oneCurrencyIsETH) {
-        // console.debug('removeLiquidityAVAX, removeLiquidityAVAXSupportingFeeOnTransferTokens')
-        methodNames = ['removeLiquidityAVAX', 'removeLiquidityAVAXSupportingFeeOnTransferTokens'] // TODO: update this
+        methodNames = ['removeLiquidityETH', 'removeLiquidityETHSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
           liquidityAmount.raw.toString(),
@@ -258,10 +256,8 @@ export default function RemoveLiquidity({
     }
     // we have a signature, use permit versions of remove liquidity
     else if (signatureData !== null) {
-      // removeLiquidityAVAXWithPermit
       if (oneCurrencyIsETH) {
-        // console.debug('removeLiquidityAVAXWithPermit, removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens')
-        methodNames = ['removeLiquidityAVAXWithPermit', 'removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens'] // TODO: update this
+        methodNames = ['removeLiquidityETHWithPermit', 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
           liquidityAmount.raw.toString(),
@@ -274,9 +270,7 @@ export default function RemoveLiquidity({
           signatureData.r,
           signatureData.s
         ]
-      }
-      // removeLiquidityAVAXWithPermit
-      else {
+      } else {
         // console.debug('removeLiquidityWithPermit')
         methodNames = ['removeLiquidityWithPermit']
         args = [

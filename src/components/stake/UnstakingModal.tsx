@@ -14,7 +14,6 @@ import FormattedCurrencyAmount from '../FormattedCurrencyAmount'
 import { useActiveWeb3React } from '../../hooks'
 import { UNDEFINED } from '../../constants'
 
-// import { ChainId } from '@swapi-finance/sdk'
 import { SELF_TOKEN } from '../../constants'
 import { ChainId, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 

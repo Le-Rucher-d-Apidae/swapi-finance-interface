@@ -7,7 +7,7 @@ import { ExternalLink } from '../../theme/components'
 import { getEtherscanLink } from '../../utils'
 import { AutoColumn } from '../Column'
 import { AutoRow } from '../Row'
-import { ChainId, CHAIN_LABEL } from '@swapi-finance/sdk'
+import { ChainId, CHAIN_LABEL_MAP } from '@swapi-finance/sdk'
 
 const RowNoFlex = styled(AutoRow)`
   flex-wrap: nowrap;
@@ -37,7 +37,7 @@ export default function TransactionPopup({
         {chainId && (
           // <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>View on the C-Chain Explorer</ExternalLink>
           <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
-            View on the {CHAIN_LABEL[ChainId.POLYGON]} Explorer
+            View on the {CHAIN_LABEL_MAP[ChainId.POLYGON]} Explorer
           </ExternalLink>
         )}
       </AutoColumn>

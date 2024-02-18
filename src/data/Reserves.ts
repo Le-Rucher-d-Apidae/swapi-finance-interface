@@ -1,6 +1,7 @@
 import { JSBI, TokenAmount, Pair, Currency, ChainId } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
-import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
+// import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
+import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 
@@ -8,7 +9,7 @@ import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 import { UNDEFINED } from '../constants'
 
-const PAIR_INTERFACE = new Interface(IBaguettePairABI)
+const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
 
 export enum PairState {
   LOADING,
