@@ -2879,10 +2879,10 @@
     abi-decoder "^2.4.0"
     base-58 "0.0.1"
 
-"@swapi-finance/sdk@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.13.tgz#234019d5dfebb52cb8c9ec816a2157c2ecd9ffbe"
-  integrity sha512-gMo/T8mtbFl9vrdkG7X+xK55EYVzOtot1b87BetBjF6hrI3qT24WxJtOTdRkgYkIP+LMh5HD7JvfdgzOt2EHoQ==
+"@swapi-finance/sdk@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.15.tgz#6474d6d6cd3cdd7310810c47a45480b042ea2d79"
+  integrity sha512-u6s2NZ/AGxj4Ewzx3B1u/xbkx31GtxzAw5AWNMiCwFyDXMkF5pYBQGmffuknRt05oHeccXrVRU8osOOO1G2tdA==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
     "@uniswap/v2-sdk" "^4.1.0"
