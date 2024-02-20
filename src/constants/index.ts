@@ -18,8 +18,8 @@ export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to land
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: '0xA468c5c9d7259ba5D2bCc38f526EbC4751c7f721', // Mumbai router
-  [ChainId.POLYGON]: '0x0000000000000000000000000000000000000000' // TODO: change to Polygon router
+  [ChainId.MUMBAI]: '0x00eC2AE33f2FB560Af3bE67d2E81d880758a88fe', // Mumbai router
+  [ChainId.POLYGON]: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff' // TODO: change to Polygon router
 }
 
 export const CURRENCY_LABEL = 'MATIC'
