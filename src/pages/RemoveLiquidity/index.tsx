@@ -130,8 +130,6 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' }
     ]
     const domain = {
-      // name: 'Baguette',
-      // name: 'Baguette Liquidity',
       name: LIQUIDITY_TOKEN_NAME,
       version: '1',
       chainId: chainId,
