@@ -17,10 +17,10 @@ export default function useTransactionDeadline(): BigNumber | undefined {
   const currentTimestamp = BigNumber.from(new Date().getTime() + 100_000) // minimum deadline is 100 seconds from now
   // if (currentTimestamp && ttl) return currentTimestamp.add(ttl)
   if (currentTimestamp && ttl) txDeadline = currentTimestamp.add(ttl * 1_000) // ms to s
-  console.debug(`useTransactionDeadline ttl=${ttl} currentTimestamp=${currentTimestamp} txDeadline=${txDeadline}`)
+  // console.debug(`useTransactionDeadline ttl=${ttl} currentTimestamp=${currentTimestamp} txDeadline=${txDeadline}`)
   if (txDeadline) {
     const dt = new Date(txDeadline.toNumber())
-    console.debug(`useTransactionDeadline dt=${dt}`)
+    // console.debug(`useTransactionDeadline dt=${dt}`)
   }
   return txDeadline
 }
