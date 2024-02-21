@@ -18,7 +18,7 @@ export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to land
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: '0x5a73ad3f2c55023ea28b729f79657eDc6337565d', // Mumbai router
+  [ChainId.MUMBAI]: '0x1b601C0c3E1AdE646037d1BEf05788E9267b644a', // Mumbai router
   [ChainId.POLYGON]: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff' // Polygon mainnet Quickswap (UniswapV2 based) router
 }
 
