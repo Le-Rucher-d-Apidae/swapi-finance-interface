@@ -7,13 +7,15 @@ UniswapV2FactoryTest factory deployment on testnet: provide address for fees "_f
 constructor(address _feeToSetter) public
 
 Update factory address in swapi-finance-sdk/src/constants.ts
-Call INIT_CODE_HASH_MAP factory getter and update its value in swapi-finance-sdk/src/constants.ts
+Call INIT_CODE_HASH_MAP factory getter and update its value in:
+- swapi-finance/contracts/contracts/Uniswap/v2-periphery/libraries/UniswapV2Library.sol : function pairFor
+- swapi-finance-sdk/src/constants.ts
 
 ### Router
 router deployment: use factory address and wrapped currency (AVAX, MATIC, WETH/...) address
 constructor(address _factory, address _WETH) public
 
-Update router address in ./src/constants/index.ts
+Update router address in swapi-finance/interface/src/constants/index.ts
 
 
 Adding a Pool
