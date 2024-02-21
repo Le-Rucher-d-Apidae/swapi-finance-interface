@@ -89,7 +89,8 @@ export function useApproveCallback(
       })
       .catch((error: Error) => {
         console.debug('Failed to approve token', error)
-        throw error
+        // throw error // comment out : avoids fronted crash
+        return
       })
   }, [approvalState, token, tokenContract, amountToApprove, spender, addTransaction])
 
