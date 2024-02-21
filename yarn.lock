@@ -2870,19 +2870,18 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@swapi-finance/contracts@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.0.3.tgz#a86ac576a691bf5219efd9940b041daf4d9ce8e7"
-  integrity sha512-NyTDtKBb2myUsiZAisn0w9vpljeCMk6SP3DM4LQYl+VNEoMJxdM5bgn+Pppe6TKzmoGqA6SeW8yCbyOLJIEL2Q==
+"@swapi-finance/contracts@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.0.5.tgz#17a036d25dc0e21af6a8b6c92be8669f58c2dca2"
+  integrity sha512-Z0WI0tkesuDhzf1YhRD+V6AI90b3Dl/GeP8WROnFNn1nBZjXQBTeLJAWn1HrXYY+wbNB+5Vr2DnxZOus9EO8pg==
   dependencies:
-    "@uniswap/v2-core" "^1.0.1"
     abi-decoder "^2.4.0"
     base-58 "0.0.1"
 
-"@swapi-finance/sdk@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.15.tgz#6474d6d6cd3cdd7310810c47a45480b042ea2d79"
-  integrity sha512-u6s2NZ/AGxj4Ewzx3B1u/xbkx31GtxzAw5AWNMiCwFyDXMkF5pYBQGmffuknRt05oHeccXrVRU8osOOO1G2tdA==
+"@swapi-finance/sdk@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.16.tgz#70a3efa00c617ab806c7e13f484f60d822cc084d"
+  integrity sha512-9v+jeMtQYRmlX+vK84dpPYXF/s10CR3TEdyH0HJh22v+WEZ47mdgVPZWAF680KcyTSPQFuocNWWP5AJtfz7tew==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
     "@uniswap/v2-sdk" "^4.1.0"
