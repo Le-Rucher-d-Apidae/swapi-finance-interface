@@ -26,43 +26,24 @@ export const STAKING_REWARDS_INFO: {
     // Stake-Farm = rewarded pairs
     //
     {
-      tokens: [USDC[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x2014F931bb6F2827a4f3EB722e16C10EeD1332D4',
+      // stakingRewardAddress: '0xa04DC88D7f48a504B4930474853e8e0d401695A7', // optimization: 10 000
+      // stakingRewardAddress: '0x75922745B3354EB1e562d5F119B585b8D1Ccac33', // optimization:  1 000
+      stakingRewardAddress: '0x555D73C526f7AF2A12a563dd0A14BD151ceb3e75', // optimization:    200 ; verified
       autocompoundingAddress: ZERO_ADDRESS
-    },
-
-    {
-      tokens: [USDT[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0xd5057bF582eB47b33f4C1D6FaEfF1DC82Aff14a6',
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-
-    {
-      tokens: [USDCE[ChainId.MUMBAI], DAI[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x02a2FCF42C09b60E2e7DA95D217C6a0567235446',
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x9acAa2b2A98384a92e9ef07D2Ae4743FEdDD3135',
-      autocompoundingAddress: ZERO_ADDRESS
-    },
+    }
 
     //
     // Stake = rewarded single tokens
     //
 
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
-      autocompoundingAddress: ZERO_ADDRESS
-    }
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // }
   ],
   [ChainId.POLYGON]: []
 }
