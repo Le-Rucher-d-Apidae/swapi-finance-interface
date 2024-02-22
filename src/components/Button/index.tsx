@@ -330,11 +330,22 @@ export function ButtonConfirmed({
   }
 }
 
-export function ButtonError({ error, ...rest }: { error?: boolean } & ButtonProps) {
+// export function ButtonError({ error, ...rest }: { error?: boolean } & ButtonProps) {
+//   if (error) {
+//     return <ButtonErrorStyle {...rest} />
+//   } else {
+//     return <ButtonPrimary {...rest} />
+//   }
+// }
+export function ButtonError({
+  error,
+  altDisabledStyle,
+  ...rest
+}: { error?: boolean; altDisabledStyle?: boolean } & ButtonProps) {
   if (error) {
     return <ButtonErrorStyle {...rest} />
   } else {
-    return <ButtonPrimary {...rest} />
+    return <ButtonPrimary altDisabledStyle={altDisabledStyle} {...rest} />
   }
 }
 

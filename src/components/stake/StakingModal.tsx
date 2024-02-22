@@ -320,6 +320,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
               Approve
             </ButtonConfirmed>
             <ButtonError
+              altDisabledStyle={true}
               disabled={
                 !!error ||
                 (signatureData === null &&
