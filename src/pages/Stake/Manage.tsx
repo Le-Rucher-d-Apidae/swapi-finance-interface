@@ -143,7 +143,7 @@ export function ManageSingle({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Total Deposited</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
