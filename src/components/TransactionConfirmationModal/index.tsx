@@ -1,4 +1,4 @@
-import { ChainId, ChainLabel } from '@swapi-finance/sdk'
+import { ChainId, CHAIN_LABEL_MAP } from '@swapi-finance/sdk'
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import Modal from '../Modal'
@@ -91,7 +91,7 @@ function TransactionSubmittedContent({
                 View on the C-Chain Explorer
               </Text> */}
               <Text fontWeight={500} fontSize={14} color={theme.textInfoLink}>
-                View on the {ChainLabel[ChainId.POLYGON]} Explorer
+                View on the {CHAIN_LABEL_MAP[ChainId.POLYGON]} Explorer
               </Text>
             </ExternalLink>
           )}

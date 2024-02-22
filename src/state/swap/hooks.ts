@@ -16,7 +16,7 @@ import { SwapState } from './reducer'
 import useToggledVersion from '../../hooks/useToggledVersion'
 import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
-import { ROUTER_ADDRESS, FACTORY_ADDRESS, CURRENCY_LABEL } from '../../constants'
+import { ROUTER_ADDRESS, FACTORY_ADDRESS_MAP, CURRENCY_LABEL } from '../../constants'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>(state => state.swap)
@@ -88,7 +88,7 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
 }
 
 const BAD_RECIPIENT_ADDRESSES: string[] = [
-  FACTORY_ADDRESS[ChainId.POLYGON], // v2 factory
+  FACTORY_ADDRESS_MAP[ChainId.POLYGON], // v2 factory
   ROUTER_ADDRESS[ChainId.POLYGON] // v2 router 02
 ]
 

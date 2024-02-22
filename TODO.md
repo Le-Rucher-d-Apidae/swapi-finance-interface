@@ -6,8 +6,8 @@
 - pages addresses, router, factory, default pairs
 ./src/constants/index.ts
 
-- [FACTORY_ADDRESS, INIT_CODE_HASH](./sdk/src/constants.ts)
-https://www.google.com/search?q=swap+factory+INIT_CODE_HASH
+- [FACTORY_ADDRESS_MAP, INIT_CODE_HASH_MAP](./sdk/src/constants.ts)
+https://www.google.com/search?q=swap+factory+INIT_CODE_HASH_MAP
 
 (social) links
 src/components/Menu/index.tsx
@@ -41,7 +41,7 @@ src/components/WalletModal/index.tsx
 fix TokenBalanceContent (ok?), APD price
 [TokenBalanceContent](src/components/Header/TokenBalanceContent.tsx)
 
-remove debug, console.log, console.debug
+
 [useTransactionDeadline](src/hooks/useTransactionDeadline.ts)
 
 constructor
@@ -49,17 +49,6 @@ constructor
       'AXP',
       'avaXwap'
 [class Pair](sdk/src/entities/pair.ts)
-
-- remove //debugger console.log console.debug
-
-domain =       name: 'Baguette',
-removeLiquidityAVAX
-removeLiquidityAVAXSupportingFeeOnTransferTokens
-removeLiquidity
-removeLiquidityAVAXWithPermit
-removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens
-removeLiquidityWithPermit
-[RemoveLiquidity](src/pages/RemoveLiquidity/index.tsx)
 
 - Tests
 sdk/test/*

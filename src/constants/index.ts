@@ -1,4 +1,11 @@
-import { ChainId, JSBI, Percent, Token, WCURRENCY, FACTORY_ADDRESS as SDK_FACTORY_ADDRESS } from '@swapi-finance/sdk'
+import {
+  ChainId,
+  JSBI,
+  Percent,
+  Token,
+  WCURRENCY,
+  FACTORY_ADDRESS_MAP as SDK_FACTORY_ADDRESS
+} from '@swapi-finance/sdk'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
@@ -10,14 +17,16 @@ export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to land
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
+const QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
+
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: '0xFb89BAD7ee7Db9B8F8d3546D3cB361F3C2f6C3Ef', // mumbai router
-  [ChainId.POLYGON]: '0xF7b1e993d1b4F7348D64Aa55A294E4B74512F7f2' // TODO: change to polygon router
+  [ChainId.MUMBAI]: QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS, // Mumbai router
+  [ChainId.POLYGON]: QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS // Polygon mainnet Quickswap (UniswapV2 based) router
 }
 
 export const CURRENCY_LABEL = 'MATIC'
 
-export const FACTORY_ADDRESS = SDK_FACTORY_ADDRESS
+export const FACTORY_ADDRESS_MAP = SDK_FACTORY_ADDRESS
 
 export const TOKEN_LIST_EXCHANGE_CUSTOM_ASSET_DEFAULT_LOGO_URL =
   'https://raw.githubusercontent.com/Le-Rucher-d-Apidae/swapi-finance-contracts/main/tokenlist/logos/apidae.png'
@@ -36,12 +45,12 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-/* export */ const APD: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xCB120D92f6F5eb076579598487976b6BBC1963f7', 18, 'APD01', 'APIDAE01'),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x5d47bAbA0d66083C52009271faF3F50DCc01023C', 18, 'APD', 'Apidae')
+const APT: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xa67c2d46D7150a8633e3e50bcBdE8c6ab8284463', 18, 'APT02', 'APIDAE02'),
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x0000000000000000000000000000000000000000', 18, 'APT', 'Apidae')
 }
 
-export const SELF_TOKEN = APD
+export const SELF_TOKEN = APT
 
 export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(
@@ -67,7 +76,7 @@ export const USDC: { [chainId in ChainId]: Token } = {
     'USDC',
     'USD Coin AAVE Testnet'
   ),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', 6, 'USDC', 'USD Coin')
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USD Coin')
 }
 
 export const DAI: { [chainId in ChainId]: Token } = {

@@ -130,8 +130,6 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' }
     ]
     const domain = {
-      // name: 'Baguette',
-      // name: 'Baguette Liquidity',
       name: LIQUIDITY_TOKEN_NAME,
       version: '1',
       chainId: chainId,
@@ -227,11 +225,8 @@ export default function RemoveLiquidity({
     let methodNames: string[], args: Array<string | string[] | number | boolean>
     // we have approval, use normal remove liquidity
     if (approval === ApprovalState.APPROVED) {
-      // console.debug('Removing liquidity with approved tokens')
-      // removeLiquidityAVAX
       if (oneCurrencyIsETH) {
-        // console.debug('removeLiquidityAVAX, removeLiquidityAVAXSupportingFeeOnTransferTokens')
-        methodNames = ['removeLiquidityAVAX', 'removeLiquidityAVAXSupportingFeeOnTransferTokens'] // TODO: update this
+        methodNames = ['removeLiquidityETH', 'removeLiquidityETHSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
           liquidityAmount.raw.toString(),
@@ -243,7 +238,6 @@ export default function RemoveLiquidity({
       }
       // removeLiquidity
       else {
-        // console.debug('removeLiquidity')
         methodNames = ['removeLiquidity']
         args = [
           tokenA.address,
@@ -258,10 +252,8 @@ export default function RemoveLiquidity({
     }
     // we have a signature, use permit versions of remove liquidity
     else if (signatureData !== null) {
-      // removeLiquidityAVAXWithPermit
       if (oneCurrencyIsETH) {
-        // console.debug('removeLiquidityAVAXWithPermit, removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens')
-        methodNames = ['removeLiquidityAVAXWithPermit', 'removeLiquidityAVAXWithPermitSupportingFeeOnTransferTokens'] // TODO: update this
+        methodNames = ['removeLiquidityETHWithPermit', 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens'] // TODO: update this
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
           liquidityAmount.raw.toString(),
@@ -274,10 +266,7 @@ export default function RemoveLiquidity({
           signatureData.r,
           signatureData.s
         ]
-      }
-      // removeLiquidityAVAXWithPermit
-      else {
-        // console.debug('removeLiquidityWithPermit')
+      } else {
         methodNames = ['removeLiquidityWithPermit']
         args = [
           tokenA.address,
