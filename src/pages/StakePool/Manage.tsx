@@ -117,6 +117,7 @@ export function ManagePair({
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
   const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
+  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalStakedInUsd
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -156,6 +157,11 @@ export function ManagePair({
             <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
+              }`}
+            </TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                valueOfTotalStakedAmountInUSD?.currency?.symbol
               }`}
             </TYPE.body>
           </AutoColumn>

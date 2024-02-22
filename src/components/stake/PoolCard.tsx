@@ -106,16 +106,23 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
   // get the color of the token
   const backgroundColor = useColor(token)
 
-  const secondsPerWeek = 60 * 60 * 24 * 7
+  const secondsPerDay = 60 * 60 * 24
+  const secondsPerWeek = secondsPerDay * 7
+  const secondsPerYear = secondsPerDay * 365
 
   let weeklyRewardAmount: Fraction
   let weeklyRewardPerCURRENCY: Fraction
+  let yearlyRewardAmount: Fraction
+
   if (stakingInfo.totalStakedInWcurrency.equalTo(JSBI.BigInt(0))) {
-    weeklyRewardAmount = new Fraction(JSBI.BigInt(0))
-    weeklyRewardPerCURRENCY = new Fraction(JSBI.BigInt(0))
+    const ZERO = new Fraction(JSBI.BigInt(0))
+    weeklyRewardAmount = ZERO
+    weeklyRewardPerCURRENCY = ZERO
+    yearlyRewardAmount = ZERO
   } else {
-    weeklyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(60 * 60 * 24 * 7))
+    weeklyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerWeek))
     weeklyRewardPerCURRENCY = weeklyRewardAmount.divide(stakingInfo.totalStakedInWcurrency)
+    yearlyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerYear))
   }
 
   return (
@@ -174,12 +181,21 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             }`}
           </TYPE.white>
         </RowBetween>
+        {/*
         <RowBetween>
           <TYPE.white> Pool rate </TYPE.white>
           <TYPE.white>{`${weeklyRewardAmount.toFixed(0, { groupSeparator: ',' })} ${
             stakingInfo?.rewardToken.symbol
           } / week`}</TYPE.white>
         </RowBetween>
+ */}
+        <RowBetween>
+          <TYPE.white> Pool rate </TYPE.white>
+          <TYPE.white>{`${yearlyRewardAmount.toFixed(0, { groupSeparator: ',' })} ${
+            stakingInfo?.rewardToken.symbol
+          } / week`}</TYPE.white>
+        </RowBetween>
+
         <RowBetween>
           <TYPE.white> Current reward </TYPE.white>
           <TYPE.white>{`${weeklyRewardPerCURRENCY.toFixed(4, { groupSeparator: ',' }) ?? '-'} ${
