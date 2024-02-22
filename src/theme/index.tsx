@@ -189,8 +189,8 @@ export function colors(darkMode: boolean): Colors {
     buttonPrimaryHover: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryFocus: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryBorder: darkMode ? lightPurple : darkYellow2,
-    buttonPrimaryDisabled: darkMode ? lightPurple : grey,
-    buttonPrimaryTextDisabled: darkMode ? white : white,
+    buttonPrimaryDisabled: darkMode ? darkPurple1 : grey, // xxxx
+    buttonPrimaryTextDisabled: darkMode ? grey : white, // darkGrey ?
 
     buttonSecondaryText: darkMode ? lightgrey : lightgrey,
     buttonSecondaryBg: darkMode ? purple1 : darkYellow2,
