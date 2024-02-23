@@ -660,6 +660,7 @@ export default function RemoveLiquidity({
                     onClick={onAttemptToApprove}
                     confirmed={approval === ApprovalState.APPROVED || signatureData !== null}
                     disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
+                    altDisabledStyle={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
                     mr="0.5rem"
                     fontWeight={500}
                     fontSize={16}
@@ -677,6 +678,7 @@ export default function RemoveLiquidity({
                       setShowConfirm(true)
                     }}
                     disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
+                    altDisabledStyle={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
                     error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]}
                   >
                     <Text fontSize={16} fontWeight={500}>
