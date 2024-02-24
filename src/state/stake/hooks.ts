@@ -32,6 +32,12 @@ export const STAKING_REWARDS_INFO: {
       // stakingRewardAddress: '0x75922745B3354EB1e562d5F119B585b8D1Ccac33', // optimization:  1 000
       stakingRewardAddress: '0x555D73C526f7AF2A12a563dd0A14BD151ceb3e75', // optimization:    200 ; verified
       autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0xA867c81ecD3C2B1FEe1aDCB81bF8c046E8b82f83', // optimization:    200 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
     }
 
     //
@@ -478,10 +484,10 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
         ((isPair && pair && pairState !== PairState.LOADING) || !isPair) &&
         currencySelfTokenPair &&
         currencySelfTokenPairState !== PairState.LOADING &&
-        // test
+        // Additional states
         currencyUSDTokenPair &&
-        currencyUSDTokenPairState !== PairState.LOADING
-        // pairTotalSupplyState !== PairState.LOADING
+        currencyUSDTokenPairState !== PairState.LOADING &&
+        !pairTotalSupplyState?.loading
       ) {
         if (
           balanceState?.error ||
@@ -492,7 +498,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           (isPair && (pairState === PairState.INVALID || pairState === PairState.NOT_EXISTS)) ||
           currencySelfTokenPairState === PairState.INVALID ||
           currencySelfTokenPairState === PairState.NOT_EXISTS ||
-          // test
+          // Additional states
           currencyUSDTokenPairState === PairState.INVALID ||
           currencyUSDTokenPairState === PairState.NOT_EXISTS ||
           pairTotalSupplyState?.error
@@ -503,6 +509,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
         const totalSupply = JSBI.BigInt(totalSupplyState.result?.[0])
         // // Additional fields: pairTotalSupply, addressBalance
+        console.debug(`useStakingInfo pairTotalSupplyState:`, pairTotalSupplyState)
         const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
         const addressBalance = JSBI.BigInt(balanceState.result?.[0])
         console.debug(`useStakingInfo totalSupply: ${totalSupply}`)
@@ -569,7 +576,23 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
               new TokenAmount(currencySelfTokenPair.liquidityToken, addressBalance)
             )
           } else {
-            const isCurrencyPool = tokens[0].equals(WCURRENCY[tokens[0].chainId])
+            // TODO: check it is always working
+            // const isCurrencyPool = tokens[0].equals(WCURRENCY[CHAINID])
+            const isCurrencyPool = tokens[0].equals(WCURRENCY[CHAINID]) || tokens[1].equals(WCURRENCY[CHAINID])
+            console.debug(`currencySelfTokenPair:`, currencySelfTokenPair)
+            console.debug(`tokens[1].chainId:`, tokens[1].chainId)
+            console.debug(`WCURRENCY[CHAINID]:`, WCURRENCY[CHAINID])
+            console.debug(`selfToken:`, selfToken)
+            // console.debug(
+            //   `currencySelfTokenPair.reserveOf(selfToken).raw:`,
+            //   currencySelfTokenPair.reserveOf(selfToken).raw.toString()
+            // )
+            // console.debug(
+            //   `currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw:`,
+            //   currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw.toString()
+            // )
+            // console.debug(`pair.reserveOf(selfToken).raw:`, pair.reserveOf(selfToken).raw.toString())
+
             // Total in pool
             totalStakedInWcurrency = isCurrencyPool
               ? // ? calculateTotalStakedAmountInCurrency(
@@ -599,7 +622,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                 calculateStakedAmountInCurrencyFromSelfToken(
                   chainId,
                   currencySelfTokenPair.reserveOf(selfToken).raw,
-                  currencySelfTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
+                  currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw,
                   pair.reserveOf(selfToken).raw,
                   totalStakedAmount,
                   pairTotalSupply
@@ -620,7 +643,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                   // TESTED OK
                   chainId,
                   currencySelfTokenPair.reserveOf(selfToken).raw,
-                  currencySelfTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
+                  currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw,
                   pair.reserveOf(selfToken).raw,
                   new TokenAmount(currencySelfTokenPair.liquidityToken, addressBalance),
                   pairTotalSupply
@@ -687,7 +710,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           // totalStakedAmount
           totalStakedInWcurrency
         )
-
+        // TODO: test
         addressDepositStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
           chainId,
           usdToken,
