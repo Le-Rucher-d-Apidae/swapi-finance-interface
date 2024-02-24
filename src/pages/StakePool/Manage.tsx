@@ -116,8 +116,11 @@ export function ManagePair({
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
-  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
-  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalStakedInUsd
+  const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
+  // Additinal staking info
+  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalPoolDepositsStakedInUsd
+  const valueOfAddressStakedAmountInWcurrency = stakingInfo?.addressDepositStakedInWcurrency
+  const valueOfAddressStakedAmountInUSD = stakingInfo?.addressDepositStakedInUsd
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -153,11 +156,21 @@ export function ManagePair({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your Deposit</TYPE.body>
-            <TYPE.body fontSize={24} fontWeight={500}>TODO</TYPE.body>
-            <TYPE.body style={{ margin: 0 }}>Total Deposited</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your Deposit value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+              {`${valueOfAddressStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                CURRENCY.symbol
+              }`}
+            </TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {`${valueOfAddressStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                valueOfAddressStakedAmountInUSD?.currency?.symbol
+              }`}
+            </TYPE.body>
+
+            <TYPE.body style={{ margin: 0 }}>Total Deposited value</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
               }`}
             </TYPE.body>
