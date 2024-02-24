@@ -158,26 +158,26 @@ export function ManagePair({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Your Deposit value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfAddressStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                CURRENCY.symbol
-              }`}
-            </TYPE.body>
-            <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfAddressStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 valueOfAddressStakedAmountInUSD?.currency?.symbol
               }`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfAddressStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
             </TYPE.body>
 
             <TYPE.body style={{ margin: 0 }}>Total Deposited value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                CURRENCY.symbol
-              }`}
-            </TYPE.body>
-            <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 valueOfTotalStakedAmountInUSD?.currency?.symbol
               }`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
             </TYPE.body>
           </AutoColumn>
         </PoolData>
