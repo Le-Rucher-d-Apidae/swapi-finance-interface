@@ -153,6 +153,8 @@ export function ManagePair({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
+            <TYPE.body style={{ margin: 0 }}>Your Deposit</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>TODO</TYPE.body>
             <TYPE.body style={{ margin: 0 }}>Total Deposited</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
