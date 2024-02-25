@@ -107,12 +107,12 @@ export default function Stake() {
 
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
-          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
+          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating</TYPE.mediumHeader>
           {/* <TYPE.black fontWeight={400}>Info message</TYPE.black> */}
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">
-            Show inactive pools
+            Show inactive staking
           </TYPE.black>
           <Toggle
             id="toggle-show-inactive"
