@@ -12,7 +12,7 @@ import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise } from './styled'
-import { UNDEFINED } from '../../constants'
+import { UNDEFINED, USD_LABEL } from '../../constants'
 import { Fraction, CURRENCY } from '@swapi-finance/sdk'
 
 const StatContainer = styled.div`
@@ -176,9 +176,13 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         <RowBetween>
           <TYPE.white>Total deposited</TYPE.white>
           <TYPE.white>
-            {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-              CURRENCY.symbol
-            }`}
+            {`${stakingInfo.totalPoolDepositsStakedInUsd.toSignificant(4, { groupSeparator: ',' }) ??
+              '-'} ${''} ${USD_LABEL}`}
+            <TYPE.gray fontSize={14}>
+              {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                CURRENCY.symbol
+              }`}
+            </TYPE.gray>
           </TYPE.white>
         </RowBetween>
         {/*

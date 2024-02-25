@@ -29,7 +29,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { currencyId } from '../../utils/currencyId'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
-import { BIG_INT_ZERO, SELF_TOKEN } from '../../constants'
+import { BIG_INT_ZERO, SELF_TOKEN, USD_LABEL } from '../../constants'
 
 import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
@@ -116,8 +116,11 @@ export function ManagePair({
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
-  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
-  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalStakedInUsd
+  const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
+  // Additinal staking info
+  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalPoolDepositsStakedInUsd
+  const valueOfAddressStakedAmountInWcurrency = stakingInfo?.addressDepositStakedInWcurrency
+  const valueOfAddressStakedAmountInUSD = stakingInfo?.addressDepositStakedInUsd
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -153,16 +156,26 @@ export function ManagePair({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Total Deposited</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your Deposit value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                CURRENCY.symbol
+              {`${valueOfAddressStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                valueOfAddressStakedAmountInUSD?.currency?.symbol
               }`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfAddressStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
             </TYPE.body>
+
+            <TYPE.body style={{ margin: 0 }}>Total Deposited value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                valueOfTotalStakedAmountInUSD?.currency?.symbol
-              }`}
+              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? ''} ${USD_LABEL}`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -190,9 +203,7 @@ export function ManagePair({
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`${{ LIQUIDITY_TOKEN_SYMBOL }} tokens are required. Once you've added liquidity to the ${
-                    currencyA?.symbol
-                  }-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`${LIQUIDITY_TOKEN_SYMBOL} tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary

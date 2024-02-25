@@ -93,10 +93,10 @@ export default function Stake() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.text5 fontWeight={600}>Welcome to the staking. Lock LP tokens to earn new tokens</TYPE.text5>
+                <TYPE.text5 fontWeight={600}>Welcome to the staking. Lock tokens to earn new tokens</TYPE.text5>
               </RowBetween>
               <RowBetween>
-                <TYPE.text5 fontSize={14}>Deposit your LP tokens to receive {LIQUIDITY_TOKEN_SYMBOL}.</TYPE.text5>
+                <TYPE.text5 fontSize={14}>Deposit your tokens to receive incentives.</TYPE.text5>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>
@@ -107,12 +107,12 @@ export default function Stake() {
 
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
-          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
+          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating</TYPE.mediumHeader>
           {/* <TYPE.black fontWeight={400}>Info message</TYPE.black> */}
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">
-            Show inactive pools
+            Show inactive staking
           </TYPE.black>
           <Toggle
             id="toggle-show-inactive"
