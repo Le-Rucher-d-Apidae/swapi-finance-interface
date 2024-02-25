@@ -205,9 +205,7 @@ export function ManagePair({
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`${{ LIQUIDITY_TOKEN_SYMBOL }} tokens are required. Once you've added liquidity to the ${
-                    currencyA?.symbol
-                  }-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`${LIQUIDITY_TOKEN_SYMBOL} tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
