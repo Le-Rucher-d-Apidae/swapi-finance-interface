@@ -44,17 +44,16 @@ export const STAKING_REWARDS_INFO: {
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x1EB6C52ba45EFc8cA57818AFFAef93F28645C2F4', // optimization:    200 ; verified
       autocompoundingAddress: ZERO_ADDRESS
-    }
+    },
     //
     // Stake = rewarded single tokens
     //
-
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x6Fba8230Ae8b6210A8E4CEeF9d25f2D60e96390e',
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // }
+    {
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0xE5eb48Bb284E85518a37A04f16526c60336A5B52',
+      autocompoundingAddress: ZERO_ADDRESS
+    }
   ],
   [ChainId.POLYGON]: []
 }
@@ -467,12 +466,13 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
       const [currencyTokenPairState, currencyTokenPair] = currencyPairs[index]
 
       // Adds a warning if the pair is not found
-      const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
+      // const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
+      const isPair = tokens[1] !== UNDEFINED[CHAINID]
+      // console.debug(`useStakingInfo tokens[0]`, tokens[0], ` tokens[1]: `, tokens[1], ` isPair:`, isPair)
       const [pairState, pair] = pairs[index]
       if ((isPair && stakingType === StakingType.SINGLE) || (!isPair && stakingType === StakingType.PAIR)) {
         return memo
       }
-
       if (
         // these may be undefined if not logged in
         !balanceState?.loading &&
@@ -498,22 +498,23 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           totalSupplyState.error ||
           rewardRateState.error ||
           periodFinishState.error ||
+          // Additional states
+          (isPair && pairTotalSupplyState?.error) ||
           (isPair && (pairState === PairState.INVALID || pairState === PairState.NOT_EXISTS)) ||
           currencySelfTokenPairState === PairState.INVALID ||
           currencySelfTokenPairState === PairState.NOT_EXISTS ||
           // Additional states
+          // (isPair &&
           currencyUSDTokenPairState === PairState.INVALID ||
-          currencyUSDTokenPairState === PairState.NOT_EXISTS ||
-          pairTotalSupplyState?.error
-          // pairTotalSupplyState !== PairState.LOADING || pairTotalSupplyState === PairState.NOT_EXISTS
+          currencyUSDTokenPairState === PairState.NOT_EXISTS
+          // )
         ) {
           return memo
         }
-
         const totalSupply = JSBI.BigInt(totalSupplyState.result?.[0])
         // // Additional fields: pairTotalSupply, addressBalance
         // console.debug(`useStakingInfo pairTotalSupplyState:`, pairTotalSupplyState)
-        const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
+        // const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
         const addressBalance = JSBI.BigInt(balanceState.result?.[0])
         // console.debug(`useStakingInfo totalSupply: ${totalSupply}`)
         // console.debug(`useStakingInfo balanceState:`, balanceState?.result?.toString())
@@ -531,6 +532,9 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           const wcurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId]) ? tokens[0] : tokens[1]
           const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'), chainId)
           totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, totalSupply)
+
+          // // Additional fields: pairTotalSupply, addressBalance
+          const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
 
           if (balanceState && balanceState.result && balanceState.result[0] > 0) {
             stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState.result[0]))
@@ -654,13 +658,14 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             // console.debug(`addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
           }
         } else {
+          // Single token staking
           const isTokenCurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId])
 
           if (
             !isTokenCurrency &&
             (currencyTokenPairState === PairState.INVALID || currencyTokenPairState === PairState.NOT_EXISTS)
           ) {
-            console.error('Invalid pair requested')
+            console.error('Single token staking: Invalid pair requested')
             return memo
           }
 
