@@ -176,9 +176,14 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         <RowBetween>
           <TYPE.white>Total deposited</TYPE.white>
           <TYPE.white>
-            {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-              CURRENCY.symbol
+            {`${stakingInfo.totalPoolDepositsStakedInUsd.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+              stakingInfo.totalPoolDepositsStakedInUsd?.currency?.symbol
             }`}
+            <TYPE.gray fontSize={14}>
+              {`${stakingInfo.totalStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                CURRENCY.symbol
+              }`}
+            </TYPE.gray>
           </TYPE.white>
         </RowBetween>
         {/*
