@@ -314,6 +314,7 @@ const calculateStakedAmountInCurrency = function(
 }
 
 const calculateTotalStakedAmountInCurrencyFromToken = function(
+  stakingType: StakingType,
   chainId: ChainId,
   currencyTokenPairReserveOfCurrency: JSBI,
   currencyTokenPairReserveOfToken: JSBI,
@@ -330,7 +331,7 @@ const calculateTotalStakedAmountInCurrencyFromToken = function(
   // const amount = JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken)
   const amount = JSBI.multiply(
     JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken),
-    JSBI.BigInt(2)
+    stakingType == StakingType.PAIR ? JSBI.BigInt(2) : JSBI.BigInt(1)
   ) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
 
   // console.debug(`------------------------------------------`)
@@ -563,6 +564,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           const isUSDPool = isUSD(tokens[0], tokens[0].chainId) && isUSD(tokens[1], tokens[1].chainId)
           if (isUSDPool && currencyTokenPair) {
             totalStakedInWcurrency = calculateTotalStakedAmountInCurrencyFromToken(
+              stakingType,
               chainId,
               currencyTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
               currencyTokenPair.reserveOf(tokens[0]).raw,
@@ -570,6 +572,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             )
             // TODO: test
             addressDepositStakedInWcurrency = calculateTotalStakedAmountInCurrencyFromToken(
+              stakingType,
               chainId,
               currencyTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
               currencyTokenPair.reserveOf(tokens[0]).raw,
@@ -577,6 +580,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             )
             // TODO: test
             addressDepositStakedInUsd = calculateTotalStakedAmountInCurrencyFromToken(
+              stakingType,
               chainId,
               currencyTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
               currencyTokenPair.reserveOf(tokens[0]).raw,
@@ -697,6 +701,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             ? totalStakedAmount
             : currencyTokenPair
             ? calculateTotalStakedAmountInCurrencyFromToken(
+                stakingType,
                 chainId,
                 currencyTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
                 currencyTokenPair.reserveOf(tokens[0]).raw,
