@@ -283,7 +283,7 @@ const calculateTotalStakedAmountInCurrency = function(
 }
 */
 
-const calculateTotalStakedAmountInCurrency = function(
+const calculateStakedAmountInCurrency = function(
   chainId: ChainId,
   totalSupply: JSBI,
   reserveInWcurrency: JSBI,
@@ -306,7 +306,7 @@ const calculateTotalStakedAmountInCurrency = function(
     pairTotalSupply
   )
   console.debug(`------------------------------------------`)
-  console.debug(`calculateTotalStakedAmountInCurrency:`)
+  console.debug(`calculateStakedAmountInCurrency:`)
   console.debug(`params:`)
   console.debug(`totalSupply`, totalSupply.toString())
   console.debug(`reserveInWcurrency`, reserveInWcurrency.toString())
@@ -339,16 +339,16 @@ const calculateTotalStakedAmountInCurrencyFromToken = function(
     JSBI.BigInt(2)
   ) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
 
-  console.debug(`------------------------------------------`)
-  console.debug(`calculateTotalStakedAmountInCurrencyFromToken: TODO TEST`)
-  console.debug(`params:`)
-  console.debug(`chainId:`, chainId)
-  console.debug(`currencyTokenPairReserveOfCurrency:`, currencyTokenPairReserveOfCurrency.toString())
-  console.debug(`currencyTokenPairReserveOfToken`, currencyTokenPairReserveOfToken.toString())
-  console.debug('totalStakedAmount:          ', totalStakedAmount.toFixed())
-  console.debug(`computed:`)
-  console.debug('amount:          ', amount.toString())
-  console.debug(`------------------------------------------`)
+  // console.debug(`------------------------------------------`)
+  // console.debug(`calculateTotalStakedAmountInCurrencyFromToken: TODO TEST`)
+  // console.debug(`params:`)
+  // console.debug(`chainId:`, chainId)
+  // console.debug(`currencyTokenPairReserveOfCurrency:`, currencyTokenPairReserveOfCurrency.toString())
+  // console.debug(`currencyTokenPairReserveOfToken`, currencyTokenPairReserveOfToken.toString())
+  // console.debug('totalStakedAmount:          ', totalStakedAmount.toFixed())
+  // console.debug(`computed:`)
+  // console.debug('amount:          ', amount.toString())
+  // console.debug(`------------------------------------------`)
 
   return new TokenAmount(WCURRENCY[chainId], amount)
 }
@@ -619,7 +619,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                 //     totalStakedAmount,
                 //     pairTotalSupply
                 //   )
-                calculateTotalStakedAmountInCurrency(
+                calculateStakedAmountInCurrency(
                   chainId,
                   totalSupply,
                   pair.reserveOf(wcurrency).raw,
@@ -646,12 +646,12 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                 )
             // User deposit in pool
             addressDepositStakedInWcurrency = isCurrencyPool
-              ? calculateTotalStakedAmountInCurrency(
+              ? calculateStakedAmountInCurrency(
                   // TODO: TEST
                   chainId,
                   totalSupply,
                   pair.reserveOf(wcurrency).raw,
-                  totalStakedAmount,
+                  new TokenAmount(pair.liquidityToken, addressBalance),
                   pairTotalSupply
                 )
               : wcurrencyPairNotFound
