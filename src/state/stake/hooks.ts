@@ -790,12 +790,13 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
     currencyPairs,
     stakingType,
     oneToken,
-    wcurrencyPairNotFound,
     // Additional dependencies
+    wcurrencyPairNotFound,
     currencyUSDTokenPair,
     currencyUSDTokenPairState,
     usdToken,
-    pairTotalSupplies
+    pairTotalSupplies,
+    CHAINID
   ])
 }
 
