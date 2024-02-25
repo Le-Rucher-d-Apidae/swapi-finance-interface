@@ -38,8 +38,13 @@ export const STAKING_REWARDS_INFO: {
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0xA867c81ecD3C2B1FEe1aDCB81bF8c046E8b82f83', // optimization:    200 ; verified
       autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x1EB6C52ba45EFc8cA57818AFFAef93F28645C2F4', // optimization:    200 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
     }
-
     //
     // Stake = rewarded single tokens
     //
