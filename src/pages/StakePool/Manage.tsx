@@ -29,7 +29,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { currencyId } from '../../utils/currencyId'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
-import { BIG_INT_ZERO, SELF_TOKEN } from '../../constants'
+import { BIG_INT_ZERO, SELF_TOKEN, USD_LABEL } from '../../constants'
 
 import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
@@ -170,9 +170,7 @@ export function ManagePair({
 
             <TYPE.body style={{ margin: 0 }}>Total Deposited value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                valueOfTotalStakedAmountInUSD?.currency?.symbol
-              }`}
+              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? ''} ${USD_LABEL}`}
               <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
                 {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                   CURRENCY.symbol

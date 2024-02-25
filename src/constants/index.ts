@@ -25,6 +25,7 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
 }
 
 export const CURRENCY_LABEL = 'MATIC'
+export const USD_LABEL = 'USD'
 
 export const FACTORY_ADDRESS_MAP = SDK_FACTORY_ADDRESS
 
