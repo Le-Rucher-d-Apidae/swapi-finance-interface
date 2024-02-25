@@ -292,12 +292,7 @@ const calculateStakedAmountInCurrency = function(
   pairTotalSupply: JSBI
 ): TokenAmount {
   if (JSBI.equal(totalSupply, JSBI.BigInt(0))) return new TokenAmount(WCURRENCY[chainId], JSBI.BigInt(0))
-
   // take the total amount of LP tokens staked, multiply by CURRENCY value of all LP tokens, divide by all LP tokens
-  // TODO: test
-  // TODO: test
-  // TODO: test
-  // TODO: test
   const amount = JSBI.divide(
     JSBI.multiply(
       JSBI.multiply(totalStakedAmount.raw, reserveInWcurrency),
@@ -305,16 +300,16 @@ const calculateStakedAmountInCurrency = function(
     ),
     pairTotalSupply
   )
-  console.debug(`------------------------------------------`)
-  console.debug(`calculateStakedAmountInCurrency:`)
-  console.debug(`params:`)
-  console.debug(`totalSupply`, totalSupply.toString())
-  console.debug(`reserveInWcurrency`, reserveInWcurrency.toString())
-  console.debug('totalStakedAmount:          ', totalStakedAmount.toFixed())
-  console.debug(`pairTotalSupply:`, pairTotalSupply)
-  console.debug(`computed:`)
-  console.debug('amount:          ', amount.toString())
-  console.debug(`------------------------------------------`)
+  // console.debug(`------------------------------------------`)
+  // console.debug(`calculateStakedAmountInCurrency:`)
+  // console.debug(`params:`)
+  // console.debug(`totalSupply`, totalSupply.toString())
+  // console.debug(`reserveInWcurrency`, reserveInWcurrency.toString())
+  // console.debug('totalStakedAmount:          ', totalStakedAmount.toFixed())
+  // console.debug(`pairTotalSupply:`, pairTotalSupply)
+  // console.debug(`computed:`)
+  // console.debug('amount:          ', amount.toString())
+  // console.debug(`------------------------------------------`)
 
   return new TokenAmount(WCURRENCY[chainId], amount)
 }
@@ -410,22 +405,13 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   const pairs = usePairs(tokens)
 
   const pairsAddresses = useMemo(() => pairs.map(pair => pair[1]?.liquidityToken.address), [pairs])
-  console.debug(`useStakingInfo pairsAddresses:`, pairsAddresses)
+  // console.debug(`useStakingInfo pairsAddresses:`, pairsAddresses)
 
   const pairTotalSupplies = useMultipleContractSingleData(pairsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
 
-  pairTotalSupplies.forEach(pairTotalSupply => {
-    console.debug(`useStakingInfo pairTotalSupplies:`, pairTotalSupply?.result?.toString())
-  })
-  // pairs.map((pair, index) => {
-  //   // pairAddresses[index] = pair[1]?.address
-  //   console.debug(`useStakingInfo pairs:`, pair[1]?.liquidityToken.address)
+  // pairTotalSupplies.forEach(pairTotalSupply => {
+  //   console.debug(`useStakingInfo pairTotalSupplies:`, pairTotalSupply?.result?.toString())
   // })
-
-  // const pairAddresses = pairs.map((pair, index) => {
-  //   Pair.getAddress(pair. [0]?.address, pair[1]?.address, CHAINID)
-
-  // }
 
   const currencyPairs = usePairs(tokens.map(pair => [WCURRENCY[CHAINID], pair[0]]))
 
@@ -526,11 +512,11 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
 
         const totalSupply = JSBI.BigInt(totalSupplyState.result?.[0])
         // // Additional fields: pairTotalSupply, addressBalance
-        console.debug(`useStakingInfo pairTotalSupplyState:`, pairTotalSupplyState)
+        // console.debug(`useStakingInfo pairTotalSupplyState:`, pairTotalSupplyState)
         const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
         const addressBalance = JSBI.BigInt(balanceState.result?.[0])
-        console.debug(`useStakingInfo totalSupply: ${totalSupply}`)
-        console.debug(`useStakingInfo balanceState:`, balanceState?.result?.toString())
+        // console.debug(`useStakingInfo totalSupply: ${totalSupply}`)
+        // console.debug(`useStakingInfo balanceState:`, balanceState?.result?.toString())
 
         let totalStakedInWcurrency: TokenAmount
         // Additional fields: addressDepositStakedInWcurrency, addressDepositStakedInUsd
@@ -596,10 +582,10 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             // TODO: check it is always working
             // const isCurrencyPool = tokens[0].equals(WCURRENCY[CHAINID])
             const isCurrencyPool = tokens[0].equals(WCURRENCY[CHAINID]) || tokens[1].equals(WCURRENCY[CHAINID])
-            console.debug(`currencySelfTokenPair:`, currencySelfTokenPair)
-            console.debug(`tokens[1].chainId:`, tokens[1].chainId)
-            console.debug(`WCURRENCY[CHAINID]:`, WCURRENCY[CHAINID])
-            console.debug(`selfToken:`, selfToken)
+            // console.debug(`currencySelfTokenPair:`, currencySelfTokenPair)
+            // console.debug(`tokens[1].chainId:`, tokens[1].chainId)
+            // console.debug(`WCURRENCY[CHAINID]:`, WCURRENCY[CHAINID])
+            // console.debug(`selfToken:`, selfToken)
             // console.debug(
             //   `currencySelfTokenPair.reserveOf(selfToken).raw:`,
             //   currencySelfTokenPair.reserveOf(selfToken).raw.toString()
@@ -665,7 +651,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                   new TokenAmount(currencySelfTokenPair.liquidityToken, addressBalance),
                   pairTotalSupply
                 )
-            console.debug(`addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
+            // console.debug(`addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
           }
         } else {
           const isTokenCurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId])
