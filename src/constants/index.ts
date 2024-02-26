@@ -4,7 +4,8 @@ import {
   Percent,
   Token,
   WCURRENCY,
-  FACTORY_ADDRESS_MAP as SDK_FACTORY_ADDRESS
+  FACTORY_ADDRESS_MAP as SDK_FACTORY_ADDRESS,
+  CURRENCY_LABEL as SDK_CURRENCY_LABEL
 } from '@swapi-finance/sdk'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
@@ -24,7 +25,7 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.POLYGON]: QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS // Polygon mainnet Quickswap (UniswapV2 based) router
 }
 
-export const CURRENCY_LABEL = 'MATIC'
+export const CURRENCY_LABEL = SDK_CURRENCY_LABEL
 export const USD_LABEL = 'USD'
 
 export const FACTORY_ADDRESS_MAP = SDK_FACTORY_ADDRESS

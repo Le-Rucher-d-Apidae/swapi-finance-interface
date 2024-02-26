@@ -45,6 +45,13 @@ export const STAKING_REWARDS_INFO: {
       stakingRewardAddress: '0x1EB6C52ba45EFc8cA57818AFFAef93F28645C2F4', // optimization:    200 ; verified
       autocompoundingAddress: ZERO_ADDRESS
     },
+    // Not working : Adding a new staking contract with an EXISTING TOKEN PAIR and a different reward : amounts are mixed
+    // {
+    //   tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
+    //   rewardToken: WCURRENCY[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x6c6Ed2bd1c2Fc95fA5A7036A55DC3A6f2C44B232', // optimization:    200 ; verified
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // },
     //
     // Stake = rewarded single tokens
     //
