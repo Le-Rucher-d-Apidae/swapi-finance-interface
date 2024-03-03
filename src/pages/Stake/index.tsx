@@ -11,7 +11,6 @@ import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk'
-import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
