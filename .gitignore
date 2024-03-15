@@ -36,5 +36,10 @@ cypress/fixtures/example.json
 .netlify
 
 # temporary / yarn link / local
+tmp
+temp
+
 contracts
 sdk
+
+*.code-workspace
