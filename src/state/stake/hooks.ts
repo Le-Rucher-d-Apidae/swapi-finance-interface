@@ -345,7 +345,7 @@ const calculateTotalStakedAmountInCurrencyFromToken = function(
   // const amount = JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken)
   const amount = JSBI.multiply(
     JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken),
-    stakingType == StakingType.PAIR ? JSBI.BigInt(2) : JSBI.BigInt(1)
+    stakingType === StakingType.PAIR ? JSBI.BigInt(2) : JSBI.BigInt(1)
   ) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
 
   // console.debug(`------------------------------------------`)
