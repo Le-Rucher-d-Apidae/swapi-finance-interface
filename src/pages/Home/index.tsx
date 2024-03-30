@@ -172,15 +172,15 @@ export default function Home() {
             <Grid>
               <PaddedColumn>
                 Quantité en circulation
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Apport total
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
@@ -188,7 +188,7 @@ export default function Home() {
               </PaddedColumn>
               <PaddedColumn>
                 Total brûlé
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Émissions actuelles
@@ -223,15 +223,15 @@ export default function Home() {
             <Grid>
               <PaddedColumn>
                 Quantité en circulation
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Apport total
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
@@ -239,7 +239,7 @@ export default function Home() {
               </PaddedColumn>
               <PaddedColumn>
                 Total brûlé
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Émissions actuelles
