@@ -2390,6 +2390,16 @@
     web3-eth-contract "1.2.2"
     web3-utils "1.2.2"
 
+"@openzeppelin/contracts-3.4.1@npm:@openzeppelin/contracts@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-3.4.1.tgz#03c891fec7f93be0ae44ed74e57a122a38732ce7"
+  integrity sha512-cUriqMauq1ylzP2TxePNdPqkwI7Le3Annh4K9rrpvKfSBB/bdW+Iu1ihBaTIABTAAJ85LmKL5SSPPL9ry8d1gQ==
+
+"@openzeppelin/contracts-5.0.2@npm:@openzeppelin/contracts@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-5.0.2.tgz#b1d03075e49290d06570b2fd42154d76c2a5d210"
+  integrity sha512-ytPc6eLGcHHnapAZ9S+5qsdomhjo6QBHTDRRBFfTxXIpsicMhVPouPgmUPebZZZGX7vt9USA+Z+0M0dSVtSUEA==
+
 "@openzeppelin/fuzzy-solidity-import-parser@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@openzeppelin/fuzzy-solidity-import-parser/-/fuzzy-solidity-import-parser-0.1.2.tgz#3b9f524d6028ca73df60474a313e0295e5610c51"
@@ -2870,18 +2880,18 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@swapi-finance/contracts@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.0.6.tgz#18c97fbb7d737adb26b11dc3fab91cccbd2a3c3f"
-  integrity sha512-US0iV5/SNLvuraYqVSfA3V74o+r1EAuqEOmPHt6c45QdgsHFgcQh6hMov478tbT2uwm8pe8ixpfuIGgdzDtkMQ==
+"@swapi-finance/contracts@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.0.tgz#86f7485f337c73f7c41f34c9ccc682a9522ac54e"
+  integrity sha512-glPJPed72pm8Fu/0lhJziPUVPMojf2hjOQwAr9m0pur5G2CmsYKf5glVTW1l2DnVrQsk6RGIJEGjm4qsBkyjOw==
   dependencies:
-    abi-decoder "^2.4.0"
-    base-58 "0.0.1"
+    "@openzeppelin/contracts-3.4.1" "npm:@openzeppelin/contracts@3.4.1"
+    "@openzeppelin/contracts-5.0.2" "npm:@openzeppelin/contracts@5.0.2"
 
-"@swapi-finance/sdk@^0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.0.25.tgz#18d80b6c5f3a1d6c69dc031fd655a34241e28cfe"
-  integrity sha512-gV30zr/I5Hi6hc8BTb3TAw1SKMKbSKEqf8V4sErd07zFNeqMas0pUySsXK8xmUy8nO5jPbkGiv4NndSp7S+zWQ==
+"@swapi-finance/sdk@^0.26.0":
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.0.tgz#a04679f8034bc6a0a3fa95215e0bb442a22ea479"
+  integrity sha512-bXmQdKS+zCTNaybry3uYzzIBBUCoE4Swu08DXGRTmrhJ7fguyXL/IIJxHnK1yHEgw8PSOvUvZG74zHTVl3SDmw==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
     big.js "^5.2.2"
@@ -3792,14 +3802,6 @@ abab@^2.0.0:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
   integrity sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q==
-
-abi-decoder@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/abi-decoder/-/abi-decoder-2.4.0.tgz#99f72337c614d6ac45a28dbc83c08b44eba48ad5"
-  integrity sha512-TOLU2q1HgYOjs1GKGtVzaqrYkar6I2fT9a80rzx6/9EJ/5crb4nCGuro0grZayixem93T7omrajYmLiMkYDLDA==
-  dependencies:
-    web3-eth-abi "^1.2.1"
-    web3-utils "^1.2.1"
 
 abortcontroller-polyfill@^1.7.5:
   version "1.7.5"
@@ -5080,11 +5082,6 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
-
-base-58@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/base-58/-/base-58-0.0.1.tgz#85d3e70251075661933388f831d1eb8b8f6314e3"
-  integrity sha512-denlKTnozZTVWuh1QkbXf10kkFNc+0/eno29RR+6g5al0yGI+iAOFt/cIA2tvnKoADlUFLZHs50ZdWF+c9WBnw==
 
 base-x@^3.0.2, base-x@^3.0.8:
   version "3.0.9"
@@ -19699,7 +19696,7 @@ web3-core@1.2.2:
     web3-core-requestmanager "1.2.2"
     web3-utils "1.2.2"
 
-web3-eth-abi@1.10.4, web3-eth-abi@^1.2.1:
+web3-eth-abi@1.10.4:
   version "1.10.4"
   resolved "https://registry.yarnpkg.com/web3-eth-abi/-/web3-eth-abi-1.10.4.tgz#16c19d0bde0aaf8c1a56cb7743a83156d148d798"
   integrity sha512-cZ0q65eJIkd/jyOlQPDjr8X4fU6CRL1eWgdLwbWEpo++MPU/2P4PFk5ZLAdye9T5Sdp+MomePPJ/gHjLMj2VfQ==
@@ -20140,7 +20137,7 @@ web3-shh@1.2.2:
     web3-core-subscriptions "1.2.2"
     web3-net "1.2.2"
 
-web3-utils@1.10.4, web3-utils@^1.2.1:
+web3-utils@1.10.4:
   version "1.10.4"
   resolved "https://registry.yarnpkg.com/web3-utils/-/web3-utils-1.10.4.tgz#0daee7d6841641655d8b3726baf33b08eda1cbec"
   integrity sha512-tsu8FiKJLk2PzhDl9fXbGUWTkkVXYhtTA+SmEFkKft+9BgwLxfCRpU96sWv7ICC8zixBNd3JURVoiR3dUXgP8A==
