@@ -140,15 +140,15 @@ export default function Home() {
             </TYPE.homeLarge>
 
             <TYPE.homeNormal>
-              Les jetons APT sont au cœur de l&apos;écosystème de Swapi qui fait le lien entre investisseur et
+              Les jetons BWS sont au c&oelig;ur de l&apos;écosystème de Swapi qui fait le lien entre investisseur et
               producteur. producteur. Achetez-les, gagnez-les, dépensez-les, utilisez-les pour le yield farming ou le en
-              en participant a une bonne œuvre.
+              en participant a une bonne &oelig;uvre.
             </TYPE.homeNormal>
 
             <Row display={'block'} padding={'20px 0px 0px 10px ;'}>
               <ButtonBuy2 style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
                 <Text fontWeight={500} fontSize={16}>
-                  Acheter des APT
+                  Acheter des BWS
                 </Text>
               </ButtonBuy2>
 

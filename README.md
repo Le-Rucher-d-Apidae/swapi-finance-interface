@@ -4,17 +4,17 @@ An open source interface for Swapi -- a community-backed decentralized exchange 
 
 ## Project Introduction
 
-Swapi is a Uniswap based AMM forked from [baguette-exchange](https://github.com/baguette-exchange?tab=repositories) running on Polygon with APD rewards for a few selected LPs and single-token staking
+Swapi is a Uniswap V2 based AMM forked from [baguette-exchange](https://github.com/baguette-exchange?tab=repositories) running on Polygon with BWS rewards for a few selected LPs and single-token staking
 pools for those who want to avoid being exposed to impermanent loss. No one can deny most DEX/AMM projects are subject
-to high inflation. The goal of Swapi with $APD is to reward users while keeping inflation under control and avoid
+to high inflation. The goal of Swapi with $BWS is to reward users while keeping inflation under control and avoid
 sharp depreciation of the token price.
 
-APD tokens are at the heart of Swapi's ecosystem which connects investor and producer.
+BWS tokens are at the heart of Swapi's ecosystem which connects investor and producer.
 Buy them, earn them, spend them, use them for yield farming or staking all while contributing to a good cause.
 
-## APD Token
+## BWS Token
 
-The Apidae token (APD) is an electronic representation of an apiary in order to contribute to the
+The Apidae token (BWS) is an electronic representation of an apiary in order to contribute to the
 preservation of bees. The token was created in 2022 to change the status into a sole proprietorship and
 to allow local actions on the objective.
 

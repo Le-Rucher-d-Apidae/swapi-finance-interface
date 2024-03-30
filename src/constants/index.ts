@@ -47,12 +47,12 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-const APT: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xa67c2d46D7150a8633e3e50bcBdE8c6ab8284463', 18, 'APT02', 'APIDAE02'),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x0000000000000000000000000000000000000000', 18, 'APT', 'Apidae')
+const BWS: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWSTST', 'BeeWiseTst'),
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x01024b5D8CB02A12966D96A7b1Ea94C34085630B', 18, 'BWS', 'BeeWise')
 }
 
-export const SELF_TOKEN = APT
+export const SELF_TOKEN = BWS
 
 export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(

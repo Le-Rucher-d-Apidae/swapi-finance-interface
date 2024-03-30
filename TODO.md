@@ -38,7 +38,7 @@ Links, Token, ...
 WALLET_TUTORIAL link
 src/components/WalletModal/index.tsx
 
-fix TokenBalanceContent (ok?), APD price
+fix TokenBalanceContent (ok?), BWS price
 [TokenBalanceContent](src/components/Header/TokenBalanceContent.tsx)
 
 
