@@ -3,9 +3,7 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-// import { abi as IBaguetteRouterABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-periphery/interfaces/IBaguetteRouter.sol/IBaguetteRouter.json'
-// import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { abi as IUniswapV2Router02ABI } from '@swapi-finance/contracts/artifacts/contracts/Uniswap/v2-periphery/UniswapV2Router.sol/UniswapV2Router.json'
+import { abi as IUniswapV2Router02ABI } from '@swapi-finance/contracts/hardhat-artifacts/src/contracts/Uniswap/v2-periphery/UniswapV2Router.sol/UniswapV2Router.json'
 import { ROUTER_ADDRESS } from '../constants'
 import {
   ChainId,
