@@ -13,7 +13,7 @@ import styled from 'styled-components'
 import bannerLogo from '../../assets/images/apidaeSwap-banner.png'
 import { useActiveWeb3React } from '../../hooks'
 // import { useDarkModeManager } from '../../state/user/hooks'
-import { useETHBalances, useAggregateBagBalance } from '../../state/wallet/hooks'
+import { useETHBalances, useAggregateSelfTokenBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../pool/styled'
 import { CountUp } from 'use-count-up'
 import { TYPE /* , ExternalLink */ } from '../../theme'
@@ -311,7 +311,7 @@ export default function Header() {
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   // const [isDark] = useDarkModeManager()
 
-  const aggregateBalance: TokenAmount | undefined = useAggregateBagBalance()
+  const aggregateBalance: TokenAmount | undefined = useAggregateSelfTokenBalance()
 
   const [showBagBalanceModal, setShowTokenBalanceModal] = useState(false)
 

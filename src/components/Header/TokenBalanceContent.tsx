@@ -7,10 +7,8 @@ import tokenLogo from '../../assets/images/token-logo.png'
 import { SELF_TOKEN } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
-// import { useAggregateBagBalance, useTokenBalance } from '../../state/wallet/hooks'
-import { useTokenBalance } from '../../state/wallet/hooks'
+import { useAggregateSelfTokenBalance, useTokenBalance } from '../../state/wallet/hooks'
 import { TYPE, BagTokenAnimated } from '../../theme'
-// import { computeSelfTokenCirculation } from '../../utils/computeSelfTokenCirculation'
 import { computeSelfTokenCirculation } from '../../utils/computeSelfTokenCirculation'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
@@ -61,10 +59,12 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   // const defaultTokenAmount = new TokenAmount(apd, JSBI.BigInt(0))
   // console.log('TokenBalanceContent apd=', apd)
   // console.dir(apd)
-  // const total = useAggregateBagBalance()
+  const total = useAggregateSelfTokenBalance()
+  /* 
   const total = selfToken
     ? new TokenAmount(selfToken, JSBI.BigInt(0))
-    : new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)) // useAggregateBagBalance()
+    : new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)) // useAggregateSelfTokenBalance()
+ */
   // console.log('TokenBalanceContent total=', total)
   // console.dir(total)
   const selfTokenBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ selfToken)
