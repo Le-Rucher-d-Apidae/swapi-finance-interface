@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WCURRENCY, Pair } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
-import { SELF_TOKEN, USDCE, USDT, USDC, DAI, UNDEFINED, ZERO_ADDRESS } from '../../constants'
+import { SELF_TOKEN, USDCE, USDT, USDC, DAI, UNDEFINED, ZERO_ADDRESS, WETH, WBTC } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { AUTOCOMPOUND_INTERFACE } from '../../constants/abis/autocompound'
 import { PairState, usePair, usePairs } from '../../data/Reserves'
@@ -362,7 +362,15 @@ const calculateTotalStakedAmountInCurrencyFromToken = function(
   return new TokenAmount(WCURRENCY[chainId], amount)
 }
 
-const isUSD = function(token: Token, chainId: ChainId): boolean {
+export const isSelfToken = function(token: Token, chainId: ChainId): boolean {
+  return token.equals(SELF_TOKEN[chainId])
+}
+
+export const isWethOrWbtcToken = function(token: Token, chainId: ChainId): boolean {
+  return token.equals(WETH[chainId]) || token.equals(WBTC[chainId])
+}
+
+export const isUSDtoken = function(token: Token, chainId: ChainId): boolean {
   return (
     token.equals(USDCE[chainId]) ||
     token.equals(USDT[chainId]) ||
@@ -575,7 +583,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           }
           totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
 
-          const isUSDPool = isUSD(tokens[0], tokens[0].chainId) && isUSD(tokens[1], tokens[1].chainId)
+          const isUSDPool = isUSDtoken(tokens[0], tokens[0].chainId) && isUSDtoken(tokens[1], tokens[1].chainId)
           if (isUSDPool && currencyTokenPair) {
             totalStakedInWcurrency = calculateTotalStakedAmountInCurrencyFromToken(
               stakingType,

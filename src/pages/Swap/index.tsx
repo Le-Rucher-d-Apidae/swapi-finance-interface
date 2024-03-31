@@ -23,7 +23,7 @@ import ProgressSteps from '../../components/ProgressSteps'
 
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { useActiveWeb3React } from '../../hooks'
-import { useCurrency } from '../../hooks/Tokens'
+import { useCurrency, useToken } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
 import useToggledVersion, { DEFAULT_VERSION, Version } from '../../hooks/useToggledVersion'
@@ -43,6 +43,7 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
+import { isUSDtoken, isWethOrWbtcToken, isSelfToken } from '../../state/stake/hooks'
 // import useENS from '../../hooks/useENS'
 
 export default function Swap() {
@@ -53,6 +54,10 @@ export default function Swap() {
     useCurrency(loadedUrlParams?.inputCurrencyId),
     useCurrency(loadedUrlParams?.outputCurrencyId)
   ]
+  const [loadedInputToken, loadedOutputToken] = [
+    useToken(loadedUrlParams?.inputCurrencyId),
+    useToken(loadedUrlParams?.outputCurrencyId)
+  ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
   const urlLoadedTokens: Token[] = useMemo(
     () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
@@ -62,7 +67,7 @@ export default function Swap() {
     setDismissTokenWarning(true)
   }, [])
 
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
   // toggle wallet when disconnected
@@ -260,10 +265,33 @@ export default function Swap() {
     onCurrencySelection
   ])
 
+  const areKnownTokens = useCallback(() => {
+    console.debug('areKnownTokens')
+    // console.debug('loadedInputCurrency=', loadedInputCurrency)
+    // console.debug('loadedOutputCurrency=', loadedOutputCurrency)
+    console.debug('loadedInputToken=', loadedInputToken)
+    console.debug('loadedOutputToken=', loadedOutputToken)
+
+    // loadedInputToken, loadedOutputToken
+
+    const kwnown =
+      (loadedInputToken && chainId
+        ? isUSDtoken(loadedInputToken, chainId) ||
+          isWethOrWbtcToken(loadedInputToken, chainId) ||
+          isSelfToken(loadedInputToken, chainId)
+        : false) &&
+      (loadedOutputToken && chainId
+        ? isUSDtoken(loadedOutputToken, chainId) ||
+          isWethOrWbtcToken(loadedOutputToken, chainId) ||
+          isSelfToken(loadedOutputToken, chainId)
+        : false)
+    return kwnown
+  }, [chainId, loadedInputToken, loadedOutputToken])
+
   return (
     <>
       <TokenWarningModal
-        isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
+        isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning && !areKnownTokens()}
         tokens={urlLoadedTokens}
         onConfirm={handleConfirmTokenWarning}
       />
