@@ -95,7 +95,7 @@
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
-    "start:brave": "cross-env BROWSER=brave-browser && yarn run start:default",
+    "start:brave": "cross-env BROWSER=brave-browser react-scripts start",
     "start:chrome": "cross-env BROWSER=google-chrome-stable react-scripts start",
     "start:default": "react-scripts start",
     "start": "yarn run start:default",
