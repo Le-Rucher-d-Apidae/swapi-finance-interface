@@ -16,7 +16,10 @@ import { ButtonSecondary } from '../../components/Button'
 
 import { Link } from 'react-router-dom'
 import { darken } from 'polished'
+import { SELF_TOKEN, USDC } from '../../constants'
 // import { ReactComponent as Line } from '../../assets/images/line.svg'
+import { useActiveWeb3React } from '../../hooks'
+import { ChainId } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   padding: 0px;
@@ -127,6 +130,7 @@ const Bottom = styled.div`
 
 export default function Home() {
   const theme = useContext(ThemeContext)
+  const { chainId } = useActiveWeb3React()
   return (
     <>
       <PageWrapper>
@@ -146,7 +150,13 @@ export default function Home() {
             </TYPE.homeNormal>
 
             <Row display={'block'} padding={'20px 0px 0px 10px ;'}>
-              <ButtonBuy2 style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
+              <ButtonBuy2
+                style={{ display: 'inline-block' }}
+                as={Link}
+                to={`swap?inputCurrency=${USDC[chainId ? chainId : ChainId.POLYGON].address}&outputCurrency=${
+                  SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].address
+                }`}
+              >
                 <Text fontWeight={500} fontSize={16}>
                   Acheter des BWS
                 </Text>
