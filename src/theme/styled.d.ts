@@ -51,6 +51,8 @@ export interface Colors {
   // avaxRed: Color
   polygonPurple: Color
 
+  textWarn: Color
+
   pageBackground: Color
   appBodyWrapperBackground: Color
   appBodyWrapperBorder: Color

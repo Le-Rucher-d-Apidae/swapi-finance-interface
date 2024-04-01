@@ -146,6 +146,8 @@ export function colors(darkMode: boolean): Colors {
 
     polygonPurple: '#8247e5',
 
+    textWarn: darkMode ? darkYellow2 : red1,
+
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',
@@ -341,6 +343,9 @@ export const TYPE = {
   },
   error({ error, ...props }: { error: boolean } & TextProps) {
     return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
+  },
+  warn({ warn, ...props }: { warn: boolean } & TextProps) {
+    return <TextWrapper fontWeight={500} color={warn ? 'textWarn' : 'text2'} {...props} />
   },
   homeLarge(props: TextProps) {
     return <TextWrapper fontWeight={600} fontSize={32} {...props} />

@@ -126,7 +126,9 @@ export default function Stake() {
           {stakingRewardsExist && stakingInfos?.length === 0 ? (
             <Loader style={{ margin: 'auto' }} />
           ) : !stakingRewardsExist ? (
-            'No active rewards'
+            <TYPE.warn warn={true} fontWeight={400} padding="12px">
+              No active rewards
+            </TYPE.warn>
           ) : (
             stakingInfoResults?.map(
               stakingInfo =>
