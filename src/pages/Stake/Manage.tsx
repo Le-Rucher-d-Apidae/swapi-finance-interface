@@ -31,6 +31,10 @@ import usePrevious from '../../hooks/usePrevious'
 
 import { BIG_INT_ZERO, UNDEFINED, SELF_TOKEN } from '../../constants'
 
+import { ArrowLeft } from 'react-feather'
+import { Link as HistoryLink } from 'react-router-dom'
+
+
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
@@ -89,6 +93,10 @@ const StyledLogo = styled.img`
   width: 52px;
 `
 
+const StyledArrowLeft = styled(ArrowLeft)`
+  color: ${({ theme }) => theme.text1};
+`
+
 export function ManageSingle({
   match: {
     params: { currencyId, rewardCurrencyId }
@@ -136,7 +144,13 @@ export function ManageSingle({
 
   return (
     <PageWrapper gap="lg" justify="center">
+
       <RowBetween style={{ gap: '24px' }}>
+
+        <HistoryLink to="/stake">
+            <StyledArrowLeft />
+        </HistoryLink>
+
         <TYPE.mediumHeader style={{ margin: 0 }}>{currency?.symbol} Token Staking</TYPE.mediumHeader>
         <CurrencyLogo currency={currency ?? undefined} size="24px" />
       </RowBetween>
