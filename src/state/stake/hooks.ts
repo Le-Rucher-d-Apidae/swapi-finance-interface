@@ -130,7 +130,8 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   currencyUsdTokenPairReserveOfCurrency: JSBI,
   // stakingTokenPairReserveOfUsd: JSBI,
   // totalStakedAmount: TokenAmount
-  totalStakedInWcurrency: TokenAmount
+  amountStakedInWcurrency: TokenAmount,
+  amountStakedInToken: TokenAmount
 ): TokenAmount {
   console.debug(`----------------------------------------->`)
   console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
@@ -138,9 +139,10 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
   console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
   console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
-  console.debug('totalStakedInWcurrency', totalStakedInWcurrency.toFixed())
+  console.debug('amountStakedInWcurrency', amountStakedInWcurrency.toFixed())
+  console.debug('amountStakedInToken', amountStakedInToken.toFixed())
   if (
-    JSBI.equal(totalStakedInWcurrency.raw, JSBI.BigInt(0)) ||
+    JSBI.equal(amountStakedInWcurrency.raw, JSBI.BigInt(0)) ||
     JSBI.equal(currencyUsdTokenPairReserveOfUsd, JSBI.BigInt(0))
   ) {
     console.debug('Zero 00 staked or zero reserves')
@@ -162,7 +164,7 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
 
   // const oneToken = usdToken.decimals
   console.debug(`usdToken.decimals: ${usdToken.decimals}`)
-  console.debug(`totalStakedInWcurrency.currency.decimals: ${totalStakedInWcurrency.currency.decimals}`)
+  console.debug(`amountStakedInWcurrency.currency.decimals: ${amountStakedInWcurrency.currency.decimals}`)
 
   const currencyUsdTokenRatio = JSBI.divide(
     JSBI.multiply(oneToken, currencyUsdTokenPairReserveOfCurrency),
@@ -193,10 +195,15 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   //   )
   // )
 
-  // return new TokenAmount(usdToken, JSBI.divide(totalStakedInWcurrency.raw, currencyUsdTokenRatio))
+  // return new TokenAmount(usdToken, JSBI.divide(amountStakedInWcurrency.raw, currencyUsdTokenRatio))
 
-  // const resAmount = JSBI.divide(JSBI.multiply(totalStakedInWcurrency.raw, oneToken9), currencyUsdTokenRatio) // TEST
-  const resAmount = JSBI.divide(JSBI.multiply(totalStakedInWcurrency.raw, oneToken), currencyUsdTokenRatio)
+  // const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, oneToken9), currencyUsdTokenRatio) // TEST
+  // const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio)
+
+  const resAmount = JSBI.divide(
+    JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio),
+    JSBI.BigInt(amountStakedInToken.toExact())
+  )
 
   console.debug('resAmount:', resAmount)
   console.debug('resAmount.toString():', resAmount.toString())
@@ -686,10 +693,10 @@ console.debug(`isUSDPool: totalStakedInWcurrency = `, totalStakedInWcurrency.toF
                   pairTotalSupply
                 )
 
-console.debug(`Dual token staking`)
-console.debug(`isCurrencyPool = `, isCurrencyPool)
-console.debug(`wcurrencyPairNotFound = `, wcurrencyPairNotFound)
-console.debug(`totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
+console.debug(`hooks:Dual token staking`)
+console.debug(`hooks:isCurrencyPool = `, isCurrencyPool)
+console.debug(`hooks:wcurrencyPairNotFound = `, wcurrencyPairNotFound)
+console.debug(`hooks:totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
 
             // User deposit in pool
             addressDepositStakedInWcurrency = isCurrencyPool
@@ -718,8 +725,8 @@ console.debug(`totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
           // Single token staking
           const isTokenCurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId])
 
-console.debug(`Single token staking`)
-console.debug(`isTokenCurrency = `, isTokenCurrency)
+console.debug(`hooks:Single token staking`)
+console.debug(`hooks:isTokenCurrency = `, isTokenCurrency)
 
           if (
             !isTokenCurrency &&
@@ -729,8 +736,10 @@ console.debug(`isTokenCurrency = `, isTokenCurrency)
             return memo
           }
 // console.debug(`after(return memo)`)
+          // Total in single asset staking contract
+          // totalSupply = amount of tokens deposited in the staking contract
           totalStakedAmount = new TokenAmount(tokens[0], totalSupply)
-// console.debug(`totalStakedAmount =`, totalSupplies.toString() )
+console.debug(`hooks:totalStakedAmount =`, totalStakedAmount.toFixed(18, { groupSeparator: ',' } ) )
 // const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
 // console.debug(`pairTotalSupply.toString() = `, pairTotalSupply.toString() )
 // console.debug(`pairTotalSupplyState.result = `, pairTotalSupplyState.result )
@@ -759,6 +768,7 @@ console.debug(`isTokenCurrency = `, isTokenCurrency)
           } else {
             stakedAmount = new TokenAmount(tokens[0], JSBI.BigInt(0))
           }
+console.debug(`hooks:stakedAmount =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
           totalStakedInWcurrency = isTokenCurrency
             ? totalStakedAmount
@@ -781,6 +791,8 @@ console.debug(`isTokenCurrency = `, isTokenCurrency)
           addressDepositStakedInWcurrency = new TokenAmount(WCURRENCY[tokens[0].chainId], JSBI.BigInt(0))
         }
 
+console.debug(`hooks:totalStakedInWcurrency:`, totalStakedInWcurrency.toFixed())
+
         const totalPoolDepositsStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
           // chainId,
           usdToken,
@@ -789,9 +801,11 @@ console.debug(`isTokenCurrency = `, isTokenCurrency)
           currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw, // WCurrency reserve
           // currencyUSDTokenPair.reserveOf(usdToken).raw,
           // totalStakedAmount
-          totalStakedInWcurrency
+          totalStakedInWcurrency,
+          totalStakedAmount
         )
-console.debug(`totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUsd.toFixed())
+
+console.debug(`hooks:totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUsd.toFixed())
 // console.debug(`tokens:`, tokens)
 // console.debug(`tokens[0]:`, tokens[0])
 // console.debug(`tokens[1]:`, tokens[1])
@@ -804,9 +818,10 @@ console.debug(`totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUsd.toFi
           currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
           // currencyUSDTokenPair.reserveOf(usdToken).raw,
           // totalStakedAmount
-          addressDepositStakedInWcurrency // TODO: test
+          addressDepositStakedInWcurrency, // TODO: test
+          stakedAmount
         )
-console.debug(`addressDepositStakedInUsd:`, addressDepositStakedInUsd.toFixed())
+console.debug(`hooks:addressDepositStakedInUsd:`, addressDepositStakedInUsd.toFixed())
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
           totalStakedAmount: TokenAmount,
