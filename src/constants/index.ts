@@ -48,7 +48,8 @@ type ChainTokenList = {
 }
 
 const BWS: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWSTST', 'BeeWiseTst'),
+  // [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWSTST', 'BeeWiseTst'),
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWS', 'BeeWise'),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x01024b5D8CB02A12966D96A7b1Ea94C34085630B', 18, 'BWS', 'BeeWise')
 }
 

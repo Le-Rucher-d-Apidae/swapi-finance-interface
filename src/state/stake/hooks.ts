@@ -22,41 +22,32 @@ export const STAKING_REWARDS_INFO: {
   }[]
 } = {
   [ChainId.MUMBAI]: [
+    // Not working : Adding a new staking contract with an EXISTING TOKEN PAIR and a different reward : amounts are mixed
     //
     // Stake-Farm = rewarded pairs
     //
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      // stakingRewardAddress: '0xa04DC88D7f48a504B4930474853e8e0d401695A7', // optimization: 10 000
-      // stakingRewardAddress: '0x75922745B3354EB1e562d5F119B585b8D1Ccac33', // optimization:  1 000
-      stakingRewardAddress: '0x555D73C526f7AF2A12a563dd0A14BD151ceb3e75', // optimization:    200 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0xA867c81ecD3C2B1FEe1aDCB81bF8c046E8b82f83', // optimization:    200 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x555D73C526f7AF2A12a563dd0A14BD151ceb3e75', // optimization:    200 ; verified
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // },
+    // {
+    //   tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0xA867c81ecD3C2B1FEe1aDCB81bF8c046E8b82f83', // optimization:    200 ; verified
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // },
     // {
     //   tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
     //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
     //   stakingRewardAddress: '0x1EB6C52ba45EFc8cA57818AFFAef93F28645C2F4', // optimization:    200 ; verified
     //   autocompoundingAddress: ZERO_ADDRESS
     // },
-    {
-      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x8Ca8f10fdE0A7b46205d6b3d3BaD023f9b4f2706', // variable rate ; optimization:    800 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-
-    // Not working : Adding a new staking contract with an EXISTING TOKEN PAIR and a different reward : amounts are mixed
     // {
-    //   tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: WCURRENCY[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x6c6Ed2bd1c2Fc95fA5A7036A55DC3A6f2C44B232', // optimization:    200 ; verified
+    //   tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x8Ca8f10fdE0A7b46205d6b3d3BaD023f9b4f2706', // variable rate ; optimization:    800 ; verified
     //   autocompoundingAddress: ZERO_ADDRESS
     // },
     //
@@ -65,9 +56,19 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0xE5eb48Bb284E85518a37A04f16526c60336A5B52',
+      // variable rate ; optimization:    2000 ; verified
+      stakingRewardAddress: '0x0bcad82bda1de35b6df07002fe59e933369f90a0',
+      // variable rate ; optimization:    2000 ; verified ; DEBUG
+      // stakingRewardAddress: '0xa72eb25b6Fd7f289bE889754cd7fFbF0bB32eA30',
       autocompoundingAddress: ZERO_ADDRESS
-    }
+    },
+    // {
+    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+    //   // variable rate ; optimization:    2000 ; verified ; DEBUG
+    //   stakingRewardAddress: '0xa72eb25b6Fd7f289bE889754cd7fFbF0bB32eA30',
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // }
   ],
   [ChainId.POLYGON]: []
 }
@@ -122,7 +123,7 @@ export interface StakingInfo {
 }
 
 const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
-  chainId: ChainId,
+  // chainId: ChainId,
   usdToken: Token,
   // totalSupply: JSBI,
   currencyUsdTokenPairReserveOfUsd: JSBI,
@@ -131,19 +132,27 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   // totalStakedAmount: TokenAmount
   totalStakedInWcurrency: TokenAmount
 ): TokenAmount {
-  // console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
+  console.debug(`----------------------------------------->`)
+  console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
+  console.debug('currencyUsdTokenPairReserveOfUsd:', currencyUsdTokenPairReserveOfUsd)
+  console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
+  console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
+  console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
+  console.debug('totalStakedInWcurrency', totalStakedInWcurrency.toFixed())
   if (
     JSBI.equal(totalStakedInWcurrency.raw, JSBI.BigInt(0)) ||
     JSBI.equal(currencyUsdTokenPairReserveOfUsd, JSBI.BigInt(0))
-  )
+  ) {
+    console.debug('Zero 00 staked or zero reserves')
+    console.debug(`<------------------------------------------`)
     return new TokenAmount(usdToken, JSBI.BigInt(0))
-
-  // console.debug('calculateTotalStakedAmountInUsd -------------------------------------')
-  // console.debug('currencyUsdTokenPairReserveOfUsd:', currencyUsdTokenPairReserveOfUsd)
-  // console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
-  // console.debug('totalStakedInWcurrency', totalStakedInWcurrency.toFixed())
+  }
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
+  // const oneToken18 = JSBI.BigInt(1_000_000_000_000_000_000) // 1e6
+  // const oneToken6 = JSBI.BigInt(1_000_000) // 1e6
+  // const oneToken9 = JSBI.BigInt(1_000_000_000) // 1e9
+
   // const oneToken = JSBI.BigInt() // 1e18
   // const currencyUsdTokenRatio = JSBI.divide(
   //   JSBI.multiply(oneToken, currencyUsdTokenPairReserveOfCurrency),
@@ -151,11 +160,22 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   // )
   // console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
 
+  // const oneToken = usdToken.decimals
+  console.debug(`usdToken.decimals: ${usdToken.decimals}`)
+  console.debug(`totalStakedInWcurrency.currency.decimals: ${totalStakedInWcurrency.currency.decimals}`)
+
   const currencyUsdTokenRatio = JSBI.divide(
     JSBI.multiply(oneToken, currencyUsdTokenPairReserveOfCurrency),
     currencyUsdTokenPairReserveOfUsd
   )
-  // console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
+  // const currencyUsdTokenRatio = JSBI.divide(
+  //   JSBI.multiply(oneToken18, currencyUsdTokenPairReserveOfCurrency),
+  //   JSBI.multiply(oneToken6, currencyUsdTokenPairReserveOfUsd)
+  // ) // TEST
+  // const currencyUsdTokenRatio = JSBI.divide(currencyUsdTokenPairReserveOfCurrency, currencyUsdTokenPairReserveOfUsd)
+
+  console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
+  console.debug(`currencyUsdTokenRatio.toString(): ${currencyUsdTokenRatio.toString()}`)
 
   // const valueOfSelfTokenInCurrency = JSBI.divide(
   //   JSBI.multiply(stakingTokenPairReserveOfUsd, currencyUsdTokenRatio),
@@ -175,9 +195,12 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
 
   // return new TokenAmount(usdToken, JSBI.divide(totalStakedInWcurrency.raw, currencyUsdTokenRatio))
 
+  // const resAmount = JSBI.divide(JSBI.multiply(totalStakedInWcurrency.raw, oneToken9), currencyUsdTokenRatio) // TEST
   const resAmount = JSBI.divide(JSBI.multiply(totalStakedInWcurrency.raw, oneToken), currencyUsdTokenRatio)
 
-  // console.debug('res:', resAmount)
+  console.debug('resAmount:', resAmount)
+  console.debug('resAmount.toString():', resAmount.toString())
+  console.debug(`<------------------------------------------`)
   return new TokenAmount(usdToken, resAmount)
 }
 
@@ -592,6 +615,8 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
               currencyTokenPair.reserveOf(tokens[0]).raw,
               totalStakedAmount
             )
+console.debug(`Dual token staking`)
+console.debug(`isUSDPool: totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
             // TODO: test
             addressDepositStakedInWcurrency = calculateTotalStakedAmountInCurrencyFromToken(
               stakingType,
@@ -660,6 +685,12 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                   totalStakedAmount,
                   pairTotalSupply
                 )
+
+console.debug(`Dual token staking`)
+console.debug(`isCurrencyPool = `, isCurrencyPool)
+console.debug(`wcurrencyPairNotFound = `, wcurrencyPairNotFound)
+console.debug(`totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
+
             // User deposit in pool
             addressDepositStakedInWcurrency = isCurrencyPool
               ? calculateStakedAmountInCurrency(
@@ -687,6 +718,9 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           // Single token staking
           const isTokenCurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId])
 
+console.debug(`Single token staking`)
+console.debug(`isTokenCurrency = `, isTokenCurrency)
+
           if (
             !isTokenCurrency &&
             (currencyTokenPairState === PairState.INVALID || currencyTokenPairState === PairState.NOT_EXISTS)
@@ -694,8 +728,15 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             console.error('Single token staking: Invalid pair requested')
             return memo
           }
-
+// console.debug(`after(return memo)`)
           totalStakedAmount = new TokenAmount(tokens[0], totalSupply)
+// console.debug(`totalStakedAmount =`, totalSupplies.toString() )
+// const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
+// console.debug(`pairTotalSupply.toString() = `, pairTotalSupply.toString() )
+// console.debug(`pairTotalSupplyState.result = `, pairTotalSupplyState.result )
+          // console.debug(`totalSupplies.toString() =`, totalSupplies[0].result?.toString())
+
+// console.debug(`totalStakedAmount =`, totalStakedAmount.toFixed())
           if (balanceState && balanceState.result && balanceState.result[0] > 0) {
             stakedAmount = new TokenAmount(tokens[0], JSBI.BigInt(balanceState.result[0]))
           } else if (
@@ -732,31 +773,40 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             : new TokenAmount(WCURRENCY[tokens[0].chainId], JSBI.BigInt(0))
 
           // TODO: compute amount
+          // TODO: compute amount
+          // TODO: compute amount
+          // TODO: compute amount
+          // TODO: compute amount
+          // TODO: compute amount
           addressDepositStakedInWcurrency = new TokenAmount(WCURRENCY[tokens[0].chainId], JSBI.BigInt(0))
         }
 
         const totalPoolDepositsStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
-          chainId,
+          // chainId,
           usdToken,
           // totalSupply,
-          currencyUSDTokenPair.reserveOf(usdToken).raw,
-          currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
+          currencyUSDTokenPair.reserveOf(usdToken).raw, // USD token reserve
+          currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw, // WCurrency reserve
           // currencyUSDTokenPair.reserveOf(usdToken).raw,
           // totalStakedAmount
           totalStakedInWcurrency
         )
+console.debug(`totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUsd.toFixed())
+// console.debug(`tokens:`, tokens)
+// console.debug(`tokens[0]:`, tokens[0])
+// console.debug(`tokens[1]:`, tokens[1])
         // TODO: test
         addressDepositStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
-          chainId,
+          // chainId,
           usdToken,
           // totalSupply,
           currencyUSDTokenPair.reserveOf(usdToken).raw,
-          currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
+          currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
           // currencyUSDTokenPair.reserveOf(usdToken).raw,
           // totalStakedAmount
           addressDepositStakedInWcurrency // TODO: test
         )
-
+console.debug(`addressDepositStakedInUsd:`, addressDepositStakedInUsd.toFixed())
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
           totalStakedAmount: TokenAmount,
