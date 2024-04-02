@@ -26,6 +26,12 @@ export const STAKING_REWARDS_INFO: {
     //
     // Stake-Farm = rewarded pairs
     //
+    {
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0x400d849B1F213576C9Af14045C5D21653d84B375
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x27C9bEF302e419F330217ecAD6645aCA93043503', // optimization:    2000 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
+    },
     // {
     //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
     //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
