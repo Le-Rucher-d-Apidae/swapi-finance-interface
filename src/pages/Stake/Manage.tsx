@@ -34,7 +34,6 @@ import { BIG_INT_ZERO, UNDEFINED, SELF_TOKEN } from '../../constants'
 import { ArrowLeft } from 'react-feather'
 import { Link as HistoryLink } from 'react-router-dom'
 
-
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
@@ -144,11 +143,9 @@ export function ManageSingle({
 
   return (
     <PageWrapper gap="lg" justify="center">
-
       <RowBetween style={{ gap: '24px' }}>
-
         <HistoryLink to="/stake">
-            <StyledArrowLeft />
+          <StyledArrowLeft />
         </HistoryLink>
 
         <TYPE.mediumHeader style={{ margin: 0 }}>{currency?.symbol} Token Staking</TYPE.mediumHeader>
