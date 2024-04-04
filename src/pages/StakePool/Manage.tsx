@@ -39,7 +39,6 @@ import { Link as HistoryLink } from 'react-router-dom'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
-  border: 1px solid red;
   padding: 1rem;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};

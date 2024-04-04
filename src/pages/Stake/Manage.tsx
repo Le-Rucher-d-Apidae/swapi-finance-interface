@@ -37,6 +37,10 @@ import { Link as HistoryLink } from 'react-router-dom'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
+  background: ${({ theme }) => theme.appBodyWrapperBackground};
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`
