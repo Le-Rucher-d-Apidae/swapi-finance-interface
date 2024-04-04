@@ -32,6 +32,12 @@ export const STAKING_REWARDS_INFO: {
       stakingRewardAddress: '0x27C9bEF302e419F330217ecAD6645aCA93043503', // optimization:    2000 ; verified
       autocompoundingAddress: ZERO_ADDRESS
     },
+    {
+      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x358EaD5833BF9411ED9BDfEC0d2dC1e96815b91a', // optimization:    2000 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
+    },
     // {
     //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
     //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
@@ -136,8 +142,8 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   currencyUsdTokenPairReserveOfCurrency: JSBI,
   // stakingTokenPairReserveOfUsd: JSBI,
   // totalStakedAmount: TokenAmount
-  amountStakedInWcurrency: TokenAmount,
-  amountStakedInToken: TokenAmount
+  amountStakedInWcurrency: TokenAmount
+  // amountStakedInToken: TokenAmount // Unused ?
 ): TokenAmount {
   console.debug(`----------------------------------------->`)
   console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
@@ -145,8 +151,10 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
   console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
   console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
-  console.debug('amountStakedInWcurrency', amountStakedInWcurrency.toFixed())
-  console.debug('amountStakedInToken', amountStakedInToken.toFixed())
+  console.debug('amountStakedInWcurrency.raw', amountStakedInWcurrency.raw)
+  console.debug('amountStakedInWcurrency.toExact()', amountStakedInWcurrency.toExact())
+  console.debug('amountStakedInWcurrency.toFixed()', amountStakedInWcurrency.toFixed(18, { groupSeparator: ',' }))
+  // console.debug('amountStakedInToken.toFixed()', amountStakedInToken.toFixed(18, { groupSeparator: ',' }))
   if (
     JSBI.equal(amountStakedInWcurrency.raw, JSBI.BigInt(0)) ||
     JSBI.equal(currencyUsdTokenPairReserveOfUsd, JSBI.BigInt(0))
@@ -158,8 +166,9 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
   // const oneToken18 = JSBI.BigInt(1_000_000_000_000_000_000) // 1e6
-  // const oneToken6 = JSBI.BigInt(1_000_000) // 1e6
   // const oneToken9 = JSBI.BigInt(1_000_000_000) // 1e9
+  // const oneToken6 = JSBI.BigInt(1_000_000) // 1e6
+  // const oneToken3 = JSBI.BigInt(1_000) // 1e3
 
   // const oneToken = JSBI.BigInt() // 1e18
   // const currencyUsdTokenRatio = JSBI.divide(
@@ -183,6 +192,7 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   // const currencyUsdTokenRatio = JSBI.divide(currencyUsdTokenPairReserveOfCurrency, currencyUsdTokenPairReserveOfUsd)
 
   console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
+  console.debug(`JSBI.toNumber(currencyUsdTokenRatio): ${JSBI.toNumber(currencyUsdTokenRatio)}`)
   console.debug(`currencyUsdTokenRatio.toString(): ${currencyUsdTokenRatio.toString()}`)
 
   // const valueOfSelfTokenInCurrency = JSBI.divide(
@@ -204,14 +214,59 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   // return new TokenAmount(usdToken, JSBI.divide(amountStakedInWcurrency.raw, currencyUsdTokenRatio))
 
   // const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, oneToken9), currencyUsdTokenRatio) // TEST
-  // const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio)
+
+  // Check decimals
+  // TODO
+  // let ratio: JSBI;
+  let currencyUsdTokenRatio2: JSBI
+  if (usdToken.decimals === amountStakedInWcurrency.currency.decimals) {
+    currencyUsdTokenRatio2 = currencyUsdTokenRatio
+  } else if (usdToken.decimals > amountStakedInWcurrency.currency.decimals) {
+    const decimalsDifference = usdToken.decimals - (usdToken.decimals - amountStakedInWcurrency.currency.decimals)
+  console.debug(`decimalsDifference: ${decimalsDifference}`)
+    const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
+    currencyUsdTokenRatio2 = JSBI.divide(currencyUsdTokenRatio, x)
+  } else {
+    // usdToken.decimals < amountStakedInWcurrency.currency.decimals
+    const decimalsDifference =
+      amountStakedInWcurrency.currency.decimals - (amountStakedInWcurrency.currency.decimals - usdToken.decimals)
+  console.debug(`decimalsDifference: ${decimalsDifference}`)
+    const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
+    currencyUsdTokenRatio2 = JSBI.multiply(currencyUsdTokenRatio, x)
+  }
+
+  // TMP
+  // const resAmount = JSBI.divide(
+  //   JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
+  //   currencyUsdTokenRatio
+  // )
 
   const resAmount = JSBI.divide(
-    JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio),
-    JSBI.BigInt(amountStakedInToken.toExact())
+    JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
+    currencyUsdTokenRatio2
   )
 
+  // const resAmount = JSBI.divide(
+  //   JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio),
+  //   JSBI.BigInt(amountStakedInToken.toExact()) // ERROR : 0.000012 cannot be converted to BigInt
+  // )
+
+  // const resAmount = JSBI.divide(
+  //   JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio),
+  //   //  JSBI.BigInt( 10^ usdToken.decimals )
+  //   // JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(usdToken.decimals)) //(usdToken.decimals)
+  //   oneToken6
+  // )
+
+  // const resAmount = JSBI.divide(
+  //   JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)), currencyUsdTokenRatio),
+  //   //  JSBI.BigInt( 10^ usdToken.decimals )
+  //   // JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(usdToken.decimals)) //(usdToken.decimals)
+  //   oneToken3
+  // )
+
   console.debug('resAmount:', resAmount)
+  console.debug('JSBI.toNumber(resAmount):', JSBI.toNumber(resAmount))
   console.debug('resAmount.toString():', resAmount.toString())
   console.debug(`<------------------------------------------`)
   return new TokenAmount(usdToken, resAmount)
@@ -807,10 +862,10 @@ console.debug(`hooks:totalStakedInWcurrency:`, totalStakedInWcurrency.toFixed())
           currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw, // WCurrency reserve
           // currencyUSDTokenPair.reserveOf(usdToken).raw,
           // totalStakedAmount
-          totalStakedInWcurrency,
-          totalStakedAmount
+          totalStakedInWcurrency
+          // totalStakedAmount
         )
-
+console.debug(`hooks:currencyUSDTokenPair:`, currencyUSDTokenPair)
 console.debug(`hooks:totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUsd.toFixed())
 // console.debug(`tokens:`, tokens)
 // console.debug(`tokens[0]:`, tokens[0])
@@ -824,8 +879,8 @@ console.debug(`hooks:totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUs
           currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
           // currencyUSDTokenPair.reserveOf(usdToken).raw,
           // totalStakedAmount
-          addressDepositStakedInWcurrency, // TODO: test
-          stakedAmount
+          addressDepositStakedInWcurrency // TODO: test
+          // stakedAmount
         )
 console.debug(`hooks:addressDepositStakedInUsd:`, addressDepositStakedInUsd.toFixed())
         const getHypotheticalRewardRate = (
