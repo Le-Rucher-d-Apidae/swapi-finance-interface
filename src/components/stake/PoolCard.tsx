@@ -101,11 +101,11 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
   const rewardCurrency = useCurrency(rewardToken.address) ?? UNDEFINED[rewardToken.chainId]
 
   const isStaking = Boolean(stakingInfo.stakedAmount.greaterThan('0'))
-  console.log('PoolCard:stakingInfo.stakedAmount = ', stakingInfo.stakedAmount)
-  console.log('PoolCard:stakingInfo.stakedAmount.raw = ', stakingInfo.stakedAmount.raw)
-  console.log('PoolCard:stakingInfo.stakedAmount.raw.toString = ', stakingInfo.stakedAmount.raw.toString())
-  console.log('PoolCard:stakingInfo.stakedAmount.toFixed = ', stakingInfo.stakedAmount.toFixed(18, { groupSeparator: ',' }))
-  console.log('PoolCard:isStaking = ', isStaking)
+  // console.log('PoolCard:stakingInfo.stakedAmount = ', stakingInfo.stakedAmount)
+  // console.log('PoolCard:stakingInfo.stakedAmount.raw = ', stakingInfo.stakedAmount.raw)
+  // console.log('PoolCard:stakingInfo.stakedAmount.raw.toString = ', stakingInfo.stakedAmount.raw.toString())
+  // console.log('PoolCard:stakingInfo.stakedAmount.toFixed = ', stakingInfo.stakedAmount.toFixed(18, { groupSeparator: ',' }))
+  // console.log('PoolCard:isStaking = ', isStaking)
   const token = token1.equals(UNDEFINED[token1.chainId]) ? token0 : token1
 
   // get the color of the token
