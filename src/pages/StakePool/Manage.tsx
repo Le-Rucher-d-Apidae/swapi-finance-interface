@@ -154,9 +154,8 @@ export function ManagePair({
   return (
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
-
         <HistoryLink to="/stake-pool">
-            <StyledArrowLeft />
+          <StyledArrowLeft />
         </HistoryLink>
 
         <TYPE.mediumHeader style={{ margin: 0 }}>
