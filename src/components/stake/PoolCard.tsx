@@ -178,6 +178,20 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             <CurrencyLogo currency={rewardCurrency} size="24px" />
           </HorizontalMerge>
         </RowBetween>
+        {isStaking && (
+          <RowBetween>
+            <TYPE.white>Your Deposit value</TYPE.white>
+            <TYPE.white>
+              {`${stakingInfo.addressDepositStakedInUsd.toSignificant(4, { groupSeparator: ',' }) ??
+                '-'} ${''} ${USD_LABEL}`}
+              <TYPE.gray fontSize={14}>
+                {`${stakingInfo.addressDepositStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
+            </TYPE.white>
+          </RowBetween>
+        )}
         <RowBetween>
           <TYPE.white>Total deposited</TYPE.white>
           <TYPE.white>
