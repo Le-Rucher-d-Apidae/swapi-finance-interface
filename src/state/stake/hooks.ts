@@ -730,7 +730,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           // Single token staking
           const isTokenCurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId])
 
-          console.debug(`hooks:Single token staking`)
+          // console.debug(`hooks:Single token staking`)
           // console.debug(`hooks:isTokenCurrency = `, isTokenCurrency)
 
           if (
