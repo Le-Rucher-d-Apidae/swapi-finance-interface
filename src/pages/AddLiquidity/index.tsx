@@ -160,7 +160,7 @@ export default function AddLiquidity({
         deadline.toHexString()
       ]
       value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString())
-      console.debug(`method="router.addLiquidityETH" args=${args} value=${value}`)
+      // console.debug(`method="router.addLiquidityETH" args=${args} value=${value}`)
     } else {
       estimate = router.estimateGas.addLiquidity
       method = router.addLiquidity
@@ -174,7 +174,7 @@ export default function AddLiquidity({
         account,
         deadline.toHexString()
       ]
-      console.debug(`method="router.addLiquidity" args=${args}`)
+      // console.debug(`method="router.addLiquidity" args=${args}`)
       value = null
     }
 
