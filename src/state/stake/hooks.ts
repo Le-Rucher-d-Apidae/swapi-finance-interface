@@ -744,7 +744,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           // Total in single asset staking contract
           // totalSupply = amount of tokens deposited in the staking contract
           totalStakedAmount = new TokenAmount(tokens[0], totalSupply)
-        console.debug(`hooks:totalStakedAmount =`, totalStakedAmount.toFixed(18, { groupSeparator: ',' } ) )
+          // console.debug(`hooks:totalStakedAmount =`, totalStakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           // const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
           // console.debug(`pairTotalSupply.toString() = `, pairTotalSupply.toString() )
           // console.debug(`pairTotalSupplyState.result = `, pairTotalSupplyState.result )
@@ -753,7 +753,7 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
           // console.debug(`totalStakedAmount =`, totalStakedAmount.toFixed())
           if (balanceState && balanceState.result && balanceState.result[0] > 0) {
             stakedAmount = new TokenAmount(tokens[0], JSBI.BigInt(balanceState.result[0]))
-          console.debug(`hooks:stakedAmount (1) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
+            // console.debug(`hooks:stakedAmount (1) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           } else if (
             autocompounderSharesState &&
             autocompounderSharesState.result &&
@@ -770,11 +770,11 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
                 oneToken
               )
             )
-          console.debug(`hooks:stakedAmount (2) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
+            // console.debug(`hooks:stakedAmount (2) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
             useAutocompounding = true
           } else {
             stakedAmount = new TokenAmount(tokens[0], JSBI.BigInt(0))
-          console.debug(`hooks:stakedAmount (3) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
+            // console.debug(`hooks:stakedAmount (3) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           }
           // console.debug(`hooks:stakedAmount =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
@@ -811,8 +811,8 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
             : new TokenAmount(WCURRENCY[tokens[0].chainId], JSBI.BigInt(0))
         }
 
-        console.debug(`hooks:totalStakedInWcurrency:`, totalStakedInWcurrency.toFixed())
-        console.debug(`hooks:addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
+        // console.debug(`hooks:totalStakedInWcurrency:`, totalStakedInWcurrency.toFixed())
+        // console.debug(`hooks:addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
 
         const totalPoolDepositsStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
           // chainId,
