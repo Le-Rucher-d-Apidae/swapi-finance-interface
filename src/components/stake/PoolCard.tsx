@@ -77,7 +77,8 @@ const BottomSection = styled.div<{ showBackground: boolean }>`
   opacity: ${({ showBackground }) => (showBackground ? '1' : '0.4')};
   border-radius: 0 0 12px 12px;
   display: flex;
-  flex-direction: row;
+  // flex-direction: row;
+  flex-direction: column;
   align-items: baseline;
   justify-content: space-between;
   z-index: 1;
@@ -240,18 +241,35 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         <>
           <Break />
           <BottomSection showBackground={true}>
-            <TYPE.white fontWeight={500}>
-              <span>Your rate</span>
-            </TYPE.white>
-
-            <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
-              <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
-                ⚡
-              </span>
-              {`${stakingInfo.rewardRate?.multiply(`${secondsPerWeek}`)?.toSignificant(4, { groupSeparator: ',' })} ${
-                stakingInfo?.rewardToken.symbol
-              } / week`}
-            </TYPE.white>
+            <RowBetween>
+              <TYPE.white fontWeight={500}>
+                <span>Your rate</span>
+                <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
+                  ⚡
+                </span>
+              </TYPE.white>
+              <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
+                {`${stakingInfo.rewardRate?.multiply(`${secondsPerDay}`)?.toSignificant(10, { groupSeparator: ',' })} ${
+                  stakingInfo?.rewardToken.symbol
+                } / day`}
+              </TYPE.white>
+            </RowBetween>
+            <RowBetween>
+              <TYPE.white fontWeight={500}></TYPE.white>
+              <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
+                {`${stakingInfo.rewardRate
+                  ?.multiply(`${secondsPerWeek}`)
+                  ?.toSignificant(10, { groupSeparator: ',' })} ${stakingInfo?.rewardToken.symbol} / week`}
+              </TYPE.white>
+            </RowBetween>
+            <RowBetween>
+              <TYPE.white fontWeight={500}></TYPE.white>
+              <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
+                {`${stakingInfo.rewardRate
+                  ?.multiply(`${secondsPerYear}`)
+                  ?.toSignificant(10, { groupSeparator: ',' })} ${stakingInfo?.rewardToken.symbol} / year`}
+              </TYPE.white>
+            </RowBetween>
           </BottomSection>
         </>
       )}
