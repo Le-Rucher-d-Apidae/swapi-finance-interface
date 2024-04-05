@@ -212,9 +212,9 @@ export function colors(darkMode: boolean): Colors {
     poolCardBg1: darkMode ? lightPurple2 : yellow2,
     poolCardBgStaked: darkMode ? lightPurple3 : yellow2,
     poolCardBgNotStaked: darkMode ? purple2 : grey,
-    poolCardBorder: darkMode ? grey : white,
-    poolInfoCardBorder: darkMode ? grey : white,
-    poolStakeUnstakeModalBorder: darkMode ? grey : white,
+    poolCardBorder: darkMode ? lightgrey : white,
+    poolInfoCardBorder: darkMode ? lightgrey : white,
+    poolStakeUnstakeModalBorder: darkMode ? lightgrey : white,
 
     // lightCardBG: darkMode ? purple1 : yellow1,
     // lightCardBG: darkMode ? darkPurple3 : darkYellow2,
