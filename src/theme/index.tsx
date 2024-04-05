@@ -66,6 +66,7 @@ const purple2 = '#3a3045' // 58, 48, 69
 const purple3 = '#4d418e' // 77, 65, 142
 
 const grey = '#888D9B'
+const lightgrey1 = '#D3D3D3'
 const lightgrey = '#e9e9e9'
 
 const black = '#000000'
@@ -90,6 +91,7 @@ export function colors(darkMode: boolean): Colors {
     text3: darkMode ? '#6C7284' : '#888D9B',
     text4: darkMode ? '#565A69' : '#C3C5CB',
     text5: darkMode ? lightPurple : white,
+    textgrey: darkMode ? lightgrey1 : lightgrey,
 
     // backgrounds / greys
     // bg1: darkMode ? '#212429' : '#FFFFFF',
@@ -336,7 +338,7 @@ export const TYPE = {
     return <TextWrapper fontWeight={500} color={'text3'} {...props} />
   },
   gray(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'bg3'} {...props} />
+    return <TextWrapper fontWeight={500} color={'textgrey'} {...props} />
   },
   italic(props: TextProps) {
     return <TextWrapper fontWeight={500} fontSize={12} fontStyle={'italic'} color={'text2'} {...props} />
