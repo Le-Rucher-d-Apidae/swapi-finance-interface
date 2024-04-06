@@ -122,22 +122,22 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
   let dailyRewardAmount: Fraction
   let weeklyRewardAmount: Fraction
-  let weeklyRewardPerCURRENCY: Fraction
-  let weeklyRewardPerUSD: Fraction
+  // let weeklyRewardPerCURRENCY: Fraction
+  // let weeklyRewardPerUSD: Fraction
   let yearlyRewardAmount: Fraction
 
   if (stakingInfo.totalStakedInWcurrency.equalTo(JSBI.BigInt(0))) {
     const ZERO = new Fraction(JSBI.BigInt(0))
     dailyRewardAmount = ZERO
     weeklyRewardAmount = ZERO
-    weeklyRewardPerCURRENCY = ZERO
-    weeklyRewardPerUSD = ZERO
+    // weeklyRewardPerCURRENCY = ZERO
+    // weeklyRewardPerUSD = ZERO
     yearlyRewardAmount = ZERO
   } else {
     dailyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerDay))
     weeklyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerWeek))
-    weeklyRewardPerCURRENCY = weeklyRewardAmount.divide(stakingInfo.totalStakedInWcurrency)
-    weeklyRewardPerUSD = weeklyRewardAmount.divide(stakingInfo.totalPoolDepositsStakedInUsd)
+    // weeklyRewardPerCURRENCY = weeklyRewardAmount.divide(stakingInfo.totalStakedInWcurrency)
+    // weeklyRewardPerUSD = weeklyRewardAmount.divide(stakingInfo.totalPoolDepositsStakedInUsd)
     yearlyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerYear))
   }
 
@@ -259,6 +259,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             </RowBetween>
           </>
         )}
+        {/* 
         <RowBetween>
           <TYPE.white> Current reward </TYPE.white>
           <TYPE.white>{`${weeklyRewardPerUSD.toFixed(4, { groupSeparator: ',' }) ?? '-'} ${
@@ -271,6 +272,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             stakingInfo?.rewardToken.symbol
           } / Week per ${CURRENCY.symbol}`}</TYPE.white>
         </RowBetween>
+ */}
       </StatContainer>
       {/*
       {autocompoundAvailable && (
