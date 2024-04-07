@@ -205,32 +205,43 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
     currencyUsdTokenRatio2 = currencyUsdTokenRatio
   } else if (usdToken.decimals > amountStakedInWcurrency.currency.decimals) {
     const decimalsDifference = usdToken.decimals - (usdToken.decimals - amountStakedInWcurrency.currency.decimals)
-    console.debug(`decimalsDifference: usd < currency : ${decimalsDifference}`)
+    console.debug(`decimalsDifference: usd > currency : ${decimalsDifference}`)
     const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
     console.debug(`decimalsDifference: x : ${x}`)
     currencyUsdTokenRatio2 = JSBI.divide(currencyUsdTokenRatio, x)
+    console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
+    // currencyUsdTokenRatio2 = JSBI.BigInt(1)
+    currencyUsdTokenRatio2 = currencyUsdTokenRatio
     console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
   } else {
     // usdToken.decimals < amountStakedInWcurrency.currency.decimals
     const decimalsDifference =
       amountStakedInWcurrency.currency.decimals - (amountStakedInWcurrency.currency.decimals - usdToken.decimals)
-    console.debug(`decimalsDifference: currency < usd : ${decimalsDifference}`)
+    console.debug(`decimalsDifference: currency > usd : ${decimalsDifference}`)
     const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
     console.debug(`decimalsDifference: x : ${x}`)
     currencyUsdTokenRatio2 = JSBI.multiply(currencyUsdTokenRatio, x)
     console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
   }
 
-  // TMP
+  const resAmount = JSBI.divide(
+    JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
+    currencyUsdTokenRatio2
+  )
+
+  // TEST
+  // const resAmount = JSBI.divide(
+  //   JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
+  //   currencyUsdTokenRatio2
+  //   JSBI.divide(currencyUsdTokenRatio, JSBI.BigInt(Math.sqrt(Math.pow(10, /* decimalsDifference */ 18))))
+  // )
+
+  // TEST
   // const resAmount = JSBI.divide(
   //   JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
   //   currencyUsdTokenRatio
   // )
 
-  const resAmount = JSBI.divide(
-    JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
-    currencyUsdTokenRatio2
-  )
   console.debug('resAmount:', resAmount)
   console.debug('JSBI.toNumber(resAmount):', JSBI.toNumber(resAmount))
   console.debug('resAmount.toString():', resAmount.toString())
@@ -504,9 +515,10 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   })
 
   const [currencySelfTokenPairState, currencySelfTokenPair] = usePair(WCURRENCY[CHAINID], selfToken)
+  // USD token in use for computing $USD values
   // const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
-  // const usdToken = USDCE[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
-  const usdToken = USDC32[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  const usdToken = USDCE[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  // const usdToken = USDC32[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
   const [currencyUSDTokenPairState, currencyUSDTokenPair] = usePair(WCURRENCY[CHAINID], usdToken)
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
