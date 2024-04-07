@@ -12,6 +12,17 @@ import { tryParseAmount } from '../swap/hooks'
 // export const STAKING_GENESIS = 1600387200
 // export const REWARDS_DURATION_DAYS = 60
 
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+import { USDC18 } from '../../constants'
+import { USDC32 } from '../../constants'
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
 // Add staking rewards addresses here
 export const STAKING_REWARDS_INFO: {
   [chainId in ChainId]?: {
@@ -36,6 +47,12 @@ export const STAKING_REWARDS_INFO: {
       tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
       stakingRewardAddress: '0x358EaD5833BF9411ED9BDfEC0d2dC1e96815b91a', // optimization:    2000 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      tokens: [USDCE[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]], // pair: 0xB3b3FA19c65C7CBD1E0186983A4F36c53E66be22
+      rewardToken: USDCE[ChainId.MUMBAI],
+      stakingRewardAddress: '0xe9D5A2355490514Fe80f7D2d831F8a52607C537B', // optimization:    2000 ; verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     // {
@@ -145,28 +162,28 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   amountStakedInWcurrency: TokenAmount
   // amountStakedInToken: TokenAmount // Unused ?
 ): TokenAmount {
-  // console.debug(`----------------------------------------->`)
-  // console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
-  // console.debug('currencyUsdTokenPairReserveOfUsd:', currencyUsdTokenPairReserveOfUsd)
-  // console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
-  // console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
-  // console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
-  // console.debug('amountStakedInWcurrency.raw', amountStakedInWcurrency.raw)
-  // console.debug('amountStakedInWcurrency.toExact()', amountStakedInWcurrency.toExact())
-  // console.debug('amountStakedInWcurrency.toFixed()', amountStakedInWcurrency.toFixed(18, { groupSeparator: ',' }))
+  console.debug(`----------------------------------------->`)
+  console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
+  console.debug('currencyUsdTokenPairReserveOfUsd:', currencyUsdTokenPairReserveOfUsd)
+  console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
+  console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
+  console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
+  console.debug('amountStakedInWcurrency.raw', amountStakedInWcurrency.raw)
+  console.debug('amountStakedInWcurrency.toExact()', amountStakedInWcurrency.toExact())
+  console.debug('amountStakedInWcurrency.toFixed()', amountStakedInWcurrency.toFixed(18, { groupSeparator: ',' }))
   // // console.debug('amountStakedInToken.toFixed()', amountStakedInToken.toFixed(18, { groupSeparator: ',' }))
   if (
     JSBI.equal(amountStakedInWcurrency.raw, JSBI.BigInt(0)) ||
     JSBI.equal(currencyUsdTokenPairReserveOfUsd, JSBI.BigInt(0))
   ) {
-    // console.debug('Zero 00 staked or zero reserves')
-    // console.debug(`<------------------------------------------`)
+    console.debug('Zero 00 staked or zero reserves')
+    console.debug(`<------------------------------------------`)
     return new TokenAmount(usdToken, JSBI.BigInt(0))
   }
 
   const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
-  // console.debug(`usdToken.decimals: ${usdToken.decimals}`)
-  // console.debug(`amountStakedInWcurrency.currency.decimals: ${amountStakedInWcurrency.currency.decimals}`)
+  console.debug(`usdToken.decimals: ${usdToken.decimals}`)
+  console.debug(`amountStakedInWcurrency.currency.decimals: ${amountStakedInWcurrency.currency.decimals}`)
 
   const currencyUsdTokenRatio = JSBI.divide(
     JSBI.multiply(oneToken, currencyUsdTokenPairReserveOfCurrency),
@@ -177,26 +194,31 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   //   JSBI.multiply(oneToken6, currencyUsdTokenPairReserveOfUsd)
   // ) // TEST
 
-  // console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
-  // console.debug(`JSBI.toNumber(currencyUsdTokenRatio): ${JSBI.toNumber(currencyUsdTokenRatio)}`)
-  // console.debug(`currencyUsdTokenRatio.toString(): ${currencyUsdTokenRatio.toString()}`)
+  console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
+  console.debug(`JSBI.toNumber(currencyUsdTokenRatio): ${JSBI.toNumber(currencyUsdTokenRatio)}`)
+  console.debug(`currencyUsdTokenRatio.toString(): ${currencyUsdTokenRatio.toString()}`)
 
   // Check decimals
   let currencyUsdTokenRatio2: JSBI
   if (usdToken.decimals === amountStakedInWcurrency.currency.decimals) {
+    console.debug(`decimalsDifference: EQUALS`)
     currencyUsdTokenRatio2 = currencyUsdTokenRatio
   } else if (usdToken.decimals > amountStakedInWcurrency.currency.decimals) {
     const decimalsDifference = usdToken.decimals - (usdToken.decimals - amountStakedInWcurrency.currency.decimals)
-    // console.debug(`decimalsDifference: ${decimalsDifference}`)
+    console.debug(`decimalsDifference: usd < currency : ${decimalsDifference}`)
     const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
+    console.debug(`decimalsDifference: x : ${x}`)
     currencyUsdTokenRatio2 = JSBI.divide(currencyUsdTokenRatio, x)
+    console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
   } else {
     // usdToken.decimals < amountStakedInWcurrency.currency.decimals
     const decimalsDifference =
       amountStakedInWcurrency.currency.decimals - (amountStakedInWcurrency.currency.decimals - usdToken.decimals)
-    // console.debug(`decimalsDifference: ${decimalsDifference}`)
+    console.debug(`decimalsDifference: currency < usd : ${decimalsDifference}`)
     const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
+    console.debug(`decimalsDifference: x : ${x}`)
     currencyUsdTokenRatio2 = JSBI.multiply(currencyUsdTokenRatio, x)
+    console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
   }
 
   // TMP
@@ -209,10 +231,10 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
     JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken)),
     currencyUsdTokenRatio2
   )
-  // console.debug('resAmount:', resAmount)
-  // console.debug('JSBI.toNumber(resAmount):', JSBI.toNumber(resAmount))
-  // console.debug('resAmount.toString():', resAmount.toString())
-  // console.debug(`<------------------------------------------`)
+  console.debug('resAmount:', resAmount)
+  console.debug('JSBI.toNumber(resAmount):', JSBI.toNumber(resAmount))
+  console.debug('resAmount.toString():', resAmount.toString())
+  console.debug(`<------------------------------------------`)
   return new TokenAmount(usdToken, resAmount)
 }
 
@@ -482,7 +504,9 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
   })
 
   const [currencySelfTokenPairState, currencySelfTokenPair] = usePair(WCURRENCY[CHAINID], selfToken)
-  const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  // const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  // const usdToken = USDCE[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  const usdToken = USDC32[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
   const [currencyUSDTokenPairState, currencyUSDTokenPair] = usePair(WCURRENCY[CHAINID], usdToken)
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
