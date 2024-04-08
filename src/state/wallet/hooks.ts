@@ -133,7 +133,7 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
 }
 
 // get the total owned and unharvested SELF_TOKEN for account
-export function useAggregateBagBalance(): TokenAmount | undefined {
+export function useAggregateSelfTokenBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 
   const selfToken = chainId ? SELF_TOKEN[chainId] : undefined

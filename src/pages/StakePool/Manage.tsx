@@ -33,10 +33,12 @@ import { BIG_INT_ZERO, SELF_TOKEN, USD_LABEL } from '../../constants'
 
 import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
+import { ArrowLeft } from 'react-feather'
+import { Link as HistoryLink } from 'react-router-dom'
+
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
-  border: 1px solid red;
   padding: 1rem;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
@@ -102,6 +104,10 @@ const StyledLogo = styled.img`
   width: 52px;
 `
 
+const StyledArrowLeft = styled(ArrowLeft)`
+  color: ${({ theme }) => theme.text1};
+`
+
 export function ManagePair({
   match: {
     params: { currencyIdA, currencyIdB }
@@ -147,6 +153,10 @@ export function ManagePair({
   return (
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
+        <HistoryLink to="/stake-pool">
+          <StyledArrowLeft />
+        </HistoryLink>
+
         <TYPE.mediumHeader style={{ margin: 0 }}>
           {currencyA?.symbol}-{currencyB?.symbol} Liquidity Mining
         </TYPE.mediumHeader>

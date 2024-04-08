@@ -11,7 +11,6 @@ import Loader from '../../components/Loader'
 import Toggle from '../../components/Toggle'
 import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@swapi-finance/sdk'
-import { LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -127,7 +126,9 @@ export default function Stake() {
           {stakingRewardsExist && stakingInfos?.length === 0 ? (
             <Loader style={{ margin: 'auto' }} />
           ) : !stakingRewardsExist ? (
-            'No active rewards'
+            <TYPE.warn warn={true} fontWeight={400} padding="12px">
+              No active rewards
+            </TYPE.warn>
           ) : (
             stakingInfoResults?.map(
               stakingInfo =>

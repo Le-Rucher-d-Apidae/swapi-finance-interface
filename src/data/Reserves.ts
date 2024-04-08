@@ -1,8 +1,6 @@
 import { JSBI, TokenAmount, Pair, Currency, ChainId } from '@swapi-finance/sdk'
 import { useMemo } from 'react'
-// import { abi as IBaguettePairABI } from '@swapi-finance/contracts/artifacts/contracts/swapi-core/interfaces/IBaguettePair.sol/IBaguettePair.json'
-// import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
-import { abi as IUniswapV2PairABI } from '@swapi-finance/contracts/artifacts/contracts/Uniswap/v2-core/interfaces/IUniswapV2Pair.sol/IUniswapV2Pair.json'
+import { abi as IUniswapV2PairABI } from '@swapi-finance/contracts/hardhat-artifacts/src/contracts/Uniswap/v2-core/interfaces/IUniswapV2Pair.sol/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 

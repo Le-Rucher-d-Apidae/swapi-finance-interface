@@ -18,6 +18,8 @@ export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to land
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
+export const oneToken18 = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
+
 const QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
@@ -47,12 +49,13 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-const APT: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xa67c2d46D7150a8633e3e50bcBdE8c6ab8284463', 18, 'APT02', 'APIDAE02'),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x0000000000000000000000000000000000000000', 18, 'APT', 'Apidae')
+const BWS: { [chainId in ChainId]: Token } = {
+  // [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWSTST', 'BeeWiseTst'),
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWS', 'BeeWise'),
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x01024b5D8CB02A12966D96A7b1Ea94C34085630B', 18, 'BWS', 'BeeWise')
 }
 
-export const SELF_TOKEN = APT
+export const SELF_TOKEN = BWS
 
 export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(
@@ -80,6 +83,18 @@ export const USDC: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USD Coin')
 }
+
+// ----------------------------------------------------------------------------
+// For testing purposes only
+// export const USDC18: { [chainId in ChainId]: Token } = {
+//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x5Ab310a2DEdEbda11F8e70a98b6043aE8b3510ee', 18, 'USD18TST', 'USD18Test')
+// }
+
+// export const USDC32: { [chainId in ChainId]: Token } = {
+//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x5aFa6e56442699519f8d9f3881F8FEE83Ba4F9F4', 32, 'USD32TST', 'USD32Test')
+// }
+
+// ----------------------------------------------------------------------------
 
 export const DAI: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(
@@ -229,6 +244,8 @@ export const INITIAL_ALLOWED_SLIPPAGE = 50
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 60
 
 export const BIG_INT_ZERO = JSBI.BigInt(0)
+export const BIG_INT_ONE = JSBI.BigInt(1)
+export const BIG_INT_TWO = JSBI.BigInt(2)
 
 // one basis point
 export const ONE_BIPS = new Percent(JSBI.BigInt(1), JSBI.BigInt(10000))
