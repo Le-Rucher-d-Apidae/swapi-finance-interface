@@ -266,11 +266,11 @@ export default function Swap() {
   ])
 
   const areKnownTokens = useCallback(() => {
-    console.debug('areKnownTokens')
+    // console.debug('areKnownTokens')
     // console.debug('loadedInputCurrency=', loadedInputCurrency)
     // console.debug('loadedOutputCurrency=', loadedOutputCurrency)
-    console.debug('loadedInputToken=', loadedInputToken)
-    console.debug('loadedOutputToken=', loadedOutputToken)
+    // console.debug('loadedInputToken=', loadedInputToken)
+    // console.debug('loadedOutputToken=', loadedOutputToken)
 
     // loadedInputToken, loadedOutputToken
 

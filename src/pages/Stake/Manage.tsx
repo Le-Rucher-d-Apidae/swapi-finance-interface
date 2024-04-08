@@ -29,11 +29,18 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 
-import { BIG_INT_ZERO, UNDEFINED, SELF_TOKEN } from '../../constants'
+import { BIG_INT_ZERO, UNDEFINED, SELF_TOKEN, USD_LABEL } from '../../constants'
+
+import { ArrowLeft } from 'react-feather'
+import { Link as HistoryLink } from 'react-router-dom'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
+  background: ${({ theme }) => theme.appBodyWrapperBackground};
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`
@@ -89,6 +96,10 @@ const StyledLogo = styled.img`
   width: 52px;
 `
 
+const StyledArrowLeft = styled(ArrowLeft)`
+  color: ${({ theme }) => theme.text1};
+`
+
 export function ManageSingle({
   match: {
     params: { currencyId, rewardCurrencyId }
@@ -110,6 +121,10 @@ export function ManageSingle({
   // const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
   // const valueOfTotalStakedAmount = stakingInfo?.totalStakedAmount
   const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
+  // Additinal staking info
+  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalPoolDepositsStakedInUsd
+  const valueOfAddressStakedAmountInWcurrency = stakingInfo?.addressDepositStakedInWcurrency
+  const valueOfAddressStakedAmountInUSD = stakingInfo?.addressDepositStakedInUsd
 
   // get the color of the token
   const backgroundColor = useColor(stakingToken)
@@ -137,17 +152,41 @@ export function ManageSingle({
   return (
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
+        <HistoryLink to="/stake">
+          <StyledArrowLeft />
+        </HistoryLink>
+
         <TYPE.mediumHeader style={{ margin: 0 }}>{currency?.symbol} Token Staking</TYPE.mediumHeader>
         <CurrencyLogo currency={currency ?? undefined} size="24px" />
       </RowBetween>
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Total Deposited</TYPE.body>
+            {/* <TYPE.body style={{ margin: 0 }}>Total Deposited</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 CURRENCY.symbol
               }`}
+            </TYPE.body> */}
+            <TYPE.body style={{ margin: 0 }}>Your Deposit value</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {`${valueOfAddressStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                valueOfAddressStakedAmountInUSD?.currency?.symbol
+              }`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfAddressStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
+            </TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Total Deposited value</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? ''} ${USD_LABEL}`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
             </TYPE.body>
           </AutoColumn>
         </PoolData>
