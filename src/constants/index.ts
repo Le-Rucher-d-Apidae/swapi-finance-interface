@@ -131,7 +131,13 @@ export const WBTC: { [chainId in ChainId]: Token } = {
 }
 
 export const WETH: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0xc199807AF4fEDB02EE567Ed0FeB814A077de4802',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.POLYGON]: new Token(
     ChainId.POLYGON,
     '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
