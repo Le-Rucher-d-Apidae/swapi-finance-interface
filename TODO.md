@@ -10,3 +10,7 @@ src/components/WalletModal/index.tsx
 sdk/test/*
 
 - test StakingRewards2
+
+- clean
+src/constants/index.ts
+src/components/Header/TokenBalanceContent.tsx
