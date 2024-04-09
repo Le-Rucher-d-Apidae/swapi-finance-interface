@@ -30,11 +30,6 @@ export type TokenAddressMap = Readonly<{ [chainId in ChainId]: Readonly<{ [token
 /**
  * An empty result, useful as a default.
  */
-// const EMPTY_LIST: TokenAddressMap = {
-//   [ChainId.FUJI]: {},
-//   [ChainId.AVALANCHE]: {},
-//   [ChainId.CRYPTOSEALS]: {},
-// }
 const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MUMBAI]: {},
   [ChainId.POLYGON]: {}
@@ -60,7 +55,6 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
       // if (tokenMap[token.chainId][token.address] !== undefined) throw Error('Duplicate tokens.')
       if (tokenInfo.chainId !== ChainId.MUMBAI && tokenInfo.chainId !== ChainId.POLYGON) {
         // Skip tokens that are not on the Polygon networks
-        // debugger
         return tokenMap
       }
       // Skip duplicate tokens instead of throwing an error

@@ -1,17 +1,12 @@
 import React, { useContext } from 'react'
 
-// import styled from 'styled-components'
 import styled, { keyframes, ThemeContext } from 'styled-components'
 import { AutoColumn } from '../../components/Column'
-// import { AutoRow } from '../../components/Row'
-// import { RowBetween, RowFixed } from '../../components/Row'
-// import { RowBetween } from '../../components/Row'
 import { Box } from 'rebass/styled-components'
 import { Text } from 'rebass'
 
 import { TYPE, StyledInternalLink } from '../../theme'
 import apidaeCoin from '../../assets/images/apidae-coin.png'
-// import { ButtonPrimary } from '../../components/Button'
 import { ButtonSecondary } from '../../components/Button'
 
 import { Link } from 'react-router-dom'

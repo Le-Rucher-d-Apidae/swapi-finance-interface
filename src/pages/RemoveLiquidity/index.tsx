@@ -59,8 +59,6 @@ export default function RemoveLiquidity({
     chainId
   ])
 
-  // debugger
-
   const theme = useContext(ThemeContext)
 
   // toggle wallet when disconnected
@@ -103,7 +101,6 @@ export default function RemoveLiquidity({
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  // const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE])
   const [approval, approveCallback] = useApproveCallback(
     parsedAmounts[Field.LIQUIDITY],
     chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.POLYGON]

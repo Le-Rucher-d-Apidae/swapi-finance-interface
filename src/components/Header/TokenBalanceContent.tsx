@@ -103,7 +103,6 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
       setCirculatingSupply(new TokenAmount(SELF_TOKEN[ChainId.POLYGON], JSBI.BigInt(0)))
       // totalSupply && setCirculatingSupply(totalSupply)
     }
-    // debugger
   }, [apd, chainId, totalSupply])
 */
   useEffect(() => {
@@ -121,7 +120,6 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
       !circulatingSupply && totalSupply && setCirculatingSupply(totalSupply)
       // console.debug(`apd=${chainId}, chainId=${chainId}, totalSupply=${totalSupply}`)
     }
-    // debugger
   }, [selfToken, chainId, totalSupply, circulatingSupply])
 
   // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY

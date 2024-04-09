@@ -4,11 +4,6 @@ import { ZERO_ADDRESS } from '..'
 import V1_EXCHANGE_ABI from './v1_exchange.json'
 import V1_FACTORY_ABI from './v1_factory.json'
 
-// const V1_FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
-//   [ChainId.FUJI]: ZERO_ADDRESS,
-//   [ChainId.AVALANCHE]: ZERO_ADDRESS,
-//   [ChainId.CRYPTOSEALS]: ZERO_ADDRESS,
-// }
 const V1_FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.MUMBAI]: ZERO_ADDRESS,
   [ChainId.POLYGON]: ZERO_ADDRESS
