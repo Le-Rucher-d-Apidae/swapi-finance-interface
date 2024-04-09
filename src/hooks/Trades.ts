@@ -17,17 +17,12 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
     ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
     : [undefined, undefined]
 */
-// console.log("currencyA",currencyA)
-// console.log("currencyB",currencyB)
   const bases: Token[] = useMemo(() => (chainId ? BASES_TO_CHECK_TRADES_AGAINST[chainId] : []), [chainId])
-// console.log("bases",bases)
   const [tokenA, tokenB] = useMemo(
     () =>
       chainId ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)] : [undefined, undefined],
     [currencyA, currencyB, chainId]
   )
-// console.log("tokenA",tokenA)
-// console.log("tokenB",tokenB)
   const basePairs: [Token, Token][] = useMemo(
     () =>
       flatMap(bases, (base): [Token, Token][] => bases.map(otherBase => [base, otherBase])).filter(
@@ -35,7 +30,6 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
       ),
     [bases]
   )
-// console.log("basePairs",basePairs)
 
   const allPairCombinations: [Token, Token][] = useMemo(
     () =>
