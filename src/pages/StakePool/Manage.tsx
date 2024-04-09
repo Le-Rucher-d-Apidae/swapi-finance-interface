@@ -110,18 +110,24 @@ const StyledArrowLeft = styled(ArrowLeft)`
 
 export function ManagePair({
   match: {
-    params: { currencyIdA, currencyIdB }
-  }
-}: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+    // params: { currencyIdA, currencyIdB }
+    params: { currencyIdA, currencyIdB, currencyIdR }
+  } // }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+}: RouteComponentProps<{ currencyIdA: string; currencyIdB: string; currencyIdR: string }>) {
   const { account, chainId } = useActiveWeb3React()
-
   // get currencies and pair
-  const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
+  // const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
+  const [currencyA, currencyB, currencyR] = [
+    useCurrency(currencyIdA),
+    useCurrency(currencyIdB),
+    useCurrency(currencyIdR)
+  ]
   const tokenA = wrappedCurrency(currencyA ?? undefined, chainId)
   const tokenB = wrappedCurrency(currencyB ?? undefined, chainId)
+  const tokenR = wrappedCurrency(currencyR ?? undefined, chainId)
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
-  const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
+  const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair, tokenR)?.[0]
   const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
   // Additinal staking info
   const valueOfTotalStakedAmountInUSD = stakingInfo?.totalPoolDepositsStakedInUsd
