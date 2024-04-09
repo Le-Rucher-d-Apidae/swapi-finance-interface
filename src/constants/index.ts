@@ -50,7 +50,6 @@ type ChainTokenList = {
 }
 
 const BWS: { [chainId in ChainId]: Token } = {
-  // [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWSTST', 'BeeWiseTst'),
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWS', 'BeeWise'),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x01024b5D8CB02A12966D96A7b1Ea94C34085630B', 18, 'BWS', 'BeeWise')
 }
@@ -83,18 +82,6 @@ export const USDC: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USD Coin')
 }
-
-// ----------------------------------------------------------------------------
-// For testing purposes only
-// export const USDC18: { [chainId in ChainId]: Token } = {
-//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x5Ab310a2DEdEbda11F8e70a98b6043aE8b3510ee', 18, 'USD18TST', 'USD18Test')
-// }
-
-// export const USDC32: { [chainId in ChainId]: Token } = {
-//   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0x5aFa6e56442699519f8d9f3881F8FEE83Ba4F9F4', 32, 'USD32TST', 'USD32Test')
-// }
-
-// ----------------------------------------------------------------------------
 
 export const DAI: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(
