@@ -154,7 +154,8 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
               {currency0?.symbol}-{currency1?.symbol}
             </TYPE.white>
             <InternalLink
-              to={`/stake-pool/${currencyId(currency0)}/${currencyId(currency1)}`}
+              // to={`/stake-pool/${currencyId(currency0)}/${currencyId(currency1)}`}
+              to={`/stake-pool/${currencyId(currency0)}/${currencyId(currency1)}/${currencyId(rewardCurrency)}`}
               style={{ width: '100%' }}
             >
               <ButtonPrimary padding="8px" borderradius="8px">

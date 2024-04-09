@@ -58,6 +58,12 @@ export const STAKING_REWARDS_INFO: {
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
+      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
+      rewardToken: WCURRENCY[ChainId.MUMBAI],
+      stakingRewardAddress: '0xF77049507bb161e54E54F106B9A9f32fAf459811', // optimization:    2000 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
       tokens: [USDCE[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]], // pair: 0xB3b3FA19c65C7CBD1E0186983A4F36c53E66be22
       rewardToken: USDCE[ChainId.MUMBAI],
       stakingRewardAddress: '0xe9D5A2355490514Fe80f7D2d831F8a52607C537B', // optimization:    2000 ; verified
@@ -258,52 +264,22 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
 }
 */
 const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
-  // chainId: ChainId,
   usdToken: Token,
-  // totalSupply: JSBI,
   currencyUsdTokenPairReserveOfUsd: JSBI,
   currencyUsdTokenPairReserveOfCurrency: JSBI,
-  // stakingTokenPairReserveOfUsd: JSBI,
-  // totalStakedAmount: TokenAmount
   amountStakedInWcurrency: TokenAmount
-  // amountStakedInToken: TokenAmount // Unused ?
 ): TokenAmount {
-  // console.debug(`----------------------------------------->`)
-  // console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
-  // console.debug('currencyUsdTokenPairReserveOfUsd:', currencyUsdTokenPairReserveOfUsd)
-  // console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
-  // console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
-  // console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
-  // console.debug('amountStakedInWcurrency.raw', amountStakedInWcurrency.raw)
-  // console.debug('amountStakedInWcurrency.toExact()', amountStakedInWcurrency.toExact())
-  // console.debug('amountStakedInWcurrency.toFixed()', amountStakedInWcurrency.toFixed(18, { groupSeparator: ',' }))
-  // // console.debug('amountStakedInToken.toFixed()', amountStakedInToken.toFixed(18, { groupSeparator: ',' }))
   if (
     JSBI.equal(amountStakedInWcurrency.raw, BIG_INT_ZERO) ||
     JSBI.equal(currencyUsdTokenPairReserveOfUsd, BIG_INT_ZERO)
   ) {
-    // console.debug('Zero 00 staked or zero reserves')
-    // console.debug(`<------------------------------------------`)
     return new TokenAmount(usdToken, BIG_INT_ZERO)
   }
-
-  // console.debug(`usdToken.decimals: ${usdToken.decimals}`)
-  // console.debug(`amountStakedInWcurrency.currency.decimals: ${amountStakedInWcurrency.currency.decimals}`)
-
   const currencyUsdTokenRatio = JSBI.divide(
     JSBI.multiply(oneToken18, currencyUsdTokenPairReserveOfCurrency),
     currencyUsdTokenPairReserveOfUsd
   )
-  // console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
-  // console.debug(`JSBI.toNumber(currencyUsdTokenRatio): ${JSBI.toNumber(currencyUsdTokenRatio)}`)
-  // console.debug(`currencyUsdTokenRatio.toString(): ${currencyUsdTokenRatio.toString()}`)
-
   const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, oneToken18), currencyUsdTokenRatio)
-
-  // console.debug('resAmount:', resAmount)
-  // console.debug('JSBI.toNumber(resAmount):', JSBI.toNumber(resAmount))
-  // console.debug('resAmount.toString():', resAmount.toString())
-  // console.debug(`<------------------------------------------`)
   return new TokenAmount(usdToken, resAmount)
 }
 
@@ -500,7 +476,11 @@ export const isUSDtoken = function(token: Token, chainId: ChainId): boolean {
 }
 
 // gets the staking info from the network for the active chain id
-export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair | null): StakingInfo[] {
+export function useStakingInfo(
+  stakingType: StakingType,
+  pairToFilterBy?: Pair | null,
+  rewardToken?: Token | null
+): StakingInfo[] {
   const { chainId, account } = useActiveWeb3React()
   const CHAINID = chainId ? chainId : ChainId.POLYGON
   const info = useMemo(
@@ -511,11 +491,15 @@ export function useStakingInfo(stakingType: StakingType, pairToFilterBy?: Pair |
               ? true
               : pairToFilterBy === null
               ? false
+              : rewardToken
+              ? pairToFilterBy.involvesToken(stakingRewardInfo.tokens[0]) &&
+                pairToFilterBy.involvesToken(stakingRewardInfo.tokens[1]) &&
+                stakingRewardInfo.rewardToken.equals(rewardToken)
               : pairToFilterBy.involvesToken(stakingRewardInfo.tokens[0]) &&
                 pairToFilterBy.involvesToken(stakingRewardInfo.tokens[1])
           ) ?? []
         : [],
-    [chainId, pairToFilterBy]
+    [chainId, pairToFilterBy, rewardToken]
   )
   const oneToken = oneToken18
   const selfToken = SELF_TOKEN[CHAINID]
