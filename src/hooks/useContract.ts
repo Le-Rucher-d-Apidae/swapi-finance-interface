@@ -1,7 +1,8 @@
 import { Contract } from '@ethersproject/contracts'
 import { WCURRENCY } from '@swapi-finance/sdk'
 import { abi as IUniswapV2PairABI } from '@swapi-finance/contracts/hardhat-artifacts/src/contracts/Uniswap/v2-core/interfaces/IUniswapV2Pair.sol/IUniswapV2Pair.json'
-import { abi as STAKING_REWARDS_ABI } from '@swapi-finance/contracts/hardhat-artifacts/src/contracts/StakingRewards.sol/StakingRewards.json'
+import { abi as STAKING_REWARDS_ABI } from '@swapi-finance/contracts/hardhat-artifacts/src/contracts/StakingRewards2.sol/StakingRewards2.json'
+
 import { useMemo } from 'react'
 import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
