@@ -14,7 +14,7 @@ Buy them, earn them, spend them, use them for yield farming or staking all while
 
 ## BWS Token
 
-The Apidae token (BWS) is an electronic representation of an apiary in order to contribute to the
+The BeeWise token (BWS) is an electronic representation of an apiary in order to contribute to the
 preservation of bees. The token was created in 2022 to change the status into a sole proprietorship and
 to allow local actions on the objective.
 
@@ -25,7 +25,7 @@ to allow local actions on the objective.
 ## Links
 
 - Website: [baguette.exchange](https://swapi.finance/)
-- Token Contract : [Polygon Explorer](https://cchain.explorer.avax.network/address/0xa1144a6A1304bd9cbb16c800F7a867508726566E/transactions)
+- Token Contract : [Polygon Explorer](https://polygonscan.com/token/0x01024b5d8cb02a12966d96a7b1ea94c34085630b)
 - White Paper: [whitepaper](https://drive.google.com/file/d/1dxIxYjNvkzPFuN9SZtDWgVFCJ03SDljR/view)
 - Interface: [app.swapi.finance](https://app.swapi.finance)
 - Analytics: [info.swapi.finance](https://info.swapi.finance)
