@@ -45,71 +45,19 @@ export const STAKING_REWARDS_INFO: {
     //
     // Stake-Farm = rewarded pairs
     //
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0x400d849B1F213576C9Af14045C5D21653d84B375
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x27C9bEF302e419F330217ecAD6645aCA93043503', // optimization:    2000 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x358EaD5833BF9411ED9BDfEC0d2dC1e96815b91a', // optimization:    2000 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
-      rewardToken: WCURRENCY[ChainId.MUMBAI],
-      stakingRewardAddress: '0xF77049507bb161e54E54F106B9A9f32fAf459811', // optimization:    2000 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
-    {
-      tokens: [USDCE[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]], // pair: 0xB3b3FA19c65C7CBD1E0186983A4F36c53E66be22
-      rewardToken: USDCE[ChainId.MUMBAI],
-      stakingRewardAddress: '0xe9D5A2355490514Fe80f7D2d831F8a52607C537B', // optimization:    2000 ; verified
-      autocompoundingAddress: ZERO_ADDRESS
-    },
     // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x555D73C526f7AF2A12a563dd0A14BD151ceb3e75', // optimization:    200 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0xA867c81ecD3C2B1FEe1aDCB81bF8c046E8b82f83', // optimization:    200 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x1EB6C52ba45EFc8cA57818AFFAef93F28645C2F4', // optimization:    200 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x8Ca8f10fdE0A7b46205d6b3d3BaD023f9b4f2706', // variable rate ; optimization:    800 ; verified
+    //   tokens: [TOKEN1[ChainId.MUMBAI], TOKEN2[ChainId.MUMBAI]], // pair: 0x...
+    //   rewardToken: REWARDTOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x....', // optimization: 2000
     //   autocompoundingAddress: ZERO_ADDRESS
     // },
     //
     // Stake = rewarded single tokens
     //
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      // variable rate ; optimization:    2000 ; verified
-      stakingRewardAddress: '0x0bcad82bda1de35b6df07002fe59e933369f90a0',
-      // variable rate ; optimization:    2000 ; verified ; DEBUG
-      // stakingRewardAddress: '0xa72eb25b6Fd7f289bE889754cd7fFbF0bB32eA30',
-      autocompoundingAddress: ZERO_ADDRESS
-    }
     // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   // variable rate ; optimization:    2000 ; verified ; DEBUG
-    //   stakingRewardAddress: '0xa72eb25b6Fd7f289bE889754cd7fFbF0bB32eA30',
+    //   tokens: [TOKEN1[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: REWARDTOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x....', // optimization: 2000
     //   autocompoundingAddress: ZERO_ADDRESS
     // }
   ],
