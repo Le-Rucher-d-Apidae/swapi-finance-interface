@@ -121,7 +121,7 @@ export const STAKING_REWARDS_INFO: {
       tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
       // 0x0FA8781a83E46826621b3BC094Ea2A0212e71B23
       rewardToken: USDCE[ChainId.MUMBAI],
-      stakingRewardAddress: '0x5a79295251afa42ae372c75a9ce43cf937a0d930',
+      stakingRewardAddress: '0x5a79295251afa42ae372c75a9ce43cf937a0d930', // optimization: 20 000 // new: 0xE06CcACeD24a9a6e2D1fFFd6c5fe67CB5CdEb54A
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
