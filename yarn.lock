@@ -2890,21 +2890,21 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@swapi-finance/contracts@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.2.tgz#5eb2c7a126439b246d929b88a8ae307112b37ab2"
-  integrity sha512-cNiXrpCpeuXBiC/9LmTzAu/CeuNj1AHWxAMDXFAKwuCIJFPYlJ60MUgJvmIi7XrIUqI0tt0SUk6aN2l9GCmRjg==
+"@swapi-finance/contracts@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.3.tgz#50d524200834b803ed7879172532c2e450db755a"
+  integrity sha512-6R+hqpYxOdpEe7KI52XxdiUD5Q89y6OjKxyFE2hhI4NOjeXFEe3t7CoiJ0znZpAUbS3GAzPSqIVzmiqrr6M5eQ==
   dependencies:
     "@openzeppelin/contracts-3.4.1" "npm:@openzeppelin/contracts@3.4.1"
     "@openzeppelin/contracts-5.0.2" "npm:@openzeppelin/contracts@5.0.2"
 
-"@swapi-finance/sdk@^0.26.2":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.2.tgz#a12016cf113a6c58308241a9bce3da62faba5fc5"
-  integrity sha512-QAPj1q1v7XmKCRVEbPzJWGJYSIiCqLNhXTymsZJmuzZ+FKpleY/4QoYnGfjTumuh89e7gQd6NWmv24GaA4q82g==
+"@swapi-finance/sdk@^0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.3.tgz#0e903b2659be12f254b45a5c7e480d2f9f7da822"
+  integrity sha512-iLlnjwIJ1jwIKJOfoJlt6n3wkTk+qc60SMXjE9Ltm6Y8as4gCZ2YCLkgpHcb0hbhal57aIRbS17o84OX0jSUSA==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
-    "@swapi-finance/contracts" "^0.8.2"
+    "@swapi-finance/contracts" "^0.8.3"
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
     del-cli "^5.1.0"
@@ -3177,9 +3177,9 @@
   integrity sha512-5ImO01Fb8YsEOYpV+aeyGYztcYcjGsBvN4D7G5r1ef2cuQOpymjWNQi5V0rKHE6PC2ru3HkoUr/Br2/8GUA84w==
 
 "@types/node@>=13.7.0":
-  version "20.12.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.6.tgz#72d068870518d7da1d97b49db401e2d6a1805294"
-  integrity sha512-3KurE8taB8GCvZBPngVbp0lk5CKi8M9f9k1rsADh0Evdz5SzJ+Q+Hx9uHoFGsLnLnd1xmkDQr2hVhlA0Mn0lKQ==
+  version "20.12.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.7.tgz#04080362fa3dd6c5822061aa3124f5c152cff384"
+  integrity sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==
   dependencies:
     undici-types "~5.26.4"
 
