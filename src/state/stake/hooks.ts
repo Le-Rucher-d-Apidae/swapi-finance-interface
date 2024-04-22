@@ -41,77 +41,105 @@ export const STAKING_REWARDS_INFO: {
   }[]
 } = {
   [ChainId.MUMBAI]: [
-    // Not working : Adding a new staking contract with an EXISTING TOKEN PAIR and a different reward : amounts are mixed
+    // Supported : Adding a new staking contract with an EXISTING TOKEN PAIR and a different reward
     //
     // Stake-Farm = rewarded pairs
     //
+    // {
+    //   tokens: [TOKEN1[ChainId.MUMBAI], TOKEN2[ChainId.MUMBAI]], // pair: 0x...
+    //   rewardToken: REWARDTOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x....', // optimization: 2000
+    //   autocompoundingAddress: ZERO_ADDRESS
+    // },
     {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0x400d849B1F213576C9Af14045C5D21653d84B375
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812 / 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889 // pair: 0x400d849B1F213576C9Af14045C5D21653d84B375
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]],
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x27C9bEF302e419F330217ecAD6645aCA93043503', // optimization:    2000 ; verified
+      stakingRewardAddress: '0xe65c0cDBB52eF90CfD1D4B0056585DFBCD06f219', // optimization: 2000
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
-      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
+      // 0x1fdE0eCc619726f4cD597887C9F3b4c8740e19e2 / 0x52D800ca262522580CeBAD275395ca6e7598C014 // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
+      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]],
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
       rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      stakingRewardAddress: '0x358EaD5833BF9411ED9BDfEC0d2dC1e96815b91a', // optimization:    2000 ; verified
+      stakingRewardAddress: '0x964a991950f470CD98482c13De96a435F0eB9992', // optimization: 2000
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
-      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
+      // 0x1fdE0eCc619726f4cD597887C9F3b4c8740e19e2 / 0x52D800ca262522580CeBAD275395ca6e7598C014 // pair: 0x6D6Ea07A58A0df3aBAA7C0145A71EC2Ba1017417
+      tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]],
+      // 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
       rewardToken: WCURRENCY[ChainId.MUMBAI],
-      stakingRewardAddress: '0xF77049507bb161e54E54F106B9A9f32fAf459811', // optimization:    2000 ; verified
+      stakingRewardAddress: '0xE87A19691eD22344b688Ff5178d141a891Ce82eD', // optimization:    2000 ; verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     {
-      tokens: [USDCE[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]], // pair: 0xB3b3FA19c65C7CBD1E0186983A4F36c53E66be22
+      // 0x0FA8781a83E46826621b3BC094Ea2A0212e71B23 / 0xA8ba2F145022beF46126BD2160d457cA10C46812 // pair: 0xB3b3FA19c65C7CBD1E0186983A4F36c53E66be22
+      tokens: [USDCE[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]],
+      // 0x0FA8781a83E46826621b3BC094Ea2A0212e71B23
       rewardToken: USDCE[ChainId.MUMBAI],
-      stakingRewardAddress: '0xe9D5A2355490514Fe80f7D2d831F8a52607C537B', // optimization:    2000 ; verified
+      stakingRewardAddress: '0x1b9F620290C10dCD4ffD952bACA300E1B6758FEC', // optimization:    2000 ; verified
       autocompoundingAddress: ZERO_ADDRESS
     },
-    // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x555D73C526f7AF2A12a563dd0A14BD151ceb3e75', // optimization:    200 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [USDT[ChainId.MUMBAI], WCURRENCY[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0xA867c81ecD3C2B1FEe1aDCB81bF8c046E8b82f83', // optimization:    200 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x1EB6C52ba45EFc8cA57818AFFAef93F28645C2F4', // optimization:    200 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
-    // {
-    //   tokens: [USDT[ChainId.MUMBAI], USDC[ChainId.MUMBAI]], // pair: 0xDAD0B1f17Ad266599D0fB6e568b2dD1C6F3EB33D
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   stakingRewardAddress: '0x8Ca8f10fdE0A7b46205d6b3d3BaD023f9b4f2706', // variable rate ; optimization:    800 ; verified
-    //   autocompoundingAddress: ZERO_ADDRESS
-    // },
+    {
+      // 0x0FA8781a83E46826621b3BC094Ea2A0212e71B23 / 0xA8ba2F145022beF46126BD2160d457cA10C46812 // pair: 0xB3b3FA19c65C7CBD1E0186983A4F36c53E66be22
+      tokens: [USDCE[ChainId.MUMBAI], SELF_TOKEN[ChainId.MUMBAI]],
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0xfaa7153e5A7E219A8cF7104E5990cd11F0d7702B', // optimization:    2000 ; verified
+      autocompoundingAddress: ZERO_ADDRESS
+    },
     //
     // Stake = rewarded single tokens
     //
-    {
-      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-      // variable rate ; optimization:    2000 ; verified
-      stakingRewardAddress: '0x0bcad82bda1de35b6df07002fe59e933369f90a0',
-      // variable rate ; optimization:    2000 ; verified ; DEBUG
-      // stakingRewardAddress: '0xa72eb25b6Fd7f289bE889754cd7fFbF0bB32eA30',
-      autocompoundingAddress: ZERO_ADDRESS
-    }
     // {
-    //   tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
-    //   rewardToken: SELF_TOKEN[ChainId.MUMBAI],
-    //   // variable rate ; optimization:    2000 ; verified ; DEBUG
-    //   stakingRewardAddress: '0xa72eb25b6Fd7f289bE889754cd7fFbF0bB32eA30',
+    //   tokens: [TOKEN1[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+    //   rewardToken: REWARDTOKEN[ChainId.MUMBAI],
+    //   stakingRewardAddress: '0x....', // optimization: 2000
     //   autocompoundingAddress: ZERO_ADDRESS
     // }
+    {
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x02180f98F94762E2DB3336250edc5f4A8870678e',
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      // 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
+      rewardToken: WCURRENCY[ChainId.MUMBAI],
+      stakingRewardAddress: '0x349167fE939A42722240ACFC44A590de2EFc2308',
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
+      tokens: [SELF_TOKEN[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      // 0x0FA8781a83E46826621b3BC094Ea2A0212e71B23
+      rewardToken: USDCE[ChainId.MUMBAI],
+      stakingRewardAddress: '0xE06CcACeD24a9a6e2D1fFFd6c5fe67CB5CdEb54A', // optimization: 20 000 // old: 0x5A79295251AfA42AE372c75A9cE43Cf937a0D930
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      // 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
+      tokens: [WCURRENCY[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      // 0xA8ba2F145022beF46126BD2160d457cA10C46812
+      rewardToken: SELF_TOKEN[ChainId.MUMBAI],
+      stakingRewardAddress: '0x0D34E3974644BF238ca133557bB221d891Ec340f',
+      autocompoundingAddress: ZERO_ADDRESS
+    },
+    {
+      // 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
+      tokens: [WCURRENCY[ChainId.MUMBAI], UNDEFINED[ChainId.MUMBAI]],
+      // 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
+      rewardToken: WCURRENCY[ChainId.MUMBAI],
+      stakingRewardAddress: '0xFEe7cDd431536CDa922F345564a332a52ed803D9',
+      autocompoundingAddress: ZERO_ADDRESS
+    }
   ],
   [ChainId.POLYGON]: []
 }
