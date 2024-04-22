@@ -4,7 +4,8 @@ import {
   Percent,
   Token,
   WCURRENCY,
-  FACTORY_ADDRESS_MAP as SDK_FACTORY_ADDRESS
+  FACTORY_ADDRESS_MAP as SDK_FACTORY_ADDRESS,
+  CURRENCY_LABEL as SDK_CURRENCY_LABEL
 } from '@swapi-finance/sdk'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
@@ -17,6 +18,8 @@ export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to land
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
+export const oneToken18 = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
+
 const QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
@@ -24,7 +27,8 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.POLYGON]: QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS // Polygon mainnet Quickswap (UniswapV2 based) router
 }
 
-export const CURRENCY_LABEL = 'MATIC'
+export const CURRENCY_LABEL = SDK_CURRENCY_LABEL
+export const USD_LABEL = 'USD'
 
 export const FACTORY_ADDRESS_MAP = SDK_FACTORY_ADDRESS
 
@@ -45,12 +49,12 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-const APT: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xa67c2d46D7150a8633e3e50bcBdE8c6ab8284463', 18, 'APT02', 'APIDAE02'),
-  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x0000000000000000000000000000000000000000', 18, 'APT', 'Apidae')
+const BWS: { [chainId in ChainId]: Token } = {
+  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xA8ba2F145022beF46126BD2160d457cA10C46812', 18, 'BWS', 'BeeWise'),
+  [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x01024b5D8CB02A12966D96A7b1Ea94C34085630B', 18, 'BWS', 'BeeWise')
 }
 
-export const SELF_TOKEN = APT
+export const SELF_TOKEN = BWS
 
 export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.MUMBAI]: new Token(
@@ -114,7 +118,13 @@ export const WBTC: { [chainId in ChainId]: Token } = {
 }
 
 export const WETH: { [chainId in ChainId]: Token } = {
-  [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, ZERO_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.MUMBAI]: new Token(
+    ChainId.MUMBAI,
+    '0xc199807AF4fEDB02EE567Ed0FeB814A077de4802',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.POLYGON]: new Token(
     ChainId.POLYGON,
     '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
@@ -227,6 +237,8 @@ export const INITIAL_ALLOWED_SLIPPAGE = 50
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 60
 
 export const BIG_INT_ZERO = JSBI.BigInt(0)
+export const BIG_INT_ONE = JSBI.BigInt(1)
+export const BIG_INT_TWO = JSBI.BigInt(2)
 
 // one basis point
 export const ONE_BIPS = new Percent(JSBI.BigInt(1), JSBI.BigInt(10000))

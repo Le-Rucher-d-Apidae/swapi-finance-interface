@@ -1,22 +1,20 @@
 import React, { useContext } from 'react'
 
-// import styled from 'styled-components'
 import styled, { keyframes, ThemeContext } from 'styled-components'
 import { AutoColumn } from '../../components/Column'
-// import { AutoRow } from '../../components/Row'
-// import { RowBetween, RowFixed } from '../../components/Row'
-// import { RowBetween } from '../../components/Row'
 import { Box } from 'rebass/styled-components'
 import { Text } from 'rebass'
 
 import { TYPE, StyledInternalLink } from '../../theme'
 import apidaeCoin from '../../assets/images/apidae-coin.png'
-// import { ButtonPrimary } from '../../components/Button'
 import { ButtonSecondary } from '../../components/Button'
 
 import { Link } from 'react-router-dom'
 import { darken } from 'polished'
+import { SELF_TOKEN, USDC } from '../../constants'
 // import { ReactComponent as Line } from '../../assets/images/line.svg'
+import { useActiveWeb3React } from '../../hooks'
+import { ChainId } from '@swapi-finance/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   padding: 0px;
@@ -127,6 +125,7 @@ const Bottom = styled.div`
 
 export default function Home() {
   const theme = useContext(ThemeContext)
+  const { chainId } = useActiveWeb3React()
   return (
     <>
       <PageWrapper>
@@ -140,15 +139,21 @@ export default function Home() {
             </TYPE.homeLarge>
 
             <TYPE.homeNormal>
-              Les jetons APT sont au cœur de l&apos;écosystème de Swapi qui fait le lien entre investisseur et
+              Les jetons BWS sont au c&oelig;ur de l&apos;écosystème de Swapi qui fait le lien entre investisseur et
               producteur. producteur. Achetez-les, gagnez-les, dépensez-les, utilisez-les pour le yield farming ou le en
-              en participant a une bonne œuvre.
+              en participant a une bonne &oelig;uvre.
             </TYPE.homeNormal>
 
             <Row display={'block'} padding={'20px 0px 0px 10px ;'}>
-              <ButtonBuy2 style={{ display: 'inline-block' }} as={Link} to={`/swap`}>
+              <ButtonBuy2
+                style={{ display: 'inline-block' }}
+                as={Link}
+                to={`swap?inputCurrency=${USDC[chainId ? chainId : ChainId.POLYGON].address}&outputCurrency=${
+                  SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].address
+                }`}
+              >
                 <Text fontWeight={500} fontSize={16}>
-                  Acheter des APT
+                  Acheter des BWS
                 </Text>
               </ButtonBuy2>
 
@@ -172,27 +177,27 @@ export default function Home() {
             <Grid>
               <PaddedColumn>
                 Quantité en circulation
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Apport total
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>--</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
-                <TYPE.homeMedium color={theme.textHighlight2}>6,5 mille $</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>-- $</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Total brûlé
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>--</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Émissions actuelles
-                <TYPE.homeMedium color={theme.textHighlight2}>0.095/bloc</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>--/bloc</TYPE.homeMedium>
               </PaddedColumn>
             </Grid>
           </AutoColumn>
@@ -206,6 +211,7 @@ export default function Home() {
         </Section2>
         <Section style={{ display: 'block', padding: '50px 0px', height: '20px' }}>
           <Bottom style={{ display: 'block' }}>
+            {/* 
             <AutoColumn gap="md" justify="flex-start">
               <TYPE.textBottom>Bottom 1</TYPE.textBottom>
             </AutoColumn>
@@ -215,6 +221,7 @@ export default function Home() {
             <AutoColumn gap="md" justify="flex-start">
               <TYPE.textBottom>Bottom 3</TYPE.textBottom>
             </AutoColumn>
+             */}
           </Bottom>
         </Section>
         {/* 
@@ -223,15 +230,15 @@ export default function Home() {
             <Grid>
               <PaddedColumn>
                 Quantité en circulation
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Apport total
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
@@ -239,7 +246,7 @@ export default function Home() {
               </PaddedColumn>
               <PaddedColumn>
                 Total brûlé
-                <TYPE.homeMedium color={theme.textHighlight2}>32,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Émissions actuelles

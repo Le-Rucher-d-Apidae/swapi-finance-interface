@@ -12,6 +12,7 @@ export interface Colors {
   text3: Color
   text4: Color
   text5: Color
+  textgrey: Color
 
   // backgrounds / greys
   bg1: Color
@@ -50,6 +51,8 @@ export interface Colors {
 
   // avaxRed: Color
   polygonPurple: Color
+
+  textWarn: Color
 
   pageBackground: Color
   appBodyWrapperBackground: Color

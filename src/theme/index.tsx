@@ -66,6 +66,7 @@ const purple2 = '#3a3045' // 58, 48, 69
 const purple3 = '#4d418e' // 77, 65, 142
 
 const grey = '#888D9B'
+const lightgrey1 = '#D3D3D3'
 const lightgrey = '#e9e9e9'
 
 const black = '#000000'
@@ -90,6 +91,7 @@ export function colors(darkMode: boolean): Colors {
     text3: darkMode ? '#6C7284' : '#888D9B',
     text4: darkMode ? '#565A69' : '#C3C5CB',
     text5: darkMode ? lightPurple : white,
+    textgrey: darkMode ? lightgrey1 : lightgrey,
 
     // backgrounds / greys
     // bg1: darkMode ? '#212429' : '#FFFFFF',
@@ -146,6 +148,8 @@ export function colors(darkMode: boolean): Colors {
 
     polygonPurple: '#8247e5',
 
+    textWarn: darkMode ? darkYellow2 : red1,
+
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
     // blue5: darkMode ? '#153d6f70' : '#EBF4FF',
@@ -189,8 +193,8 @@ export function colors(darkMode: boolean): Colors {
     buttonPrimaryHover: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryFocus: darkMode ? lightPurple : darkYellow2,
     buttonPrimaryBorder: darkMode ? lightPurple : darkYellow2,
-    buttonPrimaryDisabled: darkMode ? lightPurple : grey,
-    buttonPrimaryTextDisabled: darkMode ? white : white,
+    buttonPrimaryDisabled: darkMode ? darkPurple1 : grey, // xxxx
+    buttonPrimaryTextDisabled: darkMode ? grey : white, // darkGrey ?
 
     buttonSecondaryText: darkMode ? lightgrey : lightgrey,
     buttonSecondaryBg: darkMode ? purple1 : darkYellow2,
@@ -208,9 +212,9 @@ export function colors(darkMode: boolean): Colors {
     poolCardBg1: darkMode ? lightPurple2 : yellow2,
     poolCardBgStaked: darkMode ? lightPurple3 : yellow2,
     poolCardBgNotStaked: darkMode ? purple2 : grey,
-    poolCardBorder: darkMode ? grey : white,
-    poolInfoCardBorder: darkMode ? grey : white,
-    poolStakeUnstakeModalBorder: darkMode ? grey : white,
+    poolCardBorder: darkMode ? lightgrey : white,
+    poolInfoCardBorder: darkMode ? lightgrey : white,
+    poolStakeUnstakeModalBorder: darkMode ? lightgrey : white,
 
     // lightCardBG: darkMode ? purple1 : yellow1,
     // lightCardBG: darkMode ? darkPurple3 : darkYellow2,
@@ -334,13 +338,16 @@ export const TYPE = {
     return <TextWrapper fontWeight={500} color={'text3'} {...props} />
   },
   gray(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'bg3'} {...props} />
+    return <TextWrapper fontWeight={500} color={'textgrey'} {...props} />
   },
   italic(props: TextProps) {
     return <TextWrapper fontWeight={500} fontSize={12} fontStyle={'italic'} color={'text2'} {...props} />
   },
   error({ error, ...props }: { error: boolean } & TextProps) {
     return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
+  },
+  warn({ warn, ...props }: { warn: boolean } & TextProps) {
+    return <TextWrapper fontWeight={500} color={warn ? 'textWarn' : 'text2'} {...props} />
   },
   homeLarge(props: TextProps) {
     return <TextWrapper fontWeight={600} fontSize={32} {...props} />

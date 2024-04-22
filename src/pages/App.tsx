@@ -99,7 +99,9 @@ export default function App() {
               <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
               <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+              <Route exact strict path="/remove/:currencyIdA/:currencyIdB/:currencyIdR" component={RemoveLiquidity} />
               <Route exact strict path="/stake-pool/:currencyIdA/:currencyIdB" component={ManagePair} />
+              <Route exact strict path="/stake-pool/:currencyIdA/:currencyIdB/:currencyIdR" component={ManagePair} />
               <Route exact strict path="/stake/:currencyId/:rewardCurrencyId" component={ManageSingle} />
               <Route component={RedirectPathToSwapOnly} />
             </Switch>

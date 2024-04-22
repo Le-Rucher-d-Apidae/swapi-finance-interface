@@ -300,13 +300,18 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
           <RowBetween>
             <ButtonConfirmed
               mr="0.5rem"
+              disabled={
+                (autocompound
+                  ? autocompoundApproval !== ApprovalState.NOT_APPROVED
+                  : approval !== ApprovalState.NOT_APPROVED) || signatureData !== null
+              }
               onClick={onAttemptToApprove}
               confirmed={
                 (autocompound
                   ? autocompoundApproval === ApprovalState.APPROVED
                   : approval === ApprovalState.APPROVED) || signatureData !== null
               }
-              disabled={
+              altDisabledStyle={
                 (autocompound
                   ? autocompoundApproval !== ApprovalState.NOT_APPROVED
                   : approval !== ApprovalState.NOT_APPROVED) || signatureData !== null
@@ -315,6 +320,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
               Approve
             </ButtonConfirmed>
             <ButtonError
+              altDisabledStyle={true}
               disabled={
                 !!error ||
                 (signatureData === null &&

@@ -29,14 +29,16 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { currencyId } from '../../utils/currencyId'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
-import { BIG_INT_ZERO, SELF_TOKEN } from '../../constants'
+import { BIG_INT_ZERO, SELF_TOKEN, USD_LABEL } from '../../constants'
 
 import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
+
+import { ArrowLeft } from 'react-feather'
+import { Link as HistoryLink } from 'react-router-dom'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
-  border: 1px solid red;
   padding: 1rem;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.poolInfoCardBorder};
@@ -102,21 +104,35 @@ const StyledLogo = styled.img`
   width: 52px;
 `
 
+const StyledArrowLeft = styled(ArrowLeft)`
+  color: ${({ theme }) => theme.text1};
+`
+
 export function ManagePair({
   match: {
-    params: { currencyIdA, currencyIdB }
-  }
-}: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+    // params: { currencyIdA, currencyIdB }
+    params: { currencyIdA, currencyIdB, currencyIdR }
+  } // }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+}: RouteComponentProps<{ currencyIdA: string; currencyIdB: string; currencyIdR: string }>) {
   const { account, chainId } = useActiveWeb3React()
-
   // get currencies and pair
-  const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
+  // const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
+  const [currencyA, currencyB, currencyR] = [
+    useCurrency(currencyIdA),
+    useCurrency(currencyIdB),
+    useCurrency(currencyIdR)
+  ]
   const tokenA = wrappedCurrency(currencyA ?? undefined, chainId)
   const tokenB = wrappedCurrency(currencyB ?? undefined, chainId)
+  const tokenR = wrappedCurrency(currencyR ?? undefined, chainId)
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
-  const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair)?.[0]
-  const valueOfTotalStakedAmountInWavax = stakingInfo?.totalStakedInWcurrency
+  const stakingInfo = useStakingInfo(StakingType.PAIR, stakingTokenPair, tokenR)?.[0]
+  const valueOfTotalStakedAmountInWcurrency = stakingInfo?.totalStakedInWcurrency
+  // Additinal staking info
+  const valueOfTotalStakedAmountInUSD = stakingInfo?.totalPoolDepositsStakedInUsd
+  const valueOfAddressStakedAmountInWcurrency = stakingInfo?.addressDepositStakedInWcurrency
+  const valueOfAddressStakedAmountInUSD = stakingInfo?.addressDepositStakedInUsd
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -143,6 +159,10 @@ export function ManagePair({
   return (
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
+        <HistoryLink to="/stake-pool">
+          <StyledArrowLeft />
+        </HistoryLink>
+
         <TYPE.mediumHeader style={{ margin: 0 }}>
           {currencyA?.symbol}-{currencyB?.symbol} Liquidity Mining
         </TYPE.mediumHeader>
@@ -152,11 +172,26 @@ export function ManagePair({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Total Staked</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your Deposit value</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {`${valueOfTotalStakedAmountInWavax?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
-                CURRENCY.symbol
+              {`${valueOfAddressStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                valueOfAddressStakedAmountInUSD?.currency?.symbol
               }`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfAddressStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
+            </TYPE.body>
+
+            <TYPE.body style={{ margin: 0 }}>Total Deposited value</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {`${valueOfTotalStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? ''} ${USD_LABEL}`}
+              <TYPE.gray style={{ margin: 0 }} fontSize={16} fontWeight={300}>
+                {`${valueOfTotalStakedAmountInWcurrency?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
+                  CURRENCY.symbol
+                }`}
+              </TYPE.gray>
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -184,9 +219,7 @@ export function ManagePair({
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`${{ LIQUIDITY_TOKEN_SYMBOL }} tokens are required. Once you've added liquidity to the ${
-                    currencyA?.symbol
-                  }-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`${LIQUIDITY_TOKEN_SYMBOL} tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
