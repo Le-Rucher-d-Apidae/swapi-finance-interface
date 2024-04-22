@@ -185,19 +185,19 @@ export default function Home() {
               </PaddedColumn>
               <PaddedColumn>
                 Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>--</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
-                <TYPE.homeMedium color={theme.textHighlight2}>6,5 mille $</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>-- $</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Total brûlé
-                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>--</TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Émissions actuelles
-                <TYPE.homeMedium color={theme.textHighlight2}>0.095/bloc</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>--/bloc</TYPE.homeMedium>
               </PaddedColumn>
             </Grid>
           </AutoColumn>
@@ -211,6 +211,7 @@ export default function Home() {
         </Section2>
         <Section style={{ display: 'block', padding: '50px 0px', height: '20px' }}>
           <Bottom style={{ display: 'block' }}>
+            {/* 
             <AutoColumn gap="md" justify="flex-start">
               <TYPE.textBottom>Bottom 1</TYPE.textBottom>
             </AutoColumn>
@@ -220,6 +221,7 @@ export default function Home() {
             <AutoColumn gap="md" justify="flex-start">
               <TYPE.textBottom>Bottom 3</TYPE.textBottom>
             </AutoColumn>
+             */}
           </Bottom>
         </Section>
         {/* 
