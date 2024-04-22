@@ -7,7 +7,7 @@ import {
   USDC,
   DAI,
   UNDEFINED,
-  ZERO_ADDRESS,
+  // ZERO_ADDRESS,
   WETH,
   WBTC,
   oneToken18,
@@ -113,104 +113,6 @@ export interface StakingInfo {
   ) => TokenAmount
 }
 
-/*
-const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
-  // chainId: ChainId,
-  usdToken: Token,
-  // totalSupply: JSBI,
-  currencyUsdTokenPairReserveOfUsd: JSBI,
-  currencyUsdTokenPairReserveOfCurrency: JSBI,
-  // stakingTokenPairReserveOfUsd: JSBI,
-  // totalStakedAmount: TokenAmount
-  amountStakedInWcurrency: TokenAmount
-  // amountStakedInToken: TokenAmount // Unused ?
-): TokenAmount {
-  console.debug(`----------------------------------------->`)
-  console.debug(`calculateStakedAmountInUsdFromWcurrencyStakedAmount:`)
-  console.debug('currencyUsdTokenPairReserveOfUsd:', currencyUsdTokenPairReserveOfUsd)
-  console.debug('currencyUsdTokenPairReserveOfUsd.toString():', currencyUsdTokenPairReserveOfUsd.toString())
-  console.debug('currencyUsdTokenPairReserveOfCurrency:', currencyUsdTokenPairReserveOfCurrency)
-  console.debug('currencyUsdTokenPairReserveOfCurrency.toString():', currencyUsdTokenPairReserveOfCurrency.toString())
-  console.debug('amountStakedInWcurrency.raw', amountStakedInWcurrency.raw)
-  console.debug('amountStakedInWcurrency.toExact()', amountStakedInWcurrency.toExact())
-  console.debug('amountStakedInWcurrency.toFixed()', amountStakedInWcurrency.toFixed(18, { groupSeparator: ',' }))
-  // // console.debug('amountStakedInToken.toFixed()', amountStakedInToken.toFixed(18, { groupSeparator: ',' }))
-  if (
-    JSBI.equal(amountStakedInWcurrency.raw, BIG_INT_ZERO) ||
-    JSBI.equal(currencyUsdTokenPairReserveOfUsd, BIG_INT_ZERO)
-  ) {
-    console.debug('Zero 00 staked or zero reserves')
-    console.debug(`<------------------------------------------`)
-    return new TokenAmount(usdToken, BIG_INT_ZERO)
-  }
-
-  console.debug(`usdToken.decimals: ${usdToken.decimals}`)
-  console.debug(`amountStakedInWcurrency.currency.decimals: ${amountStakedInWcurrency.currency.decimals}`)
-
-  const currencyUsdTokenRatio = JSBI.divide(
-    JSBI.multiply(oneToken18, currencyUsdTokenPairReserveOfCurrency),
-    currencyUsdTokenPairReserveOfUsd
-  )
-  // const currencyUsdTokenRatio = JSBI.divide(
-  //   JSBI.multiply(oneToken18, currencyUsdTokenPairReserveOfCurrency),
-  //   JSBI.multiply(oneToken6, currencyUsdTokenPairReserveOfUsd)
-  // ) // TEST
-
-  console.debug(`currencyUsdTokenRatio: ${currencyUsdTokenRatio}`)
-  console.debug(`JSBI.toNumber(currencyUsdTokenRatio): ${JSBI.toNumber(currencyUsdTokenRatio)}`)
-  console.debug(`currencyUsdTokenRatio.toString(): ${currencyUsdTokenRatio.toString()}`)
-
-  // Check decimals
-  let currencyUsdTokenRatio2: JSBI
-  if (usdToken.decimals === amountStakedInWcurrency.currency.decimals) {
-    console.debug(`decimalsDifference: EQUALS`)
-    currencyUsdTokenRatio2 = currencyUsdTokenRatio
-  } else if (usdToken.decimals > amountStakedInWcurrency.currency.decimals) {
-    const decimalsDifference = usdToken.decimals - (usdToken.decimals - amountStakedInWcurrency.currency.decimals)
-    console.debug(`decimalsDifference: usd > currency : ${decimalsDifference}`)
-    const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
-    console.debug(`decimalsDifference: x : ${x}`)
-    currencyUsdTokenRatio2 = JSBI.divide(currencyUsdTokenRatio, x)
-    console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
-    // currencyUsdTokenRatio2 = BIG_INT_ONE
-    currencyUsdTokenRatio2 = currencyUsdTokenRatio
-    console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
-  } else {
-    // usdToken.decimals < amountStakedInWcurrency.currency.decimals
-    const decimalsDifference =
-      amountStakedInWcurrency.currency.decimals - (amountStakedInWcurrency.currency.decimals - usdToken.decimals)
-    console.debug(`decimalsDifference: currency > usd : ${decimalsDifference}`)
-    const x = JSBI.BigInt(Math.sqrt(Math.pow(10, decimalsDifference)))
-    console.debug(`decimalsDifference: x : ${x}`)
-    currencyUsdTokenRatio2 = JSBI.divide(currencyUsdTokenRatio, x)
-    console.debug(`decimalsDifference: currencyUsdTokenRatio2: ${currencyUsdTokenRatio2}`)
-  }
-
-  const resAmount = JSBI.divide(
-    JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken18)),
-    currencyUsdTokenRatio2
-  )
-
-  // TEST
-  // const resAmount = JSBI.divide(
-  //   JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken18)),
-  //   currencyUsdTokenRatio2
-  //   JSBI.divide(currencyUsdTokenRatio, JSBI.BigInt(Math.sqrt(Math.pow(10, 18))))
-  // )
-
-  // TEST
-  // const resAmount = JSBI.divide(
-  //   JSBI.multiply(amountStakedInWcurrency.raw, JSBI.BigInt(oneToken18)),
-  //   currencyUsdTokenRatio
-  // )
-
-  console.debug('resAmount:', resAmount)
-  console.debug('JSBI.toNumber(resAmount):', JSBI.toNumber(resAmount))
-  console.debug('resAmount.toString():', resAmount.toString())
-  console.debug(`<------------------------------------------`)
-  return new TokenAmount(usdToken, resAmount)
-}
-*/
 const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   usdToken: Token,
   currencyUsdTokenPairReserveOfUsd: JSBI,
@@ -231,45 +133,12 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
   return new TokenAmount(usdToken, resAmount)
 }
 
-/*
-const calculateTotalStakedAmountInCurrencyFromSelfToken = function(
-  chainId: ChainId,
-  totalSupply: JSBI,
-  currencySelfTokenPairReserveOfSelfToken: JSBI,
-  currencySelfTokenPairReserveOfOtherToken: JSBI,
-  stakingTokenPairReserveOfBag: JSBI,
-  totalStakedAmount: TokenAmount
-): TokenAmount {
-  if (JSBI.equal(totalSupply, BIG_INT_ZERO) || JSBI.equal(currencySelfTokenPairReserveOfSelfToken, BIG_INT_ZERO))
-    return new TokenAmount(WCURRENCY[chainId], BIG_INT_ZERO)
-  const currencySelfTokenRatio = JSBI.divide(
-    JSBI.multiply(oneToken18, currencySelfTokenPairReserveOfOtherToken),
-    currencySelfTokenPairReserveOfSelfToken
-  )
-  const valueOfSelfTokenInCurrency = JSBI.divide(
-    JSBI.multiply(stakingTokenPairReserveOfBag, currencySelfTokenRatio),
-    oneToken18
-  )
-  return new TokenAmount(
-    WCURRENCY[chainId],
-    JSBI.divide(
-      JSBI.multiply(
-        JSBI.multiply(totalStakedAmount.raw, valueOfSelfTokenInCurrency),
-        BIG_INT_TWO // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
-      ),
-      totalSupply
-    )
-  )
-}
-*/
 const calculateStakedAmountInCurrencyFromSelfToken = function(
   chainId: ChainId,
-  // stakingRewardsTotalSupply: JSBI,
   currencySelfTokenPairReserveOfSelfToken: JSBI,
   currencySelfTokenPairReserveOfWCurrencyToken: JSBI,
   stakingTokenPairReserveOfSelfToken: JSBI,
   stakedAmount: TokenAmount,
-  // test
   pairTotalSupply: JSBI
 ): TokenAmount {
   if (JSBI.equal(stakedAmount.raw, BIG_INT_ZERO) || JSBI.equal(currencySelfTokenPairReserveOfSelfToken, BIG_INT_ZERO))
@@ -283,63 +152,16 @@ const calculateStakedAmountInCurrencyFromSelfToken = function(
     JSBI.multiply(stakingTokenPairReserveOfSelfToken, currencySelfTokenRatio),
     oneToken18
   )
-  // return new TokenAmount(
-  //   WCURRENCY[chainId],
-  //   JSBI.divide(
-  //     JSBI.multiply(
-  //       JSBI.multiply(totalStakedAmount.raw, valueOfSelfTokenInCurrency),
-  //       BIG_INT_TWO // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
-  //     ),
-  //     stakingRewardsTotalSupply
-  //   )
-  // )
   const amount = JSBI.divide(
     JSBI.multiply(
       JSBI.multiply(stakedAmount.raw, valueOfSelfTokenInCurrency),
       BIG_INT_TWO // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
     ),
-    // stakingRewardsTotalSupply
     pairTotalSupply
   )
 
-  // console.debug(`------------------------------------------`)
-  // console.debug(`calculateStakedAmountInCurrencyFromSelfToken:`)
-  // console.debug(`params:`)
-  // // console.debug(`stakingRewardsTotalSupply`, stakingRewardsTotalSupply.toString())
-  // console.debug(`currencySelfTokenPairReserveOfSelfToken`, currencySelfTokenPairReserveOfSelfToken.toString())
-  // console.debug(`currencySelfTokenPairReserveOfWCurrencyToken`, currencySelfTokenPairReserveOfWCurrencyToken.toString())
-  // console.debug(`stakingTokenPairReserveOfSelfToken`, stakingTokenPairReserveOfSelfToken.toString())
-  // console.debug('stakedAmount:          ', stakedAmount.toFixed())
-  // console.debug(`pairTotalSupply:`, pairTotalSupply.toString())
-  // console.debug(`computed:`)
-  // console.debug(`currencySelfTokenRatio:     ${currencySelfTokenRatio}`)
-  // console.debug(`valueOfSelfTokenInCurrency: ${valueOfSelfTokenInCurrency}`)
-  // console.debug('amount:          ', amount.toString())
-  // console.debug(`------------------------------------------`)
-
   return new TokenAmount(WCURRENCY[chainId], amount)
 }
-/*
-const calculateTotalStakedAmountInCurrency = function(
-  chainId: ChainId,
-  totalSupply: JSBI,
-  reserveInWcurrency: JSBI,
-  totalStakedAmount: TokenAmount,
-): TokenAmount {
-  if (JSBI.equal(totalSupply, BIG_INT_ZERO)) return new TokenAmount(WCURRENCY[chainId], BIG_INT_ZERO)
-  // take the total amount of LP tokens staked, multiply by CURRENCY value of all LP tokens, divide by all LP tokens
-  return new TokenAmount(
-    WCURRENCY[chainId],
-    JSBI.divide(
-      JSBI.multiply(
-        JSBI.multiply(totalStakedAmount.raw, reserveInWcurrency),
-        BIG_INT_TWO // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
-      ),
-      totalSupply
-    )
-  )
-}
-*/
 
 const calculateStakedAmountInCurrency = function(
   chainId: ChainId,
@@ -358,16 +180,6 @@ const calculateStakedAmountInCurrency = function(
     ),
     pairTotalSupply
   )
-  // console.debug(`------------------------------------------`)
-  // console.debug(`calculateStakedAmountInCurrency:`)
-  // console.debug(`params:`)
-  // console.debug(`totalSupply`, totalSupply.toString())
-  // console.debug(`reserveInWcurrency`, reserveInWcurrency.toString())
-  // console.debug('totalStakedAmount:          ', totalStakedAmount.toFixed())
-  // console.debug(`pairTotalSupply:`, pairTotalSupply)
-  // console.debug(`computed:`)
-  // console.debug('amount:          ', amount.toString())
-  // console.debug(`------------------------------------------`)
 
   return new TokenAmount(WCURRENCY[chainId], amount)
 }
@@ -391,17 +203,6 @@ const calculateTotalStakedAmountInCurrencyFromToken = function(
     JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken18),
     stakingType === StakingType.PAIR ? BIG_INT_TWO : BIG_INT_ONE
   ) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
-
-  // console.debug(`------------------------------------------`)
-  // console.debug(`calculateTotalStakedAmountInCurrencyFromToken: TODO TEST`)
-  // console.debug(`params:`)
-  // console.debug(`chainId:`, chainId)
-  // console.debug(`currencyTokenPairReserveOfCurrency:`, currencyTokenPairReserveOfCurrency.toString())
-  // console.debug(`currencyTokenPairReserveOfToken`, currencyTokenPairReserveOfToken.toString())
-  // console.debug('totalStakedAmount:          ', totalStakedAmount.toFixed())
-  // console.debug(`computed:`)
-  // console.debug('amount:          ', amount.toString())
-  // console.debug(`------------------------------------------`)
 
   return new TokenAmount(WCURRENCY[chainId], amount)
 }
@@ -475,17 +276,11 @@ export function useStakingInfo(
   )
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
   const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
-  // console.debug(`useStakingInfo rewardsAddresses:`, rewardsAddresses, `totalSupplies:`, totalSupplies)
   const pairs = usePairs(tokens)
 
   const pairsAddresses = useMemo(() => pairs.map(pair => pair[1]?.liquidityToken.address), [pairs])
-  // console.debug(`useStakingInfo pairsAddresses:`, pairsAddresses)
 
   const pairTotalSupplies = useMultipleContractSingleData(pairsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
-
-  // pairTotalSupplies.forEach(pairTotalSupply => {
-  //   console.debug(`useStakingInfo pairTotalSupplies:`, pairTotalSupply?.result?.toString())
-  // })
 
   const currencyPairs = usePairs(tokens.map(pair => [WCURRENCY[CHAINID], pair[0]]))
 
@@ -501,9 +296,6 @@ export function useStakingInfo(
   const [currencySelfTokenPairState, currencySelfTokenPair] = usePair(WCURRENCY[CHAINID], selfToken)
   // USD token in use for computing $USD values
   const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
-  // const usdToken = USDCE[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
-  // const usdToken = USDC18[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
-  // const usdToken = USDC32[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
   const [currencyUSDTokenPairState, currencyUSDTokenPair] = usePair(WCURRENCY[CHAINID], usdToken)
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
@@ -547,7 +339,6 @@ export function useStakingInfo(
       // Adds a warning if the pair is not found
       // const isPair = tokens[1] !== UNDEFINED[tokens[1].chainId]
       const isPair = tokens[1] !== UNDEFINED[CHAINID]
-      // console.debug(`useStakingInfo tokens[0]`, tokens[0], ` tokens[1]: `, tokens[1], ` isPair:`, isPair)
       const [pairState, pair] = pairs[index]
       if ((isPair && stakingType === StakingType.SINGLE) || (!isPair && stakingType === StakingType.PAIR)) {
         return memo
@@ -592,11 +383,7 @@ export function useStakingInfo(
         }
         const totalSupply = JSBI.BigInt(totalSupplyState.result?.[0])
         // // Additional fields: pairTotalSupply, addressBalance
-        // console.debug(`useStakingInfo pairTotalSupplyState:`, pairTotalSupplyState)
-        // const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
         const addressBalance = JSBI.BigInt(balanceState.result?.[0])
-        // console.debug(`useStakingInfo totalSupply: ${totalSupply}`)
-        // console.debug(`useStakingInfo balanceState:`, balanceState?.result?.toString())
 
         let totalStakedInWcurrency: TokenAmount
         // Additional fields: addressDepositStakedInWcurrency, addressDepositStakedInUsd
@@ -648,9 +435,6 @@ export function useStakingInfo(
               currencyTokenPair.reserveOf(tokens[0]).raw,
               totalStakedAmount
             )
-            // console.debug(`Dual token staking`)
-            // console.debug(`isUSDPool: totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
-            // TODO: test
             addressDepositStakedInWcurrency = calculateTotalStakedAmountInCurrencyFromToken(
               stakingType,
               chainId,
@@ -658,7 +442,6 @@ export function useStakingInfo(
               currencyTokenPair.reserveOf(tokens[0]).raw,
               stakedAmount
             )
-            // TODO: test
             addressDepositStakedInUsd = calculateTotalStakedAmountInCurrencyFromToken(
               stakingType,
               chainId,
@@ -667,33 +450,10 @@ export function useStakingInfo(
               new TokenAmount(currencySelfTokenPair.liquidityToken, addressBalance)
             )
           } else {
-            // TODO: check it is always working
-            // const isCurrencyPool = tokens[0].equals(WCURRENCY[CHAINID])
             const isCurrencyPool = tokens[0].equals(WCURRENCY[CHAINID]) || tokens[1].equals(WCURRENCY[CHAINID])
-            // console.debug(`currencySelfTokenPair:`, currencySelfTokenPair)
-            // console.debug(`tokens[1].chainId:`, tokens[1].chainId)
-            // console.debug(`WCURRENCY[CHAINID]:`, WCURRENCY[CHAINID])
-            // console.debug(`selfToken:`, selfToken)
-            // console.debug(
-            //   `currencySelfTokenPair.reserveOf(selfToken).raw:`,
-            //   currencySelfTokenPair.reserveOf(selfToken).raw.toString()
-            // )
-            // console.debug(
-            //   `currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw:`,
-            //   currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw.toString()
-            // )
-            // console.debug(`pair.reserveOf(selfToken).raw:`, pair.reserveOf(selfToken).raw.toString())
-
             // Total in pool
             totalStakedInWcurrency = isCurrencyPool
-              ? // ? calculateTotalStakedAmountInCurrency(
-                //     chainId,
-                //     totalSupply,
-                //     pair.reserveOf(wcurrency).raw,
-                //     totalStakedAmount,
-                //     pairTotalSupply
-                //   )
-                calculateStakedAmountInCurrency(
+              ? calculateStakedAmountInCurrency(
                   chainId,
                   totalSupply,
                   pair.reserveOf(wcurrency).raw,
@@ -702,15 +462,7 @@ export function useStakingInfo(
                 )
               : wcurrencyPairNotFound
               ? new TokenAmount(WCURRENCY[chainId], BIG_INT_ZERO) // wcurrencyPairNotFound ? test avoids : Error: Invariant failed: TOKEN
-              : // : calculateTotalStakedAmountInCurrencyFromSelfToken(
-                //     chainId,
-                //     totalSupply,
-                //     currencySelfTokenPair.reserveOf(selfToken).raw,
-                //     currencySelfTokenPair.reserveOf(WCURRENCY[tokens[1].chainId]).raw,
-                //     pair.reserveOf(selfToken).raw,
-                //     totalStakedAmount,
-                //   )
-                calculateStakedAmountInCurrencyFromSelfToken(
+              : calculateStakedAmountInCurrencyFromSelfToken(
                   chainId,
                   currencySelfTokenPair.reserveOf(selfToken).raw,
                   currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw,
@@ -719,15 +471,9 @@ export function useStakingInfo(
                   pairTotalSupply
                 )
 
-            // console.debug(`hooks:Dual token staking`)
-            // console.debug(`hooks:isCurrencyPool = `, isCurrencyPool)
-            // console.debug(`hooks:wcurrencyPairNotFound = `, wcurrencyPairNotFound)
-            // console.debug(`hooks:totalStakedInWcurrency = `, totalStakedInWcurrency.toFixed())
-
             // User deposit in pool
             addressDepositStakedInWcurrency = isCurrencyPool
               ? calculateStakedAmountInCurrency(
-                  // TODO: TEST
                   chainId,
                   totalSupply,
                   pair.reserveOf(wcurrency).raw,
@@ -737,7 +483,6 @@ export function useStakingInfo(
               : wcurrencyPairNotFound
               ? new TokenAmount(WCURRENCY[chainId], BIG_INT_ZERO) // wcurrencyPairNotFound ? test avoids : Error: Invariant failed: TOKEN
               : calculateStakedAmountInCurrencyFromSelfToken(
-                  // TESTED OK
                   chainId,
                   currencySelfTokenPair.reserveOf(selfToken).raw,
                   currencySelfTokenPair.reserveOf(WCURRENCY[CHAINID]).raw,
@@ -745,14 +490,10 @@ export function useStakingInfo(
                   new TokenAmount(currencySelfTokenPair.liquidityToken, addressBalance),
                   pairTotalSupply
                 )
-            // console.debug(`addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
           }
         } else {
           // Single token staking
           const isTokenCurrency = tokens[0].equals(WCURRENCY[tokens[0].chainId])
-
-          // console.debug(`hooks:Single token staking`)
-          // console.debug(`hooks:isTokenCurrency = `, isTokenCurrency)
 
           if (
             !isTokenCurrency &&
@@ -761,20 +502,12 @@ export function useStakingInfo(
             console.error('Single token staking: Invalid pair requested')
             return memo
           }
-          // console.debug(`after(return memo)`)
           // Total in single asset staking contract
           // totalSupply = amount of tokens deposited in the staking contract
           totalStakedAmount = new TokenAmount(tokens[0], totalSupply)
-          // console.debug(`hooks:totalStakedAmount =`, totalStakedAmount.toFixed(18, { groupSeparator: ',' } ) )
-          // const pairTotalSupply = JSBI.BigInt(pairTotalSupplyState.result?.[0])
-          // console.debug(`pairTotalSupply.toString() = `, pairTotalSupply.toString() )
-          // console.debug(`pairTotalSupplyState.result = `, pairTotalSupplyState.result )
-          // console.debug(`totalSupplies.toString() =`, totalSupplies[0].result?.toString())
 
-          // console.debug(`totalStakedAmount =`, totalStakedAmount.toFixed())
           if (balanceState && balanceState.result && balanceState.result[0] > 0) {
             stakedAmount = new TokenAmount(tokens[0], JSBI.BigInt(balanceState.result[0]))
-            // console.debug(`hooks:stakedAmount (1) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           } else if (
             autocompounderSharesState &&
             autocompounderSharesState.result &&
@@ -791,13 +524,10 @@ export function useStakingInfo(
                 oneToken
               )
             )
-            // console.debug(`hooks:stakedAmount (2) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
             useAutocompounding = true
           } else {
             stakedAmount = new TokenAmount(tokens[0], BIG_INT_ZERO)
-            // console.debug(`hooks:stakedAmount (3) =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           }
-          // console.debug(`hooks:stakedAmount =`, stakedAmount.toFixed(18, { groupSeparator: ',' } ) )
           totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
           totalStakedInWcurrency = isTokenCurrency
             ? totalStakedAmount
@@ -810,14 +540,6 @@ export function useStakingInfo(
                 totalStakedAmount
               )
             : new TokenAmount(WCURRENCY[tokens[0].chainId], BIG_INT_ZERO)
-
-          // TODO: compute amount
-          // TODO: compute amount
-          // TODO: compute amount
-          // TODO: compute amount
-          // TODO: compute amount
-          // TODO: compute amount
-          // addressDepositStakedInWcurrency = new TokenAmount(WCURRENCY[tokens[0].chainId], BIG_INT_ZERO)
 
           addressDepositStakedInWcurrency = isTokenCurrency
             ? stakedAmount
@@ -832,38 +554,18 @@ export function useStakingInfo(
             : new TokenAmount(WCURRENCY[tokens[0].chainId], BIG_INT_ZERO)
         }
 
-        // console.debug(`hooks:totalStakedInWcurrency:`, totalStakedInWcurrency.toFixed())
-        // console.debug(`hooks:addressDepositStakedInWcurrency:`, addressDepositStakedInWcurrency.toFixed())
-
         const totalPoolDepositsStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
-          // chainId,
           usdToken,
-          // totalSupply,
           currencyUSDTokenPair.reserveOf(usdToken).raw, // USD token reserve
           currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw, // WCurrency reserve
-          // currencyUSDTokenPair.reserveOf(usdToken).raw,
-          // totalStakedAmount
           totalStakedInWcurrency
-          // totalStakedAmount
         )
-        // console.debug(`hooks:currencyUSDTokenPair:`, currencyUSDTokenPair)
-        // console.debug(`hooks:totalPoolDepositsStakedInUsd:`, totalPoolDepositsStakedInUsd.toFixed())
-        // console.debug(`tokens:`, tokens)
-        // console.debug(`tokens[0]:`, tokens[0])
-        // console.debug(`tokens[1]:`, tokens[1])
-        // TODO: test
         addressDepositStakedInUsd = calculateStakedAmountInUsdFromWcurrencyStakedAmount(
-          // chainId,
           usdToken,
-          // totalSupply,
           currencyUSDTokenPair.reserveOf(usdToken).raw,
           currencyUSDTokenPair.reserveOf(WCURRENCY[tokens[0].chainId]).raw,
-          // currencyUSDTokenPair.reserveOf(usdToken).raw,
-          // totalStakedAmount
           addressDepositStakedInWcurrency // TODO: test
-          // stakedAmount
         )
-        // console.debug(`hooks:addressDepositStakedInUsd:`, addressDepositStakedInUsd.toFixed())
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
           totalStakedAmount: TokenAmount,
