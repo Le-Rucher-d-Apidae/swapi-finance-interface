@@ -72,7 +72,7 @@ export const STAKING_REWARDS_INFO: {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B / 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270
       tokens: [SELF_TOKEN[ChainId.POLYGON], WCURRENCY[ChainId.POLYGON]], // pair: 0x42B50F51c57Dc60663679f1Fe9260b89Fa6f88Ae
       rewardToken: SELF_TOKEN[ChainId.POLYGON], // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
-      stakingRewardAddress: '0x5bAfF3CF8466F98834fF247B6aA13a77Ac8535C6', // optimization: 10000 ; Verified
+      stakingRewardAddress: '0x0829FD4478C1133b6C52d684367C4c9351F6c215', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     // BWS / WBTC -> BWS
@@ -80,7 +80,7 @@ export const STAKING_REWARDS_INFO: {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B / 0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6
       tokens: [SELF_TOKEN[ChainId.POLYGON], WBTC[ChainId.POLYGON]], // pair: 0xB8971F1aFf1E617aB9fBF2b389d66bC5cc749B75
       rewardToken: SELF_TOKEN[ChainId.POLYGON], // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
-      stakingRewardAddress: '0x80fc1f627e01a5c625D15d0D269b03373397B90e', // optimization: 10000 ; Verified
+      stakingRewardAddress: '0xBA68789dB0241b0cc48676ec2742172a1133201E', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     // BWS / WETH -> BWS
@@ -88,7 +88,7 @@ export const STAKING_REWARDS_INFO: {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B / 0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619
       tokens: [SELF_TOKEN[ChainId.POLYGON], WETH[ChainId.POLYGON]], // pair: 0xB0472D9410FCf4bCeFe1B1BDa082B17c4a1d240e
       rewardToken: SELF_TOKEN[ChainId.POLYGON], // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
-      stakingRewardAddress: '0x4bD294FF118b13b1a65FC847286effCB9c242E16', // optimization: 10000 ; Verified
+      stakingRewardAddress: '0x6b89686716C2dfF87b561273F515034aF7A72721', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     //
@@ -99,7 +99,7 @@ export const STAKING_REWARDS_INFO: {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
       tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
       rewardToken: SELF_TOKEN[ChainId.POLYGON], // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
-      stakingRewardAddress: '0x45239C9DeF93b003Fa472A26233B909F7C5b5A96', // optimization: 10000 ; Verified
+      stakingRewardAddress: '0x4a0516419418863678a7440818fb12AC8719F61c', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     // BWS -> WETH
@@ -107,7 +107,7 @@ export const STAKING_REWARDS_INFO: {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
       tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
       rewardToken: WETH[ChainId.POLYGON], // 0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619
-      stakingRewardAddress: '0xc4c68A0CBf111470D102Bb00C7CCAAFF79dF7bBe', // optimization: 10000 ; Verified
+      stakingRewardAddress: '0x085222FC202d2661E6c3a16469Eb5F513089d7E6', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     },
     // BWS -> WBTC
@@ -115,7 +115,7 @@ export const STAKING_REWARDS_INFO: {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
       tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
       rewardToken: WBTC[ChainId.POLYGON], // 0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6
-      stakingRewardAddress: '0xC9A90aC1Ba2D787396d46dE1DCAD603A84f94c0b', // optimization: 10000 ; Verified
+      stakingRewardAddress: '0xC0b3E81A9fBA5aFda8B430cdB1a86A83347B59c4', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     }
   ]
