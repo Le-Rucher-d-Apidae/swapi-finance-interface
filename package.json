@@ -105,6 +105,7 @@
     "clean:build": "del-cli ./build/",
     "clean:all": "yarn run clean:build && yarn run clean:node",
     "clean:node": "del-cli ./node_modules/",
+    "dev": "yarn run start:default",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "serve": "serve build -l 3000",
