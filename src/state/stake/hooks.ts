@@ -362,6 +362,7 @@ export function useStakingInfo(
     undefined,
     NEVER_RELOAD
   )
+  // Additional states for variable reward rate ->
   const isVariableRewardRates = useMultipleContractSingleData(
     rewardsAddresses,
     STAKING_REWARDS_INTERFACE,
@@ -376,6 +377,7 @@ export function useStakingInfo(
     undefined,
     NEVER_RELOAD
   )
+  // Additional states for variable reward rate <-
   const periodFinishes = useMultipleContractSingleData(
     rewardsAddresses,
     STAKING_REWARDS_INTERFACE,
@@ -740,7 +742,11 @@ export function useStakingInfo(
     currencyUSDTokenPairState,
     usdToken,
     pairTotalSupplies,
-    CHAINID
+    CHAINID,
+    // Additional states for variable reward rate ->
+    isVariableRewardRates,
+    constantRewardRatesPerTokenStored
+    // Additional states for variable reward rate <-
   ])
 }
 
