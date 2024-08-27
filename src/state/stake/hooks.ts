@@ -686,7 +686,10 @@ export function useStakingInfo(
           )
         }
 
-        const individualRewardRate = getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
+        // const individualRewardRate = getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
+        const individualRewardRate = isVariableRewardRateState.result?.[0]
+          ? totalRewardRate
+          : getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
 
