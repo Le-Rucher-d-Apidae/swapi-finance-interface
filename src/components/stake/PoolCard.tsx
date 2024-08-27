@@ -115,6 +115,32 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
   const secondsPerWeek = secondsPerDay * 7
   const secondsPerYear = secondsPerDay * 365
 
+  const displayFixed = (amount: Fraction): string => {
+    if (amount.equalTo('0')) {
+      return '0'
+    }
+    if (amount.toFixed(0) !== '0') {
+      console.log(amount.toFixed(0))
+      return amount.toFixed(0, { groupSeparator: ',' })
+    }
+    if (amount.toFixed(3) !== '0') {
+      return amount.toFixed(4, { groupSeparator: ',' })
+    }
+    if (amount.toFixed(6) !== '0') {
+      return amount.toFixed(7, { groupSeparator: ',' })
+    }
+    if (amount.toFixed(9) !== '0') {
+      return amount.toFixed(10, { groupSeparator: ',' })
+    }
+    if (amount.toFixed(12) !== '0') {
+      return amount.toFixed(13, { groupSeparator: ',' })
+    }
+    if (amount.toFixed(15) !== '0') {
+      return amount.toFixed(18, { groupSeparator: ',' })
+    }
+    return amount.toFixed(0, { groupSeparator: ',' })
+  }
+
   let dailyRewardAmount: Fraction
   let weeklyRewardAmount: Fraction
   // let weeklyRewardPerCURRENCY: Fraction
@@ -130,10 +156,13 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
     yearlyRewardAmount = ZERO
   } else {
     dailyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerDay))
+    // console.log('dailyRewardAmount=', dailyRewardAmount.toFixed(18, { groupSeparator: ',' }))
     weeklyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerWeek))
+    // console.log('weeklyRewardAmount=', weeklyRewardAmount.toFixed(18, { groupSeparator: ',' }))
     // weeklyRewardPerCURRENCY = weeklyRewardAmount.divide(stakingInfo.totalStakedInWcurrency)
     // weeklyRewardPerUSD = weeklyRewardAmount.divide(stakingInfo.totalPoolDepositsStakedInUsd)
     yearlyRewardAmount = stakingInfo.totalRewardRate.multiply(JSBI.BigInt(secondsPerYear))
+    // console.log('yearlyRewardAmount=', yearlyRewardAmount.toFixed(18, { groupSeparator: ',' }))
   }
 
   return (
@@ -234,24 +263,18 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
         <RowBetween>
           <TYPE.white></TYPE.white>
-          <TYPE.white>{`${weeklyRewardAmount.toFixed(0, { groupSeparator: ',' })} ${
-            stakingInfo?.rewardToken.symbol
-          } / week`}</TYPE.white>
+          <TYPE.white>{`${displayFixed(weeklyRewardAmount)} ${stakingInfo?.rewardToken.symbol} / week`}</TYPE.white>
         </RowBetween>
 
         {showMorePoolRate && (
           <>
             <RowBetween>
               <TYPE.white></TYPE.white>
-              <TYPE.white>{`${dailyRewardAmount.toFixed(0, { groupSeparator: ',' })} ${
-                stakingInfo?.rewardToken.symbol
-              } / day`}</TYPE.white>
+              <TYPE.white>{`${displayFixed(dailyRewardAmount)} ${stakingInfo?.rewardToken.symbol} / day`}</TYPE.white>
             </RowBetween>
             <RowBetween>
               <TYPE.white></TYPE.white>
-              <TYPE.white>{`${yearlyRewardAmount.toFixed(0, { groupSeparator: ',' })} ${
-                stakingInfo?.rewardToken.symbol
-              } / year`}</TYPE.white>
+              <TYPE.white>{`${displayFixed(yearlyRewardAmount)} ${stakingInfo?.rewardToken.symbol} / year`}</TYPE.white>
             </RowBetween>
           </>
         )}
