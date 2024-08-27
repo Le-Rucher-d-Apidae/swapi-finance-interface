@@ -12,7 +12,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { injected } from '../connectors'
 
-export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to landing page
+export const LANDING_PAGE = 'https://swapi-finance.xyz/' // TODO: change to landing page
 // export const ANALYTICS_PAGE = 'https://info.baguette.exchange/' // TODO: change to analytics page
 // export const BRIDGE_PAGE = 'https://bridge.baguette.exchange/' // TODO: change to bridge page
 
