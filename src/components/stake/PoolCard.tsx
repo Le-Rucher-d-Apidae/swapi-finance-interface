@@ -98,7 +98,8 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
   const rewardToken = stakingInfo.rewardToken
   const isPair = token1 !== UNDEFINED[token1.chainId]
   // const autocompoundAvailable = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
-  const [showMoreMyRate, setShowMoreMyRate] = useState(false)
+  const [showMoreMyRateOneLP, setShowMoreMyRateOneLP] = useState(false)
+  const [showMoreMyRateTotalLP, setShowMoreMyRateTotalLP] = useState(false)
   const [showMorePoolRate, setShowMorePoolRate] = useState(false)
   const [showMorePoolSupplyData, setShowMorePoolSupplyData] = useState(false)
 
@@ -247,7 +248,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
           borderradius="12px"
           width="fit-content"
           onClick={() => setShowMorePoolSupplyData(!showMorePoolSupplyData)}
-          >
+        >
           {showMorePoolSupplyData ? (
             <>
               {' '}
@@ -263,7 +264,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         </ButtonEmpty>
 
         <RowBetween>
-          <TYPE.white></TYPE.white>
+          <TYPE.white />
           <TYPE.white>
             {'Deposited '}
             {new Fraction(stakingInfo.totalStakedAmount.raw, oneToken18).toSignificant(4, { groupSeparator: ',' })}
@@ -274,7 +275,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         {showMorePoolSupplyData && (
           <>
             <RowBetween>
-              <TYPE.gray></TYPE.gray>
+              <TYPE.gray />
               <TYPE.gray>
                 {'Max cap '}
                 {!stakingInfo.isVariableRewardRate
@@ -287,9 +288,9 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             </RowBetween>
             {stakingInfo.isVariableRewardRate && (
               <RowBetween>
-                <TYPE.white></TYPE.white>
+                <TYPE.white />
                 <TYPE.white>
-                {'Available '}
+                  {'Available '}
                   {new Fraction(
                     JSBI.subtract(stakingInfo.variableRewardMaxTotalSupply, stakingInfo.totalStakedAmount.raw),
                     oneToken18
@@ -322,18 +323,18 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         </ButtonEmpty>
 
         <RowBetween>
-          <TYPE.white></TYPE.white>
+          <TYPE.white />
           <TYPE.white>{`${displayFixed(weeklyRewardAmount)} ${stakingInfo?.rewardToken.symbol} / week`}</TYPE.white>
         </RowBetween>
 
         {showMorePoolRate && (
           <>
             <RowBetween>
-              <TYPE.white></TYPE.white>
+              <TYPE.white />
               <TYPE.white>{`${displayFixed(dailyRewardAmount)} ${stakingInfo?.rewardToken.symbol} / day`}</TYPE.white>
             </RowBetween>
             <RowBetween>
-              <TYPE.white></TYPE.white>
+              <TYPE.white />
               <TYPE.white>{`${displayFixed(yearlyRewardAmount)} ${stakingInfo?.rewardToken.symbol} / year`}</TYPE.white>
             </RowBetween>
           </>
@@ -372,12 +373,12 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 padding="6px 8px"
                 borderradius="12px"
                 width="fit-content"
-                onClick={() => setShowMoreMyRate(!showMoreMyRate)}
+                onClick={() => setShowMoreMyRateOneLP(!showMoreMyRateOneLP)}
               >
-                {showMoreMyRate ? (
+                {showMoreMyRateOneLP ? (
                   <>
                     {' '}
-                    <span>Your rate</span>
+                    <span>Your rate (1 LP)</span>
                     <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                       ⚡
                     </span>
@@ -385,7 +386,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                   </>
                 ) : (
                   <>
-                    <span>Your rate</span>
+                    <span>Your rate (1 LP)</span>
                     <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                       ⚡
                     </span>
@@ -402,7 +403,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                   ?.toSignificant(10, { groupSeparator: ',' })} ${stakingInfo?.rewardToken.symbol} / week`}
               </TYPE.white>
             </RowBetween>
-            {showMoreMyRate && (
+            {showMoreMyRateOneLP && (
               <>
                 <RowBetween>
                   <TYPE.white fontWeight={500}></TYPE.white>
@@ -423,6 +424,67 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 </RowBetween>
               </>
             )}
+
+            <RowFixed gap="8px">
+              <ButtonEmpty
+                padding="6px 8px"
+                borderradius="12px"
+                width="fit-content"
+                onClick={() => setShowMoreMyRateTotalLP(!showMoreMyRateTotalLP)}
+              >
+                {showMoreMyRateTotalLP ? (
+                  <>
+                    {' '}
+                    <span>Your rate (Total LP)</span>
+                    <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
+                      ⚡
+                    </span>
+                    <ChevronUp size="20" style={{ marginLeft: '10px' }} />
+                  </>
+                ) : (
+                  <>
+                    <span>Your rate (Total LP)</span>
+                    <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
+                      ⚡
+                    </span>
+                    <ChevronDown size="20" style={{ marginLeft: '10px' }} />
+                  </>
+                )}
+              </ButtonEmpty>
+            </RowFixed>
+            <RowBetween>
+              <TYPE.white fontWeight={500}></TYPE.white>
+              <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
+                {`${stakingInfo.rewardRate
+                  ?.multiply(`${secondsPerWeek}`)
+                  ?.multiply(stakingInfo?.stakedAmount)
+                  ?.toSignificant(10, { groupSeparator: ',' })} ${stakingInfo?.rewardToken.symbol} / week`}
+              </TYPE.white>
+            </RowBetween>
+            {showMoreMyRateTotalLP && (
+              <>
+                <RowBetween>
+                  <TYPE.white fontWeight={500}></TYPE.white>
+
+                  <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
+                    {`${stakingInfo.rewardRate
+                      ?.multiply(`${secondsPerDay}`)
+                      ?.multiply(stakingInfo?.stakedAmount)
+                      ?.toSignificant(10, { groupSeparator: ',' })} ${stakingInfo?.rewardToken.symbol} / day`}
+                  </TYPE.white>
+                </RowBetween>
+                <RowBetween>
+                  <TYPE.white fontWeight={500}></TYPE.white>
+                  <TYPE.white style={{ textAlign: 'right' }} fontWeight={500}>
+                    {`${stakingInfo.rewardRate
+                      ?.multiply(`${secondsPerYear}`)
+                      ?.multiply(stakingInfo?.stakedAmount)
+                      ?.toSignificant(10, { groupSeparator: ',' })} ${stakingInfo?.rewardToken.symbol} / year`}
+                  </TYPE.white>
+                </RowBetween>
+              </>
+            )}
+
           </BottomSection>
         </>
       )}
