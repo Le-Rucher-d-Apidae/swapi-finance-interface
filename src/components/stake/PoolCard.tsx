@@ -100,6 +100,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
   // const autocompoundAvailable = stakingInfo.autocompoundingAddress !== ZERO_ADDRESS
   const [showMoreMyRate, setShowMoreMyRate] = useState(false)
   const [showMorePoolRate, setShowMorePoolRate] = useState(false)
+  const [showMorePoolSupplyData, setShowMorePoolSupplyData] = useState(false)
 
   const currency0 = useCurrency(token0.address) ?? UNDEFINED[token0.chainId]
   const currency1 = useCurrency(token1.address) ?? UNDEFINED[token1.chainId]
@@ -241,36 +242,63 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
           </TYPE.white>
         </RowBetween>
 
+        <ButtonEmpty
+          padding="6px 8px"
+          borderradius="12px"
+          width="fit-content"
+          onClick={() => setShowMorePoolSupplyData(!showMorePoolSupplyData)}
+          >
+          {showMorePoolSupplyData ? (
+            <>
+              {' '}
+              <span>Pool supply</span>
+              <ChevronUp size="20" style={{ marginLeft: '10px' }} />
+            </>
+          ) : (
+            <>
+              <span>Pool supply</span>
+              <ChevronDown size="20" style={{ marginLeft: '10px' }} />
+            </>
+          )}
+        </ButtonEmpty>
+
         <RowBetween>
-          <TYPE.white>Pool deposited supply</TYPE.white>
+          <TYPE.white></TYPE.white>
+          <TYPE.white>deposited</TYPE.white>
           <TYPE.white>
             {new Fraction(stakingInfo.totalStakedAmount.raw, oneToken18).toSignificant(4, { groupSeparator: ',' })}
             {' LP'}
           </TYPE.white>
         </RowBetween>
 
-        <RowBetween>
-          <TYPE.white>Pool max total supply cap</TYPE.white>
-          <TYPE.white>
-            {!stakingInfo.isVariableRewardRate
-              ? '∞'
-              : new Fraction(stakingInfo.variableRewardMaxTotalSupply, oneToken18).toSignificant(4, {
-                  groupSeparator: ','
-                })}
-            {' LP'}
-          </TYPE.white>
-        </RowBetween>
-        {stakingInfo.isVariableRewardRate && (
-          <RowBetween>
-            <TYPE.gray>Available supply</TYPE.gray>
-            <TYPE.gray>
-              {new Fraction(
-                JSBI.subtract(stakingInfo.variableRewardMaxTotalSupply, stakingInfo.totalStakedAmount.raw),
-                oneToken18
-              ).toSignificant(4, { groupSeparator: ',' })}
-              {' LP'}
-            </TYPE.gray>
-          </RowBetween>
+        {showMorePoolSupplyData && (
+          <>
+            <RowBetween>
+              <TYPE.white></TYPE.white>
+              <TYPE.white>max cap</TYPE.white>
+              <TYPE.white>
+                {!stakingInfo.isVariableRewardRate
+                  ? '∞'
+                  : new Fraction(stakingInfo.variableRewardMaxTotalSupply, oneToken18).toSignificant(4, {
+                      groupSeparator: ','
+                    })}
+                {' LP'}
+              </TYPE.white>
+            </RowBetween>
+            {stakingInfo.isVariableRewardRate && (
+              <RowBetween>
+                <TYPE.white></TYPE.white>
+                <TYPE.gray>available</TYPE.gray>
+                <TYPE.gray>
+                  {new Fraction(
+                    JSBI.subtract(stakingInfo.variableRewardMaxTotalSupply, stakingInfo.totalStakedAmount.raw),
+                    oneToken18
+                  ).toSignificant(4, { groupSeparator: ',' })}
+                  {' LP'}
+                </TYPE.gray>
+              </RowBetween>
+            )}
+          </>
         )}
 
         <ButtonEmpty
