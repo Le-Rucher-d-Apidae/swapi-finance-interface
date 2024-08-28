@@ -264,8 +264,8 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
 
         <RowBetween>
           <TYPE.white></TYPE.white>
-          <TYPE.white>deposited</TYPE.white>
           <TYPE.white>
+            {'Deposited '}
             {new Fraction(stakingInfo.totalStakedAmount.raw, oneToken18).toSignificant(4, { groupSeparator: ',' })}
             {' LP'}
           </TYPE.white>
@@ -274,28 +274,28 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         {showMorePoolSupplyData && (
           <>
             <RowBetween>
-              <TYPE.white></TYPE.white>
-              <TYPE.white>max cap</TYPE.white>
-              <TYPE.white>
+              <TYPE.gray></TYPE.gray>
+              <TYPE.gray>
+                {'Max cap '}
                 {!stakingInfo.isVariableRewardRate
                   ? '∞'
                   : new Fraction(stakingInfo.variableRewardMaxTotalSupply, oneToken18).toSignificant(4, {
                       groupSeparator: ','
                     })}
                 {' LP'}
-              </TYPE.white>
+              </TYPE.gray>
             </RowBetween>
             {stakingInfo.isVariableRewardRate && (
               <RowBetween>
                 <TYPE.white></TYPE.white>
-                <TYPE.gray>available</TYPE.gray>
-                <TYPE.gray>
+                <TYPE.white>
+                {'Available '}
                   {new Fraction(
                     JSBI.subtract(stakingInfo.variableRewardMaxTotalSupply, stakingInfo.totalStakedAmount.raw),
                     oneToken18
                   ).toSignificant(4, { groupSeparator: ',' })}
                   {' LP'}
-                </TYPE.gray>
+                </TYPE.white>
               </RowBetween>
             )}
           </>
