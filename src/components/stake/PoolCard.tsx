@@ -14,7 +14,7 @@ import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise } from './styled'
-import { UNDEFINED, USD_LABEL } from '../../constants'
+import { oneToken18, UNDEFINED, USD_LABEL } from '../../constants'
 import { Fraction, CURRENCY } from '@swapi-finance/sdk'
 
 const StatContainer = styled.div`
@@ -240,6 +240,38 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
             </TYPE.gray>
           </TYPE.white>
         </RowBetween>
+
+        <RowBetween>
+          <TYPE.white>Pool deposited supply</TYPE.white>
+          <TYPE.white>
+            {new Fraction(stakingInfo.totalStakedAmount.raw, oneToken18).toSignificant(4, { groupSeparator: ',' })}
+            {' LP'}
+          </TYPE.white>
+        </RowBetween>
+
+        <RowBetween>
+          <TYPE.white>Pool max total supply cap</TYPE.white>
+          <TYPE.white>
+            {!stakingInfo.isVariableRewardRate
+              ? '∞'
+              : new Fraction(stakingInfo.variableRewardMaxTotalSupply, oneToken18).toSignificant(4, {
+                  groupSeparator: ','
+                })}
+            {' LP'}
+          </TYPE.white>
+        </RowBetween>
+        {stakingInfo.isVariableRewardRate && (
+          <RowBetween>
+            <TYPE.gray>Available supply</TYPE.gray>
+            <TYPE.gray>
+              {new Fraction(
+                JSBI.subtract(stakingInfo.variableRewardMaxTotalSupply, stakingInfo.totalStakedAmount.raw),
+                oneToken18
+              ).toSignificant(4, { groupSeparator: ',' })}
+              {' LP'}
+            </TYPE.gray>
+          </RowBetween>
+        )}
 
         <ButtonEmpty
           padding="6px 8px"
