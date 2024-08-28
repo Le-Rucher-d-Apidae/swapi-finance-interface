@@ -157,6 +157,8 @@ export interface StakingInfo {
   addressDepositStakedInWcurrency: TokenAmount
   addressDepositStakedInUsd: TokenAmount
   // usdToken: Token
+  isVariableRewardRate: boolean
+  variableRewardMaxTotalSupply: JSBI
 
   // use autocompounding
   useAutocompounding: boolean
@@ -362,6 +364,30 @@ export function useStakingInfo(
     undefined,
     NEVER_RELOAD
   )
+  // Additional states for variable reward rate ->
+  const isVariableRewardRates = useMultipleContractSingleData(
+    rewardsAddresses,
+    STAKING_REWARDS_INTERFACE,
+    'isVariableRewardRate',
+    undefined,
+    NEVER_RELOAD
+  )
+  const constantRewardRatesPerTokenStored = useMultipleContractSingleData(
+    rewardsAddresses,
+    STAKING_REWARDS_INTERFACE,
+    'constantRewardRatePerTokenStored',
+    undefined,
+    NEVER_RELOAD
+  )
+  const variableRewardMaxTotalSupplies = useMultipleContractSingleData(
+    rewardsAddresses,
+    STAKING_REWARDS_INTERFACE,
+    'variableRewardMaxTotalSupply',
+    undefined,
+    NEVER_RELOAD
+  )
+
+  // Additional states for variable reward rate <-
   const periodFinishes = useMultipleContractSingleData(
     rewardsAddresses,
     STAKING_REWARDS_INTERFACE,
@@ -383,9 +409,21 @@ export function useStakingInfo(
       const autocompounderSharesState = autocompounderShares[index]
       const autocompounderShareTokenRatioState = autocompounderShareTokenRatios[index]
 
+      // DEBUG
+      // console.debug('rewardRates: ', rewardRates)
+      // console.debug('isVariableRewardRates: ', isVariableRewardRates)
+      // console.debug('constantRewardRatesPerTokenStored: ', constantRewardRatesPerTokenStored)
+      // DEBUG
+
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
       const rewardRateState = rewardRates[index]
+      // Additional states for variable reward rate ->
+      const isVariableRewardRateState = isVariableRewardRates[index]
+      const constantRewardRatePerTokenStoredState = constantRewardRatesPerTokenStored[index]
+      const variableRewardMaxTotalSupplyState = variableRewardMaxTotalSupplies[index]
+      // Additional states for variable reward rate <-
+
       const periodFinishState = periodFinishes[index]
       // test
       const pairTotalSupplyState = pairTotalSupplies[index]
@@ -400,6 +438,7 @@ export function useStakingInfo(
       if ((isPair && stakingType === StakingType.SINGLE) || (!isPair && stakingType === StakingType.PAIR)) {
         return memo
       }
+      const isVariableRewardRate = isVariableRewardRateState.result?.[0]
       if (
         // these may be undefined if not logged in
         !balanceState?.loading &&
@@ -409,6 +448,14 @@ export function useStakingInfo(
         !totalSupplyState.loading &&
         rewardRateState &&
         !rewardRateState.loading &&
+        // Additional states for variable reward rate ->
+        isVariableRewardRateState &&
+        !isVariableRewardRateState.loading &&
+        constantRewardRatePerTokenStoredState &&
+        !constantRewardRatePerTokenStoredState.loading &&
+        variableRewardMaxTotalSupplyState &&
+        !variableRewardMaxTotalSupplyState.loading &&
+        // Additional states for variable reward rate <-
         periodFinishState &&
         !periodFinishState.loading &&
         ((isPair && pair && pairState !== PairState.LOADING) || !isPair) &&
@@ -481,7 +528,16 @@ export function useStakingInfo(
           } else {
             stakedAmount = new TokenAmount(dummyPair.liquidityToken, BIG_INT_ZERO)
           }
-          totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
+
+          // totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
+          totalRewardRate = isVariableRewardRate
+            ? new TokenAmount(selfToken, JSBI.BigInt(constantRewardRatePerTokenStoredState.result?.[0]))
+            : new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
+
+          // DEBUG
+          // console.debug('totalRewardRate 0 rewardRateState.result: ', rewardRateState.result)
+          // console.debug('totalRewardRate 0 totalRewardRate.toExact(): ', totalRewardRate.toExact())
+          // DEBUG
 
           const isUSDPool = isUSDtoken(tokens[0], tokens[0].chainId) && isUSDtoken(tokens[1], tokens[1].chainId)
           if (isUSDPool && currencyTokenPair) {
@@ -585,7 +641,15 @@ export function useStakingInfo(
           } else {
             stakedAmount = new TokenAmount(tokens[0], BIG_INT_ZERO)
           }
-          totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
+          // totalRewardRate = new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
+          totalRewardRate = isVariableRewardRate
+            ? new TokenAmount(selfToken, JSBI.BigInt(constantRewardRatePerTokenStoredState.result?.[0]))
+            : new TokenAmount(selfToken, JSBI.BigInt(rewardRateState.result?.[0]))
+
+          // DEBUG
+          // console.debug('totalRewardRate 1 rewardRateState.result: ', rewardRateState.result)
+          // console.debug('totalRewardRate 1 totalRewardRate.toExact(): ', totalRewardRate.toExact())
+          // DEBUG
           totalStakedInWcurrency = isTokenCurrency
             ? totalStakedAmount
             : currencyTokenPair
@@ -636,7 +700,16 @@ export function useStakingInfo(
           )
         }
 
-        const individualRewardRate = getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
+        // const individualRewardRate = getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
+        const individualRewardRate = isVariableRewardRate
+          ? totalRewardRate
+          : getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
+
+        // const variableRewardMaxTotalSupply = JSBI.divide(
+        //   JSBI.BigInt(variableRewardMaxTotalSupplyState.result?.[0]),
+        //   oneToken18 // 1e18 todo: check if this is correct for all cases e.g. wBTC
+        // )
+        const variableRewardMaxTotalSupply = JSBI.BigInt(variableRewardMaxTotalSupplyState.result?.[0])
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
 
@@ -651,6 +724,8 @@ export function useStakingInfo(
           sharesAmount: sharesAmount,
           rewardRate: individualRewardRate,
           totalRewardRate: totalRewardRate,
+          variableRewardMaxTotalSupply: variableRewardMaxTotalSupply,
+          isVariableRewardRate: isVariableRewardRate,
           stakedAmount: stakedAmount,
           totalStakedAmount: totalStakedAmount,
           totalStakedInWcurrency: totalStakedInWcurrency,
@@ -692,7 +767,12 @@ export function useStakingInfo(
     currencyUSDTokenPairState,
     usdToken,
     pairTotalSupplies,
-    CHAINID
+    CHAINID,
+    // Additional states for variable reward rate ->
+    isVariableRewardRates,
+    constantRewardRatesPerTokenStored,
+    variableRewardMaxTotalSupplies
+    // Additional states for variable reward rate <-
   ])
 }
 

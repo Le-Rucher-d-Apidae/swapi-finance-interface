@@ -20,10 +20,17 @@ import { TokenAddressMap } from '../state/lists/hooks'
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
   try {
-    return getAddress(value)
+    // console.debug(`isAddress value: ${value}`)
+    if (value) {
+      // console.debug(`isAddress getAddress(value): ${getAddress(value)}`)
+      return getAddress(value)
+    }
   } catch {
+    // console.debug(`isAddress error: ${value}`)
     return false
   }
+  // console.debug(`isAddress default false: ${value}`)
+  return false
 }
 
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
