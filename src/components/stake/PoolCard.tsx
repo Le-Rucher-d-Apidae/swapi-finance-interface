@@ -484,7 +484,6 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 </RowBetween>
               </>
             )}
-
           </BottomSection>
         </>
       )}
