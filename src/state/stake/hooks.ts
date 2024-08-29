@@ -10,7 +10,7 @@ import {
   ZERO_ADDRESS,
   WETH,
   WBTC,
-  oneToken18,
+  oneToken18JSBI,
   BIG_INT_ZERO,
   BIG_INT_ONE,
   BIG_INT_TWO
@@ -185,10 +185,10 @@ const calculateStakedAmountInUsdFromWcurrencyStakedAmount = function(
     return new TokenAmount(usdToken, BIG_INT_ZERO)
   }
   const currencyUsdTokenRatio = JSBI.divide(
-    JSBI.multiply(oneToken18, currencyUsdTokenPairReserveOfCurrency),
+    JSBI.multiply(oneToken18JSBI, currencyUsdTokenPairReserveOfCurrency),
     currencyUsdTokenPairReserveOfUsd
   )
-  const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, oneToken18), currencyUsdTokenRatio)
+  const resAmount = JSBI.divide(JSBI.multiply(amountStakedInWcurrency.raw, oneToken18JSBI), currencyUsdTokenRatio)
   return new TokenAmount(usdToken, resAmount)
 }
 
@@ -204,12 +204,12 @@ const calculateStakedAmountInCurrencyFromSelfToken = function(
     return new TokenAmount(WCURRENCY[chainId], BIG_INT_ZERO)
 
   const currencySelfTokenRatio = JSBI.divide(
-    JSBI.multiply(oneToken18, currencySelfTokenPairReserveOfWCurrencyToken),
+    JSBI.multiply(oneToken18JSBI, currencySelfTokenPairReserveOfWCurrencyToken),
     currencySelfTokenPairReserveOfSelfToken
   )
   const valueOfSelfTokenInCurrency = JSBI.divide(
     JSBI.multiply(stakingTokenPairReserveOfSelfToken, currencySelfTokenRatio),
-    oneToken18
+    oneToken18JSBI
   )
   const amount = JSBI.divide(
     JSBI.multiply(
@@ -254,12 +254,12 @@ const calculateTotalStakedAmountInCurrencyFromToken = function(
     return new TokenAmount(WCURRENCY[chainId], BIG_INT_ZERO)
 
   const currencySelfTokenRatio = JSBI.divide(
-    JSBI.multiply(oneToken18, currencyTokenPairReserveOfCurrency),
+    JSBI.multiply(oneToken18JSBI, currencyTokenPairReserveOfCurrency),
     currencyTokenPairReserveOfToken
   )
-  // const amount = JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken18)
+  // const amount = JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken18JSBI)
   const amount = JSBI.multiply(
-    JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken18),
+    JSBI.divide(JSBI.multiply(totalStakedAmount.raw, currencySelfTokenRatio), oneToken18JSBI),
     stakingType === StakingType.PAIR ? BIG_INT_TWO : BIG_INT_ONE
   ) // this is b/c the value of LP shares are ~double the value of the wcurrency they entitle owner to
 
@@ -309,7 +309,7 @@ export function useStakingInfo(
         : [],
     [chainId, pairToFilterBy, rewardToken]
   )
-  const oneToken = oneToken18
+  const oneToken = oneToken18JSBI
   const selfToken = SELF_TOKEN[CHAINID]
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const autocompoundingAddresses = useMemo(() => info.map(({ autocompoundingAddress }) => autocompoundingAddress), [
@@ -707,7 +707,7 @@ export function useStakingInfo(
 
         // const variableRewardMaxTotalSupply = JSBI.divide(
         //   JSBI.BigInt(variableRewardMaxTotalSupplyState.result?.[0]),
-        //   oneToken18 // 1e18 todo: check if this is correct for all cases e.g. wBTC
+        //   oneToken18JSBI // 1e18 todo: check if this is correct for all cases e.g. wBTC
         // )
         const variableRewardMaxTotalSupply = JSBI.BigInt(variableRewardMaxTotalSupplyState.result?.[0])
 

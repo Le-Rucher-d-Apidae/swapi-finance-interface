@@ -18,7 +18,8 @@ export const LANDING_PAGE = 'https://swapi-finance.xyz/' // TODO: change to land
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-export const oneToken18 = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
+export const oneToken18 = 1_000_000_000_000_000_000 // 1e18
+export const oneToken18JSBI = JSBI.BigInt(oneToken18)
 
 const QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
 
