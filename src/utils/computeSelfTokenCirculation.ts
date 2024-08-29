@@ -1,3 +1,4 @@
+// UNUSED
 import { JSBI, Token, TokenAmount } from '@swapi-finance/sdk'
 
 export async function computeSelfTokenCirculation(token: Token): Promise<TokenAmount> {

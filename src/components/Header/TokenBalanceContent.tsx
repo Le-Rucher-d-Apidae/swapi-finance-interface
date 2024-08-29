@@ -9,7 +9,7 @@ import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { useAggregateSelfTokenBalance, useTokenBalance } from '../../state/wallet/hooks'
 import { TYPE, BagTokenAnimated } from '../../theme'
-import { computeSelfTokenCirculation } from '../../utils/computeSelfTokenCirculation'
+// import { computeSelfTokenCirculation } from '../../utils/computeSelfTokenCirculation'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../pool/styled'
@@ -51,7 +51,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   const { account, chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
   const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
-  const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
+  // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>(defaultTokenAmount)
   // const bag = chainId ? BAG[chainId] : undefined
@@ -68,6 +68,14 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   // console.log('TokenBalanceContent total=', total)
   // console.dir(total)
   const selfTokenBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ selfToken)
+  const treasuryAccoutTokenBalance: TokenAmount | undefined = useTokenBalance(
+    `${process.env.REACT_APP_TREASURY_ACCOUNT}` ?? undefined,
+    /* bag */ selfToken
+  )
+  console.log(
+    'TokenBalanceContent treasuryAccoutTokenBalance=',
+    treasuryAccoutTokenBalance?.toFixed(0, { groupSeparator: ',' })
+  )
 
   const totalSupply: TokenAmount | undefined = useTotalSupply(/* bag */ selfToken)
   // const totalSupply_: TokenAmount | undefined = useTotalSupply(/* bag */ apd)
@@ -105,6 +113,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     }
   }, [apd, chainId, totalSupply])
 */
+  /* 
   useEffect(() => {
     if (selfToken && chainId === ChainId.POLYGON) {
       computeSelfTokenCirculation(selfToken).then(circulating => {
@@ -121,6 +130,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
       // console.debug(`apd=${chainId}, chainId=${chainId}, totalSupply=${totalSupply}`)
     }
   }, [selfToken, chainId, totalSupply, circulatingSupply])
+ */
 
   // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
   // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
@@ -190,7 +200,12 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             </RowBetween>
             <RowBetween>
               <TYPE.text5>{SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:</TYPE.text5>
-              <TYPE.text5>{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.text5>
+              {/* <TYPE.text5>{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.text5> */}
+              <TYPE.text5>
+                {totalSupply
+                  ?.subtract(treasuryAccoutTokenBalance ?? new TokenAmount(selfToken, '0'))
+                  .toFixed(0, { groupSeparator: ',' })}
+              </TYPE.text5>
             </RowBetween>
             <RowBetween>
               <TYPE.text5>Total Supply</TYPE.text5>
