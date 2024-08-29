@@ -1,10 +1,10 @@
 import { ChainId, TokenAmount, CURRENCY, WCURRENCY, JSBI } from '@swapi-finance/sdk'
-import React, { useState, useContext } from 'react'
-import { useEffect } from 'react'
+import React, { /* useState, */ useContext } from 'react'
+// import { useEffect } from 'react'
 import { X } from 'react-feather'
 import styled, { ThemeContext } from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-import { SELF_TOKEN } from '../../constants'
+import { oneToken18, oneToken18JSBI, SELF_TOKEN, USD_LABEL, USDC } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { useAggregateSelfTokenBalance, useTokenBalance } from '../../state/wallet/hooks'
@@ -49,8 +49,10 @@ const StyledClose = styled(X)<{ color?: Color }>`
  */
 export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setShowTokenBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
+  const CHAINID = chainId ? chainId : ChainId.POLYGON
   const theme = useContext(ThemeContext)
   const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
+
   // const [circulatingSupply, setCirculatingSupply] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>()
   // const [circulatingSupply /* , setCirculatingSupply */] = useState<TokenAmount>(defaultTokenAmount)
@@ -70,11 +72,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   const selfTokenBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, /* bag */ selfToken)
   const treasuryAccoutTokenBalance: TokenAmount | undefined = useTokenBalance(
     `${process.env.REACT_APP_TREASURY_ACCOUNT}` ?? undefined,
-    /* bag */ selfToken
-  )
-  console.log(
-    'TokenBalanceContent treasuryAccoutTokenBalance=',
-    treasuryAccoutTokenBalance?.toFixed(0, { groupSeparator: ',' })
+    selfToken
   )
 
   const totalSupply: TokenAmount | undefined = useTotalSupply(/* bag */ selfToken)
@@ -140,23 +138,30 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   // TODO: Determine our token (SELF_TOKEN) price in WCURRENCY
   // Determine BAG price in AVAX
   // const wavax = WAVAX[chainId ? chainId : 43114]
-  const wcurrency = WCURRENCY[chainId ? chainId : ChainId.POLYGON]
-  // const [, avaxBagTokenPair] = usePair(wmatic, bag)
-  const [, currencySelfTokenTokenPair] = usePair(wcurrency, /* bag */ selfToken)
-  const oneToken = JSBI.BigInt(1_000_000_000_000_000_000) // 10^18
-  // let bagPrice: Number | undefined
-  let tokenPrice: number | undefined
-  // if (avaxBagTokenPair && bag) {
-  if (currencySelfTokenTokenPair && selfToken) {
-    // const avaxBagRatio = JSBI.divide(
+  const wcurrency = WCURRENCY[CHAINID]
+
+  const [currencySelfTokenTokenPairState, currencySelfTokenTokenPair] = usePair(wcurrency, /* bag */ selfToken)
+  let tokenPriceInCurrency: number | undefined
+  if (currencySelfTokenTokenPairState && currencySelfTokenTokenPair && selfToken) {
     const currencySelfTokenRatio = JSBI.divide(
-      // JSBI.multiply(oneToken, avaxBagTokenPair.reserveOf(wmatic).raw),
-      JSBI.multiply(oneToken, currencySelfTokenTokenPair.reserveOf(wcurrency).raw),
-      // avaxBagTokenPair.reserveOf(bag).raw
+      JSBI.multiply(oneToken18JSBI, currencySelfTokenTokenPair.reserveOf(wcurrency).raw),
       currencySelfTokenTokenPair.reserveOf(selfToken).raw
     )
-    // bagPrice = JSBI.toNumber(avaxBagRatio) / 1_000_000_000_000_000_000 // 10^18
-    tokenPrice = JSBI.toNumber(currencySelfTokenRatio) / 1_000_000_000_000_000_000 // 10^18
+    tokenPriceInCurrency = JSBI.toNumber(currencySelfTokenRatio) / oneToken18 // 10^18
+  }
+
+  const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  // console.log('TokenBalanceContent usdToken=', usdToken)
+  const [currencyUSDTokenPairState, currencyUSDTokenPair] = usePair(wcurrency, usdToken)
+
+  let tokenPriceInUSD: number | undefined
+  // const [, currencySelfTokenTokenPair] = usePair(wcurrency, /* bag */ selfToken)
+  if (currencyUSDTokenPairState && currencyUSDTokenPair && selfToken) {
+    const currencyUSDTokenRatio = JSBI.divide(
+      JSBI.multiply(oneToken18JSBI, currencyUSDTokenPair.reserveOf(usdToken).raw),
+      currencyUSDTokenPair.reserveOf(wcurrency).raw
+    )
+    if (tokenPriceInCurrency) tokenPriceInUSD = (tokenPriceInCurrency * JSBI.toNumber(currencyUSDTokenRatio)) / 1e6
   }
 
   return (
@@ -195,7 +200,13 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             <RowBetween>
               <TYPE.text5>{SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:</TYPE.text5>
               <TYPE.text5>
-                {tokenPrice?.toFixed(5) ?? '-'} {CURRENCY.symbol}
+                {tokenPriceInCurrency?.toFixed(5) ?? '-'} {CURRENCY.symbol}
+              </TYPE.text5>
+            </RowBetween>
+            <RowBetween>
+              <TYPE.text5>{SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} price:</TYPE.text5>
+              <TYPE.text5>
+                {tokenPriceInUSD?.toFixed(5) ?? '-'} {USD_LABEL}
               </TYPE.text5>
             </RowBetween>
             <RowBetween>
