@@ -65,10 +65,13 @@ export function CurrencySearch({
     }
   }, [isAddressSearch])
 
+  // const showETH: boolean = useMemo(() => {
+  //   const s = searchQuery.toLowerCase().trim()
+  //   return s === '' || s === 'e' || s === 'et' || s === 'eth'
+  // }, [searchQuery])
   const showETH: boolean = useMemo(() => {
-    const s = searchQuery.toLowerCase().trim()
-    return s === '' || s === 'e' || s === 'et' || s === 'eth'
-  }, [searchQuery])
+    return false
+  }, [])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 
