@@ -14,8 +14,9 @@ import { useColor } from '../../hooks/useColor'
 import { useCurrency } from '../../hooks/Tokens'
 import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise } from './styled'
-import { oneToken18, UNDEFINED, USD_LABEL } from '../../constants'
+import { oneToken18JSBI, UNDEFINED, USD_LABEL } from '../../constants'
 import { Fraction, CURRENCY } from '@swapi-finance/sdk'
+import { displayFixed } from '../../utils/prices'
 
 const StatContainer = styled.div`
   display: flex;
@@ -218,7 +219,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
         </RowBetween>
         {isStaking && (
           <RowBetween>
-            <TYPE.white>Your Deposit value</TYPE.white>
+            <TYPE.white>Your Deposit</TYPE.white>
             <TYPE.white>
               {`${stakingInfo.addressDepositStakedInUsd.toSignificant(4, { groupSeparator: ',' }) ??
                 '-'} ${''} ${USD_LABEL}`}
@@ -226,6 +227,9 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 {`${stakingInfo.addressDepositStakedInWcurrency.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                   CURRENCY.symbol
                 }`}
+              </TYPE.gray>
+              <TYPE.gray fontSize={14}>
+                {`${stakingInfo.stakedAmount.toSignificant(4, { groupSeparator: ',' }) ?? '-'} LP`}
               </TYPE.gray>
             </TYPE.white>
           </RowBetween>
@@ -267,7 +271,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
           <TYPE.white />
           <TYPE.white>
             {'Deposited '}
-            {new Fraction(stakingInfo.totalStakedAmount.raw, oneToken18).toSignificant(4, { groupSeparator: ',' })}
+            {new Fraction(stakingInfo.totalStakedAmount.raw, oneToken18JSBI).toSignificant(4, { groupSeparator: ',' })}
             {' LP'}
           </TYPE.white>
         </RowBetween>
@@ -280,7 +284,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 {'Max cap '}
                 {!stakingInfo.isVariableRewardRate
                   ? '∞'
-                  : new Fraction(stakingInfo.variableRewardMaxTotalSupply, oneToken18).toSignificant(4, {
+                  : new Fraction(stakingInfo.variableRewardMaxTotalSupply, oneToken18JSBI).toSignificant(4, {
                       groupSeparator: ','
                     })}
                 {' LP'}
@@ -293,7 +297,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                   {'Available '}
                   {new Fraction(
                     JSBI.subtract(stakingInfo.variableRewardMaxTotalSupply, stakingInfo.totalStakedAmount.raw),
-                    oneToken18
+                    oneToken18JSBI
                   ).toSignificant(4, { groupSeparator: ',' })}
                   {' LP'}
                 </TYPE.white>
@@ -378,7 +382,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 {showMoreMyRateOneLP ? (
                   <>
                     {' '}
-                    <span>Your rate (1 LP)</span>
+                    <span>Your rate ( 1 LP )</span>
                     <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                       ⚡
                     </span>
@@ -386,7 +390,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                   </>
                 ) : (
                   <>
-                    <span>Your rate (1 LP)</span>
+                    <span>Your rate ( 1 LP )</span>
                     <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                       ⚡
                     </span>
@@ -435,7 +439,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                 {showMoreMyRateTotalLP ? (
                   <>
                     {' '}
-                    <span>Your rate (Total LP)</span>
+                    <span>Your rate ( {stakingInfo?.stakedAmount.toSignificant(3, { groupSeparator: ',' })} LP )</span>
                     <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                       ⚡
                     </span>
@@ -443,7 +447,7 @@ export default function PoolCard({ stakingInfo /* apr */ }: { stakingInfo: Staki
                   </>
                 ) : (
                   <>
-                    <span>Your rate (Total LP)</span>
+                    <span>Your rate ( {stakingInfo?.stakedAmount.toSignificant(3, { groupSeparator: ',' })} LP )</span>
                     <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
                       ⚡
                     </span>
