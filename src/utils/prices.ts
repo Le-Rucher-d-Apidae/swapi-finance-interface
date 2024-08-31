@@ -83,7 +83,6 @@ export const displayFixed = (amount: Fraction): string | null => {
     return '0'
   }
   if (amount.toFixed(0) !== '0') {
-    console.log(amount.toFixed(0))
     return amount.toFixed(0, { groupSeparator: ',' })
   }
   if (amount.toFixed(3) !== '0') {
