@@ -1,4 +1,4 @@
-import { Currency, CURRENCY, Fraction, Token } from '@swapi-finance/sdk'
+import { Currency, CURRENCY, Token } from '@swapi-finance/sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === CURRENCY) return CURRENCY.symbol || '?'
