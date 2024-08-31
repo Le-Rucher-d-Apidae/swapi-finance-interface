@@ -2885,18 +2885,18 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@swapi-finance/contracts@^0.8.6":
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.6.tgz#322b1af18f3438d02f870ce810d3da57a2ffa97e"
-  integrity sha512-mndZdNBIFChq4EEDjxZ27tlULoqT2tK3bLFlfc70qWRxIc/Y1BSeWTns8q7tAU/YIkUkfEfmkv3IavWHWjP5ZQ==
+"@swapi-finance/contracts@^0.8.8":
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.8.tgz#ade5ee4618b90ae3ad26051ff623def1c3edbca0"
+  integrity sha512-D4vNlGjSwd9peR/7SrHfpa2a12wsB4A4II5ft+YQpDzPWuHdnc6wFC7fKJrPx4BrrgLPO2zYkBUiVskgO2iEAQ==
   dependencies:
     "@openzeppelin/contracts-3.4.1" "npm:@openzeppelin/contracts@3.4.1"
     "@openzeppelin/contracts-5.0.2" "npm:@openzeppelin/contracts@5.0.2"
 
-"@swapi-finance/sdk@^0.26.6":
-  version "0.26.6"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.6.tgz#5c4aaeab9b0e728c0ffcf71e02548448f4150a7c"
-  integrity sha512-6RUfJu5/Ljs7bxzZSOTErkdJJliEEJ8SqDwVysTBMDwv6YcLSVQb3/iud8jbIt70e1vBY9YdykNum5srsF+hjA==
+"@swapi-finance/sdk@^0.26.8":
+  version "0.26.8"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.8.tgz#351854e96f3e102dc83236b1ab6e36c1160a919e"
+  integrity sha512-InTVjwSR+DwRxck/heMb+V+jMHu611UK4ub6jUJf6f3Au75xo8gbFCevdkgAlazEY7TqU3BO5cOjKjuL5QQ4NA==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
     big.js "^5.2.2"
@@ -3171,9 +3171,9 @@
   integrity sha512-5ImO01Fb8YsEOYpV+aeyGYztcYcjGsBvN4D7G5r1ef2cuQOpymjWNQi5V0rKHE6PC2ru3HkoUr/Br2/8GUA84w==
 
 "@types/node@>=13.7.0":
-  version "22.5.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.5.0.tgz#10f01fe9465166b4cab72e75f60d8b99d019f958"
-  integrity sha512-DkFrJOe+rfdHTqqMg0bSNlGlQ85hSoh2TPzZyhHsXnMtligRWpxUySiyw8FY14ITt24HVCiQPWxS3KO/QlGmWg==
+  version "22.5.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.5.1.tgz#de01dce265f6b99ed32b295962045d10b5b99560"
+  integrity sha512-KkHsxej0j9IW1KKOOAA/XBA0z08UFSrRQHErzEfA3Vgq57eXIMYboIlHJuYIfd+lwCQjtKqUu3UnmKbtUc9yRw==
   dependencies:
     undici-types "~6.19.2"
 
@@ -13612,9 +13612,9 @@ node-gyp-build@^4.2.0:
   integrity sha512-u6fs2AEUljNho3EYTJNBfImO5QTo/J/1Etd+NVdCj7qWKUSN/bSLkZwhDv7I+w/MSC6qJ4cknepkAYykDdK8og==
 
 node-gyp-build@^4.3.0:
-  version "4.8.1"
-  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.8.1.tgz#976d3ad905e71b76086f4f0b0d3637fe79b6cda5"
-  integrity sha512-OSs33Z9yWr148JZcbZd5WiAXhh/n9z8TxQcdMhIOlpN9AhWpLfvVFO73+m77bBABQMaY9XSvIa+qk0jlI7Gcaw==
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.8.2.tgz#4f802b71c1ab2ca16af830e6c1ea7dd1ad9496fa"
+  integrity sha512-IRUxE4BVsHWXkV/SFOut4qTlagw2aM8T5/vnTsmrHJvVoKueJHRc/JaFND7QDDc61kLYUJ6qlZM3sqTSyx2dTw==
 
 node-int64@^0.4.0:
   version "0.4.0"
