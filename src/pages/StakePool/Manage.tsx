@@ -35,6 +35,7 @@ import { ChainId, CURRENCY, LIQUIDITY_TOKEN_SYMBOL } from '@swapi-finance/sdk'
 
 import { ArrowLeft } from 'react-feather'
 import { Link as HistoryLink } from 'react-router-dom'
+import { displayFixed } from '../../utils/prices'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -133,6 +134,7 @@ export function ManagePair({
   const valueOfTotalStakedAmountInUSD = stakingInfo?.totalPoolDepositsStakedInUsd
   const valueOfAddressStakedAmountInWcurrency = stakingInfo?.addressDepositStakedInWcurrency
   const valueOfAddressStakedAmountInUSD = stakingInfo?.addressDepositStakedInUsd
+  const stakedAmountLP = stakingInfo?.stakedAmount
 
   // get the color of the second token of the pair
   const backgroundColor = useColor(tokenB)
@@ -172,7 +174,7 @@ export function ManagePair({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your Deposit value</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your Deposit value ({displayFixed(stakedAmountLP)} LP)</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {`${valueOfAddressStakedAmountInUSD?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ${
                 valueOfAddressStakedAmountInUSD?.currency?.symbol
@@ -199,9 +201,7 @@ export function ManagePair({
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Pool Rate</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {stakingInfo?.totalRewardRate
-                ?.multiply((60 * 60 * 24 * 7).toString())
-                ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
+              {displayFixed(stakingInfo?.totalRewardRate?.multiply((60 * 60 * 24 * 7).toString())) ?? '-'}
               {` ${SELF_TOKEN[ChainId.POLYGON].symbol} / week`}
             </TYPE.body>
           </AutoColumn>

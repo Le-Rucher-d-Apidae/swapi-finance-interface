@@ -74,3 +74,31 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
         trade.inputAmount.currency.symbol
       }`
 }
+
+export const displayFixed = (amount: Fraction): string | null => {
+  if (!amount) {
+    return null
+  }
+  if (amount.equalTo('0')) {
+    return '0'
+  }
+  if (amount.toFixed(0) !== '0') {
+    return amount.toFixed(0, { groupSeparator: ',' })
+  }
+  if (amount.toFixed(3) !== '0') {
+    return amount.toFixed(4, { groupSeparator: ',' })
+  }
+  if (amount.toFixed(6) !== '0') {
+    return amount.toFixed(7, { groupSeparator: ',' })
+  }
+  if (amount.toFixed(9) !== '0') {
+    return amount.toFixed(10, { groupSeparator: ',' })
+  }
+  if (amount.toFixed(12) !== '0') {
+    return amount.toFixed(13, { groupSeparator: ',' })
+  }
+  if (amount.toFixed(15) !== '0') {
+    return amount.toFixed(18, { groupSeparator: ',' })
+  }
+  return amount.toFixed(0, { groupSeparator: ',' })
+}

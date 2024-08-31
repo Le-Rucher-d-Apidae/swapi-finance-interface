@@ -37,6 +37,10 @@ const PoolSection = styled.div`
 export default function StakePool() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.PAIR)
+  // DEBUG
+  // console.log(`stakingInfos`)
+  // console.dir(stakingInfos)
+  // DEBUG
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showInactive, setShowInactive] = useState<boolean>(false)
   useMemo(() => {
@@ -79,7 +83,20 @@ export default function StakePool() {
      flex-direction: column;
    `};
   `
-
+  /*
+  // DEBUG
+  stakingInfoResults?.forEach(stakingInfo => {
+    // console.log(`stakingInfo`)
+    // console.dir(stakingInfo)
+    // console.debug(`stakingInfo.stakingRewardAddress: ${stakingInfo.stakingRewardAddress}`)
+    console.debug(
+      `stakingInfo stakingRewardAddress ${
+        stakingInfo.stakingRewardAddress
+      } totalRewardRate: ${stakingInfo.totalRewardRate.toSignificant(18)}`
+    )
+  })
+  // DEBUG
+*/
   // const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
   // STAKING_REWARDS_INFO contains both staking and farming pools, only look at dual assets staking pools
   const stakingRewardsExist =

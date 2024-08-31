@@ -12,13 +12,14 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { injected } from '../connectors'
 
-export const LANDING_PAGE = 'https://app.swapi.finance/' // TODO: change to landing page
+export const LANDING_PAGE = 'https://swapi-finance.xyz/' // TODO: change to landing page
 // export const ANALYTICS_PAGE = 'https://info.baguette.exchange/' // TODO: change to analytics page
 // export const BRIDGE_PAGE = 'https://bridge.baguette.exchange/' // TODO: change to bridge page
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-export const oneToken18 = JSBI.BigInt(1_000_000_000_000_000_000) // 1e18
+export const oneToken18 = 1_000_000_000_000_000_000 // 1e18
+export const oneToken18JSBI = JSBI.BigInt(oneToken18)
 
 const QUICKSWAP_DEPLOYMENTS_ROUTER_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
 
