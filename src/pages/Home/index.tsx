@@ -14,7 +14,9 @@ import { darken } from 'polished'
 import { SELF_TOKEN, USDC } from '../../constants'
 // import { ReactComponent as Line } from '../../assets/images/line.svg'
 import { useActiveWeb3React } from '../../hooks'
-import { ChainId } from '@swapi-finance/sdk'
+import { ChainId, TokenAmount } from '@swapi-finance/sdk'
+import { useTotalSupply } from '../../data/TotalSupply'
+import { useTokenBalance } from '../../state/wallet/hooks'
 
 const PageWrapper = styled(AutoColumn)`
   padding: 0px;
@@ -126,6 +128,13 @@ const Bottom = styled.div`
 export default function Home() {
   const theme = useContext(ThemeContext)
   const { chainId } = useActiveWeb3React()
+  const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
+  const totalSupply: TokenAmount | undefined = useTotalSupply(selfToken)
+  const treasuryAccoutTokenBalance: TokenAmount | undefined = useTokenBalance(
+    `${process.env.REACT_APP_TREASURY_ACCOUNT}` ?? undefined,
+    selfToken
+  )
+  const circulatingSupply = totalSupply?.subtract(treasuryAccoutTokenBalance ?? new TokenAmount(selfToken, '0'))
   return (
     <>
       <PageWrapper>
@@ -177,15 +186,21 @@ export default function Home() {
             <Grid>
               <PaddedColumn>
                 Quantité en circulation
-                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  {circulatingSupply?.toFixed(0, { groupSeparator: ',' })}
+                </TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
-                Apport total
-                <TYPE.homeMedium color={theme.textHighlight2}>8,000,000</TYPE.homeMedium>
+                Total
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  {totalSupply?.toFixed(0, { groupSeparator: ',' })}
+                </TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
-                Approvisionnement maximal
-                <TYPE.homeMedium color={theme.textHighlight2}>--</TYPE.homeMedium>
+                Maximal
+                <TYPE.homeMedium color={theme.textHighlight2}>
+                  {totalSupply?.toFixed(0, { groupSeparator: ',' })}
+                </TYPE.homeMedium>
               </PaddedColumn>
               <PaddedColumn>
                 Capitalisation
