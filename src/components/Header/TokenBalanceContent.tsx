@@ -67,7 +67,7 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
     tokenPriceInCurrency = JSBI.toNumber(currencySelfTokenRatio) / oneToken18 // 10^18
   }
 
-  const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token must exist to be able to calculate price !
+  const usdToken = USDC[CHAINID] // USD Token in use ; WCurrency / USD token pair must exist to be able to calculate price !
   const [currencyUSDTokenPairState, currencyUSDTokenPair] = usePair(wcurrency, usdToken)
 
   let tokenPriceInUSD: number | undefined
@@ -126,7 +126,6 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
             </RowBetween>
             <RowBetween>
               <TYPE.text5>{SELF_TOKEN[chainId ? chainId : ChainId.POLYGON].symbol} in circulation:</TYPE.text5>
-              {/* <TYPE.text5>{circulatingSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.text5> */}
               <TYPE.text5>
                 {totalSupply
                   ?.subtract(treasuryAccoutTokenBalance ?? new TokenAmount(selfToken, '0'))
