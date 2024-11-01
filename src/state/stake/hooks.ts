@@ -110,12 +110,12 @@ export const STAKING_REWARDS_INFO: {
       stakingRewardAddress: '0x085222FC202d2661E6c3a16469Eb5F513089d7E6', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     },
-    // BWS -> WBTC
+    // BWS -> WMATIC
     {
       // 0x01024b5D8CB02A12966D96A7b1Ea94C34085630B
       tokens: [SELF_TOKEN[ChainId.POLYGON], UNDEFINED[ChainId.POLYGON]],
-      rewardToken: WBTC[ChainId.POLYGON], // 0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6
-      stakingRewardAddress: '0xC0b3E81A9fBA5aFda8B430cdB1a86A83347B59c4', // optimization: 10000 ; Verified
+      rewardToken: WCURRENCY[ChainId.POLYGON], // 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270
+      stakingRewardAddress: '0x959d5d8ebca23310c83d95e9c0355ac97bf6c813', // optimization: 10000 ; Verified
       autocompoundingAddress: ZERO_ADDRESS
     }
   ]
