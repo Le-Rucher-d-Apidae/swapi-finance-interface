@@ -35,7 +35,9 @@ export default function Stake() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.SINGLE)
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
-  const [showInactive, setShowInactive] = useState<boolean>(false)
+  const [showOnlyActive, setShowOnlyActive] = useState<boolean>(true)
+
+  console.log(`showOnlyActive ${showOnlyActive}`)
 
   useMemo(() => {
     Promise.all(
@@ -111,13 +113,13 @@ export default function Stake() {
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">
-            Show inactive staking
+            Show only active staking
           </TYPE.black>
           <Toggle
-            id="toggle-show-inactive"
-            isActive={showInactive}
+            id="toggle-show-only-active"
+            isActive={showOnlyActive}
             toggle={() => {
-              setShowInactive(!showInactive)
+              setShowOnlyActive(!showOnlyActive)
             }}
           />
         </AutoRow>
@@ -132,7 +134,7 @@ export default function Stake() {
           ) : (
             stakingInfoResults?.map(
               stakingInfo =>
-                (showInactive || stakingInfo.totalRewardRate.greaterThan(0)) && (
+                (!showOnlyActive || stakingInfo.totalRewardRate.greaterThan(0)) && (
                   <PoolCard apr={'0'} key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />
                 )
             )
