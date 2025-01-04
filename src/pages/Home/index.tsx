@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import styled, { keyframes, ThemeContext } from 'styled-components'
+import { useIsDarkMode } from '../../state/user/hooks'
 import { AutoColumn } from '../../components/Column'
 import { Box } from 'rebass/styled-components'
 import { Text } from 'rebass'
@@ -17,6 +18,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { ChainId, TokenAmount } from '@swapi-finance/sdk'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useTokenBalance } from '../../state/wallet/hooks'
+import { DEXTOOLCHART_DEFAULT_URL } from '../../constants/index'
 
 const PageWrapper = styled(AutoColumn)`
   padding: 0px;
@@ -127,11 +129,12 @@ const Bottom = styled.div`
 
 export default function Home() {
   const theme = useContext(ThemeContext)
+  const darkMode = useIsDarkMode()
   const { chainId } = useActiveWeb3React()
   const selfToken = chainId ? SELF_TOKEN[chainId] : SELF_TOKEN[ChainId.POLYGON]
   const totalSupply: TokenAmount | undefined = useTotalSupply(selfToken)
   const treasuryAccoutTokenBalance: TokenAmount | undefined = useTokenBalance(
-    `${process.env.REACT_APP_TREASURY_ACCOUNT}` ?? undefined,
+    `${process.env.REACT_APP_TREASURY_ACCOUNT}`,
     selfToken
   )
   const circulatingSupply = totalSupply?.subtract(treasuryAccoutTokenBalance ?? new TokenAmount(selfToken, '0'))
@@ -216,6 +219,17 @@ export default function Home() {
               </PaddedColumn>
             </Grid>
           </AutoColumn>
+          <AutoColumn gap="md" justify="flex-start">
+            <iframe
+              id="dextools-widget"
+              title="DEXTools Trading Chart"
+              width="500"
+              height="400"
+              src={`${process.env.REACT_APP_DEXTOOLCHART_URL || DEXTOOLCHART_DEFAULT_URL}${
+                '&theme=' + darkMode ? 'dark' : 'light'
+              }`}
+            />
+          </AutoColumn>
         </Section>
         <Section2>
           <LineSection>
@@ -226,16 +240,7 @@ export default function Home() {
         </Section2>
         <Section style={{ display: 'block', padding: '50px 0px', height: '20px' }}>
           <Bottom style={{ display: 'block' }}>
-            {/* 
-            <AutoColumn gap="md" justify="flex-start">
-              <TYPE.textBottom>Bottom 1</TYPE.textBottom>
-            </AutoColumn>
-            <AutoColumn gap="md" justify="flex-start">
-              <TYPE.textBottom>Bottom 2</TYPE.textBottom>
-            </AutoColumn>
-            <AutoColumn gap="md" justify="flex-start">
-              <TYPE.textBottom>Bottom 3</TYPE.textBottom>
-            </AutoColumn>
+            {/*            <AutoColumn gap="md" justify="flex-start">              <TYPE.textBottom>Bottom 1</TYPE.textBottom>            </AutoColumn>            <AutoColumn gap="md" justify="flex-start">              <TYPE.textBottom>Bottom 2</TYPE.textBottom>            </AutoColumn>            <AutoColumn gap="md" justify="flex-start">              <TYPE.textBottom>Bottom 3</TYPE.textBottom>            </AutoColumn>
              */}
           </Bottom>
         </Section>
