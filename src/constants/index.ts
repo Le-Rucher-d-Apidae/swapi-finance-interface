@@ -45,6 +45,9 @@ export const TOKEN_LIST_ASSET_GENERIC_ADDRESS_DEFAULT_LOGO_URL_DEFAULT_LOGO = '/
 
 export const HOME_URL_DEFAULT_WARNING_VISIBLE = true
 
+export const DEXTOOLCHART_DEFAULT_URL =
+  'https://www.dextools.io/widget-chart/en/polygon/pe-light/0xb8971f1aff1e617ab9fbf2b389d66bc5cc749b75?chartType=2&chartResolution=30&drawingToolbars=false'
+
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]

@@ -2885,18 +2885,18 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@swapi-finance/contracts@^0.8.8":
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.8.tgz#ade5ee4618b90ae3ad26051ff623def1c3edbca0"
-  integrity sha512-D4vNlGjSwd9peR/7SrHfpa2a12wsB4A4II5ft+YQpDzPWuHdnc6wFC7fKJrPx4BrrgLPO2zYkBUiVskgO2iEAQ==
+"@swapi-finance/contracts@^0.8.9":
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/contracts/-/contracts-0.8.9.tgz#a8764a113aaae311b6727f02476ed97f1c5eb60c"
+  integrity sha512-INyedW4aRPJimwuDP9VuHIBpyDyirK7jl+B94GlJJS1KGQP5oWGgJ4eVxCjxP037mfkDHuZsOlKcZ56+ZyJLaA==
   dependencies:
     "@openzeppelin/contracts-3.4.1" "npm:@openzeppelin/contracts@3.4.1"
     "@openzeppelin/contracts-5.0.2" "npm:@openzeppelin/contracts@5.0.2"
 
-"@swapi-finance/sdk@^0.26.8":
-  version "0.26.8"
-  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.8.tgz#351854e96f3e102dc83236b1ab6e36c1160a919e"
-  integrity sha512-InTVjwSR+DwRxck/heMb+V+jMHu611UK4ub6jUJf6f3Au75xo8gbFCevdkgAlazEY7TqU3BO5cOjKjuL5QQ4NA==
+"@swapi-finance/sdk@^0.26.11":
+  version "0.26.11"
+  resolved "https://registry.yarnpkg.com/@swapi-finance/sdk/-/sdk-0.26.11.tgz#0a156281c886a07d87c5973552bd847b9314bcde"
+  integrity sha512-VMBusm1vCUbp7n+Ef9LPDjYpv71/9aNRJX4RpuKnWgu9ee5/g+ohgR66gQTNWoG80EispZOvlUuIDIBGlgdjqA==
   dependencies:
     "@openzeppelin/cli" "^2.8.2"
     big.js "^5.2.2"
