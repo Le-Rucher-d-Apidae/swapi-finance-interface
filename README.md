@@ -41,6 +41,7 @@ Visit [app.swapi.finance](https://app.swapi.finance).
 ### Install Dependencies
 
 ```bash
+nvm use
 yarn
 ```
 

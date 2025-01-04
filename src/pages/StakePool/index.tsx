@@ -42,7 +42,10 @@ export default function StakePool() {
   // console.dir(stakingInfos)
   // DEBUG
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
-  const [showInactive, setShowInactive] = useState<boolean>(false)
+  const [showOnlyActive, setShowOnlyActive] = useState<boolean>(true)
+
+  console.log(`showOnlyActive ${showOnlyActive}`)
+
   useMemo(() => {
     Promise.all(
       stakingInfos
@@ -132,13 +135,13 @@ export default function StakePool() {
         </DataRow>
         <AutoRow justify="flex-end">
           <TYPE.black fontWeight={400} padding="12px">
-            Show inactive pools
+            Show only active pools
           </TYPE.black>
           <Toggle
-            id="toggle-show-inactive"
-            isActive={showInactive}
+            id="toggle-show-only-active"
+            isActive={showOnlyActive}
             toggle={() => {
-              setShowInactive(!showInactive)
+              setShowOnlyActive(!showOnlyActive)
             }}
           />
         </AutoRow>
@@ -153,7 +156,7 @@ export default function StakePool() {
           ) : (
             stakingInfoResults?.map(
               stakingInfo =>
-                (showInactive || stakingInfo.totalRewardRate.greaterThan(0)) && (
+                (!showOnlyActive || stakingInfo.totalRewardRate.greaterThan(0)) && (
                   <PoolCard apr={'0'} key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />
                 )
             )
