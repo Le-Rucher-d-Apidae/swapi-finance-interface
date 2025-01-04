@@ -225,8 +225,8 @@ export default function Home() {
               title="DEXTools Trading Chart"
               width="500"
               height="400"
-              src={`${process.env.REACT_APP_DEXTOOLCHART_URL || DEXTOOLCHART_DEFAULT_URL}${
-                '&theme=' + darkMode ? 'dark' : 'light'
+              src={`${process.env.REACT_APP_DEXTOOLCHART_URL || DEXTOOLCHART_DEFAULT_URL}&theme=${
+                darkMode ? 'dark' : 'light'
               }`}
             />
           </AutoColumn>
