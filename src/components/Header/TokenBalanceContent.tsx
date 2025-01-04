@@ -56,7 +56,6 @@ export default function TokenBalanceContent({ setShowTokenBalanceModal }: { setS
   const totalSupply: TokenAmount | undefined = useTotalSupply(selfToken)
 
   const wcurrency = WCURRENCY[CHAINID]
-
   const [currencySelfTokenTokenPairState, currencySelfTokenTokenPair] = usePair(wcurrency, selfToken)
   let tokenPriceInCurrency: number | undefined
   if (currencySelfTokenTokenPairState && currencySelfTokenTokenPair && selfToken) {

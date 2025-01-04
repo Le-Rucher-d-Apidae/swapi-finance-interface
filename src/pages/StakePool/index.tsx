@@ -37,6 +37,10 @@ const PoolSection = styled.div`
 export default function StakePool() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo(StakingType.PAIR)
+  // DEBUG
+  // console.log(`stakingInfos`)
+  // console.dir(stakingInfos)
+  // DEBUG
   const [stakingInfoResults, setStakingInfoResults] = useState<any[]>()
   const [showOnlyActive, setShowOnlyActive] = useState<boolean>(true)
 
